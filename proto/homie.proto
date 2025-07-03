@@ -15,6 +15,7 @@ service Homie {
     rpc UserUpdateProfile(uUpdateProfileRequest) returns (google.protobuf.Empty);
     rpc UserDeleteProfile(uDeleteProfileRequest) returns (google.protobuf.Empty); 
     rpc UserVote(uVoteRequest) returns (google.protobuf.Empty); 
+    rpc UserGetByToken(uGetByTokenRequest) returns (uGetByTokenResponse);
 
     rpc CommunityGetAll(cmGetAllRequest) returns (cmGetAllResponse);
     rpc CommunityGetByUUID(cmGetByUUIDRequest) returns (cmGetByUUIDResponse);
@@ -64,6 +65,14 @@ service Homie {
     rpc ReportsGetAll(rGetAllRequest) returns (rGetAllResponse);
     rpc ReportsCreate(rCreateRequest) returns (google.protobuf.Empty);
     rpc ReportsDelete(rDeleteRequest) returns (google.protobuf.Empty);
+}
+
+message uGetByTokenRequest {
+    string token = 1;
+}
+
+message uGetByTokenResponse {
+    User user = 1;
 }
 
 message Votes {

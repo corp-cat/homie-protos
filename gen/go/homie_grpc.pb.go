@@ -27,6 +27,7 @@ const (
 	Homie_UserUpdateProfile_FullMethodName           = "/homie.Homie/UserUpdateProfile"
 	Homie_UserDeleteProfile_FullMethodName           = "/homie.Homie/UserDeleteProfile"
 	Homie_UserVote_FullMethodName                    = "/homie.Homie/UserVote"
+	Homie_UserGetByToken_FullMethodName              = "/homie.Homie/UserGetByToken"
 	Homie_CommunityGetAll_FullMethodName             = "/homie.Homie/CommunityGetAll"
 	Homie_CommunityGetByUUID_FullMethodName          = "/homie.Homie/CommunityGetByUUID"
 	Homie_CommunityGetWithFilter_FullMethodName      = "/homie.Homie/CommunityGetWithFilter"
@@ -84,6 +85,7 @@ type HomieClient interface {
 	UserUpdateProfile(ctx context.Context, in *UUpdateProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	UserDeleteProfile(ctx context.Context, in *UDeleteProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	UserVote(ctx context.Context, in *UVoteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UserGetByToken(ctx context.Context, in *UGetByTokenRequest, opts ...grpc.CallOption) (*UGetByTokenResponse, error)
 	CommunityGetAll(ctx context.Context, in *CmGetAllRequest, opts ...grpc.CallOption) (*CmGetAllResponse, error)
 	CommunityGetByUUID(ctx context.Context, in *CmGetByUUIDRequest, opts ...grpc.CallOption) (*CmGetByUUIDResponse, error)
 	CommunityGetWithFilter(ctx context.Context, in *CmGetWithFilterRequest, opts ...grpc.CallOption) (*CmGetWithFilterResponse, error)
@@ -202,6 +204,16 @@ func (c *homieClient) UserVote(ctx context.Context, in *UVoteRequest, opts ...gr
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Homie_UserVote_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *homieClient) UserGetByToken(ctx context.Context, in *UGetByTokenRequest, opts ...grpc.CallOption) (*UGetByTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UGetByTokenResponse)
+	err := c.cc.Invoke(ctx, Homie_UserGetByToken_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -659,6 +671,7 @@ type HomieServer interface {
 	UserUpdateProfile(context.Context, *UUpdateProfileRequest) (*emptypb.Empty, error)
 	UserDeleteProfile(context.Context, *UDeleteProfileRequest) (*emptypb.Empty, error)
 	UserVote(context.Context, *UVoteRequest) (*emptypb.Empty, error)
+	UserGetByToken(context.Context, *UGetByTokenRequest) (*UGetByTokenResponse, error)
 	CommunityGetAll(context.Context, *CmGetAllRequest) (*CmGetAllResponse, error)
 	CommunityGetByUUID(context.Context, *CmGetByUUIDRequest) (*CmGetByUUIDResponse, error)
 	CommunityGetWithFilter(context.Context, *CmGetWithFilterRequest) (*CmGetWithFilterResponse, error)
@@ -733,6 +746,9 @@ func (UnimplementedHomieServer) UserDeleteProfile(context.Context, *UDeleteProfi
 }
 func (UnimplementedHomieServer) UserVote(context.Context, *UVoteRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserVote not implemented")
+}
+func (UnimplementedHomieServer) UserGetByToken(context.Context, *UGetByTokenRequest) (*UGetByTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserGetByToken not implemented")
 }
 func (UnimplementedHomieServer) CommunityGetAll(context.Context, *CmGetAllRequest) (*CmGetAllResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CommunityGetAll not implemented")
@@ -1009,6 +1025,24 @@ func _Homie_UserVote_Handler(srv interface{}, ctx context.Context, dec func(inte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(HomieServer).UserVote(ctx, req.(*UVoteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Homie_UserGetByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UGetByTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HomieServer).UserGetByToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Homie_UserGetByToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HomieServer).UserGetByToken(ctx, req.(*UGetByTokenRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1839,6 +1873,10 @@ var Homie_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UserVote",
 			Handler:    _Homie_UserVote_Handler,
+		},
+		{
+			MethodName: "UserGetByToken",
+			Handler:    _Homie_UserGetByToken_Handler,
 		},
 		{
 			MethodName: "CommunityGetAll",
