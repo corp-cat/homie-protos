@@ -1,0 +1,600 @@
+syntax = "proto3";
+
+package homie;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "corp-cat.homie.v1;homie";
+
+service Homie {
+    rpc AuthLogin(LoginRequest) returns (LoginResponse);
+    rpc AuthRegister(RegisterRequest) returns (RegisterResponse);
+    rpc AuthRefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse);
+
+    rpc UserGetByTag(uGetByTagRequest) returns (uGetByTagResponse);
+    rpc UserUpdateProfile(uUpdateProfileRequest) returns (google.protobuf.Empty);
+    rpc UserDeleteProfile(uDeleteProfileRequest) returns (google.protobuf.Empty); 
+    rpc UserVote(uVoteRequest) returns (google.protobuf.Empty); 
+
+    rpc CommunityGetAll(cmGetAllRequest) returns (cmGetAllResponse);
+    rpc CommunityGetByUUID(cmGetByUUIDRequest) returns (cmGetByUUIDResponse);
+    rpc CommunityGetWithFilter(cmGetWithFilterRequest) returns (cmGetWithFilterResponse);
+    rpc CommunityCreate(cmCreateRequest) returns (cmCreateResponse);
+    rpc CommunityDelete(cmDeleteRequest) returns (google.protobuf.Empty);
+    rpc CommunityUpdate(cmUpdateRequest) returns (google.protobuf.Empty);
+    rpc CommunityVote(cmVoteRequest) returns (google.protobuf.Empty);
+    rpc CommunityBan(cmBanRequest) returns (google.protobuf.Empty);
+
+    rpc PostsGetAll(pGetAllRequest) returns (pGetAllResponse);
+    rpc PostsGetByUUID(pGetByUUIDRequest) returns (pGetByUUIDResponse);
+    rpc PostsCreate(pCreateRequest) returns (pCreateResponse);
+    rpc PostsDelete(pDeleteRequest) returns (google.protobuf.Empty);
+    rpc PostsUpdate(pUpdateRequest) returns (google.protobuf.Empty);
+    rpc PostsGetAllComments(pGetAllCommentsRequest) returns (pGetAllCommentsResponse);
+    rpc PostsCreateComment(pCreateCommentRequest) returns (google.protobuf.Empty);
+    rpc PostsDeleteComment(pDeleteCommentRequest) returns (google.protobuf.Empty);
+    rpc PostsUpdateComment(pUpdateCommentRequest) returns (google.protobuf.Empty);
+    rpc PostsVoteComment(pVoteCommentRequest) returns (google.protobuf.Empty);
+    rpc PostsVote(pVoteRequest) returns (google.protobuf.Empty);
+
+    rpc DiscussionsGetAll(dGetAllRequest) returns (dGetAllResponse);
+    rpc DiscussionsGetByUUID(dGetByUUIDRequest) returns (dGetByUUIDResponse);
+    rpc DiscussionsGetAllWithFilter(dGetAllWithFilterRequest) returns (dGetAllWithFilterResponse);
+    rpc DiscussionsCreate(dCreateRequest) returns (dCreateResponse);
+    rpc DiscussionsDelete(dDeleteRequest) returns (google.protobuf.Empty);
+    rpc DiscussionsUpdate(dUpdateRequest) returns (google.protobuf.Empty);
+    rpc DiscussionsGetAllComments(dGetAllCommentsRequest) returns (dGetAllCommentsResponse);
+    rpc DiscussionsCreateComment(dCreateCommentRequest) returns (google.protobuf.Empty);
+    rpc DiscussionsDeleteComment(dDeleteCommentRequest) returns (google.protobuf.Empty);
+    rpc DiscussionsUpdateComment(dUpdateCommentRequest) returns (google.protobuf.Empty);
+    rpc DiscussionsVoteComment(dVoteCommentRequest) returns (google.protobuf.Empty);
+
+    rpc CoursesGetAll(cGetAllRequest) returns (cGetAllResponse);
+    rpc CoursesGetByUUID(cGetByUUIDRequest) returns (cGetByUUIDResponse);
+    rpc CoursesGetAllWithFilter(cGetAllWithFilterRequest) returns (cGetAllWithFilterResponse);
+    rpc CoursesCreate(cCreateRequest) returns (cCreateResponse);
+    rpc CoursesDelete(cDeleteRequest) returns (google.protobuf.Empty);
+    rpc CoursesUpdate(cUpdateRequest) returns (google.protobuf.Empty);
+    rpc CoursesGetAllLessons(cGetAllLessonsRequest) returns (cGetAllLessonsResponse);
+    rpc CoursesGetByUUIDLesson(cGetByUUIDLessonsRequest) returns (cGetByUUIDLessonsResponse); // NEW
+    rpc CoursesCreateLessons(cCreateLessonsRequest) returns (google.protobuf.Empty);
+    rpc CoursesDeleteLesson(cDeleteLessonsRequest) returns (google.protobuf.Empty);
+    rpc CoursesUpdateLesson(cUpdateLessonsRequest) returns (google.protobuf.Empty);
+
+    rpc ReportsGetAll(rGetAllRequest) returns (rGetAllResponse);
+    rpc ReportsCreate(rCreateRequest) returns (google.protobuf.Empty);
+    rpc ReportsDelete(rDeleteRequest) returns (google.protobuf.Empty);
+}
+
+message Votes {
+    int64 up = 1;
+    int64 down = 2;
+}
+
+message LoginResponse {
+    string token = 1;
+}
+
+message RegisterResponse {
+    string token = 1;
+}
+
+message RefreshTokenResponse {
+    string token = 1;
+}
+
+message User {
+    int64 id = 1;
+    string user_tag = 2;
+    string username = 3;
+    string email = 4;
+    string about = 5;
+    string role = 6;
+    int64 rating = 7;
+    int64 banned_to = 8;
+    int64 created_at = 9;
+}
+
+message uGetByTagResponse {
+    User user = 1;
+}
+
+message Community {
+    int64 id = 1;
+    string uuid = 2;
+    int64 author_id = 3;
+    string title = 4;
+    string description = 5;
+    Votes votes = 6;
+    int64 warnings = 7;
+    int64 price = 8;
+    bool is_banned = 9;
+    int64 created_at = 10;
+    User creator = 11;
+}
+
+message cmGetAllResponse {
+    repeated Community communities = 1;
+}
+
+message cmGetByUUIDResponse {
+    Community community = 1;
+}
+
+message cmGetWithFilterResponse {
+    repeated Community communities = 1;
+}
+
+message cmCreateResponse {
+    string uuid = 1;
+}
+
+message PostComment {
+    int64 id = 1;
+    int64 author_id = 2;
+    int64 post_id = 3;
+    string body = 4;
+    Votes votes = 5;
+    int64 created_at = 6;
+    User creator = 7;
+}
+
+message Post {
+    int64 id = 1;
+    string uuid = 2;
+    int64 community_id = 3;
+    string title = 4;
+    bytes body = 5;
+    Votes votes = 6;
+    int64 created_at = 7;
+    repeated PostComment comments = 8;
+    Community community = 9;
+}
+
+message pGetAllResponse {
+    repeated Post posts = 1;
+}
+
+message pGetAllCommentsResponse {
+    repeated PostComment comments = 1;
+}
+
+message pGetByUUIDResponse {
+    Post post = 1;
+}
+
+message pCreateResponse {
+    string uuid = 1;
+}
+
+message DiscussionComment {
+    int64 id = 1;
+    int64 author_id = 2;
+    int64 discussion_id = 3;
+    string body = 4;
+    Votes votes = 5;
+    int64 created_at = 6;
+    User creator = 7;
+}
+
+message Discussion {
+    int64 id = 1;
+    string uuid = 2;
+    string title = 3;
+    string text = 4;
+    int64 created_at = 5;
+    repeated DiscussionComment comments = 6;
+    User creator = 7;
+}
+
+message DiscussionList {
+    repeated Discussion discussions = 1;
+}
+
+message dGetAllResponse {
+    DiscussionList discussions = 1;
+}
+
+message dGetByUUIDResponse {
+    Discussion discussion = 1;
+}
+
+message dGetAllWithFilterResponse {
+    DiscussionList discussions = 1;
+}
+
+message dCreateResponse {
+    string uuid = 1;
+}
+
+message dGetAllCommentsResponse {
+    repeated DiscussionComment comments = 1;
+}
+
+message Lesson {
+    int64 id = 1;
+    string uuid = 2;
+    int64 course_id = 3;
+    string title = 4;
+    bytes body = 5;
+    int64 created_at = 6;
+    Community community = 7;
+}
+
+message Course {
+    int64 id = 1;
+    string uuid = 2;
+    int64 community_id = 3;
+    string title = 4;
+    string description = 5;
+    Votes votes = 6;
+    int64 created_at = 7;
+    repeated Lesson lessons = 8;
+    Community community = 9;
+}
+
+message cGetAllResponse {
+    repeated Course courses = 1;
+}
+
+message cGetByUUIDResponse {
+    Course course = 1;
+}
+
+message cGetAllWithFilterResponse {
+    repeated Course courses = 1;
+}
+
+message cCreateResponse {
+    string uuid = 1;
+}
+
+message cGetAllLessonsResponse {
+    repeated Lesson lessons = 1;
+}
+
+message cGetByUUIDLessonsResponse {
+    Lesson lesson = 1;
+}
+
+message ReporterObject {
+    User user = 1;
+    Community community = 2;
+    Post post = 3;
+    Discussion discussion = 4;
+    Course course = 5;
+}
+
+message Report {
+    int64 id = 1;
+    int64 user_id = 2;
+    int64 community_id = 3;
+    int64 sender_id = 4;
+    string msg = 5;
+    string type = 6;
+    string to_uuid = 7;
+    string to_obj = 8;
+    int64 sent_at = 9;
+    ReporterObject reporter_object = 10;
+}
+
+message rGetAllResponse {
+    repeated Report reports = 1;
+}
+
+
+// REQUESTS
+
+message LoginRequest { // done
+    string email = 1;
+    string password = 2;
+}
+
+message RegisterRequest { // done
+    string username = 1;
+    string email = 2;
+    string password = 3;
+}
+
+message RefreshTokenRequest { // done
+    string token = 1;
+}
+
+
+// user
+message uGetByTagRequest { 
+    string user_tag = 1;
+}
+
+message uUpdateProfileRequest { // done
+    string new_user_tag = 1;
+    string username = 2;
+    string about = 3;
+    string token = 4;
+}
+
+message uDeleteProfileRequest { // done
+    string token = 1;
+}
+
+message uVoteRequest { // done
+    string user_tag = 1;
+    bool vote = 2;
+    string token = 3;
+}
+
+// Community
+message cmGetAllRequest { // done
+    int64 page = 1;
+}
+
+message cmGetByUUIDRequest { // done
+    string community_uuid = 1;
+}
+
+message cmGetWithFilterRequest { // done
+    string title = 1;
+    float low_price = 2;
+    float high_price = 3;
+    int64 page = 4;
+}
+
+message cmCreateRequest { // done
+    string title = 1;
+    string description = 2;
+    float price = 3;
+    string token = 4;
+}
+
+message cmDeleteRequest { // done
+    string community_uuid = 1;
+    string token = 2;
+}
+
+message cmUpdateRequest { // done
+    string community_uuid = 1;
+    string title = 2;
+    string description = 3;
+    float price = 4;
+    string token = 5;
+}
+
+message cmVoteRequest { // done
+    string community_uuid = 1;
+    bool vote = 2;
+    string token = 3;
+}
+
+message cmBanRequest { // done
+    string community_uuid = 1;
+    string token = 2;
+}
+
+
+// Posts
+message pGetAllRequest { // done
+    string community_uuid = 1;
+    int64 page = 2;
+    string token = 3;
+}
+
+message pGetByUUIDRequest { // done
+    string post_uuid = 1;
+}
+
+message PostData {
+    bytes file = 1;
+    string mime_type = 2;
+}
+
+message pCreateRequest { // done
+    string community_uuid = 1;
+    string title = 2;
+    bytes body = 3;
+    repeated PostData files = 4;
+    string token = 5;
+}
+
+message pDeleteRequest { // done
+    string post_uuid = 1;
+    string token = 2;
+}
+
+message pUpdateRequest { // done
+    string post_uuid = 1;
+    string title = 2;
+    repeated PostData files = 3;
+    bytes body = 4;
+    string token = 5;
+}
+
+message pGetAllCommentsRequest { // done
+    string post_uuid = 1;
+    int64 page = 2;
+}
+
+message pCreateCommentRequest { // done
+    string post_uuid = 1;
+    string body = 2;
+    string token = 3;
+}
+
+message pDeleteCommentRequest { // done
+    string comment_id = 1;
+    string token = 2;
+}
+
+message pUpdateCommentRequest { // done
+    string comment_id = 1;
+    string body = 2;
+    string token = 3;
+}
+
+message pVoteCommentRequest { // done
+    string comment_id = 1;
+    bool vote = 2;
+    string token = 3;
+}
+
+message pVoteRequest { // done
+    string post_uuid = 1;
+    bool vote = 2;
+    string token = 3;
+}
+
+// DISCUSSIONS
+
+message dGetAllRequest { // done
+    string community_uuid = 1;
+    int64 page = 2;
+    string token = 3;
+}
+
+message dGetByUUIDRequest { // done
+    string discussion_uuid = 1;
+    string token = 2;
+}
+
+message dGetAllWithFilterRequest { // done
+    string title = 1;
+    int64 page = 2;
+    string token = 3;
+}
+
+message dCreateRequest { // done
+    string community_uuid = 1;
+    string title = 2;
+    string body = 3;
+    string token = 4;
+}
+
+message dDeleteRequest { // done
+    string discussion_uuid = 1;
+    string token = 2;
+}
+
+message dUpdateRequest { // done
+    string title = 1;
+    string body = 2;
+    string token = 3;
+}
+
+message dGetAllCommentsRequest { // done
+    string discussion_uuid = 1;
+    int64 page = 2;
+}
+
+message dCreateCommentRequest { // done
+    string discussion_uuid = 1;
+    string body = 2;
+    string token = 3;
+}
+
+message dDeleteCommentRequest { // done
+    string comment_id = 1;
+    string token = 2;
+}
+
+message dUpdateCommentRequest { // done
+    string discussion_uuid = 1;
+    string comment_id = 2;
+    string body = 3;
+    string token = 4;
+}
+
+message dVoteCommentRequest { // done
+    string discussion_uuid = 1;
+    string comment_id = 2;
+    string token = 3;
+}
+
+// Courses
+message cGetAllRequest { // done
+    string community_uuid = 1;
+    int64 page = 2;
+}
+
+message cGetByUUIDRequest { // done
+    string course_uuid = 1;
+}
+
+message cGetAllWithFilterRequest { // done
+    string title = 1;
+    int64 page = 2;
+}
+
+message cCreateRequest { // done
+    string community_uuid = 1;
+    string title = 2;
+    string description = 3;
+    string token = 4;
+}
+
+message cDeleteRequest { // done
+    string course_uuid = 1;
+    string token = 2;
+}
+
+message cUpdateRequest { // done
+    string course_uuid = 1;
+    string title = 2;
+    string description = 3;
+    string token = 4;
+}
+
+message cGetAllLessonsRequest { // done
+    string course_uuid = 1;
+    int64 page = 2;
+    string token = 3;
+}
+
+message cGetByUUIDLessonsRequest { // done
+    string lesson_uuid = 1;
+    string token = 2;
+}
+
+
+message LessonData {
+    bytes file = 1;
+    string mime_type = 2;
+}
+
+message cCreateLessonsRequest { // done
+    string course_uuid = 1;
+    string title = 2;
+    bytes body = 3;
+    repeated LessonData files = 4;
+    string token = 5;
+}
+
+message cDeleteLessonsRequest { // done
+    string lesson_uuid = 1;
+    string token = 2;
+}
+
+message cUpdateLessonsRequest { // done
+    string lesson_uuid = 1;
+    string title = 2;
+    bytes body = 3;
+    repeated LessonData files = 4;
+    string token = 5;
+}
+
+// REPORTS
+message rGetAllRequest { // done
+    string token = 1;
+}
+
+message rCreateRequest { // done
+    string community_uuid = 1;
+    string msg = 2;
+    string category = 3;
+    string to = 4;
+    string to_obj = 5;
+    string token = 6;
+}
+
+message rDeleteRequest { // done
+    string report_id = 1;
+    string token = 2;
+}
