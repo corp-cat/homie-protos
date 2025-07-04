@@ -30,6 +30,7 @@ const (
 	Homie_UserGetByToken_FullMethodName              = "/homie.Homie/UserGetByToken"
 	Homie_UserAddToCommunity_FullMethodName          = "/homie.Homie/UserAddToCommunity"
 	Homie_UserDeleteFromCommunity_FullMethodName     = "/homie.Homie/UserDeleteFromCommunity"
+	Homie_UserLeaveFromCommunity_FullMethodName      = "/homie.Homie/UserLeaveFromCommunity"
 	Homie_CommunityGetAll_FullMethodName             = "/homie.Homie/CommunityGetAll"
 	Homie_CommunityGetByUUID_FullMethodName          = "/homie.Homie/CommunityGetByUUID"
 	Homie_CommunityGetWithFilter_FullMethodName      = "/homie.Homie/CommunityGetWithFilter"
@@ -90,6 +91,7 @@ type HomieClient interface {
 	UserGetByToken(ctx context.Context, in *UGetByTokenRequest, opts ...grpc.CallOption) (*UGetByTokenResponse, error)
 	UserAddToCommunity(ctx context.Context, in *UAddToCommunityRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	UserDeleteFromCommunity(ctx context.Context, in *UDeleteFromCommunity, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UserLeaveFromCommunity(ctx context.Context, in *ULeaveFromCommunityRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	CommunityGetAll(ctx context.Context, in *CmGetAllRequest, opts ...grpc.CallOption) (*CmGetAllResponse, error)
 	CommunityGetByUUID(ctx context.Context, in *CmGetByUUIDRequest, opts ...grpc.CallOption) (*CmGetByUUIDResponse, error)
 	CommunityGetWithFilter(ctx context.Context, in *CmGetWithFilterRequest, opts ...grpc.CallOption) (*CmGetWithFilterResponse, error)
@@ -238,6 +240,16 @@ func (c *homieClient) UserDeleteFromCommunity(ctx context.Context, in *UDeleteFr
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Homie_UserDeleteFromCommunity_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *homieClient) UserLeaveFromCommunity(ctx context.Context, in *ULeaveFromCommunityRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Homie_UserLeaveFromCommunity_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -698,6 +710,7 @@ type HomieServer interface {
 	UserGetByToken(context.Context, *UGetByTokenRequest) (*UGetByTokenResponse, error)
 	UserAddToCommunity(context.Context, *UAddToCommunityRequest) (*emptypb.Empty, error)
 	UserDeleteFromCommunity(context.Context, *UDeleteFromCommunity) (*emptypb.Empty, error)
+	UserLeaveFromCommunity(context.Context, *ULeaveFromCommunityRequest) (*emptypb.Empty, error)
 	CommunityGetAll(context.Context, *CmGetAllRequest) (*CmGetAllResponse, error)
 	CommunityGetByUUID(context.Context, *CmGetByUUIDRequest) (*CmGetByUUIDResponse, error)
 	CommunityGetWithFilter(context.Context, *CmGetWithFilterRequest) (*CmGetWithFilterResponse, error)
@@ -781,6 +794,9 @@ func (UnimplementedHomieServer) UserAddToCommunity(context.Context, *UAddToCommu
 }
 func (UnimplementedHomieServer) UserDeleteFromCommunity(context.Context, *UDeleteFromCommunity) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserDeleteFromCommunity not implemented")
+}
+func (UnimplementedHomieServer) UserLeaveFromCommunity(context.Context, *ULeaveFromCommunityRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserLeaveFromCommunity not implemented")
 }
 func (UnimplementedHomieServer) CommunityGetAll(context.Context, *CmGetAllRequest) (*CmGetAllResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CommunityGetAll not implemented")
@@ -1111,6 +1127,24 @@ func _Homie_UserDeleteFromCommunity_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(HomieServer).UserDeleteFromCommunity(ctx, req.(*UDeleteFromCommunity))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Homie_UserLeaveFromCommunity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ULeaveFromCommunityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HomieServer).UserLeaveFromCommunity(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Homie_UserLeaveFromCommunity_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HomieServer).UserLeaveFromCommunity(ctx, req.(*ULeaveFromCommunityRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1953,6 +1987,10 @@ var Homie_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UserDeleteFromCommunity",
 			Handler:    _Homie_UserDeleteFromCommunity_Handler,
+		},
+		{
+			MethodName: "UserLeaveFromCommunity",
+			Handler:    _Homie_UserLeaveFromCommunity_Handler,
 		},
 		{
 			MethodName: "CommunityGetAll",
