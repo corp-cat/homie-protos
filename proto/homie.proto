@@ -132,6 +132,7 @@ message User {
 
 message uGetByTagResponse {
     User user = 1;
+    bool can_edit = 2;
 }
 
 message Community {
@@ -326,6 +327,7 @@ message RefreshTokenRequest { // done
 // user
 message uGetByTagRequest { 
     string user_tag = 1;
+    string token = 2;
 }
 
 message uUpdateProfileRequest { // done
