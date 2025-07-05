@@ -3276,6 +3276,7 @@ func (x *PGetAllRequest) GetToken() string {
 type PGetByUUIDRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PostUuid      string                 `protobuf:"bytes,1,opt,name=post_uuid,json=postUuid,proto3" json:"post_uuid,omitempty"`
+	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3313,6 +3314,13 @@ func (*PGetByUUIDRequest) Descriptor() ([]byte, []int) {
 func (x *PGetByUUIDRequest) GetPostUuid() string {
 	if x != nil {
 		return x.PostUuid
+	}
+	return ""
+}
+
+func (x *PGetByUUIDRequest) GetToken() string {
+	if x != nil {
+		return x.Token
 	}
 	return ""
 }
@@ -5679,9 +5687,10 @@ const file_homie_proto_rawDesc = "" +
 	"\x0epGetAllRequest\x12%\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x03R\x04page\x12\x14\n" +
-	"\x05token\x18\x03 \x01(\tR\x05token\"0\n" +
+	"\x05token\x18\x03 \x01(\tR\x05token\"F\n" +
 	"\x11pGetByUUIDRequest\x12\x1b\n" +
-	"\tpost_uuid\x18\x01 \x01(\tR\bpostUuid\";\n" +
+	"\tpost_uuid\x18\x01 \x01(\tR\bpostUuid\x12\x14\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\";\n" +
 	"\bPostData\x12\x12\n" +
 	"\x04file\x18\x01 \x01(\fR\x04file\x12\x1b\n" +
 	"\tmime_type\x18\x02 \x01(\tR\bmimeType\"\x9e\x01\n" +

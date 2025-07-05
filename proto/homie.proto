@@ -402,6 +402,7 @@ message pGetAllRequest { // done
 
 message pGetByUUIDRequest { // done
     string post_uuid = 1;
+    string token = 2;
 }
 
 message PostData {
