@@ -499,7 +499,7 @@ message dUpdateRequest { // done
     string title = 1;
     string body = 2;
     string token = 3;
-    string uuid = 4;
+    string discussion_uuid = 4;
 }
 
 message dGetAllCommentsRequest { // done

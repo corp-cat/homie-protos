@@ -4210,13 +4210,13 @@ func (x *DDeleteRequest) GetToken() string {
 }
 
 type DUpdateRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	Body          string                 `protobuf:"bytes,2,opt,name=body,proto3" json:"body,omitempty"`
-	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
-	Uuid          string                 `protobuf:"bytes,4,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Title          string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	Body           string                 `protobuf:"bytes,2,opt,name=body,proto3" json:"body,omitempty"`
+	Token          string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
+	DiscussionUuid string                 `protobuf:"bytes,4,opt,name=discussion_uuid,json=discussionUuid,proto3" json:"discussion_uuid,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *DUpdateRequest) Reset() {
@@ -4270,9 +4270,9 @@ func (x *DUpdateRequest) GetToken() string {
 	return ""
 }
 
-func (x *DUpdateRequest) GetUuid() string {
+func (x *DUpdateRequest) GetDiscussionUuid() string {
 	if x != nil {
-		return x.Uuid
+		return x.DiscussionUuid
 	}
 	return ""
 }
@@ -5743,12 +5743,12 @@ const file_homie_proto_rawDesc = "" +
 	"\x05token\x18\x04 \x01(\tR\x05token\"O\n" +
 	"\x0edDeleteRequest\x12'\n" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tR\x0ediscussionUuid\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token\"d\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\"y\n" +
 	"\x0edUpdateRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x12\n" +
 	"\x04body\x18\x02 \x01(\tR\x04body\x12\x14\n" +
-	"\x05token\x18\x03 \x01(\tR\x05token\x12\x12\n" +
-	"\x04uuid\x18\x04 \x01(\tR\x04uuid\"U\n" +
+	"\x05token\x18\x03 \x01(\tR\x05token\x12'\n" +
+	"\x0fdiscussion_uuid\x18\x04 \x01(\tR\x0ediscussionUuid\"U\n" +
 	"\x16dGetAllCommentsRequest\x12'\n" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tR\x0ediscussionUuid\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x03R\x04page\"j\n" +
