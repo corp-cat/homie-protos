@@ -24,9 +24,9 @@ const (
 
 type CVoteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	CourseUuid    string                 `protobuf:"bytes,1,opt,name=course_uuid,json=courseUuid,proto3" json:"course_uuid,omitempty"`
 	Vote          bool                   `protobuf:"varint,2,opt,name=vote,proto3" json:"vote,omitempty"`
-	UserTag       string                 `protobuf:"bytes,3,opt,name=userTag,proto3" json:"userTag,omitempty"`
+	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -61,9 +61,9 @@ func (*CVoteRequest) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CVoteRequest) GetUuid() string {
+func (x *CVoteRequest) GetCourseUuid() string {
 	if x != nil {
-		return x.Uuid
+		return x.CourseUuid
 	}
 	return ""
 }
@@ -75,9 +75,9 @@ func (x *CVoteRequest) GetVote() bool {
 	return false
 }
 
-func (x *CVoteRequest) GetUserTag() string {
+func (x *CVoteRequest) GetToken() string {
 	if x != nil {
-		return x.UserTag
+		return x.Token
 	}
 	return ""
 }
@@ -4617,6 +4617,7 @@ func (x *CGetAllRequest) GetPage() int64 {
 type CGetByUUIDRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CourseUuid    string                 `protobuf:"bytes,1,opt,name=course_uuid,json=courseUuid,proto3" json:"course_uuid,omitempty"`
+	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4654,6 +4655,13 @@ func (*CGetByUUIDRequest) Descriptor() ([]byte, []int) {
 func (x *CGetByUUIDRequest) GetCourseUuid() string {
 	if x != nil {
 		return x.CourseUuid
+	}
+	return ""
+}
+
+func (x *CGetByUUIDRequest) GetToken() string {
+	if x != nil {
+		return x.Token
 	}
 	return ""
 }
@@ -5451,11 +5459,12 @@ var File_homie_proto protoreflect.FileDescriptor
 
 const file_homie_proto_rawDesc = "" +
 	"\n" +
-	"\vhomie.proto\x12\x05homie\x1a\x1bgoogle/protobuf/empty.proto\"P\n" +
-	"\fcVoteRequest\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x12\n" +
-	"\x04vote\x18\x02 \x01(\bR\x04vote\x12\x18\n" +
-	"\auserTag\x18\x03 \x01(\tR\auserTag\"Y\n" +
+	"\vhomie.proto\x12\x05homie\x1a\x1bgoogle/protobuf/empty.proto\"Y\n" +
+	"\fcVoteRequest\x12\x1f\n" +
+	"\vcourse_uuid\x18\x01 \x01(\tR\n" +
+	"courseUuid\x12\x12\n" +
+	"\x04vote\x18\x02 \x01(\bR\x04vote\x12\x14\n" +
+	"\x05token\x18\x03 \x01(\tR\x05token\"Y\n" +
 	"\x1auLeaveFromCommunityRequest\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12%\n" +
 	"\x0ecommunity_uuid\x18\x02 \x01(\tR\rcommunityUuid\"S\n" +
@@ -5763,10 +5772,11 @@ const file_homie_proto_rawDesc = "" +
 	"\x05token\x18\x03 \x01(\tR\x05token\"K\n" +
 	"\x0ecGetAllRequest\x12%\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x03R\x04page\"4\n" +
+	"\x04page\x18\x02 \x01(\x03R\x04page\"J\n" +
 	"\x11cGetByUUIDRequest\x12\x1f\n" +
 	"\vcourse_uuid\x18\x01 \x01(\tR\n" +
-	"courseUuid\"D\n" +
+	"courseUuid\x12\x14\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\"D\n" +
 	"\x18cGetAllWithFilterRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x03R\x04page\"\x85\x01\n" +

@@ -72,9 +72,9 @@ service Homie {
 }
 
 message cVoteRequest {
-    string uuid = 1;
+    string course_uuid = 1;
     bool vote = 2;
-    string userTag = 3;
+    string token = 3;
 }
 
 message uLeaveFromCommunityRequest {
