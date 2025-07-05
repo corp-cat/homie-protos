@@ -89,6 +89,8 @@ message uGetByTokenRequest {
     string token = 1;
 }
 
+// RESPONSES
+
 message uGetByTokenResponse {
     User user = 1;
 }
@@ -111,15 +113,14 @@ message RefreshTokenResponse {
 }
 
 message User {
-    int64 id = 1;
-    string user_tag = 2;
-    string username = 3;
-    string email = 4;
-    string about = 5;
-    string role = 6;
-    int64 rating = 7;
-    int64 banned_to = 8;
-    int64 created_at = 9;
+    string user_tag = 1;
+    string username = 2;
+    string email = 3;
+    string about = 4;
+    string role = 5;
+    int64 rating = 6;
+    int64 banned_to = 7;
+    int64 created_at = 8;
 }
 
 message uGetByTagResponse {
@@ -127,17 +128,15 @@ message uGetByTagResponse {
 }
 
 message Community {
-    int64 id = 1;
-    string uuid = 2;
-    int64 author_id = 3;
-    string title = 4;
-    string description = 5;
-    Votes votes = 6;
-    int64 warnings = 7;
-    int64 price = 8;
-    bool is_banned = 9;
-    int64 created_at = 10;
-    User creator = 11;
+    string uuid = 1;
+    string title = 2;
+    string description = 3;
+    Votes votes = 4;
+    int64 warnings = 5;
+    int64 price = 6;
+    bool is_banned = 7;
+    int64 created_at = 8;
+    User creator = 9;
 }
 
 message cmGetAllResponse {
@@ -158,7 +157,6 @@ message cmCreateResponse {
 
 message PostComment {
     int64 id = 1;
-    int64 author_id = 2;
     int64 post_id = 3;
     string body = 4;
     Votes votes = 5;
@@ -167,15 +165,14 @@ message PostComment {
 }
 
 message Post {
-    int64 id = 1;
-    string uuid = 2;
-    int64 community_id = 3;
-    string title = 4;
-    bytes body = 5;
-    Votes votes = 6;
-    int64 created_at = 7;
-    repeated PostComment comments = 8;
-    Community community = 9;
+    string uuid = 1;
+    int64 community_id = 2;
+    string title = 3;
+    bytes body = 4;
+    Votes votes = 5;
+    int64 created_at = 6;
+    repeated PostComment comments = 7;
+    Community community = 8;
 }
 
 message pGetAllResponse {
@@ -195,23 +192,20 @@ message pCreateResponse {
 }
 
 message DiscussionComment {
-    int64 id = 1;
-    int64 author_id = 2;
-    int64 discussion_id = 3;
-    string body = 4;
-    Votes votes = 5;
-    int64 created_at = 6;
-    User creator = 7;
+    int64 discussion_id = 1;
+    string body = 2;
+    Votes votes = 3;
+    int64 created_at = 4;
+    User creator = 5;
 }
 
 message Discussion {
-    int64 id = 1;
-    string uuid = 2;
-    string title = 3;
-    string text = 4;
-    int64 created_at = 5;
-    repeated DiscussionComment comments = 6;
-    User creator = 7;
+    string uuid = 1;
+    string title = 2;
+    string text = 3;
+    int64 created_at = 4;
+    repeated DiscussionComment comments = 5;
+    User creator = 6;
 }
 
 message DiscussionList {
@@ -239,25 +233,23 @@ message dGetAllCommentsResponse {
 }
 
 message Lesson {
-    int64 id = 1;
-    string uuid = 2;
-    int64 course_id = 3;
-    string title = 4;
-    bytes body = 5;
-    int64 created_at = 6;
-    Community community = 7;
+    string uuid = 1;
+    int64 course_id = 2;
+    string title = 3;
+    bytes body = 4;
+    int64 created_at = 5;
+    Community community = 6;
 }
 
 message Course {
-    int64 id = 1;
-    string uuid = 2;
-    int64 community_id = 3;
-    string title = 4;
-    string description = 5;
-    Votes votes = 6;
-    int64 created_at = 7;
-    repeated Lesson lessons = 8;
-    Community community = 9;
+    string uuid = 1;
+    int64 community_id = 2;
+    string title = 3;
+    string description = 4;
+    Votes votes = 5;
+    int64 created_at = 6;
+    repeated Lesson lessons = 7;
+    Community community = 8;
 }
 
 message cGetAllResponse {
@@ -294,7 +286,7 @@ message ReporterObject {
 
 message Report {
     int64 id = 1;
-    int64 user_id = 2;
+    string user_tag = 2;
     int64 community_id = 3;
     int64 sender_id = 4;
     string msg = 5;

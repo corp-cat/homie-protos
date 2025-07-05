@@ -452,15 +452,14 @@ func (x *RefreshTokenResponse) GetToken() string {
 
 type User struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	UserTag       string                 `protobuf:"bytes,2,opt,name=user_tag,json=userTag,proto3" json:"user_tag,omitempty"`
-	Username      string                 `protobuf:"bytes,3,opt,name=username,proto3" json:"username,omitempty"`
-	Email         string                 `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
-	About         string                 `protobuf:"bytes,5,opt,name=about,proto3" json:"about,omitempty"`
-	Role          string                 `protobuf:"bytes,6,opt,name=role,proto3" json:"role,omitempty"`
-	Rating        int64                  `protobuf:"varint,7,opt,name=rating,proto3" json:"rating,omitempty"`
-	BannedTo      int64                  `protobuf:"varint,8,opt,name=banned_to,json=bannedTo,proto3" json:"banned_to,omitempty"`
-	CreatedAt     int64                  `protobuf:"varint,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UserTag       string                 `protobuf:"bytes,1,opt,name=user_tag,json=userTag,proto3" json:"user_tag,omitempty"`
+	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	About         string                 `protobuf:"bytes,4,opt,name=about,proto3" json:"about,omitempty"`
+	Role          string                 `protobuf:"bytes,5,opt,name=role,proto3" json:"role,omitempty"`
+	Rating        int64                  `protobuf:"varint,6,opt,name=rating,proto3" json:"rating,omitempty"`
+	BannedTo      int64                  `protobuf:"varint,7,opt,name=banned_to,json=bannedTo,proto3" json:"banned_to,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -493,13 +492,6 @@ func (x *User) ProtoReflect() protoreflect.Message {
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *User) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
 }
 
 func (x *User) GetUserTag() string {
@@ -604,17 +596,15 @@ func (x *UGetByTagResponse) GetUser() *User {
 
 type Community struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Uuid          string                 `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	AuthorId      int64                  `protobuf:"varint,3,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
-	Title         string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
-	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
-	Votes         *Votes                 `protobuf:"bytes,6,opt,name=votes,proto3" json:"votes,omitempty"`
-	Warnings      int64                  `protobuf:"varint,7,opt,name=warnings,proto3" json:"warnings,omitempty"`
-	Price         int64                  `protobuf:"varint,8,opt,name=price,proto3" json:"price,omitempty"`
-	IsBanned      bool                   `protobuf:"varint,9,opt,name=is_banned,json=isBanned,proto3" json:"is_banned,omitempty"`
-	CreatedAt     int64                  `protobuf:"varint,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	Creator       *User                  `protobuf:"bytes,11,opt,name=creator,proto3" json:"creator,omitempty"`
+	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	Votes         *Votes                 `protobuf:"bytes,4,opt,name=votes,proto3" json:"votes,omitempty"`
+	Warnings      int64                  `protobuf:"varint,5,opt,name=warnings,proto3" json:"warnings,omitempty"`
+	Price         int64                  `protobuf:"varint,6,opt,name=price,proto3" json:"price,omitempty"`
+	IsBanned      bool                   `protobuf:"varint,7,opt,name=is_banned,json=isBanned,proto3" json:"is_banned,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	Creator       *User                  `protobuf:"bytes,9,opt,name=creator,proto3" json:"creator,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -649,25 +639,11 @@ func (*Community) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *Community) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
 func (x *Community) GetUuid() string {
 	if x != nil {
 		return x.Uuid
 	}
 	return ""
-}
-
-func (x *Community) GetAuthorId() int64 {
-	if x != nil {
-		return x.AuthorId
-	}
-	return 0
 }
 
 func (x *Community) GetTitle() string {
@@ -905,7 +881,6 @@ func (x *CmCreateResponse) GetUuid() string {
 type PostComment struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	AuthorId      int64                  `protobuf:"varint,2,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
 	PostId        int64                  `protobuf:"varint,3,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
 	Body          string                 `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty"`
 	Votes         *Votes                 `protobuf:"bytes,5,opt,name=votes,proto3" json:"votes,omitempty"`
@@ -952,13 +927,6 @@ func (x *PostComment) GetId() int64 {
 	return 0
 }
 
-func (x *PostComment) GetAuthorId() int64 {
-	if x != nil {
-		return x.AuthorId
-	}
-	return 0
-}
-
 func (x *PostComment) GetPostId() int64 {
 	if x != nil {
 		return x.PostId
@@ -996,15 +964,14 @@ func (x *PostComment) GetCreator() *User {
 
 type Post struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Uuid          string                 `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	CommunityId   int64                  `protobuf:"varint,3,opt,name=community_id,json=communityId,proto3" json:"community_id,omitempty"`
-	Title         string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
-	Body          []byte                 `protobuf:"bytes,5,opt,name=body,proto3" json:"body,omitempty"`
-	Votes         *Votes                 `protobuf:"bytes,6,opt,name=votes,proto3" json:"votes,omitempty"`
-	CreatedAt     int64                  `protobuf:"varint,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	Comments      []*PostComment         `protobuf:"bytes,8,rep,name=comments,proto3" json:"comments,omitempty"`
-	Community     *Community             `protobuf:"bytes,9,opt,name=community,proto3" json:"community,omitempty"`
+	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	CommunityId   int64                  `protobuf:"varint,2,opt,name=community_id,json=communityId,proto3" json:"community_id,omitempty"`
+	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Body          []byte                 `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty"`
+	Votes         *Votes                 `protobuf:"bytes,5,opt,name=votes,proto3" json:"votes,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	Comments      []*PostComment         `protobuf:"bytes,7,rep,name=comments,proto3" json:"comments,omitempty"`
+	Community     *Community             `protobuf:"bytes,8,opt,name=community,proto3" json:"community,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1037,13 +1004,6 @@ func (x *Post) ProtoReflect() protoreflect.Message {
 // Deprecated: Use Post.ProtoReflect.Descriptor instead.
 func (*Post) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{17}
-}
-
-func (x *Post) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
 }
 
 func (x *Post) GetUuid() string {
@@ -1280,13 +1240,11 @@ func (x *PCreateResponse) GetUuid() string {
 
 type DiscussionComment struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	AuthorId      int64                  `protobuf:"varint,2,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
-	DiscussionId  int64                  `protobuf:"varint,3,opt,name=discussion_id,json=discussionId,proto3" json:"discussion_id,omitempty"`
-	Body          string                 `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty"`
-	Votes         *Votes                 `protobuf:"bytes,5,opt,name=votes,proto3" json:"votes,omitempty"`
-	CreatedAt     int64                  `protobuf:"varint,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	Creator       *User                  `protobuf:"bytes,7,opt,name=creator,proto3" json:"creator,omitempty"`
+	DiscussionId  int64                  `protobuf:"varint,1,opt,name=discussion_id,json=discussionId,proto3" json:"discussion_id,omitempty"`
+	Body          string                 `protobuf:"bytes,2,opt,name=body,proto3" json:"body,omitempty"`
+	Votes         *Votes                 `protobuf:"bytes,3,opt,name=votes,proto3" json:"votes,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	Creator       *User                  `protobuf:"bytes,5,opt,name=creator,proto3" json:"creator,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1319,20 +1277,6 @@ func (x *DiscussionComment) ProtoReflect() protoreflect.Message {
 // Deprecated: Use DiscussionComment.ProtoReflect.Descriptor instead.
 func (*DiscussionComment) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{22}
-}
-
-func (x *DiscussionComment) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *DiscussionComment) GetAuthorId() int64 {
-	if x != nil {
-		return x.AuthorId
-	}
-	return 0
 }
 
 func (x *DiscussionComment) GetDiscussionId() int64 {
@@ -1372,13 +1316,12 @@ func (x *DiscussionComment) GetCreator() *User {
 
 type Discussion struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Uuid          string                 `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
-	Text          string                 `protobuf:"bytes,4,opt,name=text,proto3" json:"text,omitempty"`
-	CreatedAt     int64                  `protobuf:"varint,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	Comments      []*DiscussionComment   `protobuf:"bytes,6,rep,name=comments,proto3" json:"comments,omitempty"`
-	Creator       *User                  `protobuf:"bytes,7,opt,name=creator,proto3" json:"creator,omitempty"`
+	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Text          string                 `protobuf:"bytes,3,opt,name=text,proto3" json:"text,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	Comments      []*DiscussionComment   `protobuf:"bytes,5,rep,name=comments,proto3" json:"comments,omitempty"`
+	Creator       *User                  `protobuf:"bytes,6,opt,name=creator,proto3" json:"creator,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1411,13 +1354,6 @@ func (x *Discussion) ProtoReflect() protoreflect.Message {
 // Deprecated: Use Discussion.ProtoReflect.Descriptor instead.
 func (*Discussion) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{23}
-}
-
-func (x *Discussion) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
 }
 
 func (x *Discussion) GetUuid() string {
@@ -1728,13 +1664,12 @@ func (x *DGetAllCommentsResponse) GetComments() []*DiscussionComment {
 
 type Lesson struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Uuid          string                 `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	CourseId      int64                  `protobuf:"varint,3,opt,name=course_id,json=courseId,proto3" json:"course_id,omitempty"`
-	Title         string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
-	Body          []byte                 `protobuf:"bytes,5,opt,name=body,proto3" json:"body,omitempty"`
-	CreatedAt     int64                  `protobuf:"varint,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	Community     *Community             `protobuf:"bytes,7,opt,name=community,proto3" json:"community,omitempty"`
+	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	CourseId      int64                  `protobuf:"varint,2,opt,name=course_id,json=courseId,proto3" json:"course_id,omitempty"`
+	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Body          []byte                 `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	Community     *Community             `protobuf:"bytes,6,opt,name=community,proto3" json:"community,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1767,13 +1702,6 @@ func (x *Lesson) ProtoReflect() protoreflect.Message {
 // Deprecated: Use Lesson.ProtoReflect.Descriptor instead.
 func (*Lesson) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{30}
-}
-
-func (x *Lesson) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
 }
 
 func (x *Lesson) GetUuid() string {
@@ -1820,15 +1748,14 @@ func (x *Lesson) GetCommunity() *Community {
 
 type Course struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Uuid          string                 `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	CommunityId   int64                  `protobuf:"varint,3,opt,name=community_id,json=communityId,proto3" json:"community_id,omitempty"`
-	Title         string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
-	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
-	Votes         *Votes                 `protobuf:"bytes,6,opt,name=votes,proto3" json:"votes,omitempty"`
-	CreatedAt     int64                  `protobuf:"varint,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	Lessons       []*Lesson              `protobuf:"bytes,8,rep,name=lessons,proto3" json:"lessons,omitempty"`
-	Community     *Community             `protobuf:"bytes,9,opt,name=community,proto3" json:"community,omitempty"`
+	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	CommunityId   int64                  `protobuf:"varint,2,opt,name=community_id,json=communityId,proto3" json:"community_id,omitempty"`
+	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	Votes         *Votes                 `protobuf:"bytes,5,opt,name=votes,proto3" json:"votes,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	Lessons       []*Lesson              `protobuf:"bytes,7,rep,name=lessons,proto3" json:"lessons,omitempty"`
+	Community     *Community             `protobuf:"bytes,8,opt,name=community,proto3" json:"community,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1861,13 +1788,6 @@ func (x *Course) ProtoReflect() protoreflect.Message {
 // Deprecated: Use Course.ProtoReflect.Descriptor instead.
 func (*Course) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{31}
-}
-
-func (x *Course) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
 }
 
 func (x *Course) GetUuid() string {
@@ -2269,7 +2189,7 @@ func (x *ReporterObject) GetCourse() *Course {
 type Report struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	Id             int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	UserId         int64                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserTag        string                 `protobuf:"bytes,2,opt,name=user_tag,json=userTag,proto3" json:"user_tag,omitempty"`
 	CommunityId    int64                  `protobuf:"varint,3,opt,name=community_id,json=communityId,proto3" json:"community_id,omitempty"`
 	SenderId       int64                  `protobuf:"varint,4,opt,name=sender_id,json=senderId,proto3" json:"sender_id,omitempty"`
 	Msg            string                 `protobuf:"bytes,5,opt,name=msg,proto3" json:"msg,omitempty"`
@@ -2319,11 +2239,11 @@ func (x *Report) GetId() int64 {
 	return 0
 }
 
-func (x *Report) GetUserId() int64 {
+func (x *Report) GetUserTag() string {
 	if x != nil {
-		return x.UserId
+		return x.UserTag
 	}
-	return 0
+	return ""
 }
 
 func (x *Report) GetCommunityId() int64 {
@@ -5525,34 +5445,30 @@ const file_homie_proto_rawDesc = "" +
 	"\x10RegisterResponse\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\",\n" +
 	"\x14RefreshTokenResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"\xe1\x01\n" +
-	"\x04User\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x19\n" +
-	"\buser_tag\x18\x02 \x01(\tR\auserTag\x12\x1a\n" +
-	"\busername\x18\x03 \x01(\tR\busername\x12\x14\n" +
-	"\x05email\x18\x04 \x01(\tR\x05email\x12\x14\n" +
-	"\x05about\x18\x05 \x01(\tR\x05about\x12\x12\n" +
-	"\x04role\x18\x06 \x01(\tR\x04role\x12\x16\n" +
-	"\x06rating\x18\a \x01(\x03R\x06rating\x12\x1b\n" +
-	"\tbanned_to\x18\b \x01(\x03R\bbannedTo\x12\x1d\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"\xd1\x01\n" +
+	"\x04User\x12\x19\n" +
+	"\buser_tag\x18\x01 \x01(\tR\auserTag\x12\x1a\n" +
+	"\busername\x18\x02 \x01(\tR\busername\x12\x14\n" +
+	"\x05email\x18\x03 \x01(\tR\x05email\x12\x14\n" +
+	"\x05about\x18\x04 \x01(\tR\x05about\x12\x12\n" +
+	"\x04role\x18\x05 \x01(\tR\x04role\x12\x16\n" +
+	"\x06rating\x18\x06 \x01(\x03R\x06rating\x12\x1b\n" +
+	"\tbanned_to\x18\a \x01(\x03R\bbannedTo\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\t \x01(\x03R\tcreatedAt\"4\n" +
+	"created_at\x18\b \x01(\x03R\tcreatedAt\"4\n" +
 	"\x11uGetByTagResponse\x12\x1f\n" +
-	"\x04user\x18\x01 \x01(\v2\v.homie.UserR\x04user\"\xbd\x02\n" +
-	"\tCommunity\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04uuid\x18\x02 \x01(\tR\x04uuid\x12\x1b\n" +
-	"\tauthor_id\x18\x03 \x01(\x03R\bauthorId\x12\x14\n" +
-	"\x05title\x18\x04 \x01(\tR\x05title\x12 \n" +
-	"\vdescription\x18\x05 \x01(\tR\vdescription\x12\"\n" +
-	"\x05votes\x18\x06 \x01(\v2\f.homie.VotesR\x05votes\x12\x1a\n" +
-	"\bwarnings\x18\a \x01(\x03R\bwarnings\x12\x14\n" +
-	"\x05price\x18\b \x01(\x03R\x05price\x12\x1b\n" +
-	"\tis_banned\x18\t \x01(\bR\bisBanned\x12\x1d\n" +
+	"\x04user\x18\x01 \x01(\v2\v.homie.UserR\x04user\"\x90\x02\n" +
+	"\tCommunity\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\"\n" +
+	"\x05votes\x18\x04 \x01(\v2\f.homie.VotesR\x05votes\x12\x1a\n" +
+	"\bwarnings\x18\x05 \x01(\x03R\bwarnings\x12\x14\n" +
+	"\x05price\x18\x06 \x01(\x03R\x05price\x12\x1b\n" +
+	"\tis_banned\x18\a \x01(\bR\bisBanned\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\n" +
-	" \x01(\x03R\tcreatedAt\x12%\n" +
-	"\acreator\x18\v \x01(\v2\v.homie.UserR\acreator\"F\n" +
+	"created_at\x18\b \x01(\x03R\tcreatedAt\x12%\n" +
+	"\acreator\x18\t \x01(\v2\v.homie.UserR\acreator\"F\n" +
 	"\x10cmGetAllResponse\x122\n" +
 	"\vcommunities\x18\x01 \x03(\v2\x10.homie.CommunityR\vcommunities\"E\n" +
 	"\x13cmGetByUUIDResponse\x12.\n" +
@@ -5560,27 +5476,25 @@ const file_homie_proto_rawDesc = "" +
 	"\x17cmGetWithFilterResponse\x122\n" +
 	"\vcommunities\x18\x01 \x03(\v2\x10.homie.CommunityR\vcommunities\"&\n" +
 	"\x10cmCreateResponse\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\xd1\x01\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\xb4\x01\n" +
 	"\vPostComment\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1b\n" +
-	"\tauthor_id\x18\x02 \x01(\x03R\bauthorId\x12\x17\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x17\n" +
 	"\apost_id\x18\x03 \x01(\x03R\x06postId\x12\x12\n" +
 	"\x04body\x18\x04 \x01(\tR\x04body\x12\"\n" +
 	"\x05votes\x18\x05 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\x06 \x01(\x03R\tcreatedAt\x12%\n" +
-	"\acreator\x18\a \x01(\v2\v.homie.UserR\acreator\"\x9a\x02\n" +
-	"\x04Post\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04uuid\x18\x02 \x01(\tR\x04uuid\x12!\n" +
-	"\fcommunity_id\x18\x03 \x01(\x03R\vcommunityId\x12\x14\n" +
-	"\x05title\x18\x04 \x01(\tR\x05title\x12\x12\n" +
-	"\x04body\x18\x05 \x01(\fR\x04body\x12\"\n" +
-	"\x05votes\x18\x06 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
+	"\acreator\x18\a \x01(\v2\v.homie.UserR\acreator\"\x8a\x02\n" +
+	"\x04Post\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12!\n" +
+	"\fcommunity_id\x18\x02 \x01(\x03R\vcommunityId\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x12\n" +
+	"\x04body\x18\x04 \x01(\fR\x04body\x12\"\n" +
+	"\x05votes\x18\x05 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\a \x01(\x03R\tcreatedAt\x12.\n" +
-	"\bcomments\x18\b \x03(\v2\x12.homie.PostCommentR\bcomments\x12.\n" +
-	"\tcommunity\x18\t \x01(\v2\x10.homie.CommunityR\tcommunity\"4\n" +
+	"created_at\x18\x06 \x01(\x03R\tcreatedAt\x12.\n" +
+	"\bcomments\x18\a \x03(\v2\x12.homie.PostCommentR\bcomments\x12.\n" +
+	"\tcommunity\x18\b \x01(\v2\x10.homie.CommunityR\tcommunity\"4\n" +
 	"\x0fpGetAllResponse\x12!\n" +
 	"\x05posts\x18\x01 \x03(\v2\v.homie.PostR\x05posts\"I\n" +
 	"\x17pGetAllCommentsResponse\x12.\n" +
@@ -5588,26 +5502,23 @@ const file_homie_proto_rawDesc = "" +
 	"\x12pGetByUUIDResponse\x12\x1f\n" +
 	"\x04post\x18\x01 \x01(\v2\v.homie.PostR\x04post\"%\n" +
 	"\x0fpCreateResponse\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\xe3\x01\n" +
-	"\x11DiscussionComment\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1b\n" +
-	"\tauthor_id\x18\x02 \x01(\x03R\bauthorId\x12#\n" +
-	"\rdiscussion_id\x18\x03 \x01(\x03R\fdiscussionId\x12\x12\n" +
-	"\x04body\x18\x04 \x01(\tR\x04body\x12\"\n" +
-	"\x05votes\x18\x05 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\xb6\x01\n" +
+	"\x11DiscussionComment\x12#\n" +
+	"\rdiscussion_id\x18\x01 \x01(\x03R\fdiscussionId\x12\x12\n" +
+	"\x04body\x18\x02 \x01(\tR\x04body\x12\"\n" +
+	"\x05votes\x18\x03 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x06 \x01(\x03R\tcreatedAt\x12%\n" +
-	"\acreator\x18\a \x01(\v2\v.homie.UserR\acreator\"\xd6\x01\n" +
+	"created_at\x18\x04 \x01(\x03R\tcreatedAt\x12%\n" +
+	"\acreator\x18\x05 \x01(\v2\v.homie.UserR\acreator\"\xc6\x01\n" +
 	"\n" +
-	"Discussion\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04uuid\x18\x02 \x01(\tR\x04uuid\x12\x14\n" +
-	"\x05title\x18\x03 \x01(\tR\x05title\x12\x12\n" +
-	"\x04text\x18\x04 \x01(\tR\x04text\x12\x1d\n" +
+	"Discussion\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
+	"\x04text\x18\x03 \x01(\tR\x04text\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x05 \x01(\x03R\tcreatedAt\x124\n" +
-	"\bcomments\x18\x06 \x03(\v2\x18.homie.DiscussionCommentR\bcomments\x12%\n" +
-	"\acreator\x18\a \x01(\v2\v.homie.UserR\acreator\"E\n" +
+	"created_at\x18\x04 \x01(\x03R\tcreatedAt\x124\n" +
+	"\bcomments\x18\x05 \x03(\v2\x18.homie.DiscussionCommentR\bcomments\x12%\n" +
+	"\acreator\x18\x06 \x01(\v2\v.homie.UserR\acreator\"E\n" +
 	"\x0eDiscussionList\x123\n" +
 	"\vdiscussions\x18\x01 \x03(\v2\x11.homie.DiscussionR\vdiscussions\"J\n" +
 	"\x0fdGetAllResponse\x127\n" +
@@ -5621,27 +5532,25 @@ const file_homie_proto_rawDesc = "" +
 	"\x0fdCreateResponse\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"O\n" +
 	"\x17dGetAllCommentsResponse\x124\n" +
-	"\bcomments\x18\x01 \x03(\v2\x18.homie.DiscussionCommentR\bcomments\"\xc2\x01\n" +
-	"\x06Lesson\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04uuid\x18\x02 \x01(\tR\x04uuid\x12\x1b\n" +
-	"\tcourse_id\x18\x03 \x01(\x03R\bcourseId\x12\x14\n" +
-	"\x05title\x18\x04 \x01(\tR\x05title\x12\x12\n" +
-	"\x04body\x18\x05 \x01(\fR\x04body\x12\x1d\n" +
+	"\bcomments\x18\x01 \x03(\v2\x18.homie.DiscussionCommentR\bcomments\"\xb2\x01\n" +
+	"\x06Lesson\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1b\n" +
+	"\tcourse_id\x18\x02 \x01(\x03R\bcourseId\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x12\n" +
+	"\x04body\x18\x04 \x01(\fR\x04body\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x06 \x01(\x03R\tcreatedAt\x12.\n" +
-	"\tcommunity\x18\a \x01(\v2\x10.homie.CommunityR\tcommunity\"\xa3\x02\n" +
-	"\x06Course\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04uuid\x18\x02 \x01(\tR\x04uuid\x12!\n" +
-	"\fcommunity_id\x18\x03 \x01(\x03R\vcommunityId\x12\x14\n" +
-	"\x05title\x18\x04 \x01(\tR\x05title\x12 \n" +
-	"\vdescription\x18\x05 \x01(\tR\vdescription\x12\"\n" +
-	"\x05votes\x18\x06 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
+	"created_at\x18\x05 \x01(\x03R\tcreatedAt\x12.\n" +
+	"\tcommunity\x18\x06 \x01(\v2\x10.homie.CommunityR\tcommunity\"\x93\x02\n" +
+	"\x06Course\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12!\n" +
+	"\fcommunity_id\x18\x02 \x01(\x03R\vcommunityId\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12 \n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\"\n" +
+	"\x05votes\x18\x05 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\a \x01(\x03R\tcreatedAt\x12'\n" +
-	"\alessons\x18\b \x03(\v2\r.homie.LessonR\alessons\x12.\n" +
-	"\tcommunity\x18\t \x01(\v2\x10.homie.CommunityR\tcommunity\":\n" +
+	"created_at\x18\x06 \x01(\x03R\tcreatedAt\x12'\n" +
+	"\alessons\x18\a \x03(\v2\r.homie.LessonR\alessons\x12.\n" +
+	"\tcommunity\x18\b \x01(\v2\x10.homie.CommunityR\tcommunity\":\n" +
 	"\x0fcGetAllResponse\x12'\n" +
 	"\acourses\x18\x01 \x03(\v2\r.homie.CourseR\acourses\";\n" +
 	"\x12cGetByUUIDResponse\x12%\n" +
@@ -5661,10 +5570,10 @@ const file_homie_proto_rawDesc = "" +
 	"\n" +
 	"discussion\x18\x04 \x01(\v2\x11.homie.DiscussionR\n" +
 	"discussion\x12%\n" +
-	"\x06course\x18\x05 \x01(\v2\r.homie.CourseR\x06course\"\xa0\x02\n" +
+	"\x06course\x18\x05 \x01(\v2\r.homie.CourseR\x06course\"\xa2\x02\n" +
 	"\x06Report\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\x03R\x06userId\x12!\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x19\n" +
+	"\buser_tag\x18\x02 \x01(\tR\auserTag\x12!\n" +
 	"\fcommunity_id\x18\x03 \x01(\x03R\vcommunityId\x12\x1b\n" +
 	"\tsender_id\x18\x04 \x01(\x03R\bsenderId\x12\x10\n" +
 	"\x03msg\x18\x05 \x01(\tR\x03msg\x12\x12\n" +
