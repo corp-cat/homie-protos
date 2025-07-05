@@ -72,6 +72,7 @@ const (
 	Homie_CoursesCreateLessons_FullMethodName        = "/homie.Homie/CoursesCreateLessons"
 	Homie_CoursesDeleteLesson_FullMethodName         = "/homie.Homie/CoursesDeleteLesson"
 	Homie_CoursesUpdateLesson_FullMethodName         = "/homie.Homie/CoursesUpdateLesson"
+	Homie_CourseVote_FullMethodName                  = "/homie.Homie/CourseVote"
 	Homie_ReportsGetAll_FullMethodName               = "/homie.Homie/ReportsGetAll"
 	Homie_ReportsCreate_FullMethodName               = "/homie.Homie/ReportsCreate"
 	Homie_ReportsDelete_FullMethodName               = "/homie.Homie/ReportsDelete"
@@ -133,6 +134,7 @@ type HomieClient interface {
 	CoursesCreateLessons(ctx context.Context, in *CCreateLessonsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	CoursesDeleteLesson(ctx context.Context, in *CDeleteLessonsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	CoursesUpdateLesson(ctx context.Context, in *CUpdateLessonsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CourseVote(ctx context.Context, in *CVoteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ReportsGetAll(ctx context.Context, in *RGetAllRequest, opts ...grpc.CallOption) (*RGetAllResponse, error)
 	ReportsCreate(ctx context.Context, in *RCreateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ReportsDelete(ctx context.Context, in *RDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -666,6 +668,16 @@ func (c *homieClient) CoursesUpdateLesson(ctx context.Context, in *CUpdateLesson
 	return out, nil
 }
 
+func (c *homieClient) CourseVote(ctx context.Context, in *CVoteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Homie_CourseVote_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *homieClient) ReportsGetAll(ctx context.Context, in *RGetAllRequest, opts ...grpc.CallOption) (*RGetAllResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RGetAllResponse)
@@ -752,6 +764,7 @@ type HomieServer interface {
 	CoursesCreateLessons(context.Context, *CCreateLessonsRequest) (*emptypb.Empty, error)
 	CoursesDeleteLesson(context.Context, *CDeleteLessonsRequest) (*emptypb.Empty, error)
 	CoursesUpdateLesson(context.Context, *CUpdateLessonsRequest) (*emptypb.Empty, error)
+	CourseVote(context.Context, *CVoteRequest) (*emptypb.Empty, error)
 	ReportsGetAll(context.Context, *RGetAllRequest) (*RGetAllResponse, error)
 	ReportsCreate(context.Context, *RCreateRequest) (*emptypb.Empty, error)
 	ReportsDelete(context.Context, *RDeleteRequest) (*emptypb.Empty, error)
@@ -920,6 +933,9 @@ func (UnimplementedHomieServer) CoursesDeleteLesson(context.Context, *CDeleteLes
 }
 func (UnimplementedHomieServer) CoursesUpdateLesson(context.Context, *CUpdateLessonsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CoursesUpdateLesson not implemented")
+}
+func (UnimplementedHomieServer) CourseVote(context.Context, *CVoteRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CourseVote not implemented")
 }
 func (UnimplementedHomieServer) ReportsGetAll(context.Context, *RGetAllRequest) (*RGetAllResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReportsGetAll not implemented")
@@ -1887,6 +1903,24 @@ func _Homie_CoursesUpdateLesson_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Homie_CourseVote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CVoteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HomieServer).CourseVote(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Homie_CourseVote_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HomieServer).CourseVote(ctx, req.(*CVoteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Homie_ReportsGetAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RGetAllRequest)
 	if err := dec(in); err != nil {
@@ -2155,6 +2189,10 @@ var Homie_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CoursesUpdateLesson",
 			Handler:    _Homie_CoursesUpdateLesson_Handler,
+		},
+		{
+			MethodName: "CourseVote",
+			Handler:    _Homie_CourseVote_Handler,
 		},
 		{
 			MethodName: "ReportsGetAll",

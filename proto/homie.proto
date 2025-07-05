@@ -64,10 +64,17 @@ service Homie {
     rpc CoursesCreateLessons(cCreateLessonsRequest) returns (google.protobuf.Empty);
     rpc CoursesDeleteLesson(cDeleteLessonsRequest) returns (google.protobuf.Empty);
     rpc CoursesUpdateLesson(cUpdateLessonsRequest) returns (google.protobuf.Empty);
+    rpc CourseVote(cVoteRequest) returns (google.protobuf.Empty);
 
     rpc ReportsGetAll(rGetAllRequest) returns (rGetAllResponse);
     rpc ReportsCreate(rCreateRequest) returns (google.protobuf.Empty);
     rpc ReportsDelete(rDeleteRequest) returns (google.protobuf.Empty);
+}
+
+message cVoteRequest {
+    string uuid = 1;
+    bool vote = 2;
+    string userTag = 3;
 }
 
 message uLeaveFromCommunityRequest {
@@ -234,22 +241,18 @@ message dGetAllCommentsResponse {
 
 message Lesson {
     string uuid = 1;
-    int64 course_id = 2;
-    string title = 3;
-    bytes body = 4;
-    int64 created_at = 5;
-    Community community = 6;
+    string title = 2;
+    bytes body = 3;
+    int64 created_at = 4;
 }
 
 message Course {
     string uuid = 1;
-    int64 community_id = 2;
-    string title = 3;
-    string description = 4;
-    Votes votes = 5;
-    int64 created_at = 6;
-    repeated Lesson lessons = 7;
-    Community community = 8;
+    string title = 2;
+    string description = 3;
+    Votes votes = 4;
+    int64 created_at = 5;
+    repeated Lesson lessons = 6;
 }
 
 message cGetAllResponse {
@@ -496,6 +499,7 @@ message dUpdateRequest { // done
     string title = 1;
     string body = 2;
     string token = 3;
+    string uuid = 4;
 }
 
 message dGetAllCommentsRequest { // done
@@ -515,10 +519,9 @@ message dDeleteCommentRequest { // done
 }
 
 message dUpdateCommentRequest { // done
-    string discussion_uuid = 1;
-    string comment_id = 2;
-    string body = 3;
-    string token = 4;
+    string comment_id = 1;
+    string body = 2;
+    string token = 3;
 }
 
 message dVoteCommentRequest { // done
@@ -581,9 +584,9 @@ message LessonData {
 message cCreateLessonsRequest { // done
     string course_uuid = 1;
     string title = 2;
-    bytes body = 3;
-    repeated LessonData files = 4;
-    string token = 5;
+    LessonData body = 3;
+    repeated LessonData files = 5; // not counted
+    string token = 6;
 }
 
 message cDeleteLessonsRequest { // done
@@ -594,8 +597,8 @@ message cDeleteLessonsRequest { // done
 message cUpdateLessonsRequest { // done
     string lesson_uuid = 1;
     string title = 2;
-    bytes body = 3;
-    repeated LessonData files = 4;
+    LessonData body = 3;
+    repeated LessonData files = 4; // not counted
     string token = 5;
 }
 
