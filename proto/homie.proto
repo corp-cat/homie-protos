@@ -538,6 +538,7 @@ message cGetAllRequest { // done
 
 message cGetByUUIDRequest { // done
     string course_uuid = 1;
+    string token = 2;
 }
 
 message cGetAllWithFilterRequest { // done
