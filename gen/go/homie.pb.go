@@ -22,29 +22,28 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type CVoteRequest struct {
+type Votes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CourseUuid    string                 `protobuf:"bytes,1,opt,name=course_uuid,json=courseUuid,proto3" json:"course_uuid,omitempty"`
-	Vote          bool                   `protobuf:"varint,2,opt,name=vote,proto3" json:"vote,omitempty"`
-	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
+	Up            uint64                 `protobuf:"varint,1,opt,name=up,proto3" json:"up,omitempty"`
+	Down          uint64                 `protobuf:"varint,2,opt,name=down,proto3" json:"down,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CVoteRequest) Reset() {
-	*x = CVoteRequest{}
+func (x *Votes) Reset() {
+	*x = Votes{}
 	mi := &file_homie_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CVoteRequest) String() string {
+func (x *Votes) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CVoteRequest) ProtoMessage() {}
+func (*Votes) ProtoMessage() {}
 
-func (x *CVoteRequest) ProtoReflect() protoreflect.Message {
+func (x *Votes) ProtoReflect() protoreflect.Message {
 	mi := &file_homie_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -56,54 +55,46 @@ func (x *CVoteRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CVoteRequest.ProtoReflect.Descriptor instead.
-func (*CVoteRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use Votes.ProtoReflect.Descriptor instead.
+func (*Votes) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CVoteRequest) GetCourseUuid() string {
+func (x *Votes) GetUp() uint64 {
 	if x != nil {
-		return x.CourseUuid
+		return x.Up
 	}
-	return ""
+	return 0
 }
 
-func (x *CVoteRequest) GetVote() bool {
+func (x *Votes) GetDown() uint64 {
 	if x != nil {
-		return x.Vote
+		return x.Down
 	}
-	return false
+	return 0
 }
 
-func (x *CVoteRequest) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
-type ULeaveFromCommunityRequest struct {
+type LoginResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	CommunityUuid string                 `protobuf:"bytes,2,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ULeaveFromCommunityRequest) Reset() {
-	*x = ULeaveFromCommunityRequest{}
+func (x *LoginResponse) Reset() {
+	*x = LoginResponse{}
 	mi := &file_homie_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ULeaveFromCommunityRequest) String() string {
+func (x *LoginResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ULeaveFromCommunityRequest) ProtoMessage() {}
+func (*LoginResponse) ProtoMessage() {}
 
-func (x *ULeaveFromCommunityRequest) ProtoReflect() protoreflect.Message {
+func (x *LoginResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_homie_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -115,47 +106,39 @@ func (x *ULeaveFromCommunityRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ULeaveFromCommunityRequest.ProtoReflect.Descriptor instead.
-func (*ULeaveFromCommunityRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use LoginResponse.ProtoReflect.Descriptor instead.
+func (*LoginResponse) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ULeaveFromCommunityRequest) GetToken() string {
+func (x *LoginResponse) GetToken() string {
 	if x != nil {
 		return x.Token
 	}
 	return ""
 }
 
-func (x *ULeaveFromCommunityRequest) GetCommunityUuid() string {
-	if x != nil {
-		return x.CommunityUuid
-	}
-	return ""
-}
-
-type UDeleteFromCommunity struct {
+type RegisterResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	CommunityUuid string                 `protobuf:"bytes,2,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UDeleteFromCommunity) Reset() {
-	*x = UDeleteFromCommunity{}
+func (x *RegisterResponse) Reset() {
+	*x = RegisterResponse{}
 	mi := &file_homie_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UDeleteFromCommunity) String() string {
+func (x *RegisterResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UDeleteFromCommunity) ProtoMessage() {}
+func (*RegisterResponse) ProtoMessage() {}
 
-func (x *UDeleteFromCommunity) ProtoReflect() protoreflect.Message {
+func (x *RegisterResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_homie_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -167,47 +150,39 @@ func (x *UDeleteFromCommunity) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UDeleteFromCommunity.ProtoReflect.Descriptor instead.
-func (*UDeleteFromCommunity) Descriptor() ([]byte, []int) {
+// Deprecated: Use RegisterResponse.ProtoReflect.Descriptor instead.
+func (*RegisterResponse) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *UDeleteFromCommunity) GetToken() string {
+func (x *RegisterResponse) GetToken() string {
 	if x != nil {
 		return x.Token
 	}
 	return ""
 }
 
-func (x *UDeleteFromCommunity) GetCommunityUuid() string {
-	if x != nil {
-		return x.CommunityUuid
-	}
-	return ""
-}
-
-type UAddToCommunityRequest struct {
+type RefreshTokenResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	CommunityUuid string                 `protobuf:"bytes,2,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UAddToCommunityRequest) Reset() {
-	*x = UAddToCommunityRequest{}
+func (x *RefreshTokenResponse) Reset() {
+	*x = RefreshTokenResponse{}
 	mi := &file_homie_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UAddToCommunityRequest) String() string {
+func (x *RefreshTokenResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UAddToCommunityRequest) ProtoMessage() {}
+func (*RefreshTokenResponse) ProtoMessage() {}
 
-func (x *UAddToCommunityRequest) ProtoReflect() protoreflect.Message {
+func (x *RefreshTokenResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_homie_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -219,46 +194,47 @@ func (x *UAddToCommunityRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UAddToCommunityRequest.ProtoReflect.Descriptor instead.
-func (*UAddToCommunityRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use RefreshTokenResponse.ProtoReflect.Descriptor instead.
+func (*RefreshTokenResponse) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *UAddToCommunityRequest) GetToken() string {
+func (x *RefreshTokenResponse) GetToken() string {
 	if x != nil {
 		return x.Token
 	}
 	return ""
 }
 
-func (x *UAddToCommunityRequest) GetCommunityUuid() string {
-	if x != nil {
-		return x.CommunityUuid
-	}
-	return ""
-}
-
-type UGetByTokenRequest struct {
+type User struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	UserTag       string                 `protobuf:"bytes,2,opt,name=user_tag,json=userTag,proto3" json:"user_tag,omitempty"`
+	Username      string                 `protobuf:"bytes,3,opt,name=username,proto3" json:"username,omitempty"`
+	Email         string                 `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
+	About         string                 `protobuf:"bytes,5,opt,name=about,proto3" json:"about,omitempty"`
+	Role          string                 `protobuf:"bytes,6,opt,name=role,proto3" json:"role,omitempty"`
+	Votes         *Votes                 `protobuf:"bytes,7,opt,name=votes,proto3" json:"votes,omitempty"`
+	BannedTo      int64                  `protobuf:"varint,8,opt,name=banned_to,json=bannedTo,proto3" json:"banned_to,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UGetByTokenRequest) Reset() {
-	*x = UGetByTokenRequest{}
+func (x *User) Reset() {
+	*x = User{}
 	mi := &file_homie_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UGetByTokenRequest) String() string {
+func (x *User) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UGetByTokenRequest) ProtoMessage() {}
+func (*User) ProtoMessage() {}
 
-func (x *UGetByTokenRequest) ProtoReflect() protoreflect.Message {
+func (x *User) ProtoReflect() protoreflect.Message {
 	mi := &file_homie_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -270,16 +246,72 @@ func (x *UGetByTokenRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UGetByTokenRequest.ProtoReflect.Descriptor instead.
-func (*UGetByTokenRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use User.ProtoReflect.Descriptor instead.
+func (*User) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *UGetByTokenRequest) GetToken() string {
+func (x *User) GetUuid() string {
 	if x != nil {
-		return x.Token
+		return x.Uuid
 	}
 	return ""
+}
+
+func (x *User) GetUserTag() string {
+	if x != nil {
+		return x.UserTag
+	}
+	return ""
+}
+
+func (x *User) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *User) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *User) GetAbout() string {
+	if x != nil {
+		return x.About
+	}
+	return ""
+}
+
+func (x *User) GetRole() string {
+	if x != nil {
+		return x.Role
+	}
+	return ""
+}
+
+func (x *User) GetVotes() *Votes {
+	if x != nil {
+		return x.Votes
+	}
+	return nil
+}
+
+func (x *User) GetBannedTo() int64 {
+	if x != nil {
+		return x.BannedTo
+	}
+	return 0
+}
+
+func (x *User) GetCreatedAt() int64 {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return 0
 }
 
 type UGetByTokenResponse struct {
@@ -326,300 +358,17 @@ func (x *UGetByTokenResponse) GetUser() *User {
 	return nil
 }
 
-type Votes struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Up            int64                  `protobuf:"varint,1,opt,name=up,proto3" json:"up,omitempty"`
-	Down          int64                  `protobuf:"varint,2,opt,name=down,proto3" json:"down,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Votes) Reset() {
-	*x = Votes{}
-	mi := &file_homie_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Votes) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Votes) ProtoMessage() {}
-
-func (x *Votes) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Votes.ProtoReflect.Descriptor instead.
-func (*Votes) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *Votes) GetUp() int64 {
-	if x != nil {
-		return x.Up
-	}
-	return 0
-}
-
-func (x *Votes) GetDown() int64 {
-	if x != nil {
-		return x.Down
-	}
-	return 0
-}
-
-type LoginResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *LoginResponse) Reset() {
-	*x = LoginResponse{}
-	mi := &file_homie_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *LoginResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*LoginResponse) ProtoMessage() {}
-
-func (x *LoginResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use LoginResponse.ProtoReflect.Descriptor instead.
-func (*LoginResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *LoginResponse) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
-type RegisterResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RegisterResponse) Reset() {
-	*x = RegisterResponse{}
-	mi := &file_homie_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RegisterResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RegisterResponse) ProtoMessage() {}
-
-func (x *RegisterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RegisterResponse.ProtoReflect.Descriptor instead.
-func (*RegisterResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *RegisterResponse) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
-type RefreshTokenResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RefreshTokenResponse) Reset() {
-	*x = RefreshTokenResponse{}
-	mi := &file_homie_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RefreshTokenResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RefreshTokenResponse) ProtoMessage() {}
-
-func (x *RefreshTokenResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RefreshTokenResponse.ProtoReflect.Descriptor instead.
-func (*RefreshTokenResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *RefreshTokenResponse) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
-type User struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserTag       string                 `protobuf:"bytes,1,opt,name=user_tag,json=userTag,proto3" json:"user_tag,omitempty"`
-	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
-	About         string                 `protobuf:"bytes,4,opt,name=about,proto3" json:"about,omitempty"`
-	Role          string                 `protobuf:"bytes,5,opt,name=role,proto3" json:"role,omitempty"`
-	Rating        int64                  `protobuf:"varint,6,opt,name=rating,proto3" json:"rating,omitempty"`
-	BannedTo      int64                  `protobuf:"varint,7,opt,name=banned_to,json=bannedTo,proto3" json:"banned_to,omitempty"`
-	CreatedAt     int64                  `protobuf:"varint,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *User) Reset() {
-	*x = User{}
-	mi := &file_homie_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *User) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*User) ProtoMessage() {}
-
-func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use User.ProtoReflect.Descriptor instead.
-func (*User) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *User) GetUserTag() string {
-	if x != nil {
-		return x.UserTag
-	}
-	return ""
-}
-
-func (x *User) GetUsername() string {
-	if x != nil {
-		return x.Username
-	}
-	return ""
-}
-
-func (x *User) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
-}
-
-func (x *User) GetAbout() string {
-	if x != nil {
-		return x.About
-	}
-	return ""
-}
-
-func (x *User) GetRole() string {
-	if x != nil {
-		return x.Role
-	}
-	return ""
-}
-
-func (x *User) GetRating() int64 {
-	if x != nil {
-		return x.Rating
-	}
-	return 0
-}
-
-func (x *User) GetBannedTo() int64 {
-	if x != nil {
-		return x.BannedTo
-	}
-	return 0
-}
-
-func (x *User) GetCreatedAt() int64 {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return 0
-}
-
 type UGetByTagResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	CanEdit       bool                   `protobuf:"varint,2,opt,name=can_edit,json=canEdit,proto3" json:"can_edit,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UGetByTagResponse) Reset() {
 	*x = UGetByTagResponse{}
-	mi := &file_homie_proto_msgTypes[11]
+	mi := &file_homie_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -631,7 +380,7 @@ func (x *UGetByTagResponse) String() string {
 func (*UGetByTagResponse) ProtoMessage() {}
 
 func (x *UGetByTagResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[11]
+	mi := &file_homie_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -644,7 +393,7 @@ func (x *UGetByTagResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UGetByTagResponse.ProtoReflect.Descriptor instead.
 func (*UGetByTagResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{11}
+	return file_homie_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *UGetByTagResponse) GetUser() *User {
@@ -654,24 +403,83 @@ func (x *UGetByTagResponse) GetUser() *User {
 	return nil
 }
 
+func (x *UGetByTagResponse) GetCanEdit() bool {
+	if x != nil {
+		return x.CanEdit
+	}
+	return false
+}
+
+type UDeleteFromCommunity struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	CommunityUuid string                 `protobuf:"bytes,2,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UDeleteFromCommunity) Reset() {
+	*x = UDeleteFromCommunity{}
+	mi := &file_homie_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UDeleteFromCommunity) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UDeleteFromCommunity) ProtoMessage() {}
+
+func (x *UDeleteFromCommunity) ProtoReflect() protoreflect.Message {
+	mi := &file_homie_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UDeleteFromCommunity.ProtoReflect.Descriptor instead.
+func (*UDeleteFromCommunity) Descriptor() ([]byte, []int) {
+	return file_homie_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *UDeleteFromCommunity) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+func (x *UDeleteFromCommunity) GetCommunityUuid() string {
+	if x != nil {
+		return x.CommunityUuid
+	}
+	return ""
+}
+
 type Community struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	Votes         *Votes                 `protobuf:"bytes,4,opt,name=votes,proto3" json:"votes,omitempty"`
-	Warnings      int64                  `protobuf:"varint,5,opt,name=warnings,proto3" json:"warnings,omitempty"`
-	Price         int64                  `protobuf:"varint,6,opt,name=price,proto3" json:"price,omitempty"`
-	IsBanned      bool                   `protobuf:"varint,7,opt,name=is_banned,json=isBanned,proto3" json:"is_banned,omitempty"`
-	CreatedAt     int64                  `protobuf:"varint,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	Creator       *User                  `protobuf:"bytes,9,opt,name=creator,proto3" json:"creator,omitempty"`
+	Warnings      uint32                 `protobuf:"varint,5,opt,name=warnings,proto3" json:"warnings,omitempty"`
+	Price         float32                `protobuf:"fixed32,6,opt,name=price,proto3" json:"price,omitempty"`
+	AuthorTag     string                 `protobuf:"bytes,7,opt,name=author_tag,json=authorTag,proto3" json:"author_tag,omitempty"`
+	IsBanned      bool                   `protobuf:"varint,8,opt,name=is_banned,json=isBanned,proto3" json:"is_banned,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Community) Reset() {
 	*x = Community{}
-	mi := &file_homie_proto_msgTypes[12]
+	mi := &file_homie_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -683,7 +491,7 @@ func (x *Community) String() string {
 func (*Community) ProtoMessage() {}
 
 func (x *Community) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[12]
+	mi := &file_homie_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -696,7 +504,7 @@ func (x *Community) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Community.ProtoReflect.Descriptor instead.
 func (*Community) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{12}
+	return file_homie_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Community) GetUuid() string {
@@ -727,18 +535,25 @@ func (x *Community) GetVotes() *Votes {
 	return nil
 }
 
-func (x *Community) GetWarnings() int64 {
+func (x *Community) GetWarnings() uint32 {
 	if x != nil {
 		return x.Warnings
 	}
 	return 0
 }
 
-func (x *Community) GetPrice() int64 {
+func (x *Community) GetPrice() float32 {
 	if x != nil {
 		return x.Price
 	}
 	return 0
+}
+
+func (x *Community) GetAuthorTag() string {
+	if x != nil {
+		return x.AuthorTag
+	}
+	return ""
 }
 
 func (x *Community) GetIsBanned() bool {
@@ -755,13 +570,6 @@ func (x *Community) GetCreatedAt() int64 {
 	return 0
 }
 
-func (x *Community) GetCreator() *User {
-	if x != nil {
-		return x.Creator
-	}
-	return nil
-}
-
 type CmGetAllResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Communities   []*Community           `protobuf:"bytes,1,rep,name=communities,proto3" json:"communities,omitempty"`
@@ -771,7 +579,7 @@ type CmGetAllResponse struct {
 
 func (x *CmGetAllResponse) Reset() {
 	*x = CmGetAllResponse{}
-	mi := &file_homie_proto_msgTypes[13]
+	mi := &file_homie_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -783,7 +591,7 @@ func (x *CmGetAllResponse) String() string {
 func (*CmGetAllResponse) ProtoMessage() {}
 
 func (x *CmGetAllResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[13]
+	mi := &file_homie_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -796,7 +604,7 @@ func (x *CmGetAllResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CmGetAllResponse.ProtoReflect.Descriptor instead.
 func (*CmGetAllResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{13}
+	return file_homie_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *CmGetAllResponse) GetCommunities() []*Community {
@@ -815,7 +623,7 @@ type CmGetByUUIDResponse struct {
 
 func (x *CmGetByUUIDResponse) Reset() {
 	*x = CmGetByUUIDResponse{}
-	mi := &file_homie_proto_msgTypes[14]
+	mi := &file_homie_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -827,7 +635,7 @@ func (x *CmGetByUUIDResponse) String() string {
 func (*CmGetByUUIDResponse) ProtoMessage() {}
 
 func (x *CmGetByUUIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[14]
+	mi := &file_homie_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -840,7 +648,7 @@ func (x *CmGetByUUIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CmGetByUUIDResponse.ProtoReflect.Descriptor instead.
 func (*CmGetByUUIDResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{14}
+	return file_homie_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CmGetByUUIDResponse) GetCommunity() *Community {
@@ -859,7 +667,7 @@ type CmGetWithFilterResponse struct {
 
 func (x *CmGetWithFilterResponse) Reset() {
 	*x = CmGetWithFilterResponse{}
-	mi := &file_homie_proto_msgTypes[15]
+	mi := &file_homie_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -871,7 +679,7 @@ func (x *CmGetWithFilterResponse) String() string {
 func (*CmGetWithFilterResponse) ProtoMessage() {}
 
 func (x *CmGetWithFilterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[15]
+	mi := &file_homie_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -884,7 +692,7 @@ func (x *CmGetWithFilterResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CmGetWithFilterResponse.ProtoReflect.Descriptor instead.
 func (*CmGetWithFilterResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{15}
+	return file_homie_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *CmGetWithFilterResponse) GetCommunities() []*Community {
@@ -903,7 +711,7 @@ type CmCreateResponse struct {
 
 func (x *CmCreateResponse) Reset() {
 	*x = CmCreateResponse{}
-	mi := &file_homie_proto_msgTypes[16]
+	mi := &file_homie_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -915,7 +723,7 @@ func (x *CmCreateResponse) String() string {
 func (*CmCreateResponse) ProtoMessage() {}
 
 func (x *CmCreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[16]
+	mi := &file_homie_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -928,7 +736,7 @@ func (x *CmCreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CmCreateResponse.ProtoReflect.Descriptor instead.
 func (*CmCreateResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{16}
+	return file_homie_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *CmCreateResponse) GetUuid() string {
@@ -940,19 +748,19 @@ func (x *CmCreateResponse) GetUuid() string {
 
 type PostComment struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	PostId        int64                  `protobuf:"varint,3,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
-	Body          string                 `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty"`
-	Votes         *Votes                 `protobuf:"bytes,5,opt,name=votes,proto3" json:"votes,omitempty"`
-	CreatedAt     int64                  `protobuf:"varint,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	Creator       *User                  `protobuf:"bytes,7,opt,name=creator,proto3" json:"creator,omitempty"`
+	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	Body          string                 `protobuf:"bytes,2,opt,name=body,proto3" json:"body,omitempty"`
+	Votes         *Votes                 `protobuf:"bytes,3,opt,name=votes,proto3" json:"votes,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     int64                  `protobuf:"varint,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	AuthorTag     string                 `protobuf:"bytes,6,opt,name=author_tag,json=authorTag,proto3" json:"author_tag,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *PostComment) Reset() {
 	*x = PostComment{}
-	mi := &file_homie_proto_msgTypes[17]
+	mi := &file_homie_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -964,7 +772,7 @@ func (x *PostComment) String() string {
 func (*PostComment) ProtoMessage() {}
 
 func (x *PostComment) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[17]
+	mi := &file_homie_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -977,21 +785,14 @@ func (x *PostComment) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostComment.ProtoReflect.Descriptor instead.
 func (*PostComment) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{17}
+	return file_homie_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *PostComment) GetId() int64 {
+func (x *PostComment) GetUuid() string {
 	if x != nil {
-		return x.Id
+		return x.Uuid
 	}
-	return 0
-}
-
-func (x *PostComment) GetPostId() int64 {
-	if x != nil {
-		return x.PostId
-	}
-	return 0
+	return ""
 }
 
 func (x *PostComment) GetBody() string {
@@ -1015,30 +816,37 @@ func (x *PostComment) GetCreatedAt() int64 {
 	return 0
 }
 
-func (x *PostComment) GetCreator() *User {
+func (x *PostComment) GetUpdatedAt() int64 {
 	if x != nil {
-		return x.Creator
+		return x.UpdatedAt
 	}
-	return nil
+	return 0
+}
+
+func (x *PostComment) GetAuthorTag() string {
+	if x != nil {
+		return x.AuthorTag
+	}
+	return ""
 }
 
 type Post struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	CommunityId   int64                  `protobuf:"varint,2,opt,name=community_id,json=communityId,proto3" json:"community_id,omitempty"`
+	CommunityUuid int64                  `protobuf:"varint,2,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
 	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
 	Body          []byte                 `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty"`
 	Votes         *Votes                 `protobuf:"bytes,5,opt,name=votes,proto3" json:"votes,omitempty"`
 	CreatedAt     int64                  `protobuf:"varint,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	Comments      []*PostComment         `protobuf:"bytes,7,rep,name=comments,proto3" json:"comments,omitempty"`
-	Community     *Community             `protobuf:"bytes,8,opt,name=community,proto3" json:"community,omitempty"`
+	UpdatedAt     int64                  `protobuf:"varint,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Comments      []*PostComment         `protobuf:"bytes,8,rep,name=comments,proto3" json:"comments,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Post) Reset() {
 	*x = Post{}
-	mi := &file_homie_proto_msgTypes[18]
+	mi := &file_homie_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1050,7 +858,7 @@ func (x *Post) String() string {
 func (*Post) ProtoMessage() {}
 
 func (x *Post) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[18]
+	mi := &file_homie_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1063,7 +871,7 @@ func (x *Post) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Post.ProtoReflect.Descriptor instead.
 func (*Post) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{18}
+	return file_homie_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *Post) GetUuid() string {
@@ -1073,9 +881,9 @@ func (x *Post) GetUuid() string {
 	return ""
 }
 
-func (x *Post) GetCommunityId() int64 {
+func (x *Post) GetCommunityUuid() int64 {
 	if x != nil {
-		return x.CommunityId
+		return x.CommunityUuid
 	}
 	return 0
 }
@@ -1108,16 +916,16 @@ func (x *Post) GetCreatedAt() int64 {
 	return 0
 }
 
+func (x *Post) GetUpdatedAt() int64 {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return 0
+}
+
 func (x *Post) GetComments() []*PostComment {
 	if x != nil {
 		return x.Comments
-	}
-	return nil
-}
-
-func (x *Post) GetCommunity() *Community {
-	if x != nil {
-		return x.Community
 	}
 	return nil
 }
@@ -1131,7 +939,7 @@ type PGetAllResponse struct {
 
 func (x *PGetAllResponse) Reset() {
 	*x = PGetAllResponse{}
-	mi := &file_homie_proto_msgTypes[19]
+	mi := &file_homie_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1143,7 +951,7 @@ func (x *PGetAllResponse) String() string {
 func (*PGetAllResponse) ProtoMessage() {}
 
 func (x *PGetAllResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[19]
+	mi := &file_homie_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1156,7 +964,7 @@ func (x *PGetAllResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PGetAllResponse.ProtoReflect.Descriptor instead.
 func (*PGetAllResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{19}
+	return file_homie_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *PGetAllResponse) GetPosts() []*Post {
@@ -1175,7 +983,7 @@ type PGetAllCommentsResponse struct {
 
 func (x *PGetAllCommentsResponse) Reset() {
 	*x = PGetAllCommentsResponse{}
-	mi := &file_homie_proto_msgTypes[20]
+	mi := &file_homie_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1187,7 +995,7 @@ func (x *PGetAllCommentsResponse) String() string {
 func (*PGetAllCommentsResponse) ProtoMessage() {}
 
 func (x *PGetAllCommentsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[20]
+	mi := &file_homie_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1200,7 +1008,7 @@ func (x *PGetAllCommentsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PGetAllCommentsResponse.ProtoReflect.Descriptor instead.
 func (*PGetAllCommentsResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{20}
+	return file_homie_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *PGetAllCommentsResponse) GetComments() []*PostComment {
@@ -1219,7 +1027,7 @@ type PGetByUUIDResponse struct {
 
 func (x *PGetByUUIDResponse) Reset() {
 	*x = PGetByUUIDResponse{}
-	mi := &file_homie_proto_msgTypes[21]
+	mi := &file_homie_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1231,7 +1039,7 @@ func (x *PGetByUUIDResponse) String() string {
 func (*PGetByUUIDResponse) ProtoMessage() {}
 
 func (x *PGetByUUIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[21]
+	mi := &file_homie_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1244,7 +1052,7 @@ func (x *PGetByUUIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PGetByUUIDResponse.ProtoReflect.Descriptor instead.
 func (*PGetByUUIDResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{21}
+	return file_homie_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *PGetByUUIDResponse) GetPost() *Post {
@@ -1263,7 +1071,7 @@ type PCreateResponse struct {
 
 func (x *PCreateResponse) Reset() {
 	*x = PCreateResponse{}
-	mi := &file_homie_proto_msgTypes[22]
+	mi := &file_homie_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1275,7 +1083,7 @@ func (x *PCreateResponse) String() string {
 func (*PCreateResponse) ProtoMessage() {}
 
 func (x *PCreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[22]
+	mi := &file_homie_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1288,7 +1096,7 @@ func (x *PCreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PCreateResponse.ProtoReflect.Descriptor instead.
 func (*PCreateResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{22}
+	return file_homie_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *PCreateResponse) GetUuid() string {
@@ -1299,19 +1107,20 @@ func (x *PCreateResponse) GetUuid() string {
 }
 
 type DiscussionComment struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	DiscussionId  int64                  `protobuf:"varint,1,opt,name=discussion_id,json=discussionId,proto3" json:"discussion_id,omitempty"`
-	Body          string                 `protobuf:"bytes,2,opt,name=body,proto3" json:"body,omitempty"`
-	Votes         *Votes                 `protobuf:"bytes,3,opt,name=votes,proto3" json:"votes,omitempty"`
-	CreatedAt     int64                  `protobuf:"varint,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	Creator       *User                  `protobuf:"bytes,5,opt,name=creator,proto3" json:"creator,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	DiscussionUuid string                 `protobuf:"bytes,1,opt,name=discussion_uuid,json=discussionUuid,proto3" json:"discussion_uuid,omitempty"`
+	Body           string                 `protobuf:"bytes,2,opt,name=body,proto3" json:"body,omitempty"`
+	Votes          *Votes                 `protobuf:"bytes,3,opt,name=votes,proto3" json:"votes,omitempty"`
+	CreatedAt      int64                  `protobuf:"varint,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt      int64                  `protobuf:"varint,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	AuthorTag      string                 `protobuf:"bytes,6,opt,name=author_tag,json=authorTag,proto3" json:"author_tag,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *DiscussionComment) Reset() {
 	*x = DiscussionComment{}
-	mi := &file_homie_proto_msgTypes[23]
+	mi := &file_homie_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1323,7 +1132,7 @@ func (x *DiscussionComment) String() string {
 func (*DiscussionComment) ProtoMessage() {}
 
 func (x *DiscussionComment) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[23]
+	mi := &file_homie_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1336,14 +1145,14 @@ func (x *DiscussionComment) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiscussionComment.ProtoReflect.Descriptor instead.
 func (*DiscussionComment) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{23}
+	return file_homie_proto_rawDescGZIP(), []int{19}
 }
 
-func (x *DiscussionComment) GetDiscussionId() int64 {
+func (x *DiscussionComment) GetDiscussionUuid() string {
 	if x != nil {
-		return x.DiscussionId
+		return x.DiscussionUuid
 	}
-	return 0
+	return ""
 }
 
 func (x *DiscussionComment) GetBody() string {
@@ -1367,28 +1176,36 @@ func (x *DiscussionComment) GetCreatedAt() int64 {
 	return 0
 }
 
-func (x *DiscussionComment) GetCreator() *User {
+func (x *DiscussionComment) GetUpdatedAt() int64 {
 	if x != nil {
-		return x.Creator
+		return x.UpdatedAt
 	}
-	return nil
+	return 0
+}
+
+func (x *DiscussionComment) GetAuthorTag() string {
+	if x != nil {
+		return x.AuthorTag
+	}
+	return ""
 }
 
 type Discussion struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Text          string                 `protobuf:"bytes,3,opt,name=text,proto3" json:"text,omitempty"`
+	Body          string                 `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
 	CreatedAt     int64                  `protobuf:"varint,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	Comments      []*DiscussionComment   `protobuf:"bytes,5,rep,name=comments,proto3" json:"comments,omitempty"`
-	Creator       *User                  `protobuf:"bytes,6,opt,name=creator,proto3" json:"creator,omitempty"`
+	UpdatedAt     int64                  `protobuf:"varint,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Comments      []*DiscussionComment   `protobuf:"bytes,6,rep,name=comments,proto3" json:"comments,omitempty"`
+	AuthorTag     string                 `protobuf:"bytes,7,opt,name=author_tag,json=authorTag,proto3" json:"author_tag,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Discussion) Reset() {
 	*x = Discussion{}
-	mi := &file_homie_proto_msgTypes[24]
+	mi := &file_homie_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1400,7 +1217,7 @@ func (x *Discussion) String() string {
 func (*Discussion) ProtoMessage() {}
 
 func (x *Discussion) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[24]
+	mi := &file_homie_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1413,7 +1230,7 @@ func (x *Discussion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Discussion.ProtoReflect.Descriptor instead.
 func (*Discussion) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{24}
+	return file_homie_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *Discussion) GetUuid() string {
@@ -1430,9 +1247,9 @@ func (x *Discussion) GetTitle() string {
 	return ""
 }
 
-func (x *Discussion) GetText() string {
+func (x *Discussion) GetBody() string {
 	if x != nil {
-		return x.Text
+		return x.Body
 	}
 	return ""
 }
@@ -1444,6 +1261,13 @@ func (x *Discussion) GetCreatedAt() int64 {
 	return 0
 }
 
+func (x *Discussion) GetUpdatedAt() int64 {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return 0
+}
+
 func (x *Discussion) GetComments() []*DiscussionComment {
 	if x != nil {
 		return x.Comments
@@ -1451,11 +1275,11 @@ func (x *Discussion) GetComments() []*DiscussionComment {
 	return nil
 }
 
-func (x *Discussion) GetCreator() *User {
+func (x *Discussion) GetAuthorTag() string {
 	if x != nil {
-		return x.Creator
+		return x.AuthorTag
 	}
-	return nil
+	return ""
 }
 
 type DiscussionList struct {
@@ -1467,7 +1291,7 @@ type DiscussionList struct {
 
 func (x *DiscussionList) Reset() {
 	*x = DiscussionList{}
-	mi := &file_homie_proto_msgTypes[25]
+	mi := &file_homie_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1479,7 +1303,7 @@ func (x *DiscussionList) String() string {
 func (*DiscussionList) ProtoMessage() {}
 
 func (x *DiscussionList) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[25]
+	mi := &file_homie_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1492,7 +1316,7 @@ func (x *DiscussionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiscussionList.ProtoReflect.Descriptor instead.
 func (*DiscussionList) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{25}
+	return file_homie_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *DiscussionList) GetDiscussions() []*Discussion {
@@ -1511,7 +1335,7 @@ type DGetAllResponse struct {
 
 func (x *DGetAllResponse) Reset() {
 	*x = DGetAllResponse{}
-	mi := &file_homie_proto_msgTypes[26]
+	mi := &file_homie_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1523,7 +1347,7 @@ func (x *DGetAllResponse) String() string {
 func (*DGetAllResponse) ProtoMessage() {}
 
 func (x *DGetAllResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[26]
+	mi := &file_homie_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1536,7 +1360,7 @@ func (x *DGetAllResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DGetAllResponse.ProtoReflect.Descriptor instead.
 func (*DGetAllResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{26}
+	return file_homie_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *DGetAllResponse) GetDiscussions() *DiscussionList {
@@ -1555,7 +1379,7 @@ type DGetByUUIDResponse struct {
 
 func (x *DGetByUUIDResponse) Reset() {
 	*x = DGetByUUIDResponse{}
-	mi := &file_homie_proto_msgTypes[27]
+	mi := &file_homie_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1567,7 +1391,7 @@ func (x *DGetByUUIDResponse) String() string {
 func (*DGetByUUIDResponse) ProtoMessage() {}
 
 func (x *DGetByUUIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[27]
+	mi := &file_homie_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1580,7 +1404,7 @@ func (x *DGetByUUIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DGetByUUIDResponse.ProtoReflect.Descriptor instead.
 func (*DGetByUUIDResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{27}
+	return file_homie_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *DGetByUUIDResponse) GetDiscussion() *Discussion {
@@ -1599,7 +1423,7 @@ type DGetAllWithFilterResponse struct {
 
 func (x *DGetAllWithFilterResponse) Reset() {
 	*x = DGetAllWithFilterResponse{}
-	mi := &file_homie_proto_msgTypes[28]
+	mi := &file_homie_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1611,7 +1435,7 @@ func (x *DGetAllWithFilterResponse) String() string {
 func (*DGetAllWithFilterResponse) ProtoMessage() {}
 
 func (x *DGetAllWithFilterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[28]
+	mi := &file_homie_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1624,7 +1448,7 @@ func (x *DGetAllWithFilterResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DGetAllWithFilterResponse.ProtoReflect.Descriptor instead.
 func (*DGetAllWithFilterResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{28}
+	return file_homie_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *DGetAllWithFilterResponse) GetDiscussions() *DiscussionList {
@@ -1643,7 +1467,7 @@ type DCreateResponse struct {
 
 func (x *DCreateResponse) Reset() {
 	*x = DCreateResponse{}
-	mi := &file_homie_proto_msgTypes[29]
+	mi := &file_homie_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1655,7 +1479,7 @@ func (x *DCreateResponse) String() string {
 func (*DCreateResponse) ProtoMessage() {}
 
 func (x *DCreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[29]
+	mi := &file_homie_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1668,7 +1492,7 @@ func (x *DCreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DCreateResponse.ProtoReflect.Descriptor instead.
 func (*DCreateResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{29}
+	return file_homie_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *DCreateResponse) GetUuid() string {
@@ -1687,7 +1511,7 @@ type DGetAllCommentsResponse struct {
 
 func (x *DGetAllCommentsResponse) Reset() {
 	*x = DGetAllCommentsResponse{}
-	mi := &file_homie_proto_msgTypes[30]
+	mi := &file_homie_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1699,7 +1523,7 @@ func (x *DGetAllCommentsResponse) String() string {
 func (*DGetAllCommentsResponse) ProtoMessage() {}
 
 func (x *DGetAllCommentsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[30]
+	mi := &file_homie_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1712,7 +1536,7 @@ func (x *DGetAllCommentsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DGetAllCommentsResponse.ProtoReflect.Descriptor instead.
 func (*DGetAllCommentsResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{30}
+	return file_homie_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *DGetAllCommentsResponse) GetComments() []*DiscussionComment {
@@ -1725,16 +1549,18 @@ func (x *DGetAllCommentsResponse) GetComments() []*DiscussionComment {
 type Lesson struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Body          []byte                 `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
-	CreatedAt     int64                  `protobuf:"varint,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CourseUuid    string                 `protobuf:"bytes,2,opt,name=course_uuid,json=courseUuid,proto3" json:"course_uuid,omitempty"`
+	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Body          []byte                 `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     int64                  `protobuf:"varint,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Lesson) Reset() {
 	*x = Lesson{}
-	mi := &file_homie_proto_msgTypes[31]
+	mi := &file_homie_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1746,7 +1572,7 @@ func (x *Lesson) String() string {
 func (*Lesson) ProtoMessage() {}
 
 func (x *Lesson) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[31]
+	mi := &file_homie_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1759,12 +1585,19 @@ func (x *Lesson) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Lesson.ProtoReflect.Descriptor instead.
 func (*Lesson) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{31}
+	return file_homie_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *Lesson) GetUuid() string {
 	if x != nil {
 		return x.Uuid
+	}
+	return ""
+}
+
+func (x *Lesson) GetCourseUuid() string {
+	if x != nil {
+		return x.CourseUuid
 	}
 	return ""
 }
@@ -1790,21 +1623,30 @@ func (x *Lesson) GetCreatedAt() int64 {
 	return 0
 }
 
+func (x *Lesson) GetUpdatedAt() int64 {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return 0
+}
+
 type Course struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	Votes         *Votes                 `protobuf:"bytes,4,opt,name=votes,proto3" json:"votes,omitempty"`
-	CreatedAt     int64                  `protobuf:"varint,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	Lessons       []*Lesson              `protobuf:"bytes,6,rep,name=lessons,proto3" json:"lessons,omitempty"`
+	CommunityUuid string                 `protobuf:"bytes,2,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
+	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	Votes         *Votes                 `protobuf:"bytes,5,opt,name=votes,proto3" json:"votes,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     int64                  `protobuf:"varint,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Lessons       []*Lesson              `protobuf:"bytes,8,rep,name=lessons,proto3" json:"lessons,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Course) Reset() {
 	*x = Course{}
-	mi := &file_homie_proto_msgTypes[32]
+	mi := &file_homie_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1816,7 +1658,7 @@ func (x *Course) String() string {
 func (*Course) ProtoMessage() {}
 
 func (x *Course) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[32]
+	mi := &file_homie_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1829,12 +1671,19 @@ func (x *Course) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Course.ProtoReflect.Descriptor instead.
 func (*Course) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{32}
+	return file_homie_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *Course) GetUuid() string {
 	if x != nil {
 		return x.Uuid
+	}
+	return ""
+}
+
+func (x *Course) GetCommunityUuid() string {
+	if x != nil {
+		return x.CommunityUuid
 	}
 	return ""
 }
@@ -1867,6 +1716,13 @@ func (x *Course) GetCreatedAt() int64 {
 	return 0
 }
 
+func (x *Course) GetUpdatedAt() int64 {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return 0
+}
+
 func (x *Course) GetLessons() []*Lesson {
 	if x != nil {
 		return x.Lessons
@@ -1883,7 +1739,7 @@ type CGetAllResponse struct {
 
 func (x *CGetAllResponse) Reset() {
 	*x = CGetAllResponse{}
-	mi := &file_homie_proto_msgTypes[33]
+	mi := &file_homie_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1895,7 +1751,7 @@ func (x *CGetAllResponse) String() string {
 func (*CGetAllResponse) ProtoMessage() {}
 
 func (x *CGetAllResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[33]
+	mi := &file_homie_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1908,7 +1764,7 @@ func (x *CGetAllResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CGetAllResponse.ProtoReflect.Descriptor instead.
 func (*CGetAllResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{33}
+	return file_homie_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *CGetAllResponse) GetCourses() []*Course {
@@ -1927,7 +1783,7 @@ type CGetByUUIDResponse struct {
 
 func (x *CGetByUUIDResponse) Reset() {
 	*x = CGetByUUIDResponse{}
-	mi := &file_homie_proto_msgTypes[34]
+	mi := &file_homie_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1939,7 +1795,7 @@ func (x *CGetByUUIDResponse) String() string {
 func (*CGetByUUIDResponse) ProtoMessage() {}
 
 func (x *CGetByUUIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[34]
+	mi := &file_homie_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1952,7 +1808,7 @@ func (x *CGetByUUIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CGetByUUIDResponse.ProtoReflect.Descriptor instead.
 func (*CGetByUUIDResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{34}
+	return file_homie_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *CGetByUUIDResponse) GetCourse() *Course {
@@ -1971,7 +1827,7 @@ type CGetAllWithFilterResponse struct {
 
 func (x *CGetAllWithFilterResponse) Reset() {
 	*x = CGetAllWithFilterResponse{}
-	mi := &file_homie_proto_msgTypes[35]
+	mi := &file_homie_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1983,7 +1839,7 @@ func (x *CGetAllWithFilterResponse) String() string {
 func (*CGetAllWithFilterResponse) ProtoMessage() {}
 
 func (x *CGetAllWithFilterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[35]
+	mi := &file_homie_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1996,7 +1852,7 @@ func (x *CGetAllWithFilterResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CGetAllWithFilterResponse.ProtoReflect.Descriptor instead.
 func (*CGetAllWithFilterResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{35}
+	return file_homie_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *CGetAllWithFilterResponse) GetCourses() []*Course {
@@ -2015,7 +1871,7 @@ type CCreateResponse struct {
 
 func (x *CCreateResponse) Reset() {
 	*x = CCreateResponse{}
-	mi := &file_homie_proto_msgTypes[36]
+	mi := &file_homie_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2027,7 +1883,7 @@ func (x *CCreateResponse) String() string {
 func (*CCreateResponse) ProtoMessage() {}
 
 func (x *CCreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[36]
+	mi := &file_homie_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2040,7 +1896,7 @@ func (x *CCreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CCreateResponse.ProtoReflect.Descriptor instead.
 func (*CCreateResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{36}
+	return file_homie_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *CCreateResponse) GetUuid() string {
@@ -2059,7 +1915,7 @@ type CGetAllLessonsResponse struct {
 
 func (x *CGetAllLessonsResponse) Reset() {
 	*x = CGetAllLessonsResponse{}
-	mi := &file_homie_proto_msgTypes[37]
+	mi := &file_homie_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2071,7 +1927,7 @@ func (x *CGetAllLessonsResponse) String() string {
 func (*CGetAllLessonsResponse) ProtoMessage() {}
 
 func (x *CGetAllLessonsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[37]
+	mi := &file_homie_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2084,7 +1940,7 @@ func (x *CGetAllLessonsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CGetAllLessonsResponse.ProtoReflect.Descriptor instead.
 func (*CGetAllLessonsResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{37}
+	return file_homie_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *CGetAllLessonsResponse) GetLessons() []*Lesson {
@@ -2103,7 +1959,7 @@ type CGetByUUIDLessonsResponse struct {
 
 func (x *CGetByUUIDLessonsResponse) Reset() {
 	*x = CGetByUUIDLessonsResponse{}
-	mi := &file_homie_proto_msgTypes[38]
+	mi := &file_homie_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2115,7 +1971,7 @@ func (x *CGetByUUIDLessonsResponse) String() string {
 func (*CGetByUUIDLessonsResponse) ProtoMessage() {}
 
 func (x *CGetByUUIDLessonsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[38]
+	mi := &file_homie_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2128,7 +1984,7 @@ func (x *CGetByUUIDLessonsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CGetByUUIDLessonsResponse.ProtoReflect.Descriptor instead.
 func (*CGetByUUIDLessonsResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{38}
+	return file_homie_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *CGetByUUIDLessonsResponse) GetLesson() *Lesson {
@@ -2151,7 +2007,7 @@ type ReporterObject struct {
 
 func (x *ReporterObject) Reset() {
 	*x = ReporterObject{}
-	mi := &file_homie_proto_msgTypes[39]
+	mi := &file_homie_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2163,7 +2019,7 @@ func (x *ReporterObject) String() string {
 func (*ReporterObject) ProtoMessage() {}
 
 func (x *ReporterObject) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[39]
+	mi := &file_homie_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2176,7 +2032,7 @@ func (x *ReporterObject) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReporterObject.ProtoReflect.Descriptor instead.
 func (*ReporterObject) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{39}
+	return file_homie_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *ReporterObject) GetUser() *User {
@@ -2216,23 +2072,21 @@ func (x *ReporterObject) GetCourse() *Course {
 
 type Report struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	Id             int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	UserTag        string                 `protobuf:"bytes,2,opt,name=user_tag,json=userTag,proto3" json:"user_tag,omitempty"`
-	CommunityId    int64                  `protobuf:"varint,3,opt,name=community_id,json=communityId,proto3" json:"community_id,omitempty"`
-	SenderId       int64                  `protobuf:"varint,4,opt,name=sender_id,json=senderId,proto3" json:"sender_id,omitempty"`
-	Msg            string                 `protobuf:"bytes,5,opt,name=msg,proto3" json:"msg,omitempty"`
-	Type           string                 `protobuf:"bytes,6,opt,name=type,proto3" json:"type,omitempty"`
-	ToUuid         string                 `protobuf:"bytes,7,opt,name=to_uuid,json=toUuid,proto3" json:"to_uuid,omitempty"`
-	ToObj          string                 `protobuf:"bytes,8,opt,name=to_obj,json=toObj,proto3" json:"to_obj,omitempty"`
-	SentAt         int64                  `protobuf:"varint,9,opt,name=sent_at,json=sentAt,proto3" json:"sent_at,omitempty"`
-	ReporterObject *ReporterObject        `protobuf:"bytes,10,opt,name=reporter_object,json=reporterObject,proto3" json:"reporter_object,omitempty"`
+	Id             uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	CommunityUuid  string                 `protobuf:"bytes,2,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
+	Message        string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	AddressedObj   string                 `protobuf:"bytes,4,opt,name=addressed_obj,json=addressedObj,proto3" json:"addressed_obj,omitempty"`
+	TypeReport     string                 `protobuf:"bytes,5,opt,name=type_report,json=typeReport,proto3" json:"type_report,omitempty"`
+	CreatedAt      int64                  `protobuf:"varint,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	SenderUuid     string                 `protobuf:"bytes,7,opt,name=sender_uuid,json=senderUuid,proto3" json:"sender_uuid,omitempty"`
+	ReporterObject *ReporterObject        `protobuf:"bytes,8,opt,name=reporter_object,json=reporterObject,proto3" json:"reporter_object,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
 
 func (x *Report) Reset() {
 	*x = Report{}
-	mi := &file_homie_proto_msgTypes[40]
+	mi := &file_homie_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2244,7 +2098,7 @@ func (x *Report) String() string {
 func (*Report) ProtoMessage() {}
 
 func (x *Report) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[40]
+	mi := &file_homie_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2257,70 +2111,56 @@ func (x *Report) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Report.ProtoReflect.Descriptor instead.
 func (*Report) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{40}
+	return file_homie_proto_rawDescGZIP(), []int{36}
 }
 
-func (x *Report) GetId() int64 {
+func (x *Report) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
 	return 0
 }
 
-func (x *Report) GetUserTag() string {
+func (x *Report) GetCommunityUuid() string {
 	if x != nil {
-		return x.UserTag
+		return x.CommunityUuid
 	}
 	return ""
 }
 
-func (x *Report) GetCommunityId() int64 {
+func (x *Report) GetMessage() string {
 	if x != nil {
-		return x.CommunityId
+		return x.Message
+	}
+	return ""
+}
+
+func (x *Report) GetAddressedObj() string {
+	if x != nil {
+		return x.AddressedObj
+	}
+	return ""
+}
+
+func (x *Report) GetTypeReport() string {
+	if x != nil {
+		return x.TypeReport
+	}
+	return ""
+}
+
+func (x *Report) GetCreatedAt() int64 {
+	if x != nil {
+		return x.CreatedAt
 	}
 	return 0
 }
 
-func (x *Report) GetSenderId() int64 {
+func (x *Report) GetSenderUuid() string {
 	if x != nil {
-		return x.SenderId
-	}
-	return 0
-}
-
-func (x *Report) GetMsg() string {
-	if x != nil {
-		return x.Msg
+		return x.SenderUuid
 	}
 	return ""
-}
-
-func (x *Report) GetType() string {
-	if x != nil {
-		return x.Type
-	}
-	return ""
-}
-
-func (x *Report) GetToUuid() string {
-	if x != nil {
-		return x.ToUuid
-	}
-	return ""
-}
-
-func (x *Report) GetToObj() string {
-	if x != nil {
-		return x.ToObj
-	}
-	return ""
-}
-
-func (x *Report) GetSentAt() int64 {
-	if x != nil {
-		return x.SentAt
-	}
-	return 0
 }
 
 func (x *Report) GetReporterObject() *ReporterObject {
@@ -2339,7 +2179,7 @@ type RGetAllResponse struct {
 
 func (x *RGetAllResponse) Reset() {
 	*x = RGetAllResponse{}
-	mi := &file_homie_proto_msgTypes[41]
+	mi := &file_homie_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2351,7 +2191,7 @@ func (x *RGetAllResponse) String() string {
 func (*RGetAllResponse) ProtoMessage() {}
 
 func (x *RGetAllResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[41]
+	mi := &file_homie_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2364,7 +2204,7 @@ func (x *RGetAllResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RGetAllResponse.ProtoReflect.Descriptor instead.
 func (*RGetAllResponse) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{41}
+	return file_homie_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *RGetAllResponse) GetReports() []*Report {
@@ -2384,7 +2224,7 @@ type LoginRequest struct {
 
 func (x *LoginRequest) Reset() {
 	*x = LoginRequest{}
-	mi := &file_homie_proto_msgTypes[42]
+	mi := &file_homie_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2396,7 +2236,7 @@ func (x *LoginRequest) String() string {
 func (*LoginRequest) ProtoMessage() {}
 
 func (x *LoginRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[42]
+	mi := &file_homie_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2409,7 +2249,7 @@ func (x *LoginRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginRequest.ProtoReflect.Descriptor instead.
 func (*LoginRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{42}
+	return file_homie_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *LoginRequest) GetEmail() string {
@@ -2437,7 +2277,7 @@ type RegisterRequest struct {
 
 func (x *RegisterRequest) Reset() {
 	*x = RegisterRequest{}
-	mi := &file_homie_proto_msgTypes[43]
+	mi := &file_homie_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2449,7 +2289,7 @@ func (x *RegisterRequest) String() string {
 func (*RegisterRequest) ProtoMessage() {}
 
 func (x *RegisterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[43]
+	mi := &file_homie_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2462,7 +2302,7 @@ func (x *RegisterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterRequest.ProtoReflect.Descriptor instead.
 func (*RegisterRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{43}
+	return file_homie_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *RegisterRequest) GetUsername() string {
@@ -2495,7 +2335,7 @@ type RefreshTokenRequest struct {
 
 func (x *RefreshTokenRequest) Reset() {
 	*x = RefreshTokenRequest{}
-	mi := &file_homie_proto_msgTypes[44]
+	mi := &file_homie_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2507,7 +2347,7 @@ func (x *RefreshTokenRequest) String() string {
 func (*RefreshTokenRequest) ProtoMessage() {}
 
 func (x *RefreshTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[44]
+	mi := &file_homie_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2520,7 +2360,7 @@ func (x *RefreshTokenRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RefreshTokenRequest.ProtoReflect.Descriptor instead.
 func (*RefreshTokenRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{44}
+	return file_homie_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *RefreshTokenRequest) GetToken() string {
@@ -2531,16 +2371,61 @@ func (x *RefreshTokenRequest) GetToken() string {
 }
 
 // user
+type UGetByTokenRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UGetByTokenRequest) Reset() {
+	*x = UGetByTokenRequest{}
+	mi := &file_homie_proto_msgTypes[41]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UGetByTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UGetByTokenRequest) ProtoMessage() {}
+
+func (x *UGetByTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_homie_proto_msgTypes[41]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UGetByTokenRequest.ProtoReflect.Descriptor instead.
+func (*UGetByTokenRequest) Descriptor() ([]byte, []int) {
+	return file_homie_proto_rawDescGZIP(), []int{41}
+}
+
+func (x *UGetByTokenRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
 type UGetByTagRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserTag       string                 `protobuf:"bytes,1,opt,name=user_tag,json=userTag,proto3" json:"user_tag,omitempty"`
+	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UGetByTagRequest) Reset() {
 	*x = UGetByTagRequest{}
-	mi := &file_homie_proto_msgTypes[45]
+	mi := &file_homie_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2552,7 +2437,7 @@ func (x *UGetByTagRequest) String() string {
 func (*UGetByTagRequest) ProtoMessage() {}
 
 func (x *UGetByTagRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[45]
+	mi := &file_homie_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2565,7 +2450,7 @@ func (x *UGetByTagRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UGetByTagRequest.ProtoReflect.Descriptor instead.
 func (*UGetByTagRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{45}
+	return file_homie_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *UGetByTagRequest) GetUserTag() string {
@@ -2575,19 +2460,28 @@ func (x *UGetByTagRequest) GetUserTag() string {
 	return ""
 }
 
+func (x *UGetByTagRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
 type UUpdateProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	NewUserTag    string                 `protobuf:"bytes,1,opt,name=new_user_tag,json=newUserTag,proto3" json:"new_user_tag,omitempty"`
 	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
 	About         string                 `protobuf:"bytes,3,opt,name=about,proto3" json:"about,omitempty"`
-	Token         string                 `protobuf:"bytes,4,opt,name=token,proto3" json:"token,omitempty"`
+	Email         string                 `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
+	Password      string                 `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty"`
+	Token         string                 `protobuf:"bytes,6,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UUpdateProfileRequest) Reset() {
 	*x = UUpdateProfileRequest{}
-	mi := &file_homie_proto_msgTypes[46]
+	mi := &file_homie_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2599,7 +2493,7 @@ func (x *UUpdateProfileRequest) String() string {
 func (*UUpdateProfileRequest) ProtoMessage() {}
 
 func (x *UUpdateProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[46]
+	mi := &file_homie_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2612,7 +2506,7 @@ func (x *UUpdateProfileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UUpdateProfileRequest.ProtoReflect.Descriptor instead.
 func (*UUpdateProfileRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{46}
+	return file_homie_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *UUpdateProfileRequest) GetNewUserTag() string {
@@ -2636,6 +2530,20 @@ func (x *UUpdateProfileRequest) GetAbout() string {
 	return ""
 }
 
+func (x *UUpdateProfileRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *UUpdateProfileRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
 func (x *UUpdateProfileRequest) GetToken() string {
 	if x != nil {
 		return x.Token
@@ -2652,7 +2560,7 @@ type UDeleteProfileRequest struct {
 
 func (x *UDeleteProfileRequest) Reset() {
 	*x = UDeleteProfileRequest{}
-	mi := &file_homie_proto_msgTypes[47]
+	mi := &file_homie_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2664,7 +2572,7 @@ func (x *UDeleteProfileRequest) String() string {
 func (*UDeleteProfileRequest) ProtoMessage() {}
 
 func (x *UDeleteProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[47]
+	mi := &file_homie_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2677,7 +2585,7 @@ func (x *UDeleteProfileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UDeleteProfileRequest.ProtoReflect.Descriptor instead.
 func (*UDeleteProfileRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{47}
+	return file_homie_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *UDeleteProfileRequest) GetToken() string {
@@ -2698,7 +2606,7 @@ type UVoteRequest struct {
 
 func (x *UVoteRequest) Reset() {
 	*x = UVoteRequest{}
-	mi := &file_homie_proto_msgTypes[48]
+	mi := &file_homie_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2710,7 +2618,7 @@ func (x *UVoteRequest) String() string {
 func (*UVoteRequest) ProtoMessage() {}
 
 func (x *UVoteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[48]
+	mi := &file_homie_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2723,7 +2631,7 @@ func (x *UVoteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UVoteRequest.ProtoReflect.Descriptor instead.
 func (*UVoteRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{48}
+	return file_homie_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *UVoteRequest) GetUserTag() string {
@@ -2747,17 +2655,121 @@ func (x *UVoteRequest) GetToken() string {
 	return ""
 }
 
+type UAddToCommunityRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CommunityUuid string                 `protobuf:"bytes,1,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
+	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UAddToCommunityRequest) Reset() {
+	*x = UAddToCommunityRequest{}
+	mi := &file_homie_proto_msgTypes[46]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UAddToCommunityRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UAddToCommunityRequest) ProtoMessage() {}
+
+func (x *UAddToCommunityRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_homie_proto_msgTypes[46]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UAddToCommunityRequest.ProtoReflect.Descriptor instead.
+func (*UAddToCommunityRequest) Descriptor() ([]byte, []int) {
+	return file_homie_proto_rawDescGZIP(), []int{46}
+}
+
+func (x *UAddToCommunityRequest) GetCommunityUuid() string {
+	if x != nil {
+		return x.CommunityUuid
+	}
+	return ""
+}
+
+func (x *UAddToCommunityRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+type ULeaveFromCommunityRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CommunityUuid string                 `protobuf:"bytes,1,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
+	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ULeaveFromCommunityRequest) Reset() {
+	*x = ULeaveFromCommunityRequest{}
+	mi := &file_homie_proto_msgTypes[47]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ULeaveFromCommunityRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ULeaveFromCommunityRequest) ProtoMessage() {}
+
+func (x *ULeaveFromCommunityRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_homie_proto_msgTypes[47]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ULeaveFromCommunityRequest.ProtoReflect.Descriptor instead.
+func (*ULeaveFromCommunityRequest) Descriptor() ([]byte, []int) {
+	return file_homie_proto_rawDescGZIP(), []int{47}
+}
+
+func (x *ULeaveFromCommunityRequest) GetCommunityUuid() string {
+	if x != nil {
+		return x.CommunityUuid
+	}
+	return ""
+}
+
+func (x *ULeaveFromCommunityRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
 // Community
 type CmGetAllRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Page          int64                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	Page          uint64                 `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CmGetAllRequest) Reset() {
 	*x = CmGetAllRequest{}
-	mi := &file_homie_proto_msgTypes[49]
+	mi := &file_homie_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2769,7 +2781,7 @@ func (x *CmGetAllRequest) String() string {
 func (*CmGetAllRequest) ProtoMessage() {}
 
 func (x *CmGetAllRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[49]
+	mi := &file_homie_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2782,10 +2794,10 @@ func (x *CmGetAllRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CmGetAllRequest.ProtoReflect.Descriptor instead.
 func (*CmGetAllRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{49}
+	return file_homie_proto_rawDescGZIP(), []int{48}
 }
 
-func (x *CmGetAllRequest) GetPage() int64 {
+func (x *CmGetAllRequest) GetPage() uint64 {
 	if x != nil {
 		return x.Page
 	}
@@ -2801,7 +2813,7 @@ type CmGetByUUIDRequest struct {
 
 func (x *CmGetByUUIDRequest) Reset() {
 	*x = CmGetByUUIDRequest{}
-	mi := &file_homie_proto_msgTypes[50]
+	mi := &file_homie_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2813,7 +2825,7 @@ func (x *CmGetByUUIDRequest) String() string {
 func (*CmGetByUUIDRequest) ProtoMessage() {}
 
 func (x *CmGetByUUIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[50]
+	mi := &file_homie_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2826,7 +2838,7 @@ func (x *CmGetByUUIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CmGetByUUIDRequest.ProtoReflect.Descriptor instead.
 func (*CmGetByUUIDRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{50}
+	return file_homie_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *CmGetByUUIDRequest) GetCommunityUuid() string {
@@ -2841,14 +2853,14 @@ type CmGetWithFilterRequest struct {
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 	LowPrice      float32                `protobuf:"fixed32,2,opt,name=low_price,json=lowPrice,proto3" json:"low_price,omitempty"`
 	HighPrice     float32                `protobuf:"fixed32,3,opt,name=high_price,json=highPrice,proto3" json:"high_price,omitempty"`
-	Page          int64                  `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
+	Page          uint64                 `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CmGetWithFilterRequest) Reset() {
 	*x = CmGetWithFilterRequest{}
-	mi := &file_homie_proto_msgTypes[51]
+	mi := &file_homie_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2860,7 +2872,7 @@ func (x *CmGetWithFilterRequest) String() string {
 func (*CmGetWithFilterRequest) ProtoMessage() {}
 
 func (x *CmGetWithFilterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[51]
+	mi := &file_homie_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2873,7 +2885,7 @@ func (x *CmGetWithFilterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CmGetWithFilterRequest.ProtoReflect.Descriptor instead.
 func (*CmGetWithFilterRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{51}
+	return file_homie_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *CmGetWithFilterRequest) GetTitle() string {
@@ -2897,7 +2909,7 @@ func (x *CmGetWithFilterRequest) GetHighPrice() float32 {
 	return 0
 }
 
-func (x *CmGetWithFilterRequest) GetPage() int64 {
+func (x *CmGetWithFilterRequest) GetPage() uint64 {
 	if x != nil {
 		return x.Page
 	}
@@ -2916,7 +2928,7 @@ type CmCreateRequest struct {
 
 func (x *CmCreateRequest) Reset() {
 	*x = CmCreateRequest{}
-	mi := &file_homie_proto_msgTypes[52]
+	mi := &file_homie_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2928,7 +2940,7 @@ func (x *CmCreateRequest) String() string {
 func (*CmCreateRequest) ProtoMessage() {}
 
 func (x *CmCreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[52]
+	mi := &file_homie_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2941,7 +2953,7 @@ func (x *CmCreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CmCreateRequest.ProtoReflect.Descriptor instead.
 func (*CmCreateRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{52}
+	return file_homie_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *CmCreateRequest) GetTitle() string {
@@ -2982,7 +2994,7 @@ type CmDeleteRequest struct {
 
 func (x *CmDeleteRequest) Reset() {
 	*x = CmDeleteRequest{}
-	mi := &file_homie_proto_msgTypes[53]
+	mi := &file_homie_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2994,7 +3006,7 @@ func (x *CmDeleteRequest) String() string {
 func (*CmDeleteRequest) ProtoMessage() {}
 
 func (x *CmDeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[53]
+	mi := &file_homie_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3007,7 +3019,7 @@ func (x *CmDeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CmDeleteRequest.ProtoReflect.Descriptor instead.
 func (*CmDeleteRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{53}
+	return file_homie_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *CmDeleteRequest) GetCommunityUuid() string {
@@ -3037,7 +3049,7 @@ type CmUpdateRequest struct {
 
 func (x *CmUpdateRequest) Reset() {
 	*x = CmUpdateRequest{}
-	mi := &file_homie_proto_msgTypes[54]
+	mi := &file_homie_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3049,7 +3061,7 @@ func (x *CmUpdateRequest) String() string {
 func (*CmUpdateRequest) ProtoMessage() {}
 
 func (x *CmUpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[54]
+	mi := &file_homie_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3062,7 +3074,7 @@ func (x *CmUpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CmUpdateRequest.ProtoReflect.Descriptor instead.
 func (*CmUpdateRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{54}
+	return file_homie_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *CmUpdateRequest) GetCommunityUuid() string {
@@ -3111,7 +3123,7 @@ type CmVoteRequest struct {
 
 func (x *CmVoteRequest) Reset() {
 	*x = CmVoteRequest{}
-	mi := &file_homie_proto_msgTypes[55]
+	mi := &file_homie_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3123,7 +3135,7 @@ func (x *CmVoteRequest) String() string {
 func (*CmVoteRequest) ProtoMessage() {}
 
 func (x *CmVoteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[55]
+	mi := &file_homie_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3136,7 +3148,7 @@ func (x *CmVoteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CmVoteRequest.ProtoReflect.Descriptor instead.
 func (*CmVoteRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{55}
+	return file_homie_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *CmVoteRequest) GetCommunityUuid() string {
@@ -3170,7 +3182,7 @@ type CmBanRequest struct {
 
 func (x *CmBanRequest) Reset() {
 	*x = CmBanRequest{}
-	mi := &file_homie_proto_msgTypes[56]
+	mi := &file_homie_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3182,7 +3194,7 @@ func (x *CmBanRequest) String() string {
 func (*CmBanRequest) ProtoMessage() {}
 
 func (x *CmBanRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[56]
+	mi := &file_homie_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3195,7 +3207,7 @@ func (x *CmBanRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CmBanRequest.ProtoReflect.Descriptor instead.
 func (*CmBanRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{56}
+	return file_homie_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *CmBanRequest) GetCommunityUuid() string {
@@ -3216,7 +3228,7 @@ func (x *CmBanRequest) GetToken() string {
 type PGetAllRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CommunityUuid string                 `protobuf:"bytes,1,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
-	Page          int64                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	Page          uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
 	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -3224,7 +3236,7 @@ type PGetAllRequest struct {
 
 func (x *PGetAllRequest) Reset() {
 	*x = PGetAllRequest{}
-	mi := &file_homie_proto_msgTypes[57]
+	mi := &file_homie_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3236,7 +3248,7 @@ func (x *PGetAllRequest) String() string {
 func (*PGetAllRequest) ProtoMessage() {}
 
 func (x *PGetAllRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[57]
+	mi := &file_homie_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3249,7 +3261,7 @@ func (x *PGetAllRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PGetAllRequest.ProtoReflect.Descriptor instead.
 func (*PGetAllRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{57}
+	return file_homie_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *PGetAllRequest) GetCommunityUuid() string {
@@ -3259,7 +3271,7 @@ func (x *PGetAllRequest) GetCommunityUuid() string {
 	return ""
 }
 
-func (x *PGetAllRequest) GetPage() int64 {
+func (x *PGetAllRequest) GetPage() uint64 {
 	if x != nil {
 		return x.Page
 	}
@@ -3283,7 +3295,7 @@ type PGetByUUIDRequest struct {
 
 func (x *PGetByUUIDRequest) Reset() {
 	*x = PGetByUUIDRequest{}
-	mi := &file_homie_proto_msgTypes[58]
+	mi := &file_homie_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3295,7 +3307,7 @@ func (x *PGetByUUIDRequest) String() string {
 func (*PGetByUUIDRequest) ProtoMessage() {}
 
 func (x *PGetByUUIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[58]
+	mi := &file_homie_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3308,7 +3320,7 @@ func (x *PGetByUUIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PGetByUUIDRequest.ProtoReflect.Descriptor instead.
 func (*PGetByUUIDRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{58}
+	return file_homie_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *PGetByUUIDRequest) GetPostUuid() string {
@@ -3335,7 +3347,7 @@ type PostData struct {
 
 func (x *PostData) Reset() {
 	*x = PostData{}
-	mi := &file_homie_proto_msgTypes[59]
+	mi := &file_homie_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3347,7 +3359,7 @@ func (x *PostData) String() string {
 func (*PostData) ProtoMessage() {}
 
 func (x *PostData) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[59]
+	mi := &file_homie_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3360,7 +3372,7 @@ func (x *PostData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostData.ProtoReflect.Descriptor instead.
 func (*PostData) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{59}
+	return file_homie_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *PostData) GetFile() []byte {
@@ -3390,7 +3402,7 @@ type PCreateRequest struct {
 
 func (x *PCreateRequest) Reset() {
 	*x = PCreateRequest{}
-	mi := &file_homie_proto_msgTypes[60]
+	mi := &file_homie_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3402,7 +3414,7 @@ func (x *PCreateRequest) String() string {
 func (*PCreateRequest) ProtoMessage() {}
 
 func (x *PCreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[60]
+	mi := &file_homie_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3415,7 +3427,7 @@ func (x *PCreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PCreateRequest.ProtoReflect.Descriptor instead.
 func (*PCreateRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{60}
+	return file_homie_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *PCreateRequest) GetCommunityUuid() string {
@@ -3463,7 +3475,7 @@ type PDeleteRequest struct {
 
 func (x *PDeleteRequest) Reset() {
 	*x = PDeleteRequest{}
-	mi := &file_homie_proto_msgTypes[61]
+	mi := &file_homie_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3475,7 +3487,7 @@ func (x *PDeleteRequest) String() string {
 func (*PDeleteRequest) ProtoMessage() {}
 
 func (x *PDeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[61]
+	mi := &file_homie_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3488,7 +3500,7 @@ func (x *PDeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PDeleteRequest.ProtoReflect.Descriptor instead.
 func (*PDeleteRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{61}
+	return file_homie_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *PDeleteRequest) GetPostUuid() string {
@@ -3518,7 +3530,7 @@ type PUpdateRequest struct {
 
 func (x *PUpdateRequest) Reset() {
 	*x = PUpdateRequest{}
-	mi := &file_homie_proto_msgTypes[62]
+	mi := &file_homie_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3530,7 +3542,7 @@ func (x *PUpdateRequest) String() string {
 func (*PUpdateRequest) ProtoMessage() {}
 
 func (x *PUpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[62]
+	mi := &file_homie_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3543,7 +3555,7 @@ func (x *PUpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PUpdateRequest.ProtoReflect.Descriptor instead.
 func (*PUpdateRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{62}
+	return file_homie_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *PUpdateRequest) GetPostUuid() string {
@@ -3584,14 +3596,14 @@ func (x *PUpdateRequest) GetToken() string {
 type PGetAllCommentsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PostUuid      string                 `protobuf:"bytes,1,opt,name=post_uuid,json=postUuid,proto3" json:"post_uuid,omitempty"`
-	Page          int64                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	Page          uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *PGetAllCommentsRequest) Reset() {
 	*x = PGetAllCommentsRequest{}
-	mi := &file_homie_proto_msgTypes[63]
+	mi := &file_homie_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3603,7 +3615,7 @@ func (x *PGetAllCommentsRequest) String() string {
 func (*PGetAllCommentsRequest) ProtoMessage() {}
 
 func (x *PGetAllCommentsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[63]
+	mi := &file_homie_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3616,7 +3628,7 @@ func (x *PGetAllCommentsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PGetAllCommentsRequest.ProtoReflect.Descriptor instead.
 func (*PGetAllCommentsRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{63}
+	return file_homie_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *PGetAllCommentsRequest) GetPostUuid() string {
@@ -3626,7 +3638,7 @@ func (x *PGetAllCommentsRequest) GetPostUuid() string {
 	return ""
 }
 
-func (x *PGetAllCommentsRequest) GetPage() int64 {
+func (x *PGetAllCommentsRequest) GetPage() uint64 {
 	if x != nil {
 		return x.Page
 	}
@@ -3644,7 +3656,7 @@ type PCreateCommentRequest struct {
 
 func (x *PCreateCommentRequest) Reset() {
 	*x = PCreateCommentRequest{}
-	mi := &file_homie_proto_msgTypes[64]
+	mi := &file_homie_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3656,7 +3668,7 @@ func (x *PCreateCommentRequest) String() string {
 func (*PCreateCommentRequest) ProtoMessage() {}
 
 func (x *PCreateCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[64]
+	mi := &file_homie_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3669,7 +3681,7 @@ func (x *PCreateCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PCreateCommentRequest.ProtoReflect.Descriptor instead.
 func (*PCreateCommentRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{64}
+	return file_homie_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *PCreateCommentRequest) GetPostUuid() string {
@@ -3703,7 +3715,7 @@ type PDeleteCommentRequest struct {
 
 func (x *PDeleteCommentRequest) Reset() {
 	*x = PDeleteCommentRequest{}
-	mi := &file_homie_proto_msgTypes[65]
+	mi := &file_homie_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3715,7 +3727,7 @@ func (x *PDeleteCommentRequest) String() string {
 func (*PDeleteCommentRequest) ProtoMessage() {}
 
 func (x *PDeleteCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[65]
+	mi := &file_homie_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3728,7 +3740,7 @@ func (x *PDeleteCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PDeleteCommentRequest.ProtoReflect.Descriptor instead.
 func (*PDeleteCommentRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{65}
+	return file_homie_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *PDeleteCommentRequest) GetCommentId() string {
@@ -3756,7 +3768,7 @@ type PUpdateCommentRequest struct {
 
 func (x *PUpdateCommentRequest) Reset() {
 	*x = PUpdateCommentRequest{}
-	mi := &file_homie_proto_msgTypes[66]
+	mi := &file_homie_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3768,7 +3780,7 @@ func (x *PUpdateCommentRequest) String() string {
 func (*PUpdateCommentRequest) ProtoMessage() {}
 
 func (x *PUpdateCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[66]
+	mi := &file_homie_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3781,7 +3793,7 @@ func (x *PUpdateCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PUpdateCommentRequest.ProtoReflect.Descriptor instead.
 func (*PUpdateCommentRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{66}
+	return file_homie_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *PUpdateCommentRequest) GetCommentId() string {
@@ -3816,7 +3828,7 @@ type PVoteCommentRequest struct {
 
 func (x *PVoteCommentRequest) Reset() {
 	*x = PVoteCommentRequest{}
-	mi := &file_homie_proto_msgTypes[67]
+	mi := &file_homie_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3828,7 +3840,7 @@ func (x *PVoteCommentRequest) String() string {
 func (*PVoteCommentRequest) ProtoMessage() {}
 
 func (x *PVoteCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[67]
+	mi := &file_homie_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3841,7 +3853,7 @@ func (x *PVoteCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PVoteCommentRequest.ProtoReflect.Descriptor instead.
 func (*PVoteCommentRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{67}
+	return file_homie_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *PVoteCommentRequest) GetCommentId() string {
@@ -3876,7 +3888,7 @@ type PVoteRequest struct {
 
 func (x *PVoteRequest) Reset() {
 	*x = PVoteRequest{}
-	mi := &file_homie_proto_msgTypes[68]
+	mi := &file_homie_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3888,7 +3900,7 @@ func (x *PVoteRequest) String() string {
 func (*PVoteRequest) ProtoMessage() {}
 
 func (x *PVoteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[68]
+	mi := &file_homie_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3901,7 +3913,7 @@ func (x *PVoteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PVoteRequest.ProtoReflect.Descriptor instead.
 func (*PVoteRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{68}
+	return file_homie_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *PVoteRequest) GetPostUuid() string {
@@ -3928,7 +3940,7 @@ func (x *PVoteRequest) GetToken() string {
 type DGetAllRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CommunityUuid string                 `protobuf:"bytes,1,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
-	Page          int64                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	Page          uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
 	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -3936,7 +3948,7 @@ type DGetAllRequest struct {
 
 func (x *DGetAllRequest) Reset() {
 	*x = DGetAllRequest{}
-	mi := &file_homie_proto_msgTypes[69]
+	mi := &file_homie_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3948,7 +3960,7 @@ func (x *DGetAllRequest) String() string {
 func (*DGetAllRequest) ProtoMessage() {}
 
 func (x *DGetAllRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[69]
+	mi := &file_homie_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3961,7 +3973,7 @@ func (x *DGetAllRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DGetAllRequest.ProtoReflect.Descriptor instead.
 func (*DGetAllRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{69}
+	return file_homie_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *DGetAllRequest) GetCommunityUuid() string {
@@ -3971,7 +3983,7 @@ func (x *DGetAllRequest) GetCommunityUuid() string {
 	return ""
 }
 
-func (x *DGetAllRequest) GetPage() int64 {
+func (x *DGetAllRequest) GetPage() uint64 {
 	if x != nil {
 		return x.Page
 	}
@@ -3995,7 +4007,7 @@ type DGetByUUIDRequest struct {
 
 func (x *DGetByUUIDRequest) Reset() {
 	*x = DGetByUUIDRequest{}
-	mi := &file_homie_proto_msgTypes[70]
+	mi := &file_homie_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4007,7 +4019,7 @@ func (x *DGetByUUIDRequest) String() string {
 func (*DGetByUUIDRequest) ProtoMessage() {}
 
 func (x *DGetByUUIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[70]
+	mi := &file_homie_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4020,7 +4032,7 @@ func (x *DGetByUUIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DGetByUUIDRequest.ProtoReflect.Descriptor instead.
 func (*DGetByUUIDRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{70}
+	return file_homie_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *DGetByUUIDRequest) GetDiscussionUuid() string {
@@ -4040,7 +4052,7 @@ func (x *DGetByUUIDRequest) GetToken() string {
 type DGetAllWithFilterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	Page          int64                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	Page          uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
 	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -4048,7 +4060,7 @@ type DGetAllWithFilterRequest struct {
 
 func (x *DGetAllWithFilterRequest) Reset() {
 	*x = DGetAllWithFilterRequest{}
-	mi := &file_homie_proto_msgTypes[71]
+	mi := &file_homie_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4060,7 +4072,7 @@ func (x *DGetAllWithFilterRequest) String() string {
 func (*DGetAllWithFilterRequest) ProtoMessage() {}
 
 func (x *DGetAllWithFilterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[71]
+	mi := &file_homie_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4073,7 +4085,7 @@ func (x *DGetAllWithFilterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DGetAllWithFilterRequest.ProtoReflect.Descriptor instead.
 func (*DGetAllWithFilterRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{71}
+	return file_homie_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *DGetAllWithFilterRequest) GetTitle() string {
@@ -4083,7 +4095,7 @@ func (x *DGetAllWithFilterRequest) GetTitle() string {
 	return ""
 }
 
-func (x *DGetAllWithFilterRequest) GetPage() int64 {
+func (x *DGetAllWithFilterRequest) GetPage() uint64 {
 	if x != nil {
 		return x.Page
 	}
@@ -4109,7 +4121,7 @@ type DCreateRequest struct {
 
 func (x *DCreateRequest) Reset() {
 	*x = DCreateRequest{}
-	mi := &file_homie_proto_msgTypes[72]
+	mi := &file_homie_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4121,7 +4133,7 @@ func (x *DCreateRequest) String() string {
 func (*DCreateRequest) ProtoMessage() {}
 
 func (x *DCreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[72]
+	mi := &file_homie_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4134,7 +4146,7 @@ func (x *DCreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DCreateRequest.ProtoReflect.Descriptor instead.
 func (*DCreateRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{72}
+	return file_homie_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *DCreateRequest) GetCommunityUuid() string {
@@ -4175,7 +4187,7 @@ type DDeleteRequest struct {
 
 func (x *DDeleteRequest) Reset() {
 	*x = DDeleteRequest{}
-	mi := &file_homie_proto_msgTypes[73]
+	mi := &file_homie_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4187,7 +4199,7 @@ func (x *DDeleteRequest) String() string {
 func (*DDeleteRequest) ProtoMessage() {}
 
 func (x *DDeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[73]
+	mi := &file_homie_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4200,7 +4212,7 @@ func (x *DDeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DDeleteRequest.ProtoReflect.Descriptor instead.
 func (*DDeleteRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{73}
+	return file_homie_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *DDeleteRequest) GetDiscussionUuid() string {
@@ -4219,17 +4231,17 @@ func (x *DDeleteRequest) GetToken() string {
 
 type DUpdateRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	Title          string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	Body           string                 `protobuf:"bytes,2,opt,name=body,proto3" json:"body,omitempty"`
-	Token          string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
-	DiscussionUuid string                 `protobuf:"bytes,4,opt,name=discussion_uuid,json=discussionUuid,proto3" json:"discussion_uuid,omitempty"`
+	DiscussionUuid string                 `protobuf:"bytes,1,opt,name=discussion_uuid,json=discussionUuid,proto3" json:"discussion_uuid,omitempty"`
+	Title          string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Body           string                 `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
+	Token          string                 `protobuf:"bytes,4,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
 
 func (x *DUpdateRequest) Reset() {
 	*x = DUpdateRequest{}
-	mi := &file_homie_proto_msgTypes[74]
+	mi := &file_homie_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4241,7 +4253,7 @@ func (x *DUpdateRequest) String() string {
 func (*DUpdateRequest) ProtoMessage() {}
 
 func (x *DUpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[74]
+	mi := &file_homie_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4254,7 +4266,14 @@ func (x *DUpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DUpdateRequest.ProtoReflect.Descriptor instead.
 func (*DUpdateRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{74}
+	return file_homie_proto_rawDescGZIP(), []int{73}
+}
+
+func (x *DUpdateRequest) GetDiscussionUuid() string {
+	if x != nil {
+		return x.DiscussionUuid
+	}
+	return ""
 }
 
 func (x *DUpdateRequest) GetTitle() string {
@@ -4278,24 +4297,17 @@ func (x *DUpdateRequest) GetToken() string {
 	return ""
 }
 
-func (x *DUpdateRequest) GetDiscussionUuid() string {
-	if x != nil {
-		return x.DiscussionUuid
-	}
-	return ""
-}
-
 type DGetAllCommentsRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	DiscussionUuid string                 `protobuf:"bytes,1,opt,name=discussion_uuid,json=discussionUuid,proto3" json:"discussion_uuid,omitempty"`
-	Page           int64                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	Page           uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
 
 func (x *DGetAllCommentsRequest) Reset() {
 	*x = DGetAllCommentsRequest{}
-	mi := &file_homie_proto_msgTypes[75]
+	mi := &file_homie_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4307,7 +4319,7 @@ func (x *DGetAllCommentsRequest) String() string {
 func (*DGetAllCommentsRequest) ProtoMessage() {}
 
 func (x *DGetAllCommentsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[75]
+	mi := &file_homie_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4320,7 +4332,7 @@ func (x *DGetAllCommentsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DGetAllCommentsRequest.ProtoReflect.Descriptor instead.
 func (*DGetAllCommentsRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{75}
+	return file_homie_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *DGetAllCommentsRequest) GetDiscussionUuid() string {
@@ -4330,7 +4342,7 @@ func (x *DGetAllCommentsRequest) GetDiscussionUuid() string {
 	return ""
 }
 
-func (x *DGetAllCommentsRequest) GetPage() int64 {
+func (x *DGetAllCommentsRequest) GetPage() uint64 {
 	if x != nil {
 		return x.Page
 	}
@@ -4348,7 +4360,7 @@ type DCreateCommentRequest struct {
 
 func (x *DCreateCommentRequest) Reset() {
 	*x = DCreateCommentRequest{}
-	mi := &file_homie_proto_msgTypes[76]
+	mi := &file_homie_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4360,7 +4372,7 @@ func (x *DCreateCommentRequest) String() string {
 func (*DCreateCommentRequest) ProtoMessage() {}
 
 func (x *DCreateCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[76]
+	mi := &file_homie_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4373,7 +4385,7 @@ func (x *DCreateCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DCreateCommentRequest.ProtoReflect.Descriptor instead.
 func (*DCreateCommentRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{76}
+	return file_homie_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *DCreateCommentRequest) GetDiscussionUuid() string {
@@ -4407,7 +4419,7 @@ type DDeleteCommentRequest struct {
 
 func (x *DDeleteCommentRequest) Reset() {
 	*x = DDeleteCommentRequest{}
-	mi := &file_homie_proto_msgTypes[77]
+	mi := &file_homie_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4419,7 +4431,7 @@ func (x *DDeleteCommentRequest) String() string {
 func (*DDeleteCommentRequest) ProtoMessage() {}
 
 func (x *DDeleteCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[77]
+	mi := &file_homie_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4432,7 +4444,7 @@ func (x *DDeleteCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DDeleteCommentRequest.ProtoReflect.Descriptor instead.
 func (*DDeleteCommentRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{77}
+	return file_homie_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *DDeleteCommentRequest) GetCommentId() string {
@@ -4460,7 +4472,7 @@ type DUpdateCommentRequest struct {
 
 func (x *DUpdateCommentRequest) Reset() {
 	*x = DUpdateCommentRequest{}
-	mi := &file_homie_proto_msgTypes[78]
+	mi := &file_homie_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4472,7 +4484,7 @@ func (x *DUpdateCommentRequest) String() string {
 func (*DUpdateCommentRequest) ProtoMessage() {}
 
 func (x *DUpdateCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[78]
+	mi := &file_homie_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4485,7 +4497,7 @@ func (x *DUpdateCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DUpdateCommentRequest.ProtoReflect.Descriptor instead.
 func (*DUpdateCommentRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{78}
+	return file_homie_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *DUpdateCommentRequest) GetCommentId() string {
@@ -4520,7 +4532,7 @@ type DVoteCommentRequest struct {
 
 func (x *DVoteCommentRequest) Reset() {
 	*x = DVoteCommentRequest{}
-	mi := &file_homie_proto_msgTypes[79]
+	mi := &file_homie_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4532,7 +4544,7 @@ func (x *DVoteCommentRequest) String() string {
 func (*DVoteCommentRequest) ProtoMessage() {}
 
 func (x *DVoteCommentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[79]
+	mi := &file_homie_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4545,7 +4557,7 @@ func (x *DVoteCommentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DVoteCommentRequest.ProtoReflect.Descriptor instead.
 func (*DVoteCommentRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{79}
+	return file_homie_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *DVoteCommentRequest) GetDiscussionUuid() string {
@@ -4573,14 +4585,14 @@ func (x *DVoteCommentRequest) GetToken() string {
 type CGetAllRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CommunityUuid string                 `protobuf:"bytes,1,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
-	Page          int64                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	Page          uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CGetAllRequest) Reset() {
 	*x = CGetAllRequest{}
-	mi := &file_homie_proto_msgTypes[80]
+	mi := &file_homie_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4592,7 +4604,7 @@ func (x *CGetAllRequest) String() string {
 func (*CGetAllRequest) ProtoMessage() {}
 
 func (x *CGetAllRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[80]
+	mi := &file_homie_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4605,7 +4617,7 @@ func (x *CGetAllRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CGetAllRequest.ProtoReflect.Descriptor instead.
 func (*CGetAllRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{80}
+	return file_homie_proto_rawDescGZIP(), []int{79}
 }
 
 func (x *CGetAllRequest) GetCommunityUuid() string {
@@ -4615,7 +4627,7 @@ func (x *CGetAllRequest) GetCommunityUuid() string {
 	return ""
 }
 
-func (x *CGetAllRequest) GetPage() int64 {
+func (x *CGetAllRequest) GetPage() uint64 {
 	if x != nil {
 		return x.Page
 	}
@@ -4632,7 +4644,7 @@ type CGetByUUIDRequest struct {
 
 func (x *CGetByUUIDRequest) Reset() {
 	*x = CGetByUUIDRequest{}
-	mi := &file_homie_proto_msgTypes[81]
+	mi := &file_homie_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4644,7 +4656,7 @@ func (x *CGetByUUIDRequest) String() string {
 func (*CGetByUUIDRequest) ProtoMessage() {}
 
 func (x *CGetByUUIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[81]
+	mi := &file_homie_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4657,7 +4669,7 @@ func (x *CGetByUUIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CGetByUUIDRequest.ProtoReflect.Descriptor instead.
 func (*CGetByUUIDRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{81}
+	return file_homie_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *CGetByUUIDRequest) GetCourseUuid() string {
@@ -4677,14 +4689,14 @@ func (x *CGetByUUIDRequest) GetToken() string {
 type CGetAllWithFilterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	Page          int64                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	Page          uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CGetAllWithFilterRequest) Reset() {
 	*x = CGetAllWithFilterRequest{}
-	mi := &file_homie_proto_msgTypes[82]
+	mi := &file_homie_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4696,7 +4708,7 @@ func (x *CGetAllWithFilterRequest) String() string {
 func (*CGetAllWithFilterRequest) ProtoMessage() {}
 
 func (x *CGetAllWithFilterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[82]
+	mi := &file_homie_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4709,7 +4721,7 @@ func (x *CGetAllWithFilterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CGetAllWithFilterRequest.ProtoReflect.Descriptor instead.
 func (*CGetAllWithFilterRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{82}
+	return file_homie_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *CGetAllWithFilterRequest) GetTitle() string {
@@ -4719,7 +4731,7 @@ func (x *CGetAllWithFilterRequest) GetTitle() string {
 	return ""
 }
 
-func (x *CGetAllWithFilterRequest) GetPage() int64 {
+func (x *CGetAllWithFilterRequest) GetPage() uint64 {
 	if x != nil {
 		return x.Page
 	}
@@ -4738,7 +4750,7 @@ type CCreateRequest struct {
 
 func (x *CCreateRequest) Reset() {
 	*x = CCreateRequest{}
-	mi := &file_homie_proto_msgTypes[83]
+	mi := &file_homie_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4750,7 +4762,7 @@ func (x *CCreateRequest) String() string {
 func (*CCreateRequest) ProtoMessage() {}
 
 func (x *CCreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[83]
+	mi := &file_homie_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4763,7 +4775,7 @@ func (x *CCreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CCreateRequest.ProtoReflect.Descriptor instead.
 func (*CCreateRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{83}
+	return file_homie_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *CCreateRequest) GetCommunityUuid() string {
@@ -4804,7 +4816,7 @@ type CDeleteRequest struct {
 
 func (x *CDeleteRequest) Reset() {
 	*x = CDeleteRequest{}
-	mi := &file_homie_proto_msgTypes[84]
+	mi := &file_homie_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4816,7 +4828,7 @@ func (x *CDeleteRequest) String() string {
 func (*CDeleteRequest) ProtoMessage() {}
 
 func (x *CDeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[84]
+	mi := &file_homie_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4829,7 +4841,7 @@ func (x *CDeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CDeleteRequest.ProtoReflect.Descriptor instead.
 func (*CDeleteRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{84}
+	return file_homie_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *CDeleteRequest) GetCourseUuid() string {
@@ -4858,7 +4870,7 @@ type CUpdateRequest struct {
 
 func (x *CUpdateRequest) Reset() {
 	*x = CUpdateRequest{}
-	mi := &file_homie_proto_msgTypes[85]
+	mi := &file_homie_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4870,7 +4882,7 @@ func (x *CUpdateRequest) String() string {
 func (*CUpdateRequest) ProtoMessage() {}
 
 func (x *CUpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[85]
+	mi := &file_homie_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4883,7 +4895,7 @@ func (x *CUpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CUpdateRequest.ProtoReflect.Descriptor instead.
 func (*CUpdateRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{85}
+	return file_homie_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *CUpdateRequest) GetCourseUuid() string {
@@ -4917,7 +4929,7 @@ func (x *CUpdateRequest) GetToken() string {
 type CGetAllLessonsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CourseUuid    string                 `protobuf:"bytes,1,opt,name=course_uuid,json=courseUuid,proto3" json:"course_uuid,omitempty"`
-	Page          int64                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	Page          uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
 	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -4925,7 +4937,7 @@ type CGetAllLessonsRequest struct {
 
 func (x *CGetAllLessonsRequest) Reset() {
 	*x = CGetAllLessonsRequest{}
-	mi := &file_homie_proto_msgTypes[86]
+	mi := &file_homie_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4937,7 +4949,7 @@ func (x *CGetAllLessonsRequest) String() string {
 func (*CGetAllLessonsRequest) ProtoMessage() {}
 
 func (x *CGetAllLessonsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[86]
+	mi := &file_homie_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4950,7 +4962,7 @@ func (x *CGetAllLessonsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CGetAllLessonsRequest.ProtoReflect.Descriptor instead.
 func (*CGetAllLessonsRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{86}
+	return file_homie_proto_rawDescGZIP(), []int{85}
 }
 
 func (x *CGetAllLessonsRequest) GetCourseUuid() string {
@@ -4960,7 +4972,7 @@ func (x *CGetAllLessonsRequest) GetCourseUuid() string {
 	return ""
 }
 
-func (x *CGetAllLessonsRequest) GetPage() int64 {
+func (x *CGetAllLessonsRequest) GetPage() uint64 {
 	if x != nil {
 		return x.Page
 	}
@@ -4984,7 +4996,7 @@ type CGetByUUIDLessonsRequest struct {
 
 func (x *CGetByUUIDLessonsRequest) Reset() {
 	*x = CGetByUUIDLessonsRequest{}
-	mi := &file_homie_proto_msgTypes[87]
+	mi := &file_homie_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4996,7 +5008,7 @@ func (x *CGetByUUIDLessonsRequest) String() string {
 func (*CGetByUUIDLessonsRequest) ProtoMessage() {}
 
 func (x *CGetByUUIDLessonsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[87]
+	mi := &file_homie_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5009,7 +5021,7 @@ func (x *CGetByUUIDLessonsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CGetByUUIDLessonsRequest.ProtoReflect.Descriptor instead.
 func (*CGetByUUIDLessonsRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{87}
+	return file_homie_proto_rawDescGZIP(), []int{86}
 }
 
 func (x *CGetByUUIDLessonsRequest) GetLessonUuid() string {
@@ -5020,6 +5032,66 @@ func (x *CGetByUUIDLessonsRequest) GetLessonUuid() string {
 }
 
 func (x *CGetByUUIDLessonsRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+type CVoteRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CourseUuid    string                 `protobuf:"bytes,1,opt,name=course_uuid,json=courseUuid,proto3" json:"course_uuid,omitempty"`
+	Vote          bool                   `protobuf:"varint,2,opt,name=vote,proto3" json:"vote,omitempty"`
+	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CVoteRequest) Reset() {
+	*x = CVoteRequest{}
+	mi := &file_homie_proto_msgTypes[87]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CVoteRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CVoteRequest) ProtoMessage() {}
+
+func (x *CVoteRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_homie_proto_msgTypes[87]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CVoteRequest.ProtoReflect.Descriptor instead.
+func (*CVoteRequest) Descriptor() ([]byte, []int) {
+	return file_homie_proto_rawDescGZIP(), []int{87}
+}
+
+func (x *CVoteRequest) GetCourseUuid() string {
+	if x != nil {
+		return x.CourseUuid
+	}
+	return ""
+}
+
+func (x *CVoteRequest) GetVote() bool {
+	if x != nil {
+		return x.Vote
+	}
+	return false
+}
+
+func (x *CVoteRequest) GetToken() string {
 	if x != nil {
 		return x.Token
 	}
@@ -5083,7 +5155,7 @@ type CCreateLessonsRequest struct {
 	CourseUuid    string                 `protobuf:"bytes,1,opt,name=course_uuid,json=courseUuid,proto3" json:"course_uuid,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Body          *LessonData            `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
-	Files         []*LessonData          `protobuf:"bytes,5,rep,name=files,proto3" json:"files,omitempty"` // not counted
+	Files         []*LessonData          `protobuf:"bytes,5,rep,name=files,proto3" json:"files,omitempty"`
 	Token         string                 `protobuf:"bytes,6,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -5211,7 +5283,7 @@ type CUpdateLessonsRequest struct {
 	LessonUuid    string                 `protobuf:"bytes,1,opt,name=lesson_uuid,json=lessonUuid,proto3" json:"lesson_uuid,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Body          *LessonData            `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
-	Files         []*LessonData          `protobuf:"bytes,4,rep,name=files,proto3" json:"files,omitempty"` // not counted
+	Files         []*LessonData          `protobuf:"bytes,4,rep,name=files,proto3" json:"files,omitempty"`
 	Token         string                 `protobuf:"bytes,5,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -5331,10 +5403,9 @@ type RCreateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CommunityUuid string                 `protobuf:"bytes,1,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
 	Msg           string                 `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
-	Category      string                 `protobuf:"bytes,3,opt,name=category,proto3" json:"category,omitempty"`
-	To            string                 `protobuf:"bytes,4,opt,name=to,proto3" json:"to,omitempty"`
-	ToObj         string                 `protobuf:"bytes,5,opt,name=to_obj,json=toObj,proto3" json:"to_obj,omitempty"`
-	Token         string                 `protobuf:"bytes,6,opt,name=token,proto3" json:"token,omitempty"`
+	AddressedObj  string                 `protobuf:"bytes,3,opt,name=addressed_obj,json=addressedObj,proto3" json:"addressed_obj,omitempty"`
+	TypeReport    string                 `protobuf:"bytes,4,opt,name=type_report,json=typeReport,proto3" json:"type_report,omitempty"`
+	Token         string                 `protobuf:"bytes,5,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5383,23 +5454,16 @@ func (x *RCreateRequest) GetMsg() string {
 	return ""
 }
 
-func (x *RCreateRequest) GetCategory() string {
+func (x *RCreateRequest) GetAddressedObj() string {
 	if x != nil {
-		return x.Category
+		return x.AddressedObj
 	}
 	return ""
 }
 
-func (x *RCreateRequest) GetTo() string {
+func (x *RCreateRequest) GetTypeReport() string {
 	if x != nil {
-		return x.To
-	}
-	return ""
-}
-
-func (x *RCreateRequest) GetToObj() string {
-	if x != nil {
-		return x.ToObj
+		return x.TypeReport
 	}
 	return ""
 }
@@ -5467,57 +5531,47 @@ var File_homie_proto protoreflect.FileDescriptor
 
 const file_homie_proto_rawDesc = "" +
 	"\n" +
-	"\vhomie.proto\x12\x05homie\x1a\x1bgoogle/protobuf/empty.proto\"Y\n" +
-	"\fcVoteRequest\x12\x1f\n" +
-	"\vcourse_uuid\x18\x01 \x01(\tR\n" +
-	"courseUuid\x12\x12\n" +
-	"\x04vote\x18\x02 \x01(\bR\x04vote\x12\x14\n" +
-	"\x05token\x18\x03 \x01(\tR\x05token\"Y\n" +
-	"\x1auLeaveFromCommunityRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\x12%\n" +
-	"\x0ecommunity_uuid\x18\x02 \x01(\tR\rcommunityUuid\"S\n" +
-	"\x14uDeleteFromCommunity\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\x12%\n" +
-	"\x0ecommunity_uuid\x18\x02 \x01(\tR\rcommunityUuid\"U\n" +
-	"\x16uAddToCommunityRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\x12%\n" +
-	"\x0ecommunity_uuid\x18\x02 \x01(\tR\rcommunityUuid\"*\n" +
-	"\x12uGetByTokenRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"6\n" +
-	"\x13uGetByTokenResponse\x12\x1f\n" +
-	"\x04user\x18\x01 \x01(\v2\v.homie.UserR\x04user\"+\n" +
+	"\vhomie.proto\x12\x05homie\x1a\x1bgoogle/protobuf/empty.proto\"+\n" +
 	"\x05Votes\x12\x0e\n" +
-	"\x02up\x18\x01 \x01(\x03R\x02up\x12\x12\n" +
-	"\x04down\x18\x02 \x01(\x03R\x04down\"%\n" +
+	"\x02up\x18\x01 \x01(\x04R\x02up\x12\x12\n" +
+	"\x04down\x18\x02 \x01(\x04R\x04down\"%\n" +
 	"\rLoginResponse\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\"(\n" +
 	"\x10RegisterResponse\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\",\n" +
 	"\x14RefreshTokenResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"\xd1\x01\n" +
-	"\x04User\x12\x19\n" +
-	"\buser_tag\x18\x01 \x01(\tR\auserTag\x12\x1a\n" +
-	"\busername\x18\x02 \x01(\tR\busername\x12\x14\n" +
-	"\x05email\x18\x03 \x01(\tR\x05email\x12\x14\n" +
-	"\x05about\x18\x04 \x01(\tR\x05about\x12\x12\n" +
-	"\x04role\x18\x05 \x01(\tR\x04role\x12\x16\n" +
-	"\x06rating\x18\x06 \x01(\x03R\x06rating\x12\x1b\n" +
-	"\tbanned_to\x18\a \x01(\x03R\bbannedTo\x12\x1d\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"\xf1\x01\n" +
+	"\x04User\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x19\n" +
+	"\buser_tag\x18\x02 \x01(\tR\auserTag\x12\x1a\n" +
+	"\busername\x18\x03 \x01(\tR\busername\x12\x14\n" +
+	"\x05email\x18\x04 \x01(\tR\x05email\x12\x14\n" +
+	"\x05about\x18\x05 \x01(\tR\x05about\x12\x12\n" +
+	"\x04role\x18\x06 \x01(\tR\x04role\x12\"\n" +
+	"\x05votes\x18\a \x01(\v2\f.homie.VotesR\x05votes\x12\x1b\n" +
+	"\tbanned_to\x18\b \x01(\x03R\bbannedTo\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\b \x01(\x03R\tcreatedAt\"4\n" +
+	"created_at\x18\t \x01(\x03R\tcreatedAt\"6\n" +
+	"\x13uGetByTokenResponse\x12\x1f\n" +
+	"\x04user\x18\x01 \x01(\v2\v.homie.UserR\x04user\"O\n" +
 	"\x11uGetByTagResponse\x12\x1f\n" +
-	"\x04user\x18\x01 \x01(\v2\v.homie.UserR\x04user\"\x90\x02\n" +
+	"\x04user\x18\x01 \x01(\v2\v.homie.UserR\x04user\x12\x19\n" +
+	"\bcan_edit\x18\x02 \x01(\bR\acanEdit\"S\n" +
+	"\x14uDeleteFromCommunity\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\x12%\n" +
+	"\x0ecommunity_uuid\x18\x02 \x01(\tR\rcommunityUuid\"\x88\x02\n" +
 	"\tCommunity\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\"\n" +
 	"\x05votes\x18\x04 \x01(\v2\f.homie.VotesR\x05votes\x12\x1a\n" +
-	"\bwarnings\x18\x05 \x01(\x03R\bwarnings\x12\x14\n" +
-	"\x05price\x18\x06 \x01(\x03R\x05price\x12\x1b\n" +
-	"\tis_banned\x18\a \x01(\bR\bisBanned\x12\x1d\n" +
+	"\bwarnings\x18\x05 \x01(\rR\bwarnings\x12\x14\n" +
+	"\x05price\x18\x06 \x01(\x02R\x05price\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\b \x01(\x03R\tcreatedAt\x12%\n" +
-	"\acreator\x18\t \x01(\v2\v.homie.UserR\acreator\"F\n" +
+	"author_tag\x18\a \x01(\tR\tauthorTag\x12\x1b\n" +
+	"\tis_banned\x18\b \x01(\bR\bisBanned\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\t \x01(\x03R\tcreatedAt\"F\n" +
 	"\x10cmGetAllResponse\x122\n" +
 	"\vcommunities\x18\x01 \x03(\v2\x10.homie.CommunityR\vcommunities\"E\n" +
 	"\x13cmGetByUUIDResponse\x12.\n" +
@@ -5525,25 +5579,28 @@ const file_homie_proto_rawDesc = "" +
 	"\x17cmGetWithFilterResponse\x122\n" +
 	"\vcommunities\x18\x01 \x03(\v2\x10.homie.CommunityR\vcommunities\"&\n" +
 	"\x10cmCreateResponse\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\xb4\x01\n" +
-	"\vPostComment\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x17\n" +
-	"\apost_id\x18\x03 \x01(\x03R\x06postId\x12\x12\n" +
-	"\x04body\x18\x04 \x01(\tR\x04body\x12\"\n" +
-	"\x05votes\x18\x05 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\xb6\x01\n" +
+	"\vPostComment\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x12\n" +
+	"\x04body\x18\x02 \x01(\tR\x04body\x12\"\n" +
+	"\x05votes\x18\x03 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x06 \x01(\x03R\tcreatedAt\x12%\n" +
-	"\acreator\x18\a \x01(\v2\v.homie.UserR\acreator\"\x8a\x02\n" +
+	"created_at\x18\x04 \x01(\x03R\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\x05 \x01(\x03R\tupdatedAt\x12\x1d\n" +
+	"\n" +
+	"author_tag\x18\x06 \x01(\tR\tauthorTag\"\xfd\x01\n" +
 	"\x04Post\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12!\n" +
-	"\fcommunity_id\x18\x02 \x01(\x03R\vcommunityId\x12\x14\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12%\n" +
+	"\x0ecommunity_uuid\x18\x02 \x01(\x03R\rcommunityUuid\x12\x14\n" +
 	"\x05title\x18\x03 \x01(\tR\x05title\x12\x12\n" +
 	"\x04body\x18\x04 \x01(\fR\x04body\x12\"\n" +
 	"\x05votes\x18\x05 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x06 \x01(\x03R\tcreatedAt\x12.\n" +
-	"\bcomments\x18\a \x03(\v2\x12.homie.PostCommentR\bcomments\x12.\n" +
-	"\tcommunity\x18\b \x01(\v2\x10.homie.CommunityR\tcommunity\"4\n" +
+	"created_at\x18\x06 \x01(\x03R\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\a \x01(\x03R\tupdatedAt\x12.\n" +
+	"\bcomments\x18\b \x03(\v2\x12.homie.PostCommentR\bcomments\"4\n" +
 	"\x0fpGetAllResponse\x12!\n" +
 	"\x05posts\x18\x01 \x03(\v2\v.homie.PostR\x05posts\"I\n" +
 	"\x17pGetAllCommentsResponse\x12.\n" +
@@ -5551,23 +5608,29 @@ const file_homie_proto_rawDesc = "" +
 	"\x12pGetByUUIDResponse\x12\x1f\n" +
 	"\x04post\x18\x01 \x01(\v2\v.homie.PostR\x04post\"%\n" +
 	"\x0fpCreateResponse\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\xb6\x01\n" +
-	"\x11DiscussionComment\x12#\n" +
-	"\rdiscussion_id\x18\x01 \x01(\x03R\fdiscussionId\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\xd1\x01\n" +
+	"\x11DiscussionComment\x12'\n" +
+	"\x0fdiscussion_uuid\x18\x01 \x01(\tR\x0ediscussionUuid\x12\x12\n" +
 	"\x04body\x18\x02 \x01(\tR\x04body\x12\"\n" +
 	"\x05votes\x18\x03 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x04 \x01(\x03R\tcreatedAt\x12%\n" +
-	"\acreator\x18\x05 \x01(\v2\v.homie.UserR\acreator\"\xc6\x01\n" +
+	"created_at\x18\x04 \x01(\x03R\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\x05 \x01(\x03R\tupdatedAt\x12\x1d\n" +
+	"\n" +
+	"author_tag\x18\x06 \x01(\tR\tauthorTag\"\xdd\x01\n" +
 	"\n" +
 	"Discussion\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
-	"\x04text\x18\x03 \x01(\tR\x04text\x12\x1d\n" +
+	"\x04body\x18\x03 \x01(\tR\x04body\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x04 \x01(\x03R\tcreatedAt\x124\n" +
-	"\bcomments\x18\x05 \x03(\v2\x18.homie.DiscussionCommentR\bcomments\x12%\n" +
-	"\acreator\x18\x06 \x01(\v2\v.homie.UserR\acreator\"E\n" +
+	"created_at\x18\x04 \x01(\x03R\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\x05 \x01(\x03R\tupdatedAt\x124\n" +
+	"\bcomments\x18\x06 \x03(\v2\x18.homie.DiscussionCommentR\bcomments\x12\x1d\n" +
+	"\n" +
+	"author_tag\x18\a \x01(\tR\tauthorTag\"E\n" +
 	"\x0eDiscussionList\x123\n" +
 	"\vdiscussions\x18\x01 \x03(\v2\x11.homie.DiscussionR\vdiscussions\"J\n" +
 	"\x0fdGetAllResponse\x127\n" +
@@ -5581,21 +5644,28 @@ const file_homie_proto_rawDesc = "" +
 	"\x0fdCreateResponse\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"O\n" +
 	"\x17dGetAllCommentsResponse\x124\n" +
-	"\bcomments\x18\x01 \x03(\v2\x18.homie.DiscussionCommentR\bcomments\"e\n" +
+	"\bcomments\x18\x01 \x03(\v2\x18.homie.DiscussionCommentR\bcomments\"\xa5\x01\n" +
 	"\x06Lesson\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
-	"\x04body\x18\x03 \x01(\fR\x04body\x12\x1d\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1f\n" +
+	"\vcourse_uuid\x18\x02 \x01(\tR\n" +
+	"courseUuid\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x12\n" +
+	"\x04body\x18\x04 \x01(\fR\x04body\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x04 \x01(\x03R\tcreatedAt\"\xc0\x01\n" +
+	"created_at\x18\x05 \x01(\x03R\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\x06 \x01(\x03R\tupdatedAt\"\x86\x02\n" +
 	"\x06Course\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\"\n" +
-	"\x05votes\x18\x04 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12%\n" +
+	"\x0ecommunity_uuid\x18\x02 \x01(\tR\rcommunityUuid\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12 \n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\"\n" +
+	"\x05votes\x18\x05 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x05 \x01(\x03R\tcreatedAt\x12'\n" +
-	"\alessons\x18\x06 \x03(\v2\r.homie.LessonR\alessons\":\n" +
+	"created_at\x18\x06 \x01(\x03R\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\a \x01(\x03R\tupdatedAt\x12'\n" +
+	"\alessons\x18\b \x03(\v2\r.homie.LessonR\alessons\":\n" +
 	"\x0fcGetAllResponse\x12'\n" +
 	"\acourses\x18\x01 \x03(\v2\r.homie.CourseR\acourses\";\n" +
 	"\x12cGetByUUIDResponse\x12%\n" +
@@ -5615,19 +5685,19 @@ const file_homie_proto_rawDesc = "" +
 	"\n" +
 	"discussion\x18\x04 \x01(\v2\x11.homie.DiscussionR\n" +
 	"discussion\x12%\n" +
-	"\x06course\x18\x05 \x01(\v2\r.homie.CourseR\x06course\"\xa2\x02\n" +
+	"\x06course\x18\x05 \x01(\v2\r.homie.CourseR\x06course\"\x9f\x02\n" +
 	"\x06Report\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x19\n" +
-	"\buser_tag\x18\x02 \x01(\tR\auserTag\x12!\n" +
-	"\fcommunity_id\x18\x03 \x01(\x03R\vcommunityId\x12\x1b\n" +
-	"\tsender_id\x18\x04 \x01(\x03R\bsenderId\x12\x10\n" +
-	"\x03msg\x18\x05 \x01(\tR\x03msg\x12\x12\n" +
-	"\x04type\x18\x06 \x01(\tR\x04type\x12\x17\n" +
-	"\ato_uuid\x18\a \x01(\tR\x06toUuid\x12\x15\n" +
-	"\x06to_obj\x18\b \x01(\tR\x05toObj\x12\x17\n" +
-	"\asent_at\x18\t \x01(\x03R\x06sentAt\x12>\n" +
-	"\x0freporter_object\x18\n" +
-	" \x01(\v2\x15.homie.ReporterObjectR\x0ereporterObject\":\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\x12%\n" +
+	"\x0ecommunity_uuid\x18\x02 \x01(\tR\rcommunityUuid\x12\x18\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\x12#\n" +
+	"\raddressed_obj\x18\x04 \x01(\tR\faddressedObj\x12\x1f\n" +
+	"\vtype_report\x18\x05 \x01(\tR\n" +
+	"typeReport\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\x06 \x01(\x03R\tcreatedAt\x12\x1f\n" +
+	"\vsender_uuid\x18\a \x01(\tR\n" +
+	"senderUuid\x12>\n" +
+	"\x0freporter_object\x18\b \x01(\v2\x15.homie.ReporterObjectR\x0ereporterObject\":\n" +
 	"\x0frGetAllResponse\x12'\n" +
 	"\areports\x18\x01 \x03(\v2\r.homie.ReportR\areports\"@\n" +
 	"\fLoginRequest\x12\x14\n" +
@@ -5638,23 +5708,34 @@ const file_homie_proto_rawDesc = "" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x03 \x01(\tR\bpassword\"+\n" +
 	"\x13RefreshTokenRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"-\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"*\n" +
+	"\x12uGetByTokenRequest\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"C\n" +
 	"\x10uGetByTagRequest\x12\x19\n" +
-	"\buser_tag\x18\x01 \x01(\tR\auserTag\"\x81\x01\n" +
+	"\buser_tag\x18\x01 \x01(\tR\auserTag\x12\x14\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\"\xb3\x01\n" +
 	"\x15uUpdateProfileRequest\x12 \n" +
 	"\fnew_user_tag\x18\x01 \x01(\tR\n" +
 	"newUserTag\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12\x14\n" +
 	"\x05about\x18\x03 \x01(\tR\x05about\x12\x14\n" +
-	"\x05token\x18\x04 \x01(\tR\x05token\"-\n" +
+	"\x05email\x18\x04 \x01(\tR\x05email\x12\x1a\n" +
+	"\bpassword\x18\x05 \x01(\tR\bpassword\x12\x14\n" +
+	"\x05token\x18\x06 \x01(\tR\x05token\"-\n" +
 	"\x15uDeleteProfileRequest\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\"S\n" +
 	"\fuVoteRequest\x12\x19\n" +
 	"\buser_tag\x18\x01 \x01(\tR\auserTag\x12\x12\n" +
 	"\x04vote\x18\x02 \x01(\bR\x04vote\x12\x14\n" +
-	"\x05token\x18\x03 \x01(\tR\x05token\"%\n" +
+	"\x05token\x18\x03 \x01(\tR\x05token\"U\n" +
+	"\x16uAddToCommunityRequest\x12%\n" +
+	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\x12\x14\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\"Y\n" +
+	"\x1auLeaveFromCommunityRequest\x12%\n" +
+	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\x12\x14\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\"%\n" +
 	"\x0fcmGetAllRequest\x12\x12\n" +
-	"\x04page\x18\x01 \x01(\x03R\x04page\";\n" +
+	"\x04page\x18\x01 \x01(\x04R\x04page\";\n" +
 	"\x12cmGetByUUIDRequest\x12%\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\"~\n" +
 	"\x16cmGetWithFilterRequest\x12\x14\n" +
@@ -5662,7 +5743,7 @@ const file_homie_proto_rawDesc = "" +
 	"\tlow_price\x18\x02 \x01(\x02R\blowPrice\x12\x1d\n" +
 	"\n" +
 	"high_price\x18\x03 \x01(\x02R\thighPrice\x12\x12\n" +
-	"\x04page\x18\x04 \x01(\x03R\x04page\"u\n" +
+	"\x04page\x18\x04 \x01(\x04R\x04page\"u\n" +
 	"\x0fcmCreateRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x14\n" +
@@ -5686,7 +5767,7 @@ const file_homie_proto_rawDesc = "" +
 	"\x05token\x18\x02 \x01(\tR\x05token\"a\n" +
 	"\x0epGetAllRequest\x12%\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x03R\x04page\x12\x14\n" +
+	"\x04page\x18\x02 \x01(\x04R\x04page\x12\x14\n" +
 	"\x05token\x18\x03 \x01(\tR\x05token\"F\n" +
 	"\x11pGetByUUIDRequest\x12\x1b\n" +
 	"\tpost_uuid\x18\x01 \x01(\tR\bpostUuid\x12\x14\n" +
@@ -5711,7 +5792,7 @@ const file_homie_proto_rawDesc = "" +
 	"\x05token\x18\x05 \x01(\tR\x05token\"I\n" +
 	"\x16pGetAllCommentsRequest\x12\x1b\n" +
 	"\tpost_uuid\x18\x01 \x01(\tR\bpostUuid\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x03R\x04page\"^\n" +
+	"\x04page\x18\x02 \x01(\x04R\x04page\"^\n" +
 	"\x15pCreateCommentRequest\x12\x1b\n" +
 	"\tpost_uuid\x18\x01 \x01(\tR\bpostUuid\x12\x12\n" +
 	"\x04body\x18\x02 \x01(\tR\x04body\x12\x14\n" +
@@ -5736,14 +5817,14 @@ const file_homie_proto_rawDesc = "" +
 	"\x05token\x18\x03 \x01(\tR\x05token\"a\n" +
 	"\x0edGetAllRequest\x12%\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x03R\x04page\x12\x14\n" +
+	"\x04page\x18\x02 \x01(\x04R\x04page\x12\x14\n" +
 	"\x05token\x18\x03 \x01(\tR\x05token\"R\n" +
 	"\x11dGetByUUIDRequest\x12'\n" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tR\x0ediscussionUuid\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\"Z\n" +
 	"\x18dGetAllWithFilterRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x03R\x04page\x12\x14\n" +
+	"\x04page\x18\x02 \x01(\x04R\x04page\x12\x14\n" +
 	"\x05token\x18\x03 \x01(\tR\x05token\"w\n" +
 	"\x0edCreateRequest\x12%\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\x12\x14\n" +
@@ -5753,14 +5834,14 @@ const file_homie_proto_rawDesc = "" +
 	"\x0edDeleteRequest\x12'\n" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tR\x0ediscussionUuid\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\"y\n" +
-	"\x0edUpdateRequest\x12\x14\n" +
-	"\x05title\x18\x01 \x01(\tR\x05title\x12\x12\n" +
-	"\x04body\x18\x02 \x01(\tR\x04body\x12\x14\n" +
-	"\x05token\x18\x03 \x01(\tR\x05token\x12'\n" +
-	"\x0fdiscussion_uuid\x18\x04 \x01(\tR\x0ediscussionUuid\"U\n" +
+	"\x0edUpdateRequest\x12'\n" +
+	"\x0fdiscussion_uuid\x18\x01 \x01(\tR\x0ediscussionUuid\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
+	"\x04body\x18\x03 \x01(\tR\x04body\x12\x14\n" +
+	"\x05token\x18\x04 \x01(\tR\x05token\"U\n" +
 	"\x16dGetAllCommentsRequest\x12'\n" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tR\x0ediscussionUuid\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x03R\x04page\"j\n" +
+	"\x04page\x18\x02 \x01(\x04R\x04page\"j\n" +
 	"\x15dCreateCommentRequest\x12'\n" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tR\x0ediscussionUuid\x12\x12\n" +
 	"\x04body\x18\x02 \x01(\tR\x04body\x12\x14\n" +
@@ -5781,14 +5862,14 @@ const file_homie_proto_rawDesc = "" +
 	"\x05token\x18\x03 \x01(\tR\x05token\"K\n" +
 	"\x0ecGetAllRequest\x12%\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x03R\x04page\"J\n" +
+	"\x04page\x18\x02 \x01(\x04R\x04page\"J\n" +
 	"\x11cGetByUUIDRequest\x12\x1f\n" +
 	"\vcourse_uuid\x18\x01 \x01(\tR\n" +
 	"courseUuid\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\"D\n" +
 	"\x18cGetAllWithFilterRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x03R\x04page\"\x85\x01\n" +
+	"\x04page\x18\x02 \x01(\x04R\x04page\"\x85\x01\n" +
 	"\x0ecCreateRequest\x12%\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
@@ -5807,12 +5888,17 @@ const file_homie_proto_rawDesc = "" +
 	"\x15cGetAllLessonsRequest\x12\x1f\n" +
 	"\vcourse_uuid\x18\x01 \x01(\tR\n" +
 	"courseUuid\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x03R\x04page\x12\x14\n" +
+	"\x04page\x18\x02 \x01(\x04R\x04page\x12\x14\n" +
 	"\x05token\x18\x03 \x01(\tR\x05token\"Q\n" +
 	"\x18cGetByUUIDLessonsRequest\x12\x1f\n" +
 	"\vlesson_uuid\x18\x01 \x01(\tR\n" +
 	"lessonUuid\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token\"=\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\"Y\n" +
+	"\fcVoteRequest\x12\x1f\n" +
+	"\vcourse_uuid\x18\x01 \x01(\tR\n" +
+	"courseUuid\x12\x12\n" +
+	"\x04vote\x18\x02 \x01(\bR\x04vote\x12\x14\n" +
+	"\x05token\x18\x03 \x01(\tR\x05token\"=\n" +
 	"\n" +
 	"LessonData\x12\x12\n" +
 	"\x04file\x18\x01 \x01(\fR\x04file\x12\x1b\n" +
@@ -5836,14 +5922,14 @@ const file_homie_proto_rawDesc = "" +
 	"\x05files\x18\x04 \x03(\v2\x11.homie.LessonDataR\x05files\x12\x14\n" +
 	"\x05token\x18\x05 \x01(\tR\x05token\"&\n" +
 	"\x0erGetAllRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"\xa2\x01\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"\xa5\x01\n" +
 	"\x0erCreateRequest\x12%\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\x12\x10\n" +
-	"\x03msg\x18\x02 \x01(\tR\x03msg\x12\x1a\n" +
-	"\bcategory\x18\x03 \x01(\tR\bcategory\x12\x0e\n" +
-	"\x02to\x18\x04 \x01(\tR\x02to\x12\x15\n" +
-	"\x06to_obj\x18\x05 \x01(\tR\x05toObj\x12\x14\n" +
-	"\x05token\x18\x06 \x01(\tR\x05token\"C\n" +
+	"\x03msg\x18\x02 \x01(\tR\x03msg\x12#\n" +
+	"\raddressed_obj\x18\x03 \x01(\tR\faddressedObj\x12\x1f\n" +
+	"\vtype_report\x18\x04 \x01(\tR\n" +
+	"typeReport\x12\x14\n" +
+	"\x05token\x18\x05 \x01(\tR\x05token\"C\n" +
 	"\x0erDeleteRequest\x12\x1b\n" +
 	"\treport_id\x18\x01 \x01(\tR\breportId\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token2\xe0\x1f\n" +
@@ -5920,94 +6006,94 @@ func file_homie_proto_rawDescGZIP() []byte {
 
 var file_homie_proto_msgTypes = make([]protoimpl.MessageInfo, 95)
 var file_homie_proto_goTypes = []any{
-	(*CVoteRequest)(nil),               // 0: homie.cVoteRequest
-	(*ULeaveFromCommunityRequest)(nil), // 1: homie.uLeaveFromCommunityRequest
-	(*UDeleteFromCommunity)(nil),       // 2: homie.uDeleteFromCommunity
-	(*UAddToCommunityRequest)(nil),     // 3: homie.uAddToCommunityRequest
-	(*UGetByTokenRequest)(nil),         // 4: homie.uGetByTokenRequest
+	(*Votes)(nil),                      // 0: homie.Votes
+	(*LoginResponse)(nil),              // 1: homie.LoginResponse
+	(*RegisterResponse)(nil),           // 2: homie.RegisterResponse
+	(*RefreshTokenResponse)(nil),       // 3: homie.RefreshTokenResponse
+	(*User)(nil),                       // 4: homie.User
 	(*UGetByTokenResponse)(nil),        // 5: homie.uGetByTokenResponse
-	(*Votes)(nil),                      // 6: homie.Votes
-	(*LoginResponse)(nil),              // 7: homie.LoginResponse
-	(*RegisterResponse)(nil),           // 8: homie.RegisterResponse
-	(*RefreshTokenResponse)(nil),       // 9: homie.RefreshTokenResponse
-	(*User)(nil),                       // 10: homie.User
-	(*UGetByTagResponse)(nil),          // 11: homie.uGetByTagResponse
-	(*Community)(nil),                  // 12: homie.Community
-	(*CmGetAllResponse)(nil),           // 13: homie.cmGetAllResponse
-	(*CmGetByUUIDResponse)(nil),        // 14: homie.cmGetByUUIDResponse
-	(*CmGetWithFilterResponse)(nil),    // 15: homie.cmGetWithFilterResponse
-	(*CmCreateResponse)(nil),           // 16: homie.cmCreateResponse
-	(*PostComment)(nil),                // 17: homie.PostComment
-	(*Post)(nil),                       // 18: homie.Post
-	(*PGetAllResponse)(nil),            // 19: homie.pGetAllResponse
-	(*PGetAllCommentsResponse)(nil),    // 20: homie.pGetAllCommentsResponse
-	(*PGetByUUIDResponse)(nil),         // 21: homie.pGetByUUIDResponse
-	(*PCreateResponse)(nil),            // 22: homie.pCreateResponse
-	(*DiscussionComment)(nil),          // 23: homie.DiscussionComment
-	(*Discussion)(nil),                 // 24: homie.Discussion
-	(*DiscussionList)(nil),             // 25: homie.DiscussionList
-	(*DGetAllResponse)(nil),            // 26: homie.dGetAllResponse
-	(*DGetByUUIDResponse)(nil),         // 27: homie.dGetByUUIDResponse
-	(*DGetAllWithFilterResponse)(nil),  // 28: homie.dGetAllWithFilterResponse
-	(*DCreateResponse)(nil),            // 29: homie.dCreateResponse
-	(*DGetAllCommentsResponse)(nil),    // 30: homie.dGetAllCommentsResponse
-	(*Lesson)(nil),                     // 31: homie.Lesson
-	(*Course)(nil),                     // 32: homie.Course
-	(*CGetAllResponse)(nil),            // 33: homie.cGetAllResponse
-	(*CGetByUUIDResponse)(nil),         // 34: homie.cGetByUUIDResponse
-	(*CGetAllWithFilterResponse)(nil),  // 35: homie.cGetAllWithFilterResponse
-	(*CCreateResponse)(nil),            // 36: homie.cCreateResponse
-	(*CGetAllLessonsResponse)(nil),     // 37: homie.cGetAllLessonsResponse
-	(*CGetByUUIDLessonsResponse)(nil),  // 38: homie.cGetByUUIDLessonsResponse
-	(*ReporterObject)(nil),             // 39: homie.ReporterObject
-	(*Report)(nil),                     // 40: homie.Report
-	(*RGetAllResponse)(nil),            // 41: homie.rGetAllResponse
-	(*LoginRequest)(nil),               // 42: homie.LoginRequest
-	(*RegisterRequest)(nil),            // 43: homie.RegisterRequest
-	(*RefreshTokenRequest)(nil),        // 44: homie.RefreshTokenRequest
-	(*UGetByTagRequest)(nil),           // 45: homie.uGetByTagRequest
-	(*UUpdateProfileRequest)(nil),      // 46: homie.uUpdateProfileRequest
-	(*UDeleteProfileRequest)(nil),      // 47: homie.uDeleteProfileRequest
-	(*UVoteRequest)(nil),               // 48: homie.uVoteRequest
-	(*CmGetAllRequest)(nil),            // 49: homie.cmGetAllRequest
-	(*CmGetByUUIDRequest)(nil),         // 50: homie.cmGetByUUIDRequest
-	(*CmGetWithFilterRequest)(nil),     // 51: homie.cmGetWithFilterRequest
-	(*CmCreateRequest)(nil),            // 52: homie.cmCreateRequest
-	(*CmDeleteRequest)(nil),            // 53: homie.cmDeleteRequest
-	(*CmUpdateRequest)(nil),            // 54: homie.cmUpdateRequest
-	(*CmVoteRequest)(nil),              // 55: homie.cmVoteRequest
-	(*CmBanRequest)(nil),               // 56: homie.cmBanRequest
-	(*PGetAllRequest)(nil),             // 57: homie.pGetAllRequest
-	(*PGetByUUIDRequest)(nil),          // 58: homie.pGetByUUIDRequest
-	(*PostData)(nil),                   // 59: homie.PostData
-	(*PCreateRequest)(nil),             // 60: homie.pCreateRequest
-	(*PDeleteRequest)(nil),             // 61: homie.pDeleteRequest
-	(*PUpdateRequest)(nil),             // 62: homie.pUpdateRequest
-	(*PGetAllCommentsRequest)(nil),     // 63: homie.pGetAllCommentsRequest
-	(*PCreateCommentRequest)(nil),      // 64: homie.pCreateCommentRequest
-	(*PDeleteCommentRequest)(nil),      // 65: homie.pDeleteCommentRequest
-	(*PUpdateCommentRequest)(nil),      // 66: homie.pUpdateCommentRequest
-	(*PVoteCommentRequest)(nil),        // 67: homie.pVoteCommentRequest
-	(*PVoteRequest)(nil),               // 68: homie.pVoteRequest
-	(*DGetAllRequest)(nil),             // 69: homie.dGetAllRequest
-	(*DGetByUUIDRequest)(nil),          // 70: homie.dGetByUUIDRequest
-	(*DGetAllWithFilterRequest)(nil),   // 71: homie.dGetAllWithFilterRequest
-	(*DCreateRequest)(nil),             // 72: homie.dCreateRequest
-	(*DDeleteRequest)(nil),             // 73: homie.dDeleteRequest
-	(*DUpdateRequest)(nil),             // 74: homie.dUpdateRequest
-	(*DGetAllCommentsRequest)(nil),     // 75: homie.dGetAllCommentsRequest
-	(*DCreateCommentRequest)(nil),      // 76: homie.dCreateCommentRequest
-	(*DDeleteCommentRequest)(nil),      // 77: homie.dDeleteCommentRequest
-	(*DUpdateCommentRequest)(nil),      // 78: homie.dUpdateCommentRequest
-	(*DVoteCommentRequest)(nil),        // 79: homie.dVoteCommentRequest
-	(*CGetAllRequest)(nil),             // 80: homie.cGetAllRequest
-	(*CGetByUUIDRequest)(nil),          // 81: homie.cGetByUUIDRequest
-	(*CGetAllWithFilterRequest)(nil),   // 82: homie.cGetAllWithFilterRequest
-	(*CCreateRequest)(nil),             // 83: homie.cCreateRequest
-	(*CDeleteRequest)(nil),             // 84: homie.cDeleteRequest
-	(*CUpdateRequest)(nil),             // 85: homie.cUpdateRequest
-	(*CGetAllLessonsRequest)(nil),      // 86: homie.cGetAllLessonsRequest
-	(*CGetByUUIDLessonsRequest)(nil),   // 87: homie.cGetByUUIDLessonsRequest
+	(*UGetByTagResponse)(nil),          // 6: homie.uGetByTagResponse
+	(*UDeleteFromCommunity)(nil),       // 7: homie.uDeleteFromCommunity
+	(*Community)(nil),                  // 8: homie.Community
+	(*CmGetAllResponse)(nil),           // 9: homie.cmGetAllResponse
+	(*CmGetByUUIDResponse)(nil),        // 10: homie.cmGetByUUIDResponse
+	(*CmGetWithFilterResponse)(nil),    // 11: homie.cmGetWithFilterResponse
+	(*CmCreateResponse)(nil),           // 12: homie.cmCreateResponse
+	(*PostComment)(nil),                // 13: homie.PostComment
+	(*Post)(nil),                       // 14: homie.Post
+	(*PGetAllResponse)(nil),            // 15: homie.pGetAllResponse
+	(*PGetAllCommentsResponse)(nil),    // 16: homie.pGetAllCommentsResponse
+	(*PGetByUUIDResponse)(nil),         // 17: homie.pGetByUUIDResponse
+	(*PCreateResponse)(nil),            // 18: homie.pCreateResponse
+	(*DiscussionComment)(nil),          // 19: homie.DiscussionComment
+	(*Discussion)(nil),                 // 20: homie.Discussion
+	(*DiscussionList)(nil),             // 21: homie.DiscussionList
+	(*DGetAllResponse)(nil),            // 22: homie.dGetAllResponse
+	(*DGetByUUIDResponse)(nil),         // 23: homie.dGetByUUIDResponse
+	(*DGetAllWithFilterResponse)(nil),  // 24: homie.dGetAllWithFilterResponse
+	(*DCreateResponse)(nil),            // 25: homie.dCreateResponse
+	(*DGetAllCommentsResponse)(nil),    // 26: homie.dGetAllCommentsResponse
+	(*Lesson)(nil),                     // 27: homie.Lesson
+	(*Course)(nil),                     // 28: homie.Course
+	(*CGetAllResponse)(nil),            // 29: homie.cGetAllResponse
+	(*CGetByUUIDResponse)(nil),         // 30: homie.cGetByUUIDResponse
+	(*CGetAllWithFilterResponse)(nil),  // 31: homie.cGetAllWithFilterResponse
+	(*CCreateResponse)(nil),            // 32: homie.cCreateResponse
+	(*CGetAllLessonsResponse)(nil),     // 33: homie.cGetAllLessonsResponse
+	(*CGetByUUIDLessonsResponse)(nil),  // 34: homie.cGetByUUIDLessonsResponse
+	(*ReporterObject)(nil),             // 35: homie.ReporterObject
+	(*Report)(nil),                     // 36: homie.Report
+	(*RGetAllResponse)(nil),            // 37: homie.rGetAllResponse
+	(*LoginRequest)(nil),               // 38: homie.LoginRequest
+	(*RegisterRequest)(nil),            // 39: homie.RegisterRequest
+	(*RefreshTokenRequest)(nil),        // 40: homie.RefreshTokenRequest
+	(*UGetByTokenRequest)(nil),         // 41: homie.uGetByTokenRequest
+	(*UGetByTagRequest)(nil),           // 42: homie.uGetByTagRequest
+	(*UUpdateProfileRequest)(nil),      // 43: homie.uUpdateProfileRequest
+	(*UDeleteProfileRequest)(nil),      // 44: homie.uDeleteProfileRequest
+	(*UVoteRequest)(nil),               // 45: homie.uVoteRequest
+	(*UAddToCommunityRequest)(nil),     // 46: homie.uAddToCommunityRequest
+	(*ULeaveFromCommunityRequest)(nil), // 47: homie.uLeaveFromCommunityRequest
+	(*CmGetAllRequest)(nil),            // 48: homie.cmGetAllRequest
+	(*CmGetByUUIDRequest)(nil),         // 49: homie.cmGetByUUIDRequest
+	(*CmGetWithFilterRequest)(nil),     // 50: homie.cmGetWithFilterRequest
+	(*CmCreateRequest)(nil),            // 51: homie.cmCreateRequest
+	(*CmDeleteRequest)(nil),            // 52: homie.cmDeleteRequest
+	(*CmUpdateRequest)(nil),            // 53: homie.cmUpdateRequest
+	(*CmVoteRequest)(nil),              // 54: homie.cmVoteRequest
+	(*CmBanRequest)(nil),               // 55: homie.cmBanRequest
+	(*PGetAllRequest)(nil),             // 56: homie.pGetAllRequest
+	(*PGetByUUIDRequest)(nil),          // 57: homie.pGetByUUIDRequest
+	(*PostData)(nil),                   // 58: homie.PostData
+	(*PCreateRequest)(nil),             // 59: homie.pCreateRequest
+	(*PDeleteRequest)(nil),             // 60: homie.pDeleteRequest
+	(*PUpdateRequest)(nil),             // 61: homie.pUpdateRequest
+	(*PGetAllCommentsRequest)(nil),     // 62: homie.pGetAllCommentsRequest
+	(*PCreateCommentRequest)(nil),      // 63: homie.pCreateCommentRequest
+	(*PDeleteCommentRequest)(nil),      // 64: homie.pDeleteCommentRequest
+	(*PUpdateCommentRequest)(nil),      // 65: homie.pUpdateCommentRequest
+	(*PVoteCommentRequest)(nil),        // 66: homie.pVoteCommentRequest
+	(*PVoteRequest)(nil),               // 67: homie.pVoteRequest
+	(*DGetAllRequest)(nil),             // 68: homie.dGetAllRequest
+	(*DGetByUUIDRequest)(nil),          // 69: homie.dGetByUUIDRequest
+	(*DGetAllWithFilterRequest)(nil),   // 70: homie.dGetAllWithFilterRequest
+	(*DCreateRequest)(nil),             // 71: homie.dCreateRequest
+	(*DDeleteRequest)(nil),             // 72: homie.dDeleteRequest
+	(*DUpdateRequest)(nil),             // 73: homie.dUpdateRequest
+	(*DGetAllCommentsRequest)(nil),     // 74: homie.dGetAllCommentsRequest
+	(*DCreateCommentRequest)(nil),      // 75: homie.dCreateCommentRequest
+	(*DDeleteCommentRequest)(nil),      // 76: homie.dDeleteCommentRequest
+	(*DUpdateCommentRequest)(nil),      // 77: homie.dUpdateCommentRequest
+	(*DVoteCommentRequest)(nil),        // 78: homie.dVoteCommentRequest
+	(*CGetAllRequest)(nil),             // 79: homie.cGetAllRequest
+	(*CGetByUUIDRequest)(nil),          // 80: homie.cGetByUUIDRequest
+	(*CGetAllWithFilterRequest)(nil),   // 81: homie.cGetAllWithFilterRequest
+	(*CCreateRequest)(nil),             // 82: homie.cCreateRequest
+	(*CDeleteRequest)(nil),             // 83: homie.cDeleteRequest
+	(*CUpdateRequest)(nil),             // 84: homie.cUpdateRequest
+	(*CGetAllLessonsRequest)(nil),      // 85: homie.cGetAllLessonsRequest
+	(*CGetByUUIDLessonsRequest)(nil),   // 86: homie.cGetByUUIDLessonsRequest
+	(*CVoteRequest)(nil),               // 87: homie.cVoteRequest
 	(*LessonData)(nil),                 // 88: homie.LessonData
 	(*CCreateLessonsRequest)(nil),      // 89: homie.cCreateLessonsRequest
 	(*CDeleteLessonsRequest)(nil),      // 90: homie.cDeleteLessonsRequest
@@ -6018,167 +6104,163 @@ var file_homie_proto_goTypes = []any{
 	(*emptypb.Empty)(nil),              // 95: google.protobuf.Empty
 }
 var file_homie_proto_depIdxs = []int32{
-	10,  // 0: homie.uGetByTokenResponse.user:type_name -> homie.User
-	10,  // 1: homie.uGetByTagResponse.user:type_name -> homie.User
-	6,   // 2: homie.Community.votes:type_name -> homie.Votes
-	10,  // 3: homie.Community.creator:type_name -> homie.User
-	12,  // 4: homie.cmGetAllResponse.communities:type_name -> homie.Community
-	12,  // 5: homie.cmGetByUUIDResponse.community:type_name -> homie.Community
-	12,  // 6: homie.cmGetWithFilterResponse.communities:type_name -> homie.Community
-	6,   // 7: homie.PostComment.votes:type_name -> homie.Votes
-	10,  // 8: homie.PostComment.creator:type_name -> homie.User
-	6,   // 9: homie.Post.votes:type_name -> homie.Votes
-	17,  // 10: homie.Post.comments:type_name -> homie.PostComment
-	12,  // 11: homie.Post.community:type_name -> homie.Community
-	18,  // 12: homie.pGetAllResponse.posts:type_name -> homie.Post
-	17,  // 13: homie.pGetAllCommentsResponse.comments:type_name -> homie.PostComment
-	18,  // 14: homie.pGetByUUIDResponse.post:type_name -> homie.Post
-	6,   // 15: homie.DiscussionComment.votes:type_name -> homie.Votes
-	10,  // 16: homie.DiscussionComment.creator:type_name -> homie.User
-	23,  // 17: homie.Discussion.comments:type_name -> homie.DiscussionComment
-	10,  // 18: homie.Discussion.creator:type_name -> homie.User
-	24,  // 19: homie.DiscussionList.discussions:type_name -> homie.Discussion
-	25,  // 20: homie.dGetAllResponse.discussions:type_name -> homie.DiscussionList
-	24,  // 21: homie.dGetByUUIDResponse.discussion:type_name -> homie.Discussion
-	25,  // 22: homie.dGetAllWithFilterResponse.discussions:type_name -> homie.DiscussionList
-	23,  // 23: homie.dGetAllCommentsResponse.comments:type_name -> homie.DiscussionComment
-	6,   // 24: homie.Course.votes:type_name -> homie.Votes
-	31,  // 25: homie.Course.lessons:type_name -> homie.Lesson
-	32,  // 26: homie.cGetAllResponse.courses:type_name -> homie.Course
-	32,  // 27: homie.cGetByUUIDResponse.course:type_name -> homie.Course
-	32,  // 28: homie.cGetAllWithFilterResponse.courses:type_name -> homie.Course
-	31,  // 29: homie.cGetAllLessonsResponse.lessons:type_name -> homie.Lesson
-	31,  // 30: homie.cGetByUUIDLessonsResponse.lesson:type_name -> homie.Lesson
-	10,  // 31: homie.ReporterObject.user:type_name -> homie.User
-	12,  // 32: homie.ReporterObject.community:type_name -> homie.Community
-	18,  // 33: homie.ReporterObject.post:type_name -> homie.Post
-	24,  // 34: homie.ReporterObject.discussion:type_name -> homie.Discussion
-	32,  // 35: homie.ReporterObject.course:type_name -> homie.Course
-	39,  // 36: homie.Report.reporter_object:type_name -> homie.ReporterObject
-	40,  // 37: homie.rGetAllResponse.reports:type_name -> homie.Report
-	59,  // 38: homie.pCreateRequest.files:type_name -> homie.PostData
-	59,  // 39: homie.pUpdateRequest.files:type_name -> homie.PostData
-	88,  // 40: homie.cCreateLessonsRequest.body:type_name -> homie.LessonData
-	88,  // 41: homie.cCreateLessonsRequest.files:type_name -> homie.LessonData
-	88,  // 42: homie.cUpdateLessonsRequest.body:type_name -> homie.LessonData
-	88,  // 43: homie.cUpdateLessonsRequest.files:type_name -> homie.LessonData
-	42,  // 44: homie.Homie.AuthLogin:input_type -> homie.LoginRequest
-	43,  // 45: homie.Homie.AuthRegister:input_type -> homie.RegisterRequest
-	44,  // 46: homie.Homie.AuthRefreshToken:input_type -> homie.RefreshTokenRequest
-	45,  // 47: homie.Homie.UserGetByTag:input_type -> homie.uGetByTagRequest
-	46,  // 48: homie.Homie.UserUpdateProfile:input_type -> homie.uUpdateProfileRequest
-	47,  // 49: homie.Homie.UserDeleteProfile:input_type -> homie.uDeleteProfileRequest
-	48,  // 50: homie.Homie.UserVote:input_type -> homie.uVoteRequest
-	4,   // 51: homie.Homie.UserGetByToken:input_type -> homie.uGetByTokenRequest
-	3,   // 52: homie.Homie.UserAddToCommunity:input_type -> homie.uAddToCommunityRequest
-	2,   // 53: homie.Homie.UserDeleteFromCommunity:input_type -> homie.uDeleteFromCommunity
-	1,   // 54: homie.Homie.UserLeaveFromCommunity:input_type -> homie.uLeaveFromCommunityRequest
-	49,  // 55: homie.Homie.CommunityGetAll:input_type -> homie.cmGetAllRequest
-	50,  // 56: homie.Homie.CommunityGetByUUID:input_type -> homie.cmGetByUUIDRequest
-	51,  // 57: homie.Homie.CommunityGetWithFilter:input_type -> homie.cmGetWithFilterRequest
-	52,  // 58: homie.Homie.CommunityCreate:input_type -> homie.cmCreateRequest
-	53,  // 59: homie.Homie.CommunityDelete:input_type -> homie.cmDeleteRequest
-	54,  // 60: homie.Homie.CommunityUpdate:input_type -> homie.cmUpdateRequest
-	55,  // 61: homie.Homie.CommunityVote:input_type -> homie.cmVoteRequest
-	56,  // 62: homie.Homie.CommunityBan:input_type -> homie.cmBanRequest
-	57,  // 63: homie.Homie.PostsGetAll:input_type -> homie.pGetAllRequest
-	58,  // 64: homie.Homie.PostsGetByUUID:input_type -> homie.pGetByUUIDRequest
-	60,  // 65: homie.Homie.PostsCreate:input_type -> homie.pCreateRequest
-	61,  // 66: homie.Homie.PostsDelete:input_type -> homie.pDeleteRequest
-	62,  // 67: homie.Homie.PostsUpdate:input_type -> homie.pUpdateRequest
-	63,  // 68: homie.Homie.PostsGetAllComments:input_type -> homie.pGetAllCommentsRequest
-	64,  // 69: homie.Homie.PostsCreateComment:input_type -> homie.pCreateCommentRequest
-	65,  // 70: homie.Homie.PostsDeleteComment:input_type -> homie.pDeleteCommentRequest
-	66,  // 71: homie.Homie.PostsUpdateComment:input_type -> homie.pUpdateCommentRequest
-	67,  // 72: homie.Homie.PostsVoteComment:input_type -> homie.pVoteCommentRequest
-	68,  // 73: homie.Homie.PostsVote:input_type -> homie.pVoteRequest
-	69,  // 74: homie.Homie.DiscussionsGetAll:input_type -> homie.dGetAllRequest
-	70,  // 75: homie.Homie.DiscussionsGetByUUID:input_type -> homie.dGetByUUIDRequest
-	71,  // 76: homie.Homie.DiscussionsGetAllWithFilter:input_type -> homie.dGetAllWithFilterRequest
-	72,  // 77: homie.Homie.DiscussionsCreate:input_type -> homie.dCreateRequest
-	73,  // 78: homie.Homie.DiscussionsDelete:input_type -> homie.dDeleteRequest
-	74,  // 79: homie.Homie.DiscussionsUpdate:input_type -> homie.dUpdateRequest
-	75,  // 80: homie.Homie.DiscussionsGetAllComments:input_type -> homie.dGetAllCommentsRequest
-	76,  // 81: homie.Homie.DiscussionsCreateComment:input_type -> homie.dCreateCommentRequest
-	77,  // 82: homie.Homie.DiscussionsDeleteComment:input_type -> homie.dDeleteCommentRequest
-	78,  // 83: homie.Homie.DiscussionsUpdateComment:input_type -> homie.dUpdateCommentRequest
-	79,  // 84: homie.Homie.DiscussionsVoteComment:input_type -> homie.dVoteCommentRequest
-	80,  // 85: homie.Homie.CoursesGetAll:input_type -> homie.cGetAllRequest
-	81,  // 86: homie.Homie.CoursesGetByUUID:input_type -> homie.cGetByUUIDRequest
-	82,  // 87: homie.Homie.CoursesGetAllWithFilter:input_type -> homie.cGetAllWithFilterRequest
-	83,  // 88: homie.Homie.CoursesCreate:input_type -> homie.cCreateRequest
-	84,  // 89: homie.Homie.CoursesDelete:input_type -> homie.cDeleteRequest
-	85,  // 90: homie.Homie.CoursesUpdate:input_type -> homie.cUpdateRequest
-	86,  // 91: homie.Homie.CoursesGetAllLessons:input_type -> homie.cGetAllLessonsRequest
-	87,  // 92: homie.Homie.CoursesGetByUUIDLesson:input_type -> homie.cGetByUUIDLessonsRequest
-	89,  // 93: homie.Homie.CoursesCreateLessons:input_type -> homie.cCreateLessonsRequest
-	90,  // 94: homie.Homie.CoursesDeleteLesson:input_type -> homie.cDeleteLessonsRequest
-	91,  // 95: homie.Homie.CoursesUpdateLesson:input_type -> homie.cUpdateLessonsRequest
-	0,   // 96: homie.Homie.CourseVote:input_type -> homie.cVoteRequest
-	92,  // 97: homie.Homie.ReportsGetAll:input_type -> homie.rGetAllRequest
-	93,  // 98: homie.Homie.ReportsCreate:input_type -> homie.rCreateRequest
-	94,  // 99: homie.Homie.ReportsDelete:input_type -> homie.rDeleteRequest
-	7,   // 100: homie.Homie.AuthLogin:output_type -> homie.LoginResponse
-	8,   // 101: homie.Homie.AuthRegister:output_type -> homie.RegisterResponse
-	9,   // 102: homie.Homie.AuthRefreshToken:output_type -> homie.RefreshTokenResponse
-	11,  // 103: homie.Homie.UserGetByTag:output_type -> homie.uGetByTagResponse
-	95,  // 104: homie.Homie.UserUpdateProfile:output_type -> google.protobuf.Empty
-	95,  // 105: homie.Homie.UserDeleteProfile:output_type -> google.protobuf.Empty
-	95,  // 106: homie.Homie.UserVote:output_type -> google.protobuf.Empty
-	5,   // 107: homie.Homie.UserGetByToken:output_type -> homie.uGetByTokenResponse
-	95,  // 108: homie.Homie.UserAddToCommunity:output_type -> google.protobuf.Empty
-	95,  // 109: homie.Homie.UserDeleteFromCommunity:output_type -> google.protobuf.Empty
-	95,  // 110: homie.Homie.UserLeaveFromCommunity:output_type -> google.protobuf.Empty
-	13,  // 111: homie.Homie.CommunityGetAll:output_type -> homie.cmGetAllResponse
-	14,  // 112: homie.Homie.CommunityGetByUUID:output_type -> homie.cmGetByUUIDResponse
-	15,  // 113: homie.Homie.CommunityGetWithFilter:output_type -> homie.cmGetWithFilterResponse
-	16,  // 114: homie.Homie.CommunityCreate:output_type -> homie.cmCreateResponse
-	95,  // 115: homie.Homie.CommunityDelete:output_type -> google.protobuf.Empty
-	95,  // 116: homie.Homie.CommunityUpdate:output_type -> google.protobuf.Empty
-	95,  // 117: homie.Homie.CommunityVote:output_type -> google.protobuf.Empty
-	95,  // 118: homie.Homie.CommunityBan:output_type -> google.protobuf.Empty
-	19,  // 119: homie.Homie.PostsGetAll:output_type -> homie.pGetAllResponse
-	21,  // 120: homie.Homie.PostsGetByUUID:output_type -> homie.pGetByUUIDResponse
-	22,  // 121: homie.Homie.PostsCreate:output_type -> homie.pCreateResponse
-	95,  // 122: homie.Homie.PostsDelete:output_type -> google.protobuf.Empty
-	95,  // 123: homie.Homie.PostsUpdate:output_type -> google.protobuf.Empty
-	20,  // 124: homie.Homie.PostsGetAllComments:output_type -> homie.pGetAllCommentsResponse
-	95,  // 125: homie.Homie.PostsCreateComment:output_type -> google.protobuf.Empty
-	95,  // 126: homie.Homie.PostsDeleteComment:output_type -> google.protobuf.Empty
-	95,  // 127: homie.Homie.PostsUpdateComment:output_type -> google.protobuf.Empty
-	95,  // 128: homie.Homie.PostsVoteComment:output_type -> google.protobuf.Empty
-	95,  // 129: homie.Homie.PostsVote:output_type -> google.protobuf.Empty
-	26,  // 130: homie.Homie.DiscussionsGetAll:output_type -> homie.dGetAllResponse
-	27,  // 131: homie.Homie.DiscussionsGetByUUID:output_type -> homie.dGetByUUIDResponse
-	28,  // 132: homie.Homie.DiscussionsGetAllWithFilter:output_type -> homie.dGetAllWithFilterResponse
-	29,  // 133: homie.Homie.DiscussionsCreate:output_type -> homie.dCreateResponse
-	95,  // 134: homie.Homie.DiscussionsDelete:output_type -> google.protobuf.Empty
-	95,  // 135: homie.Homie.DiscussionsUpdate:output_type -> google.protobuf.Empty
-	30,  // 136: homie.Homie.DiscussionsGetAllComments:output_type -> homie.dGetAllCommentsResponse
-	95,  // 137: homie.Homie.DiscussionsCreateComment:output_type -> google.protobuf.Empty
-	95,  // 138: homie.Homie.DiscussionsDeleteComment:output_type -> google.protobuf.Empty
-	95,  // 139: homie.Homie.DiscussionsUpdateComment:output_type -> google.protobuf.Empty
-	95,  // 140: homie.Homie.DiscussionsVoteComment:output_type -> google.protobuf.Empty
-	33,  // 141: homie.Homie.CoursesGetAll:output_type -> homie.cGetAllResponse
-	34,  // 142: homie.Homie.CoursesGetByUUID:output_type -> homie.cGetByUUIDResponse
-	35,  // 143: homie.Homie.CoursesGetAllWithFilter:output_type -> homie.cGetAllWithFilterResponse
-	36,  // 144: homie.Homie.CoursesCreate:output_type -> homie.cCreateResponse
-	95,  // 145: homie.Homie.CoursesDelete:output_type -> google.protobuf.Empty
-	95,  // 146: homie.Homie.CoursesUpdate:output_type -> google.protobuf.Empty
-	37,  // 147: homie.Homie.CoursesGetAllLessons:output_type -> homie.cGetAllLessonsResponse
-	38,  // 148: homie.Homie.CoursesGetByUUIDLesson:output_type -> homie.cGetByUUIDLessonsResponse
-	95,  // 149: homie.Homie.CoursesCreateLessons:output_type -> google.protobuf.Empty
-	95,  // 150: homie.Homie.CoursesDeleteLesson:output_type -> google.protobuf.Empty
-	95,  // 151: homie.Homie.CoursesUpdateLesson:output_type -> google.protobuf.Empty
-	95,  // 152: homie.Homie.CourseVote:output_type -> google.protobuf.Empty
-	41,  // 153: homie.Homie.ReportsGetAll:output_type -> homie.rGetAllResponse
-	95,  // 154: homie.Homie.ReportsCreate:output_type -> google.protobuf.Empty
-	95,  // 155: homie.Homie.ReportsDelete:output_type -> google.protobuf.Empty
-	100, // [100:156] is the sub-list for method output_type
-	44,  // [44:100] is the sub-list for method input_type
-	44,  // [44:44] is the sub-list for extension type_name
-	44,  // [44:44] is the sub-list for extension extendee
-	0,   // [0:44] is the sub-list for field type_name
+	0,  // 0: homie.User.votes:type_name -> homie.Votes
+	4,  // 1: homie.uGetByTokenResponse.user:type_name -> homie.User
+	4,  // 2: homie.uGetByTagResponse.user:type_name -> homie.User
+	0,  // 3: homie.Community.votes:type_name -> homie.Votes
+	8,  // 4: homie.cmGetAllResponse.communities:type_name -> homie.Community
+	8,  // 5: homie.cmGetByUUIDResponse.community:type_name -> homie.Community
+	8,  // 6: homie.cmGetWithFilterResponse.communities:type_name -> homie.Community
+	0,  // 7: homie.PostComment.votes:type_name -> homie.Votes
+	0,  // 8: homie.Post.votes:type_name -> homie.Votes
+	13, // 9: homie.Post.comments:type_name -> homie.PostComment
+	14, // 10: homie.pGetAllResponse.posts:type_name -> homie.Post
+	13, // 11: homie.pGetAllCommentsResponse.comments:type_name -> homie.PostComment
+	14, // 12: homie.pGetByUUIDResponse.post:type_name -> homie.Post
+	0,  // 13: homie.DiscussionComment.votes:type_name -> homie.Votes
+	19, // 14: homie.Discussion.comments:type_name -> homie.DiscussionComment
+	20, // 15: homie.DiscussionList.discussions:type_name -> homie.Discussion
+	21, // 16: homie.dGetAllResponse.discussions:type_name -> homie.DiscussionList
+	20, // 17: homie.dGetByUUIDResponse.discussion:type_name -> homie.Discussion
+	21, // 18: homie.dGetAllWithFilterResponse.discussions:type_name -> homie.DiscussionList
+	19, // 19: homie.dGetAllCommentsResponse.comments:type_name -> homie.DiscussionComment
+	0,  // 20: homie.Course.votes:type_name -> homie.Votes
+	27, // 21: homie.Course.lessons:type_name -> homie.Lesson
+	28, // 22: homie.cGetAllResponse.courses:type_name -> homie.Course
+	28, // 23: homie.cGetByUUIDResponse.course:type_name -> homie.Course
+	28, // 24: homie.cGetAllWithFilterResponse.courses:type_name -> homie.Course
+	27, // 25: homie.cGetAllLessonsResponse.lessons:type_name -> homie.Lesson
+	27, // 26: homie.cGetByUUIDLessonsResponse.lesson:type_name -> homie.Lesson
+	4,  // 27: homie.ReporterObject.user:type_name -> homie.User
+	8,  // 28: homie.ReporterObject.community:type_name -> homie.Community
+	14, // 29: homie.ReporterObject.post:type_name -> homie.Post
+	20, // 30: homie.ReporterObject.discussion:type_name -> homie.Discussion
+	28, // 31: homie.ReporterObject.course:type_name -> homie.Course
+	35, // 32: homie.Report.reporter_object:type_name -> homie.ReporterObject
+	36, // 33: homie.rGetAllResponse.reports:type_name -> homie.Report
+	58, // 34: homie.pCreateRequest.files:type_name -> homie.PostData
+	58, // 35: homie.pUpdateRequest.files:type_name -> homie.PostData
+	88, // 36: homie.cCreateLessonsRequest.body:type_name -> homie.LessonData
+	88, // 37: homie.cCreateLessonsRequest.files:type_name -> homie.LessonData
+	88, // 38: homie.cUpdateLessonsRequest.body:type_name -> homie.LessonData
+	88, // 39: homie.cUpdateLessonsRequest.files:type_name -> homie.LessonData
+	38, // 40: homie.Homie.AuthLogin:input_type -> homie.LoginRequest
+	39, // 41: homie.Homie.AuthRegister:input_type -> homie.RegisterRequest
+	40, // 42: homie.Homie.AuthRefreshToken:input_type -> homie.RefreshTokenRequest
+	42, // 43: homie.Homie.UserGetByTag:input_type -> homie.uGetByTagRequest
+	43, // 44: homie.Homie.UserUpdateProfile:input_type -> homie.uUpdateProfileRequest
+	44, // 45: homie.Homie.UserDeleteProfile:input_type -> homie.uDeleteProfileRequest
+	45, // 46: homie.Homie.UserVote:input_type -> homie.uVoteRequest
+	41, // 47: homie.Homie.UserGetByToken:input_type -> homie.uGetByTokenRequest
+	46, // 48: homie.Homie.UserAddToCommunity:input_type -> homie.uAddToCommunityRequest
+	7,  // 49: homie.Homie.UserDeleteFromCommunity:input_type -> homie.uDeleteFromCommunity
+	47, // 50: homie.Homie.UserLeaveFromCommunity:input_type -> homie.uLeaveFromCommunityRequest
+	48, // 51: homie.Homie.CommunityGetAll:input_type -> homie.cmGetAllRequest
+	49, // 52: homie.Homie.CommunityGetByUUID:input_type -> homie.cmGetByUUIDRequest
+	50, // 53: homie.Homie.CommunityGetWithFilter:input_type -> homie.cmGetWithFilterRequest
+	51, // 54: homie.Homie.CommunityCreate:input_type -> homie.cmCreateRequest
+	52, // 55: homie.Homie.CommunityDelete:input_type -> homie.cmDeleteRequest
+	53, // 56: homie.Homie.CommunityUpdate:input_type -> homie.cmUpdateRequest
+	54, // 57: homie.Homie.CommunityVote:input_type -> homie.cmVoteRequest
+	55, // 58: homie.Homie.CommunityBan:input_type -> homie.cmBanRequest
+	56, // 59: homie.Homie.PostsGetAll:input_type -> homie.pGetAllRequest
+	57, // 60: homie.Homie.PostsGetByUUID:input_type -> homie.pGetByUUIDRequest
+	59, // 61: homie.Homie.PostsCreate:input_type -> homie.pCreateRequest
+	60, // 62: homie.Homie.PostsDelete:input_type -> homie.pDeleteRequest
+	61, // 63: homie.Homie.PostsUpdate:input_type -> homie.pUpdateRequest
+	62, // 64: homie.Homie.PostsGetAllComments:input_type -> homie.pGetAllCommentsRequest
+	63, // 65: homie.Homie.PostsCreateComment:input_type -> homie.pCreateCommentRequest
+	64, // 66: homie.Homie.PostsDeleteComment:input_type -> homie.pDeleteCommentRequest
+	65, // 67: homie.Homie.PostsUpdateComment:input_type -> homie.pUpdateCommentRequest
+	66, // 68: homie.Homie.PostsVoteComment:input_type -> homie.pVoteCommentRequest
+	67, // 69: homie.Homie.PostsVote:input_type -> homie.pVoteRequest
+	68, // 70: homie.Homie.DiscussionsGetAll:input_type -> homie.dGetAllRequest
+	69, // 71: homie.Homie.DiscussionsGetByUUID:input_type -> homie.dGetByUUIDRequest
+	70, // 72: homie.Homie.DiscussionsGetAllWithFilter:input_type -> homie.dGetAllWithFilterRequest
+	71, // 73: homie.Homie.DiscussionsCreate:input_type -> homie.dCreateRequest
+	72, // 74: homie.Homie.DiscussionsDelete:input_type -> homie.dDeleteRequest
+	73, // 75: homie.Homie.DiscussionsUpdate:input_type -> homie.dUpdateRequest
+	74, // 76: homie.Homie.DiscussionsGetAllComments:input_type -> homie.dGetAllCommentsRequest
+	75, // 77: homie.Homie.DiscussionsCreateComment:input_type -> homie.dCreateCommentRequest
+	76, // 78: homie.Homie.DiscussionsDeleteComment:input_type -> homie.dDeleteCommentRequest
+	77, // 79: homie.Homie.DiscussionsUpdateComment:input_type -> homie.dUpdateCommentRequest
+	78, // 80: homie.Homie.DiscussionsVoteComment:input_type -> homie.dVoteCommentRequest
+	79, // 81: homie.Homie.CoursesGetAll:input_type -> homie.cGetAllRequest
+	80, // 82: homie.Homie.CoursesGetByUUID:input_type -> homie.cGetByUUIDRequest
+	81, // 83: homie.Homie.CoursesGetAllWithFilter:input_type -> homie.cGetAllWithFilterRequest
+	82, // 84: homie.Homie.CoursesCreate:input_type -> homie.cCreateRequest
+	83, // 85: homie.Homie.CoursesDelete:input_type -> homie.cDeleteRequest
+	84, // 86: homie.Homie.CoursesUpdate:input_type -> homie.cUpdateRequest
+	85, // 87: homie.Homie.CoursesGetAllLessons:input_type -> homie.cGetAllLessonsRequest
+	86, // 88: homie.Homie.CoursesGetByUUIDLesson:input_type -> homie.cGetByUUIDLessonsRequest
+	89, // 89: homie.Homie.CoursesCreateLessons:input_type -> homie.cCreateLessonsRequest
+	90, // 90: homie.Homie.CoursesDeleteLesson:input_type -> homie.cDeleteLessonsRequest
+	91, // 91: homie.Homie.CoursesUpdateLesson:input_type -> homie.cUpdateLessonsRequest
+	87, // 92: homie.Homie.CourseVote:input_type -> homie.cVoteRequest
+	92, // 93: homie.Homie.ReportsGetAll:input_type -> homie.rGetAllRequest
+	93, // 94: homie.Homie.ReportsCreate:input_type -> homie.rCreateRequest
+	94, // 95: homie.Homie.ReportsDelete:input_type -> homie.rDeleteRequest
+	1,  // 96: homie.Homie.AuthLogin:output_type -> homie.LoginResponse
+	2,  // 97: homie.Homie.AuthRegister:output_type -> homie.RegisterResponse
+	3,  // 98: homie.Homie.AuthRefreshToken:output_type -> homie.RefreshTokenResponse
+	6,  // 99: homie.Homie.UserGetByTag:output_type -> homie.uGetByTagResponse
+	95, // 100: homie.Homie.UserUpdateProfile:output_type -> google.protobuf.Empty
+	95, // 101: homie.Homie.UserDeleteProfile:output_type -> google.protobuf.Empty
+	95, // 102: homie.Homie.UserVote:output_type -> google.protobuf.Empty
+	5,  // 103: homie.Homie.UserGetByToken:output_type -> homie.uGetByTokenResponse
+	95, // 104: homie.Homie.UserAddToCommunity:output_type -> google.protobuf.Empty
+	95, // 105: homie.Homie.UserDeleteFromCommunity:output_type -> google.protobuf.Empty
+	95, // 106: homie.Homie.UserLeaveFromCommunity:output_type -> google.protobuf.Empty
+	9,  // 107: homie.Homie.CommunityGetAll:output_type -> homie.cmGetAllResponse
+	10, // 108: homie.Homie.CommunityGetByUUID:output_type -> homie.cmGetByUUIDResponse
+	11, // 109: homie.Homie.CommunityGetWithFilter:output_type -> homie.cmGetWithFilterResponse
+	12, // 110: homie.Homie.CommunityCreate:output_type -> homie.cmCreateResponse
+	95, // 111: homie.Homie.CommunityDelete:output_type -> google.protobuf.Empty
+	95, // 112: homie.Homie.CommunityUpdate:output_type -> google.protobuf.Empty
+	95, // 113: homie.Homie.CommunityVote:output_type -> google.protobuf.Empty
+	95, // 114: homie.Homie.CommunityBan:output_type -> google.protobuf.Empty
+	15, // 115: homie.Homie.PostsGetAll:output_type -> homie.pGetAllResponse
+	17, // 116: homie.Homie.PostsGetByUUID:output_type -> homie.pGetByUUIDResponse
+	18, // 117: homie.Homie.PostsCreate:output_type -> homie.pCreateResponse
+	95, // 118: homie.Homie.PostsDelete:output_type -> google.protobuf.Empty
+	95, // 119: homie.Homie.PostsUpdate:output_type -> google.protobuf.Empty
+	16, // 120: homie.Homie.PostsGetAllComments:output_type -> homie.pGetAllCommentsResponse
+	95, // 121: homie.Homie.PostsCreateComment:output_type -> google.protobuf.Empty
+	95, // 122: homie.Homie.PostsDeleteComment:output_type -> google.protobuf.Empty
+	95, // 123: homie.Homie.PostsUpdateComment:output_type -> google.protobuf.Empty
+	95, // 124: homie.Homie.PostsVoteComment:output_type -> google.protobuf.Empty
+	95, // 125: homie.Homie.PostsVote:output_type -> google.protobuf.Empty
+	22, // 126: homie.Homie.DiscussionsGetAll:output_type -> homie.dGetAllResponse
+	23, // 127: homie.Homie.DiscussionsGetByUUID:output_type -> homie.dGetByUUIDResponse
+	24, // 128: homie.Homie.DiscussionsGetAllWithFilter:output_type -> homie.dGetAllWithFilterResponse
+	25, // 129: homie.Homie.DiscussionsCreate:output_type -> homie.dCreateResponse
+	95, // 130: homie.Homie.DiscussionsDelete:output_type -> google.protobuf.Empty
+	95, // 131: homie.Homie.DiscussionsUpdate:output_type -> google.protobuf.Empty
+	26, // 132: homie.Homie.DiscussionsGetAllComments:output_type -> homie.dGetAllCommentsResponse
+	95, // 133: homie.Homie.DiscussionsCreateComment:output_type -> google.protobuf.Empty
+	95, // 134: homie.Homie.DiscussionsDeleteComment:output_type -> google.protobuf.Empty
+	95, // 135: homie.Homie.DiscussionsUpdateComment:output_type -> google.protobuf.Empty
+	95, // 136: homie.Homie.DiscussionsVoteComment:output_type -> google.protobuf.Empty
+	29, // 137: homie.Homie.CoursesGetAll:output_type -> homie.cGetAllResponse
+	30, // 138: homie.Homie.CoursesGetByUUID:output_type -> homie.cGetByUUIDResponse
+	31, // 139: homie.Homie.CoursesGetAllWithFilter:output_type -> homie.cGetAllWithFilterResponse
+	32, // 140: homie.Homie.CoursesCreate:output_type -> homie.cCreateResponse
+	95, // 141: homie.Homie.CoursesDelete:output_type -> google.protobuf.Empty
+	95, // 142: homie.Homie.CoursesUpdate:output_type -> google.protobuf.Empty
+	33, // 143: homie.Homie.CoursesGetAllLessons:output_type -> homie.cGetAllLessonsResponse
+	34, // 144: homie.Homie.CoursesGetByUUIDLesson:output_type -> homie.cGetByUUIDLessonsResponse
+	95, // 145: homie.Homie.CoursesCreateLessons:output_type -> google.protobuf.Empty
+	95, // 146: homie.Homie.CoursesDeleteLesson:output_type -> google.protobuf.Empty
+	95, // 147: homie.Homie.CoursesUpdateLesson:output_type -> google.protobuf.Empty
+	95, // 148: homie.Homie.CourseVote:output_type -> google.protobuf.Empty
+	37, // 149: homie.Homie.ReportsGetAll:output_type -> homie.rGetAllResponse
+	95, // 150: homie.Homie.ReportsCreate:output_type -> google.protobuf.Empty
+	95, // 151: homie.Homie.ReportsDelete:output_type -> google.protobuf.Empty
+	96, // [96:152] is the sub-list for method output_type
+	40, // [40:96] is the sub-list for method input_type
+	40, // [40:40] is the sub-list for extension type_name
+	40, // [40:40] is the sub-list for extension extendee
+	0,  // [0:40] is the sub-list for field type_name
 }
 
 func init() { file_homie_proto_init() }

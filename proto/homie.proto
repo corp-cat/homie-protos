@@ -71,40 +71,11 @@ service Homie {
     rpc ReportsDelete(rDeleteRequest) returns (google.protobuf.Empty);
 }
 
-message cVoteRequest {
-    string course_uuid = 1;
-    bool vote = 2;
-    string token = 3;
-}
-
-message uLeaveFromCommunityRequest {
-    string token = 1;
-    string community_uuid = 2;
-}
-
-message uDeleteFromCommunity {
-    string token = 1;
-    string community_uuid = 2;
-}
-
-message uAddToCommunityRequest {
-    string token = 1;
-    string community_uuid = 2;
-}
-
-message uGetByTokenRequest {
-    string token = 1;
-}
-
 // RESPONSES
 
-message uGetByTokenResponse {
-    User user = 1;
-}
-
 message Votes {
-    int64 up = 1;
-    int64 down = 2;
+    uint64 up = 1;
+    uint64 down = 2;
 }
 
 message LoginResponse {
@@ -120,14 +91,19 @@ message RefreshTokenResponse {
 }
 
 message User {
-    string user_tag = 1;
-    string username = 2;
-    string email = 3;
-    string about = 4;
-    string role = 5;
-    int64 rating = 6;
-    int64 banned_to = 7;
-    int64 created_at = 8;
+    string uuid = 1;
+    string user_tag = 2;
+    string username = 3;
+    string email = 4;
+    string about = 5;
+    string role = 6;
+    Votes votes = 7;
+    int64 banned_to = 8;
+    int64 created_at = 9;
+}
+
+message uGetByTokenResponse {
+    User user = 1;
 }
 
 message uGetByTagResponse {
@@ -135,16 +111,21 @@ message uGetByTagResponse {
     bool can_edit = 2;
 }
 
+message uDeleteFromCommunity {
+    string token = 1;
+    string community_uuid = 2;
+}
+
 message Community {
     string uuid = 1;
     string title = 2;
     string description = 3;
     Votes votes = 4;
-    int64 warnings = 5;
-    int64 price = 6;
-    bool is_banned = 7;
-    int64 created_at = 8;
-    User creator = 9;
+    uint32 warnings = 5;
+    float price = 6;
+    string author_tag = 7;
+    bool is_banned = 8;
+    int64 created_at = 9;
 }
 
 message cmGetAllResponse {
@@ -164,23 +145,23 @@ message cmCreateResponse {
 }
 
 message PostComment {
-    int64 id = 1;
-    int64 post_id = 3;
-    string body = 4;
-    Votes votes = 5;
-    int64 created_at = 6;
-    User creator = 7;
+    string uuid = 1;
+    string body = 2;
+    Votes votes = 3;
+    int64 created_at = 4;
+    int64 updated_at = 5;
+    string author_tag = 6;
 }
 
 message Post {
     string uuid = 1;
-    int64 community_id = 2;
+    int64 community_uuid = 2;
     string title = 3;
     bytes body = 4;
     Votes votes = 5;
     int64 created_at = 6;
-    repeated PostComment comments = 7;
-    Community community = 8;
+    int64 updated_at = 7;
+    repeated PostComment comments = 8;
 }
 
 message pGetAllResponse {
@@ -200,20 +181,22 @@ message pCreateResponse {
 }
 
 message DiscussionComment {
-    int64 discussion_id = 1;
+    string discussion_uuid = 1;
     string body = 2;
     Votes votes = 3;
     int64 created_at = 4;
-    User creator = 5;
+    int64 updated_at = 5;
+    string author_tag = 6;
 }
 
 message Discussion {
     string uuid = 1;
     string title = 2;
-    string text = 3;
+    string body = 3;
     int64 created_at = 4;
-    repeated DiscussionComment comments = 5;
-    User creator = 6;
+    int64 updated_at = 5;
+    repeated DiscussionComment comments = 6;
+    string author_tag = 7;
 }
 
 message DiscussionList {
@@ -242,18 +225,22 @@ message dGetAllCommentsResponse {
 
 message Lesson {
     string uuid = 1;
-    string title = 2;
-    bytes body = 3;
-    int64 created_at = 4;
+    string course_uuid = 2;
+    string title = 3;
+    bytes body = 4;
+    int64 created_at = 5;
+    int64 updated_at = 6;
 }
 
 message Course {
     string uuid = 1;
-    string title = 2;
-    string description = 3;
-    Votes votes = 4;
-    int64 created_at = 5;
-    repeated Lesson lessons = 6;
+    string community_uuid = 2;
+    string title = 3;
+    string description = 4;
+    Votes votes = 5;
+    int64 created_at = 6;
+    int64 updated_at = 7;
+    repeated Lesson lessons = 8;
 }
 
 message cGetAllResponse {
@@ -289,16 +276,14 @@ message ReporterObject {
 }
 
 message Report {
-    int64 id = 1;
-    string user_tag = 2;
-    int64 community_id = 3;
-    int64 sender_id = 4;
-    string msg = 5;
-    string type = 6;
-    string to_uuid = 7;
-    string to_obj = 8;
-    int64 sent_at = 9;
-    ReporterObject reporter_object = 10;
+    uint64 id = 1;
+    string community_uuid = 2;
+    string message = 3;
+    string addressed_obj = 4;
+    string type_report = 5;
+    int64 created_at = 6;
+    string sender_uuid = 7;
+    ReporterObject reporter_object = 8;
 }
 
 message rGetAllResponse {
@@ -308,74 +293,90 @@ message rGetAllResponse {
 
 // REQUESTS
 
-message LoginRequest { // done
+message LoginRequest {
     string email = 1;
     string password = 2;
 }
 
-message RegisterRequest { // done
+message RegisterRequest {
     string username = 1;
     string email = 2;
     string password = 3;
 }
 
-message RefreshTokenRequest { // done
+message RefreshTokenRequest {
     string token = 1;
 }
 
 
 // user
+message uGetByTokenRequest {
+    string token = 1;
+}
+
 message uGetByTagRequest { 
     string user_tag = 1;
     string token = 2;
 }
 
-message uUpdateProfileRequest { // done
+message uUpdateProfileRequest {
     string new_user_tag = 1;
     string username = 2;
     string about = 3;
-    string token = 4;
+    string email = 4;
+    string password = 5;
+    string token = 6;
 }
 
-message uDeleteProfileRequest { // done
+message uDeleteProfileRequest {
     string token = 1;
 }
 
-message uVoteRequest { // done
+message uVoteRequest {
     string user_tag = 1;
     bool vote = 2;
     string token = 3;
 }
 
-// Community
-message cmGetAllRequest { // done
-    int64 page = 1;
+message uAddToCommunityRequest {
+    string community_uuid = 1;
+    string token = 2;
 }
 
-message cmGetByUUIDRequest { // done
+message uLeaveFromCommunityRequest {
+    string community_uuid = 1;
+    string token = 2;
+}
+
+// Community
+message cmGetAllRequest {
+    uint64 page = 1;
+}
+
+message cmGetByUUIDRequest {
     string community_uuid = 1;
 }
 
-message cmGetWithFilterRequest { // done
+message cmGetWithFilterRequest {
     string title = 1;
     float low_price = 2;
     float high_price = 3;
-    int64 page = 4;
+    uint64 page = 4;
 }
 
-message cmCreateRequest { // done
+message cmCreateRequest {
     string title = 1;
     string description = 2;
     float price = 3;
     string token = 4;
 }
 
-message cmDeleteRequest { // done
+message cmDeleteRequest {
     string community_uuid = 1;
     string token = 2;
 }
 
-message cmUpdateRequest { // done
+message cmUpdateRequest {
     string community_uuid = 1;
     string title = 2;
     string description = 3;
@@ -383,26 +384,26 @@ message cmUpdateRequest { // done
     string token = 5;
 }
 
-message cmVoteRequest { // done
+message cmVoteRequest {
     string community_uuid = 1;
     bool vote = 2;
     string token = 3;
 }
 
-message cmBanRequest { // done
+message cmBanRequest {
     string community_uuid = 1;
     string token = 2;
 }
 
 
 // Posts
-message pGetAllRequest { // done
+message pGetAllRequest {
     string community_uuid = 1;
-    int64 page = 2;
+    uint64 page = 2;
     string token = 3;
 }
 
-message pGetByUUIDRequest { // done
+message pGetByUUIDRequest {
     string post_uuid = 1;
     string token = 2;
 }
@@ -412,7 +413,7 @@ message PostData {
     string mime_type = 2;
 }
 
-message pCreateRequest { // done
+message pCreateRequest {
     string community_uuid = 1;
     string title = 2;
     bytes body = 3;
@@ -420,12 +421,12 @@ message pCreateRequest { // done
     string token = 5;
 }
 
-message pDeleteRequest { // done
+message pDeleteRequest {
     string post_uuid = 1;
     string token = 2;
 }
 
-message pUpdateRequest { // done
+message pUpdateRequest {
     string post_uuid = 1;
     string title = 2;
     repeated PostData files = 3;
@@ -433,35 +434,35 @@ message pUpdateRequest { // done
     string token = 5;
 }
 
-message pGetAllCommentsRequest { // done
+message pGetAllCommentsRequest {
     string post_uuid = 1;
-    int64 page = 2;
+    uint64 page = 2;
 }
 
-message pCreateCommentRequest { // done
+message pCreateCommentRequest {
     string post_uuid = 1;
     string body = 2;
     string token = 3;
 }
 
-message pDeleteCommentRequest { // done
+message pDeleteCommentRequest {
     string comment_id = 1;
     string token = 2;
 }
 
-message pUpdateCommentRequest { // done
+message pUpdateCommentRequest {
     string comment_id = 1;
     string body = 2;
     string token = 3;
 }
 
-message pVoteCommentRequest { // done
+message pVoteCommentRequest {
     string comment_id = 1;
     bool vote = 2;
     string token = 3;
 }
 
-message pVoteRequest { // done
+message pVoteRequest {
     string post_uuid = 1;
     bool vote = 2;
     string token = 3;
@@ -469,114 +470,120 @@ message pVoteRequest { // done
 
 // DISCUSSIONS
 
-message dGetAllRequest { // done
+message dGetAllRequest {
     string community_uuid = 1;
-    int64 page = 2;
+    uint64 page = 2;
     string token = 3;
 }
 
-message dGetByUUIDRequest { // done
+message dGetByUUIDRequest {
     string discussion_uuid = 1;
     string token = 2;
 }
 
-message dGetAllWithFilterRequest { // done
+message dGetAllWithFilterRequest {
     string title = 1;
-    int64 page = 2;
+    uint64 page = 2;
     string token = 3;
 }
 
-message dCreateRequest { // done
+message dCreateRequest {
     string community_uuid = 1;
     string title = 2;
     string body = 3;
     string token = 4;
 }
 
-message dDeleteRequest { // done
+message dDeleteRequest {
     string discussion_uuid = 1;
     string token = 2;
 }
 
-message dUpdateRequest { // done
-    string title = 1;
+message dUpdateRequest {
+    string discussion_uuid = 1;
+    string title = 2;
+    string body = 3;
+    string token = 4;
+}
+
+message dGetAllCommentsRequest {
+    string discussion_uuid = 1;
+    uint64 page = 2;
+}
+
+message dCreateCommentRequest {
+    string discussion_uuid = 1;
     string body = 2;
     string token = 3;
-    string discussion_uuid = 4;
 }
 
-message dGetAllCommentsRequest { // done
-    string discussion_uuid = 1;
-    int64 page = 2;
-}
-
-message dCreateCommentRequest { // done
-    string discussion_uuid = 1;
-    string body = 2;
-    string token = 3;
-}
-
-message dDeleteCommentRequest { // done
+message dDeleteCommentRequest {
     string comment_id = 1;
     string token = 2;
 }
 
-message dUpdateCommentRequest { // done
+message dUpdateCommentRequest {
     string comment_id = 1;
     string body = 2;
     string token = 3;
 }
 
-message dVoteCommentRequest { // done
+message dVoteCommentRequest {
     string discussion_uuid = 1;
     string comment_id = 2;
     string token = 3;
 }
 
 // Courses
-message cGetAllRequest { // done
+message cGetAllRequest {
     string community_uuid = 1;
-    int64 page = 2;
+    uint64 page = 2;
 }
 
-message cGetByUUIDRequest { // done
+message cGetByUUIDRequest {
     string course_uuid = 1;
     string token = 2;
 }
 
-message cGetAllWithFilterRequest { // done
+message cGetAllWithFilterRequest {
     string title = 1;
-    int64 page = 2;
+    uint64 page = 2;
 }
 
-message cCreateRequest { // done
+message cCreateRequest {
     string community_uuid = 1;
     string title = 2;
     string description = 3;
     string token = 4;
 }
 
-message cDeleteRequest { // done
+message cDeleteRequest {
     string course_uuid = 1;
     string token = 2;
 }
 
-message cUpdateRequest { // done
+message cUpdateRequest {
     string course_uuid = 1;
     string title = 2;
     string description = 3;
     string token = 4;
 }
 
-message cGetAllLessonsRequest { // done
+message cGetAllLessonsRequest {
     string course_uuid = 1;
-    int64 page = 2;
+    uint64 page = 2;
     string token = 3;
 }
 
-message cGetByUUIDLessonsRequest { // done
+message cGetByUUIDLessonsRequest {
     string lesson_uuid = 1;
     string token = 2;
+}
+
+message cVoteRequest {
+    string course_uuid = 1;
+    bool vote = 2;
+    string token = 3;
 }
 
 
@@ -585,42 +592,41 @@ message LessonData {
     string mime_type = 2;
 }
 
-message cCreateLessonsRequest { // done
+message cCreateLessonsRequest {
     string course_uuid = 1;
     string title = 2;
     LessonData body = 3;
-    repeated LessonData files = 5; // not counted
+    repeated LessonData files = 5;
     string token = 6;
 }
 
-message cDeleteLessonsRequest { // done
+message cDeleteLessonsRequest {
     string lesson_uuid = 1;
     string token = 2;
 }
 
-message cUpdateLessonsRequest { // done
+message cUpdateLessonsRequest {
     string lesson_uuid = 1;
     string title = 2;
     LessonData body = 3;
-    repeated LessonData files = 4; // not counted
+    repeated LessonData files = 4;
     string token = 5;
 }
 
 // REPORTS
-message rGetAllRequest { // done
+message rGetAllRequest {
     string token = 1;
 }
 
-message rCreateRequest { // done
+message rCreateRequest {
     string community_uuid = 1;
     string msg = 2;
-    string category = 3;
-    string to = 4;
-    string to_obj = 5;
-    string token = 6;
+    string addressed_obj = 3;
+    string type_report = 4;
+    string token = 5;
 }
 
-message rDeleteRequest { // done
+message rDeleteRequest {
     string report_id = 1;
     string token = 2;
 }
