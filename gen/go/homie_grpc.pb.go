@@ -88,7 +88,7 @@ type HomieClient interface {
 	UserGetByTag(ctx context.Context, in *UGetByTagRequest, opts ...grpc.CallOption) (*UGetByTagResponse, error)
 	UserUpdateProfile(ctx context.Context, in *UUpdateProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	UserDeleteProfile(ctx context.Context, in *UDeleteProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	UserVote(ctx context.Context, in *UVoteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UserVote(ctx context.Context, in *UVoteRequest, opts ...grpc.CallOption) (*UVoteResponse, error)
 	UserGetByToken(ctx context.Context, in *UGetByTokenRequest, opts ...grpc.CallOption) (*UGetByTokenResponse, error)
 	UserAddToCommunity(ctx context.Context, in *UAddToCommunityRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	UserDeleteFromCommunity(ctx context.Context, in *UDeleteFromCommunity, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -99,7 +99,7 @@ type HomieClient interface {
 	CommunityCreate(ctx context.Context, in *CmCreateRequest, opts ...grpc.CallOption) (*CmCreateResponse, error)
 	CommunityDelete(ctx context.Context, in *CmDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	CommunityUpdate(ctx context.Context, in *CmUpdateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	CommunityVote(ctx context.Context, in *CmVoteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CommunityVote(ctx context.Context, in *CmVoteRequest, opts ...grpc.CallOption) (*CmVoteResponse, error)
 	CommunityBan(ctx context.Context, in *CmBanRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	PostsGetAll(ctx context.Context, in *PGetAllRequest, opts ...grpc.CallOption) (*PGetAllResponse, error)
 	PostsGetByUUID(ctx context.Context, in *PGetByUUIDRequest, opts ...grpc.CallOption) (*PGetByUUIDResponse, error)
@@ -110,8 +110,8 @@ type HomieClient interface {
 	PostsCreateComment(ctx context.Context, in *PCreateCommentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	PostsDeleteComment(ctx context.Context, in *PDeleteCommentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	PostsUpdateComment(ctx context.Context, in *PUpdateCommentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	PostsVoteComment(ctx context.Context, in *PVoteCommentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	PostsVote(ctx context.Context, in *PVoteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	PostsVoteComment(ctx context.Context, in *PVoteCommentRequest, opts ...grpc.CallOption) (*PVoteCommentResponse, error)
+	PostsVote(ctx context.Context, in *PVoteRequest, opts ...grpc.CallOption) (*PVoteResponse, error)
 	DiscussionsGetAll(ctx context.Context, in *DGetAllRequest, opts ...grpc.CallOption) (*DGetAllResponse, error)
 	DiscussionsGetByUUID(ctx context.Context, in *DGetByUUIDRequest, opts ...grpc.CallOption) (*DGetByUUIDResponse, error)
 	DiscussionsGetAllWithFilter(ctx context.Context, in *DGetAllWithFilterRequest, opts ...grpc.CallOption) (*DGetAllWithFilterResponse, error)
@@ -122,7 +122,7 @@ type HomieClient interface {
 	DiscussionsCreateComment(ctx context.Context, in *DCreateCommentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DiscussionsDeleteComment(ctx context.Context, in *DDeleteCommentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DiscussionsUpdateComment(ctx context.Context, in *DUpdateCommentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	DiscussionsVoteComment(ctx context.Context, in *DVoteCommentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DiscussionsVoteComment(ctx context.Context, in *DVoteCommentRequest, opts ...grpc.CallOption) (*DVoteCommentResponse, error)
 	CoursesGetAll(ctx context.Context, in *CGetAllRequest, opts ...grpc.CallOption) (*CGetAllResponse, error)
 	CoursesGetByUUID(ctx context.Context, in *CGetByUUIDRequest, opts ...grpc.CallOption) (*CGetByUUIDResponse, error)
 	CoursesGetAllWithFilter(ctx context.Context, in *CGetAllWithFilterRequest, opts ...grpc.CallOption) (*CGetAllWithFilterResponse, error)
@@ -134,7 +134,7 @@ type HomieClient interface {
 	CoursesCreateLessons(ctx context.Context, in *CCreateLessonsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	CoursesDeleteLesson(ctx context.Context, in *CDeleteLessonsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	CoursesUpdateLesson(ctx context.Context, in *CUpdateLessonsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	CourseVote(ctx context.Context, in *CVoteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CourseVote(ctx context.Context, in *CVoteRequest, opts ...grpc.CallOption) (*CVoteResponse, error)
 	ReportsGetAll(ctx context.Context, in *RGetAllRequest, opts ...grpc.CallOption) (*RGetAllResponse, error)
 	ReportsCreate(ctx context.Context, in *RCreateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ReportsDelete(ctx context.Context, in *RDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -208,9 +208,9 @@ func (c *homieClient) UserDeleteProfile(ctx context.Context, in *UDeleteProfileR
 	return out, nil
 }
 
-func (c *homieClient) UserVote(ctx context.Context, in *UVoteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *homieClient) UserVote(ctx context.Context, in *UVoteRequest, opts ...grpc.CallOption) (*UVoteResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(UVoteResponse)
 	err := c.cc.Invoke(ctx, Homie_UserVote_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -318,9 +318,9 @@ func (c *homieClient) CommunityUpdate(ctx context.Context, in *CmUpdateRequest, 
 	return out, nil
 }
 
-func (c *homieClient) CommunityVote(ctx context.Context, in *CmVoteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *homieClient) CommunityVote(ctx context.Context, in *CmVoteRequest, opts ...grpc.CallOption) (*CmVoteResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(CmVoteResponse)
 	err := c.cc.Invoke(ctx, Homie_CommunityVote_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -428,9 +428,9 @@ func (c *homieClient) PostsUpdateComment(ctx context.Context, in *PUpdateComment
 	return out, nil
 }
 
-func (c *homieClient) PostsVoteComment(ctx context.Context, in *PVoteCommentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *homieClient) PostsVoteComment(ctx context.Context, in *PVoteCommentRequest, opts ...grpc.CallOption) (*PVoteCommentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(PVoteCommentResponse)
 	err := c.cc.Invoke(ctx, Homie_PostsVoteComment_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -438,9 +438,9 @@ func (c *homieClient) PostsVoteComment(ctx context.Context, in *PVoteCommentRequ
 	return out, nil
 }
 
-func (c *homieClient) PostsVote(ctx context.Context, in *PVoteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *homieClient) PostsVote(ctx context.Context, in *PVoteRequest, opts ...grpc.CallOption) (*PVoteResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(PVoteResponse)
 	err := c.cc.Invoke(ctx, Homie_PostsVote_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -548,9 +548,9 @@ func (c *homieClient) DiscussionsUpdateComment(ctx context.Context, in *DUpdateC
 	return out, nil
 }
 
-func (c *homieClient) DiscussionsVoteComment(ctx context.Context, in *DVoteCommentRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *homieClient) DiscussionsVoteComment(ctx context.Context, in *DVoteCommentRequest, opts ...grpc.CallOption) (*DVoteCommentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(DVoteCommentResponse)
 	err := c.cc.Invoke(ctx, Homie_DiscussionsVoteComment_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -668,9 +668,9 @@ func (c *homieClient) CoursesUpdateLesson(ctx context.Context, in *CUpdateLesson
 	return out, nil
 }
 
-func (c *homieClient) CourseVote(ctx context.Context, in *CVoteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *homieClient) CourseVote(ctx context.Context, in *CVoteRequest, opts ...grpc.CallOption) (*CVoteResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(CVoteResponse)
 	err := c.cc.Invoke(ctx, Homie_CourseVote_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -718,7 +718,7 @@ type HomieServer interface {
 	UserGetByTag(context.Context, *UGetByTagRequest) (*UGetByTagResponse, error)
 	UserUpdateProfile(context.Context, *UUpdateProfileRequest) (*emptypb.Empty, error)
 	UserDeleteProfile(context.Context, *UDeleteProfileRequest) (*emptypb.Empty, error)
-	UserVote(context.Context, *UVoteRequest) (*emptypb.Empty, error)
+	UserVote(context.Context, *UVoteRequest) (*UVoteResponse, error)
 	UserGetByToken(context.Context, *UGetByTokenRequest) (*UGetByTokenResponse, error)
 	UserAddToCommunity(context.Context, *UAddToCommunityRequest) (*emptypb.Empty, error)
 	UserDeleteFromCommunity(context.Context, *UDeleteFromCommunity) (*emptypb.Empty, error)
@@ -729,7 +729,7 @@ type HomieServer interface {
 	CommunityCreate(context.Context, *CmCreateRequest) (*CmCreateResponse, error)
 	CommunityDelete(context.Context, *CmDeleteRequest) (*emptypb.Empty, error)
 	CommunityUpdate(context.Context, *CmUpdateRequest) (*emptypb.Empty, error)
-	CommunityVote(context.Context, *CmVoteRequest) (*emptypb.Empty, error)
+	CommunityVote(context.Context, *CmVoteRequest) (*CmVoteResponse, error)
 	CommunityBan(context.Context, *CmBanRequest) (*emptypb.Empty, error)
 	PostsGetAll(context.Context, *PGetAllRequest) (*PGetAllResponse, error)
 	PostsGetByUUID(context.Context, *PGetByUUIDRequest) (*PGetByUUIDResponse, error)
@@ -740,8 +740,8 @@ type HomieServer interface {
 	PostsCreateComment(context.Context, *PCreateCommentRequest) (*emptypb.Empty, error)
 	PostsDeleteComment(context.Context, *PDeleteCommentRequest) (*emptypb.Empty, error)
 	PostsUpdateComment(context.Context, *PUpdateCommentRequest) (*emptypb.Empty, error)
-	PostsVoteComment(context.Context, *PVoteCommentRequest) (*emptypb.Empty, error)
-	PostsVote(context.Context, *PVoteRequest) (*emptypb.Empty, error)
+	PostsVoteComment(context.Context, *PVoteCommentRequest) (*PVoteCommentResponse, error)
+	PostsVote(context.Context, *PVoteRequest) (*PVoteResponse, error)
 	DiscussionsGetAll(context.Context, *DGetAllRequest) (*DGetAllResponse, error)
 	DiscussionsGetByUUID(context.Context, *DGetByUUIDRequest) (*DGetByUUIDResponse, error)
 	DiscussionsGetAllWithFilter(context.Context, *DGetAllWithFilterRequest) (*DGetAllWithFilterResponse, error)
@@ -752,7 +752,7 @@ type HomieServer interface {
 	DiscussionsCreateComment(context.Context, *DCreateCommentRequest) (*emptypb.Empty, error)
 	DiscussionsDeleteComment(context.Context, *DDeleteCommentRequest) (*emptypb.Empty, error)
 	DiscussionsUpdateComment(context.Context, *DUpdateCommentRequest) (*emptypb.Empty, error)
-	DiscussionsVoteComment(context.Context, *DVoteCommentRequest) (*emptypb.Empty, error)
+	DiscussionsVoteComment(context.Context, *DVoteCommentRequest) (*DVoteCommentResponse, error)
 	CoursesGetAll(context.Context, *CGetAllRequest) (*CGetAllResponse, error)
 	CoursesGetByUUID(context.Context, *CGetByUUIDRequest) (*CGetByUUIDResponse, error)
 	CoursesGetAllWithFilter(context.Context, *CGetAllWithFilterRequest) (*CGetAllWithFilterResponse, error)
@@ -764,7 +764,7 @@ type HomieServer interface {
 	CoursesCreateLessons(context.Context, *CCreateLessonsRequest) (*emptypb.Empty, error)
 	CoursesDeleteLesson(context.Context, *CDeleteLessonsRequest) (*emptypb.Empty, error)
 	CoursesUpdateLesson(context.Context, *CUpdateLessonsRequest) (*emptypb.Empty, error)
-	CourseVote(context.Context, *CVoteRequest) (*emptypb.Empty, error)
+	CourseVote(context.Context, *CVoteRequest) (*CVoteResponse, error)
 	ReportsGetAll(context.Context, *RGetAllRequest) (*RGetAllResponse, error)
 	ReportsCreate(context.Context, *RCreateRequest) (*emptypb.Empty, error)
 	ReportsDelete(context.Context, *RDeleteRequest) (*emptypb.Empty, error)
@@ -796,7 +796,7 @@ func (UnimplementedHomieServer) UserUpdateProfile(context.Context, *UUpdateProfi
 func (UnimplementedHomieServer) UserDeleteProfile(context.Context, *UDeleteProfileRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserDeleteProfile not implemented")
 }
-func (UnimplementedHomieServer) UserVote(context.Context, *UVoteRequest) (*emptypb.Empty, error) {
+func (UnimplementedHomieServer) UserVote(context.Context, *UVoteRequest) (*UVoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserVote not implemented")
 }
 func (UnimplementedHomieServer) UserGetByToken(context.Context, *UGetByTokenRequest) (*UGetByTokenResponse, error) {
@@ -829,7 +829,7 @@ func (UnimplementedHomieServer) CommunityDelete(context.Context, *CmDeleteReques
 func (UnimplementedHomieServer) CommunityUpdate(context.Context, *CmUpdateRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CommunityUpdate not implemented")
 }
-func (UnimplementedHomieServer) CommunityVote(context.Context, *CmVoteRequest) (*emptypb.Empty, error) {
+func (UnimplementedHomieServer) CommunityVote(context.Context, *CmVoteRequest) (*CmVoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CommunityVote not implemented")
 }
 func (UnimplementedHomieServer) CommunityBan(context.Context, *CmBanRequest) (*emptypb.Empty, error) {
@@ -862,10 +862,10 @@ func (UnimplementedHomieServer) PostsDeleteComment(context.Context, *PDeleteComm
 func (UnimplementedHomieServer) PostsUpdateComment(context.Context, *PUpdateCommentRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostsUpdateComment not implemented")
 }
-func (UnimplementedHomieServer) PostsVoteComment(context.Context, *PVoteCommentRequest) (*emptypb.Empty, error) {
+func (UnimplementedHomieServer) PostsVoteComment(context.Context, *PVoteCommentRequest) (*PVoteCommentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostsVoteComment not implemented")
 }
-func (UnimplementedHomieServer) PostsVote(context.Context, *PVoteRequest) (*emptypb.Empty, error) {
+func (UnimplementedHomieServer) PostsVote(context.Context, *PVoteRequest) (*PVoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostsVote not implemented")
 }
 func (UnimplementedHomieServer) DiscussionsGetAll(context.Context, *DGetAllRequest) (*DGetAllResponse, error) {
@@ -898,7 +898,7 @@ func (UnimplementedHomieServer) DiscussionsDeleteComment(context.Context, *DDele
 func (UnimplementedHomieServer) DiscussionsUpdateComment(context.Context, *DUpdateCommentRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DiscussionsUpdateComment not implemented")
 }
-func (UnimplementedHomieServer) DiscussionsVoteComment(context.Context, *DVoteCommentRequest) (*emptypb.Empty, error) {
+func (UnimplementedHomieServer) DiscussionsVoteComment(context.Context, *DVoteCommentRequest) (*DVoteCommentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DiscussionsVoteComment not implemented")
 }
 func (UnimplementedHomieServer) CoursesGetAll(context.Context, *CGetAllRequest) (*CGetAllResponse, error) {
@@ -934,7 +934,7 @@ func (UnimplementedHomieServer) CoursesDeleteLesson(context.Context, *CDeleteLes
 func (UnimplementedHomieServer) CoursesUpdateLesson(context.Context, *CUpdateLessonsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CoursesUpdateLesson not implemented")
 }
-func (UnimplementedHomieServer) CourseVote(context.Context, *CVoteRequest) (*emptypb.Empty, error) {
+func (UnimplementedHomieServer) CourseVote(context.Context, *CVoteRequest) (*CVoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CourseVote not implemented")
 }
 func (UnimplementedHomieServer) ReportsGetAll(context.Context, *RGetAllRequest) (*RGetAllResponse, error) {

@@ -14,7 +14,7 @@ service Homie {
     rpc UserGetByTag(uGetByTagRequest) returns (uGetByTagResponse);
     rpc UserUpdateProfile(uUpdateProfileRequest) returns (google.protobuf.Empty);
     rpc UserDeleteProfile(uDeleteProfileRequest) returns (google.protobuf.Empty); 
-    rpc UserVote(uVoteRequest) returns (google.protobuf.Empty); 
+    rpc UserVote(uVoteRequest) returns (uVoteResponse); 
     rpc UserGetByToken(uGetByTokenRequest) returns (uGetByTokenResponse);
     rpc UserAddToCommunity(uAddToCommunityRequest) returns (google.protobuf.Empty);
     rpc UserDeleteFromCommunity(uDeleteFromCommunity) returns (google.protobuf.Empty);
@@ -26,7 +26,7 @@ service Homie {
     rpc CommunityCreate(cmCreateRequest) returns (cmCreateResponse);
     rpc CommunityDelete(cmDeleteRequest) returns (google.protobuf.Empty);
     rpc CommunityUpdate(cmUpdateRequest) returns (google.protobuf.Empty);
-    rpc CommunityVote(cmVoteRequest) returns (google.protobuf.Empty);
+    rpc CommunityVote(cmVoteRequest) returns (cmVoteResponse);
     rpc CommunityBan(cmBanRequest) returns (google.protobuf.Empty);
 
     rpc PostsGetAll(pGetAllRequest) returns (pGetAllResponse);
@@ -38,8 +38,8 @@ service Homie {
     rpc PostsCreateComment(pCreateCommentRequest) returns (google.protobuf.Empty);
     rpc PostsDeleteComment(pDeleteCommentRequest) returns (google.protobuf.Empty);
     rpc PostsUpdateComment(pUpdateCommentRequest) returns (google.protobuf.Empty);
-    rpc PostsVoteComment(pVoteCommentRequest) returns (google.protobuf.Empty);
-    rpc PostsVote(pVoteRequest) returns (google.protobuf.Empty);
+    rpc PostsVoteComment(pVoteCommentRequest) returns (pVoteCommentResponse);
+    rpc PostsVote(pVoteRequest) returns (pVoteResponse);
 
     rpc DiscussionsGetAll(dGetAllRequest) returns (dGetAllResponse);
     rpc DiscussionsGetByUUID(dGetByUUIDRequest) returns (dGetByUUIDResponse);
@@ -51,7 +51,7 @@ service Homie {
     rpc DiscussionsCreateComment(dCreateCommentRequest) returns (google.protobuf.Empty);
     rpc DiscussionsDeleteComment(dDeleteCommentRequest) returns (google.protobuf.Empty);
     rpc DiscussionsUpdateComment(dUpdateCommentRequest) returns (google.protobuf.Empty);
-    rpc DiscussionsVoteComment(dVoteCommentRequest) returns (google.protobuf.Empty);
+    rpc DiscussionsVoteComment(dVoteCommentRequest) returns (dVoteCommentResponse);
 
     rpc CoursesGetAll(cGetAllRequest) returns (cGetAllResponse);
     rpc CoursesGetByUUID(cGetByUUIDRequest) returns (cGetByUUIDResponse);
@@ -64,7 +64,7 @@ service Homie {
     rpc CoursesCreateLessons(cCreateLessonsRequest) returns (google.protobuf.Empty);
     rpc CoursesDeleteLesson(cDeleteLessonsRequest) returns (google.protobuf.Empty);
     rpc CoursesUpdateLesson(cUpdateLessonsRequest) returns (google.protobuf.Empty);
-    rpc CourseVote(cVoteRequest) returns (google.protobuf.Empty);
+    rpc CourseVote(cVoteRequest) returns (cVoteResponse);
 
     rpc ReportsGetAll(rGetAllRequest) returns (rGetAllResponse);
     rpc ReportsCreate(rCreateRequest) returns (google.protobuf.Empty);
@@ -72,6 +72,29 @@ service Homie {
 }
 
 // RESPONSES
+message uVoteResponse {
+    Votes votes = 1;
+}
+
+message cmVoteResponse {
+    Votes votes = 1;
+}
+
+message pVoteCommentResponse {
+    Votes votes = 1;
+}
+
+message pVoteResponse {
+    Votes votes = 1;
+}
+
+message dVoteCommentResponse {
+    Votes votes = 1;
+}
+
+message cVoteResponse {
+    Votes votes = 1;
+}
 
 message Votes {
     uint64 up = 1;
@@ -142,6 +165,8 @@ message cmGetWithFilterResponse {
 
 message cmCreateResponse {
     string uuid = 1;
+    int64 created_at = 2;
+    string author_tag = 3;
 }
 
 message PostComment {
@@ -323,8 +348,6 @@ message uUpdateProfileRequest {
     string new_user_tag = 1;
     string username = 2;
     string about = 3;
-    string email = 4;
-    string password = 5;
     string token = 6;
 }
 
@@ -351,6 +374,7 @@ message uLeaveFromCommunityRequest {
 // Community
 message cmGetAllRequest {
     uint64 page = 1;
+    uint64 size_of_page = 2;
 }
 
 message cmGetByUUIDRequest {
@@ -362,6 +386,8 @@ message cmGetWithFilterRequest {
     float low_price = 2;
     float high_price = 3;
     uint64 page = 4;
+    uint64 size_of_page = 5;
+    string sort = 6;
 }
 
 message cmCreateRequest {
