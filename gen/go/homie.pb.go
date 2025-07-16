@@ -923,27 +923,27 @@ func (x *CmGetByUUIDResponse) GetCommunity() *Community {
 	return nil
 }
 
-type CmGetWithFilterResponse struct {
+type CmGetAllWithFilterResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Communities   []*Community           `protobuf:"bytes,1,rep,name=communities,proto3" json:"communities,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CmGetWithFilterResponse) Reset() {
-	*x = CmGetWithFilterResponse{}
+func (x *CmGetAllWithFilterResponse) Reset() {
+	*x = CmGetAllWithFilterResponse{}
 	mi := &file_homie_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CmGetWithFilterResponse) String() string {
+func (x *CmGetAllWithFilterResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CmGetWithFilterResponse) ProtoMessage() {}
+func (*CmGetAllWithFilterResponse) ProtoMessage() {}
 
-func (x *CmGetWithFilterResponse) ProtoReflect() protoreflect.Message {
+func (x *CmGetAllWithFilterResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_homie_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -955,12 +955,12 @@ func (x *CmGetWithFilterResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CmGetWithFilterResponse.ProtoReflect.Descriptor instead.
-func (*CmGetWithFilterResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use CmGetAllWithFilterResponse.ProtoReflect.Descriptor instead.
+func (*CmGetAllWithFilterResponse) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{17}
 }
 
-func (x *CmGetWithFilterResponse) GetCommunities() []*Community {
+func (x *CmGetAllWithFilterResponse) GetCommunities() []*Community {
 	if x != nil {
 		return x.Communities
 	}
@@ -1474,12 +1474,15 @@ func (x *DiscussionComment) GetAuthorTag() string {
 type Discussion struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Body          string                 `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
-	CreatedAt     int64                  `protobuf:"varint,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     int64                  `protobuf:"varint,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	Comments      []*DiscussionComment   `protobuf:"bytes,6,rep,name=comments,proto3" json:"comments,omitempty"`
-	AuthorTag     string                 `protobuf:"bytes,7,opt,name=author_tag,json=authorTag,proto3" json:"author_tag,omitempty"`
+	CommunityUuid string                 `protobuf:"bytes,2,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
+	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Body          string                 `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty"`
+	Upvotes       uint64                 `protobuf:"varint,5,opt,name=upvotes,proto3" json:"upvotes,omitempty"`
+	Downvotes     uint64                 `protobuf:"varint,6,opt,name=downvotes,proto3" json:"downvotes,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     int64                  `protobuf:"varint,8,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Comments      []*DiscussionComment   `protobuf:"bytes,9,rep,name=comments,proto3" json:"comments,omitempty"`
+	AuthorTag     string                 `protobuf:"bytes,10,opt,name=author_tag,json=authorTag,proto3" json:"author_tag,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1521,6 +1524,13 @@ func (x *Discussion) GetUuid() string {
 	return ""
 }
 
+func (x *Discussion) GetCommunityUuid() string {
+	if x != nil {
+		return x.CommunityUuid
+	}
+	return ""
+}
+
 func (x *Discussion) GetTitle() string {
 	if x != nil {
 		return x.Title
@@ -1533,6 +1543,20 @@ func (x *Discussion) GetBody() string {
 		return x.Body
 	}
 	return ""
+}
+
+func (x *Discussion) GetUpvotes() uint64 {
+	if x != nil {
+		return x.Upvotes
+	}
+	return 0
+}
+
+func (x *Discussion) GetDownvotes() uint64 {
+	if x != nil {
+		return x.Downvotes
+	}
+	return 0
 }
 
 func (x *Discussion) GetCreatedAt() int64 {
@@ -3121,7 +3145,7 @@ func (x *CmGetByUUIDRequest) GetCommunityUuid() string {
 	return ""
 }
 
-type CmGetWithFilterRequest struct {
+type CmGetAllWithFilterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 	LowPrice      float32                `protobuf:"fixed32,2,opt,name=low_price,json=lowPrice,proto3" json:"low_price,omitempty"`
@@ -3133,20 +3157,20 @@ type CmGetWithFilterRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CmGetWithFilterRequest) Reset() {
-	*x = CmGetWithFilterRequest{}
+func (x *CmGetAllWithFilterRequest) Reset() {
+	*x = CmGetAllWithFilterRequest{}
 	mi := &file_homie_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CmGetWithFilterRequest) String() string {
+func (x *CmGetAllWithFilterRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CmGetWithFilterRequest) ProtoMessage() {}
+func (*CmGetAllWithFilterRequest) ProtoMessage() {}
 
-func (x *CmGetWithFilterRequest) ProtoReflect() protoreflect.Message {
+func (x *CmGetAllWithFilterRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_homie_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3158,47 +3182,47 @@ func (x *CmGetWithFilterRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CmGetWithFilterRequest.ProtoReflect.Descriptor instead.
-func (*CmGetWithFilterRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CmGetAllWithFilterRequest.ProtoReflect.Descriptor instead.
+func (*CmGetAllWithFilterRequest) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{56}
 }
 
-func (x *CmGetWithFilterRequest) GetTitle() string {
+func (x *CmGetAllWithFilterRequest) GetTitle() string {
 	if x != nil {
 		return x.Title
 	}
 	return ""
 }
 
-func (x *CmGetWithFilterRequest) GetLowPrice() float32 {
+func (x *CmGetAllWithFilterRequest) GetLowPrice() float32 {
 	if x != nil {
 		return x.LowPrice
 	}
 	return 0
 }
 
-func (x *CmGetWithFilterRequest) GetHighPrice() float32 {
+func (x *CmGetAllWithFilterRequest) GetHighPrice() float32 {
 	if x != nil {
 		return x.HighPrice
 	}
 	return 0
 }
 
-func (x *CmGetWithFilterRequest) GetPage() uint64 {
+func (x *CmGetAllWithFilterRequest) GetPage() uint64 {
 	if x != nil {
 		return x.Page
 	}
 	return 0
 }
 
-func (x *CmGetWithFilterRequest) GetSizeOfPage() uint64 {
+func (x *CmGetAllWithFilterRequest) GetSizeOfPage() uint64 {
 	if x != nil {
 		return x.SizeOfPage
 	}
 	return 0
 }
 
-func (x *CmGetWithFilterRequest) GetSort() string {
+func (x *CmGetAllWithFilterRequest) GetSort() string {
 	if x != nil {
 		return x.Sort
 	}
@@ -3886,6 +3910,8 @@ type PGetAllCommentsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PostUuid      string                 `protobuf:"bytes,1,opt,name=post_uuid,json=postUuid,proto3" json:"post_uuid,omitempty"`
 	Page          uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	SizeOfPage    uint64                 `protobuf:"varint,3,opt,name=size_of_page,json=sizeOfPage,proto3" json:"size_of_page,omitempty"`
+	Token         string                 `protobuf:"bytes,4,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3932,6 +3958,20 @@ func (x *PGetAllCommentsRequest) GetPage() uint64 {
 		return x.Page
 	}
 	return 0
+}
+
+func (x *PGetAllCommentsRequest) GetSizeOfPage() uint64 {
+	if x != nil {
+		return x.SizeOfPage
+	}
+	return 0
+}
+
+func (x *PGetAllCommentsRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
 }
 
 type PCreateCommentRequest struct {
@@ -4230,7 +4270,8 @@ type DGetAllRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CommunityUuid string                 `protobuf:"bytes,1,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
 	Page          uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
-	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
+	SizeOfPage    uint64                 `protobuf:"varint,3,opt,name=size_of_page,json=sizeOfPage,proto3" json:"size_of_page,omitempty"`
+	Token         string                 `protobuf:"bytes,4,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4275,6 +4316,13 @@ func (x *DGetAllRequest) GetCommunityUuid() string {
 func (x *DGetAllRequest) GetPage() uint64 {
 	if x != nil {
 		return x.Page
+	}
+	return 0
+}
+
+func (x *DGetAllRequest) GetSizeOfPage() uint64 {
+	if x != nil {
+		return x.SizeOfPage
 	}
 	return 0
 }
@@ -4340,9 +4388,11 @@ func (x *DGetByUUIDRequest) GetToken() string {
 
 type DGetAllWithFilterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	Page          uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
-	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
+	CommunityUuid string                 `protobuf:"bytes,1,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Page          uint64                 `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
+	SizeOfPage    uint64                 `protobuf:"varint,4,opt,name=size_of_page,json=sizeOfPage,proto3" json:"size_of_page,omitempty"`
+	Token         string                 `protobuf:"bytes,5,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4377,6 +4427,13 @@ func (*DGetAllWithFilterRequest) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{76}
 }
 
+func (x *DGetAllWithFilterRequest) GetCommunityUuid() string {
+	if x != nil {
+		return x.CommunityUuid
+	}
+	return ""
+}
+
 func (x *DGetAllWithFilterRequest) GetTitle() string {
 	if x != nil {
 		return x.Title
@@ -4387,6 +4444,13 @@ func (x *DGetAllWithFilterRequest) GetTitle() string {
 func (x *DGetAllWithFilterRequest) GetPage() uint64 {
 	if x != nil {
 		return x.Page
+	}
+	return 0
+}
+
+func (x *DGetAllWithFilterRequest) GetSizeOfPage() uint64 {
+	if x != nil {
+		return x.SizeOfPage
 	}
 	return 0
 }
@@ -4590,6 +4654,8 @@ type DGetAllCommentsRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	DiscussionUuid string                 `protobuf:"bytes,1,opt,name=discussion_uuid,json=discussionUuid,proto3" json:"discussion_uuid,omitempty"`
 	Page           uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	SizeOfPage     uint64                 `protobuf:"varint,3,opt,name=size_of_page,json=sizeOfPage,proto3" json:"size_of_page,omitempty"`
+	Token          string                 `protobuf:"bytes,4,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -4636,6 +4702,20 @@ func (x *DGetAllCommentsRequest) GetPage() uint64 {
 		return x.Page
 	}
 	return 0
+}
+
+func (x *DGetAllCommentsRequest) GetSizeOfPage() uint64 {
+	if x != nil {
+		return x.SizeOfPage
+	}
+	return 0
+}
+
+func (x *DGetAllCommentsRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
 }
 
 type DCreateCommentRequest struct {
@@ -4979,6 +5059,7 @@ type CGetAllWithFilterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 	Page          uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	SizeOfPage    uint64                 `protobuf:"varint,3,opt,name=size_of_page,json=sizeOfPage,proto3" json:"size_of_page,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5023,6 +5104,13 @@ func (x *CGetAllWithFilterRequest) GetTitle() string {
 func (x *CGetAllWithFilterRequest) GetPage() uint64 {
 	if x != nil {
 		return x.Page
+	}
+	return 0
+}
+
+func (x *CGetAllWithFilterRequest) GetSizeOfPage() uint64 {
+	if x != nil {
+		return x.SizeOfPage
 	}
 	return 0
 }
@@ -5876,8 +5964,8 @@ const file_homie_proto_rawDesc = "" +
 	"\x10cmGetAllResponse\x122\n" +
 	"\vcommunities\x18\x01 \x03(\v2\x10.homie.CommunityR\vcommunities\"E\n" +
 	"\x13cmGetByUUIDResponse\x12.\n" +
-	"\tcommunity\x18\x01 \x01(\v2\x10.homie.CommunityR\tcommunity\"M\n" +
-	"\x17cmGetWithFilterResponse\x122\n" +
+	"\tcommunity\x18\x01 \x01(\v2\x10.homie.CommunityR\tcommunity\"P\n" +
+	"\x1acmGetAllWithFilterResponse\x122\n" +
 	"\vcommunities\x18\x01 \x03(\v2\x10.homie.CommunityR\vcommunities\"d\n" +
 	"\x10cmCreateResponse\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1d\n" +
@@ -5923,19 +6011,23 @@ const file_homie_proto_rawDesc = "" +
 	"\n" +
 	"updated_at\x18\x05 \x01(\x03R\tupdatedAt\x12\x1d\n" +
 	"\n" +
-	"author_tag\x18\x06 \x01(\tR\tauthorTag\"\xdd\x01\n" +
+	"author_tag\x18\x06 \x01(\tR\tauthorTag\"\xbc\x02\n" +
 	"\n" +
 	"Discussion\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
-	"\x04body\x18\x03 \x01(\tR\x04body\x12\x1d\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12%\n" +
+	"\x0ecommunity_uuid\x18\x02 \x01(\tR\rcommunityUuid\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x12\n" +
+	"\x04body\x18\x04 \x01(\tR\x04body\x12\x18\n" +
+	"\aupvotes\x18\x05 \x01(\x04R\aupvotes\x12\x1c\n" +
+	"\tdownvotes\x18\x06 \x01(\x04R\tdownvotes\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x04 \x01(\x03R\tcreatedAt\x12\x1d\n" +
+	"created_at\x18\a \x01(\x03R\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\x05 \x01(\x03R\tupdatedAt\x124\n" +
-	"\bcomments\x18\x06 \x03(\v2\x18.homie.DiscussionCommentR\bcomments\x12\x1d\n" +
+	"updated_at\x18\b \x01(\x03R\tupdatedAt\x124\n" +
+	"\bcomments\x18\t \x03(\v2\x18.homie.DiscussionCommentR\bcomments\x12\x1d\n" +
 	"\n" +
-	"author_tag\x18\a \x01(\tR\tauthorTag\"E\n" +
+	"author_tag\x18\n" +
+	" \x01(\tR\tauthorTag\"E\n" +
 	"\x0eDiscussionList\x123\n" +
 	"\vdiscussions\x18\x01 \x03(\v2\x11.homie.DiscussionR\vdiscussions\"J\n" +
 	"\x0fdGetAllResponse\x127\n" +
@@ -6042,8 +6134,8 @@ const file_homie_proto_rawDesc = "" +
 	"\fsize_of_page\x18\x02 \x01(\x04R\n" +
 	"sizeOfPage\";\n" +
 	"\x12cmGetByUUIDRequest\x12%\n" +
-	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\"\xb4\x01\n" +
-	"\x16cmGetWithFilterRequest\x12\x14\n" +
+	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\"\xb7\x01\n" +
+	"\x19cmGetAllWithFilterRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x1b\n" +
 	"\tlow_price\x18\x02 \x01(\x02R\blowPrice\x12\x1d\n" +
 	"\n" +
@@ -6097,10 +6189,13 @@ const file_homie_proto_rawDesc = "" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12%\n" +
 	"\x05files\x18\x03 \x03(\v2\x0f.homie.PostDataR\x05files\x12\x12\n" +
 	"\x04body\x18\x04 \x01(\fR\x04body\x12\x14\n" +
-	"\x05token\x18\x05 \x01(\tR\x05token\"I\n" +
+	"\x05token\x18\x05 \x01(\tR\x05token\"\x81\x01\n" +
 	"\x16pGetAllCommentsRequest\x12\x1b\n" +
 	"\tpost_uuid\x18\x01 \x01(\tR\bpostUuid\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x04R\x04page\"^\n" +
+	"\x04page\x18\x02 \x01(\x04R\x04page\x12 \n" +
+	"\fsize_of_page\x18\x03 \x01(\x04R\n" +
+	"sizeOfPage\x12\x14\n" +
+	"\x05token\x18\x04 \x01(\tR\x05token\"^\n" +
 	"\x15pCreateCommentRequest\x12\x1b\n" +
 	"\tpost_uuid\x18\x01 \x01(\tR\bpostUuid\x12\x12\n" +
 	"\x04body\x18\x02 \x01(\tR\x04body\x12\x14\n" +
@@ -6122,18 +6217,23 @@ const file_homie_proto_rawDesc = "" +
 	"\fpVoteRequest\x12\x1b\n" +
 	"\tpost_uuid\x18\x01 \x01(\tR\bpostUuid\x12\x12\n" +
 	"\x04vote\x18\x02 \x01(\bR\x04vote\x12\x14\n" +
-	"\x05token\x18\x03 \x01(\tR\x05token\"a\n" +
+	"\x05token\x18\x03 \x01(\tR\x05token\"\x83\x01\n" +
 	"\x0edGetAllRequest\x12%\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x04R\x04page\x12\x14\n" +
-	"\x05token\x18\x03 \x01(\tR\x05token\"R\n" +
+	"\x04page\x18\x02 \x01(\x04R\x04page\x12 \n" +
+	"\fsize_of_page\x18\x03 \x01(\x04R\n" +
+	"sizeOfPage\x12\x14\n" +
+	"\x05token\x18\x04 \x01(\tR\x05token\"R\n" +
 	"\x11dGetByUUIDRequest\x12'\n" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tR\x0ediscussionUuid\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token\"Z\n" +
-	"\x18dGetAllWithFilterRequest\x12\x14\n" +
-	"\x05title\x18\x01 \x01(\tR\x05title\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x04R\x04page\x12\x14\n" +
-	"\x05token\x18\x03 \x01(\tR\x05token\"w\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\"\xa3\x01\n" +
+	"\x18dGetAllWithFilterRequest\x12%\n" +
+	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
+	"\x04page\x18\x03 \x01(\x04R\x04page\x12 \n" +
+	"\fsize_of_page\x18\x04 \x01(\x04R\n" +
+	"sizeOfPage\x12\x14\n" +
+	"\x05token\x18\x05 \x01(\tR\x05token\"w\n" +
 	"\x0edCreateRequest\x12%\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
@@ -6146,10 +6246,13 @@ const file_homie_proto_rawDesc = "" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tR\x0ediscussionUuid\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
 	"\x04body\x18\x03 \x01(\tR\x04body\x12\x14\n" +
-	"\x05token\x18\x04 \x01(\tR\x05token\"U\n" +
+	"\x05token\x18\x04 \x01(\tR\x05token\"\x8d\x01\n" +
 	"\x16dGetAllCommentsRequest\x12'\n" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tR\x0ediscussionUuid\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x04R\x04page\"j\n" +
+	"\x04page\x18\x02 \x01(\x04R\x04page\x12 \n" +
+	"\fsize_of_page\x18\x03 \x01(\x04R\n" +
+	"sizeOfPage\x12\x14\n" +
+	"\x05token\x18\x04 \x01(\tR\x05token\"j\n" +
 	"\x15dCreateCommentRequest\x12'\n" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tR\x0ediscussionUuid\x12\x12\n" +
 	"\x04body\x18\x02 \x01(\tR\x04body\x12\x14\n" +
@@ -6174,10 +6277,12 @@ const file_homie_proto_rawDesc = "" +
 	"\x11cGetByUUIDRequest\x12\x1f\n" +
 	"\vcourse_uuid\x18\x01 \x01(\tR\n" +
 	"courseUuid\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token\"D\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\"f\n" +
 	"\x18cGetAllWithFilterRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x04R\x04page\"\x85\x01\n" +
+	"\x04page\x18\x02 \x01(\x04R\x04page\x12 \n" +
+	"\fsize_of_page\x18\x03 \x01(\x04R\n" +
+	"sizeOfPage\"\x85\x01\n" +
 	"\x0ecCreateRequest\x12%\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
@@ -6240,7 +6345,7 @@ const file_homie_proto_rawDesc = "" +
 	"\x05token\x18\x05 \x01(\tR\x05token\"C\n" +
 	"\x0erDeleteRequest\x12\x1b\n" +
 	"\treport_id\x18\x01 \x01(\tR\breportId\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token2\xe3\x1f\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token2\xec\x1f\n" +
 	"\x05Homie\x126\n" +
 	"\tAuthLogin\x12\x13.homie.LoginRequest\x1a\x14.homie.LoginResponse\x12?\n" +
 	"\fAuthRegister\x12\x16.homie.RegisterRequest\x1a\x17.homie.RegisterResponse\x12K\n" +
@@ -6254,8 +6359,8 @@ const file_homie_proto_rawDesc = "" +
 	"\x17UserDeleteFromCommunity\x12\x1b.homie.uDeleteFromCommunity\x1a\x16.google.protobuf.Empty\x12S\n" +
 	"\x16UserLeaveFromCommunity\x12!.homie.uLeaveFromCommunityRequest\x1a\x16.google.protobuf.Empty\x12B\n" +
 	"\x0fCommunityGetAll\x12\x16.homie.cmGetAllRequest\x1a\x17.homie.cmGetAllResponse\x12K\n" +
-	"\x12CommunityGetByUUID\x12\x19.homie.cmGetByUUIDRequest\x1a\x1a.homie.cmGetByUUIDResponse\x12W\n" +
-	"\x16CommunityGetWithFilter\x12\x1d.homie.cmGetWithFilterRequest\x1a\x1e.homie.cmGetWithFilterResponse\x12B\n" +
+	"\x12CommunityGetByUUID\x12\x19.homie.cmGetByUUIDRequest\x1a\x1a.homie.cmGetByUUIDResponse\x12`\n" +
+	"\x19CommunityGetAllWithFilter\x12 .homie.cmGetAllWithFilterRequest\x1a!.homie.cmGetAllWithFilterResponse\x12B\n" +
 	"\x0fCommunityCreate\x12\x16.homie.cmCreateRequest\x1a\x17.homie.cmCreateResponse\x12A\n" +
 	"\x0fCommunityDelete\x12\x16.homie.cmDeleteRequest\x1a\x16.google.protobuf.Empty\x12A\n" +
 	"\x0fCommunityUpdate\x12\x16.homie.cmUpdateRequest\x1a\x16.google.protobuf.Empty\x12<\n" +
@@ -6331,7 +6436,7 @@ var file_homie_proto_goTypes = []any{
 	(*Community)(nil),                  // 14: homie.Community
 	(*CmGetAllResponse)(nil),           // 15: homie.cmGetAllResponse
 	(*CmGetByUUIDResponse)(nil),        // 16: homie.cmGetByUUIDResponse
-	(*CmGetWithFilterResponse)(nil),    // 17: homie.cmGetWithFilterResponse
+	(*CmGetAllWithFilterResponse)(nil), // 17: homie.cmGetAllWithFilterResponse
 	(*CmCreateResponse)(nil),           // 18: homie.cmCreateResponse
 	(*PostComment)(nil),                // 19: homie.PostComment
 	(*Post)(nil),                       // 20: homie.Post
@@ -6370,7 +6475,7 @@ var file_homie_proto_goTypes = []any{
 	(*ULeaveFromCommunityRequest)(nil), // 53: homie.uLeaveFromCommunityRequest
 	(*CmGetAllRequest)(nil),            // 54: homie.cmGetAllRequest
 	(*CmGetByUUIDRequest)(nil),         // 55: homie.cmGetByUUIDRequest
-	(*CmGetWithFilterRequest)(nil),     // 56: homie.cmGetWithFilterRequest
+	(*CmGetAllWithFilterRequest)(nil),  // 56: homie.cmGetAllWithFilterRequest
 	(*CmCreateRequest)(nil),            // 57: homie.cmCreateRequest
 	(*CmDeleteRequest)(nil),            // 58: homie.cmDeleteRequest
 	(*CmUpdateRequest)(nil),            // 59: homie.cmUpdateRequest
@@ -6430,7 +6535,7 @@ var file_homie_proto_depIdxs = []int32{
 	6,   // 9: homie.Community.votes:type_name -> homie.Votes
 	14,  // 10: homie.cmGetAllResponse.communities:type_name -> homie.Community
 	14,  // 11: homie.cmGetByUUIDResponse.community:type_name -> homie.Community
-	14,  // 12: homie.cmGetWithFilterResponse.communities:type_name -> homie.Community
+	14,  // 12: homie.cmGetAllWithFilterResponse.communities:type_name -> homie.Community
 	6,   // 13: homie.PostComment.votes:type_name -> homie.Votes
 	6,   // 14: homie.Post.votes:type_name -> homie.Votes
 	19,  // 15: homie.Post.comments:type_name -> homie.PostComment
@@ -6477,7 +6582,7 @@ var file_homie_proto_depIdxs = []int32{
 	53,  // 56: homie.Homie.UserLeaveFromCommunity:input_type -> homie.uLeaveFromCommunityRequest
 	54,  // 57: homie.Homie.CommunityGetAll:input_type -> homie.cmGetAllRequest
 	55,  // 58: homie.Homie.CommunityGetByUUID:input_type -> homie.cmGetByUUIDRequest
-	56,  // 59: homie.Homie.CommunityGetWithFilter:input_type -> homie.cmGetWithFilterRequest
+	56,  // 59: homie.Homie.CommunityGetAllWithFilter:input_type -> homie.cmGetAllWithFilterRequest
 	57,  // 60: homie.Homie.CommunityCreate:input_type -> homie.cmCreateRequest
 	58,  // 61: homie.Homie.CommunityDelete:input_type -> homie.cmDeleteRequest
 	59,  // 62: homie.Homie.CommunityUpdate:input_type -> homie.cmUpdateRequest
@@ -6533,7 +6638,7 @@ var file_homie_proto_depIdxs = []int32{
 	101, // 112: homie.Homie.UserLeaveFromCommunity:output_type -> google.protobuf.Empty
 	15,  // 113: homie.Homie.CommunityGetAll:output_type -> homie.cmGetAllResponse
 	16,  // 114: homie.Homie.CommunityGetByUUID:output_type -> homie.cmGetByUUIDResponse
-	17,  // 115: homie.Homie.CommunityGetWithFilter:output_type -> homie.cmGetWithFilterResponse
+	17,  // 115: homie.Homie.CommunityGetAllWithFilter:output_type -> homie.cmGetAllWithFilterResponse
 	18,  // 116: homie.Homie.CommunityCreate:output_type -> homie.cmCreateResponse
 	101, // 117: homie.Homie.CommunityDelete:output_type -> google.protobuf.Empty
 	101, // 118: homie.Homie.CommunityUpdate:output_type -> google.protobuf.Empty

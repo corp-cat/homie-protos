@@ -33,7 +33,7 @@ const (
 	Homie_UserLeaveFromCommunity_FullMethodName      = "/homie.Homie/UserLeaveFromCommunity"
 	Homie_CommunityGetAll_FullMethodName             = "/homie.Homie/CommunityGetAll"
 	Homie_CommunityGetByUUID_FullMethodName          = "/homie.Homie/CommunityGetByUUID"
-	Homie_CommunityGetWithFilter_FullMethodName      = "/homie.Homie/CommunityGetWithFilter"
+	Homie_CommunityGetAllWithFilter_FullMethodName   = "/homie.Homie/CommunityGetAllWithFilter"
 	Homie_CommunityCreate_FullMethodName             = "/homie.Homie/CommunityCreate"
 	Homie_CommunityDelete_FullMethodName             = "/homie.Homie/CommunityDelete"
 	Homie_CommunityUpdate_FullMethodName             = "/homie.Homie/CommunityUpdate"
@@ -95,7 +95,7 @@ type HomieClient interface {
 	UserLeaveFromCommunity(ctx context.Context, in *ULeaveFromCommunityRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	CommunityGetAll(ctx context.Context, in *CmGetAllRequest, opts ...grpc.CallOption) (*CmGetAllResponse, error)
 	CommunityGetByUUID(ctx context.Context, in *CmGetByUUIDRequest, opts ...grpc.CallOption) (*CmGetByUUIDResponse, error)
-	CommunityGetWithFilter(ctx context.Context, in *CmGetWithFilterRequest, opts ...grpc.CallOption) (*CmGetWithFilterResponse, error)
+	CommunityGetAllWithFilter(ctx context.Context, in *CmGetAllWithFilterRequest, opts ...grpc.CallOption) (*CmGetAllWithFilterResponse, error)
 	CommunityCreate(ctx context.Context, in *CmCreateRequest, opts ...grpc.CallOption) (*CmCreateResponse, error)
 	CommunityDelete(ctx context.Context, in *CmDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	CommunityUpdate(ctx context.Context, in *CmUpdateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -278,10 +278,10 @@ func (c *homieClient) CommunityGetByUUID(ctx context.Context, in *CmGetByUUIDReq
 	return out, nil
 }
 
-func (c *homieClient) CommunityGetWithFilter(ctx context.Context, in *CmGetWithFilterRequest, opts ...grpc.CallOption) (*CmGetWithFilterResponse, error) {
+func (c *homieClient) CommunityGetAllWithFilter(ctx context.Context, in *CmGetAllWithFilterRequest, opts ...grpc.CallOption) (*CmGetAllWithFilterResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CmGetWithFilterResponse)
-	err := c.cc.Invoke(ctx, Homie_CommunityGetWithFilter_FullMethodName, in, out, cOpts...)
+	out := new(CmGetAllWithFilterResponse)
+	err := c.cc.Invoke(ctx, Homie_CommunityGetAllWithFilter_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -725,7 +725,7 @@ type HomieServer interface {
 	UserLeaveFromCommunity(context.Context, *ULeaveFromCommunityRequest) (*emptypb.Empty, error)
 	CommunityGetAll(context.Context, *CmGetAllRequest) (*CmGetAllResponse, error)
 	CommunityGetByUUID(context.Context, *CmGetByUUIDRequest) (*CmGetByUUIDResponse, error)
-	CommunityGetWithFilter(context.Context, *CmGetWithFilterRequest) (*CmGetWithFilterResponse, error)
+	CommunityGetAllWithFilter(context.Context, *CmGetAllWithFilterRequest) (*CmGetAllWithFilterResponse, error)
 	CommunityCreate(context.Context, *CmCreateRequest) (*CmCreateResponse, error)
 	CommunityDelete(context.Context, *CmDeleteRequest) (*emptypb.Empty, error)
 	CommunityUpdate(context.Context, *CmUpdateRequest) (*emptypb.Empty, error)
@@ -817,8 +817,8 @@ func (UnimplementedHomieServer) CommunityGetAll(context.Context, *CmGetAllReques
 func (UnimplementedHomieServer) CommunityGetByUUID(context.Context, *CmGetByUUIDRequest) (*CmGetByUUIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CommunityGetByUUID not implemented")
 }
-func (UnimplementedHomieServer) CommunityGetWithFilter(context.Context, *CmGetWithFilterRequest) (*CmGetWithFilterResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CommunityGetWithFilter not implemented")
+func (UnimplementedHomieServer) CommunityGetAllWithFilter(context.Context, *CmGetAllWithFilterRequest) (*CmGetAllWithFilterResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CommunityGetAllWithFilter not implemented")
 }
 func (UnimplementedHomieServer) CommunityCreate(context.Context, *CmCreateRequest) (*CmCreateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CommunityCreate not implemented")
@@ -1201,20 +1201,20 @@ func _Homie_CommunityGetByUUID_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Homie_CommunityGetWithFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CmGetWithFilterRequest)
+func _Homie_CommunityGetAllWithFilter_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CmGetAllWithFilterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HomieServer).CommunityGetWithFilter(ctx, in)
+		return srv.(HomieServer).CommunityGetAllWithFilter(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Homie_CommunityGetWithFilter_FullMethodName,
+		FullMethod: Homie_CommunityGetAllWithFilter_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HomieServer).CommunityGetWithFilter(ctx, req.(*CmGetWithFilterRequest))
+		return srv.(HomieServer).CommunityGetAllWithFilter(ctx, req.(*CmGetAllWithFilterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2035,8 +2035,8 @@ var Homie_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Homie_CommunityGetByUUID_Handler,
 		},
 		{
-			MethodName: "CommunityGetWithFilter",
-			Handler:    _Homie_CommunityGetWithFilter_Handler,
+			MethodName: "CommunityGetAllWithFilter",
+			Handler:    _Homie_CommunityGetAllWithFilter_Handler,
 		},
 		{
 			MethodName: "CommunityCreate",

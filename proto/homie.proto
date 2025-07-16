@@ -22,7 +22,7 @@ service Homie {
 
     rpc CommunityGetAll(cmGetAllRequest) returns (cmGetAllResponse);
     rpc CommunityGetByUUID(cmGetByUUIDRequest) returns (cmGetByUUIDResponse);
-    rpc CommunityGetWithFilter(cmGetWithFilterRequest) returns (cmGetWithFilterResponse);
+    rpc CommunityGetAllWithFilter(cmGetAllWithFilterRequest) returns (cmGetAllWithFilterResponse);
     rpc CommunityCreate(cmCreateRequest) returns (cmCreateResponse);
     rpc CommunityDelete(cmDeleteRequest) returns (google.protobuf.Empty);
     rpc CommunityUpdate(cmUpdateRequest) returns (google.protobuf.Empty);
@@ -159,7 +159,7 @@ message cmGetByUUIDResponse {
     Community community = 1;
 }
 
-message cmGetWithFilterResponse {
+message cmGetAllWithFilterResponse {
     repeated Community communities = 1;
 }
 
@@ -384,7 +384,7 @@ message cmGetByUUIDRequest {
     string community_uuid = 1;
 }
 
-message cmGetWithFilterRequest {
+message cmGetAllWithFilterRequest {
     string title = 1;
     float low_price = 2;
     float high_price = 3;
@@ -466,6 +466,8 @@ message pUpdateRequest {
 message pGetAllCommentsRequest {
     string post_uuid = 1;
     uint64 page = 2;
+    uint64 size_of_page = 3;
+    string token = 4;
 }
 
 message pCreateCommentRequest {
@@ -502,7 +504,8 @@ message pVoteRequest {
 message dGetAllRequest {
     string community_uuid = 1;
     uint64 page = 2;
-    string token = 3;
+    uint64 size_of_page = 3;
+    string token = 4;
 }
 
 message dGetByUUIDRequest {
@@ -511,9 +514,11 @@ message dGetByUUIDRequest {
 }
 
 message dGetAllWithFilterRequest {
-    string title = 1;
-    uint64 page = 2;
-    string token = 3;
+    string community_uuid = 1;
+    string title = 2;
+    uint64 page = 3;
+    uint64 size_of_page = 4;
+    string token = 5;
 }
 
 message dCreateRequest {
@@ -538,6 +543,8 @@ message dUpdateRequest {
 message dGetAllCommentsRequest {
     string discussion_uuid = 1;
     uint64 page = 2;
+    uint64 size_of_page = 3;
+    string token = 4;
 }
 
 message dCreateCommentRequest {
@@ -577,6 +584,7 @@ message cGetByUUIDRequest {
 message cGetAllWithFilterRequest {
     string title = 1;
     uint64 page = 2;
+    uint64 size_of_page = 3;
 }
 
 message cCreateRequest {
