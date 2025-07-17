@@ -384,13 +384,18 @@ message cmGetByUUIDRequest {
     string community_uuid = 1;
 }
 
+message Sort {
+    string field = 1;
+    bool is_descending = 2;
+}
+
 message cmGetAllWithFilterRequest {
     string title = 1;
     float low_price = 2;
     float high_price = 3;
     uint64 page = 4;
     uint64 size_of_page = 5;
-    string sort = 6;
+    Sort sort = 6;
 }
 
 message cmCreateRequest {
