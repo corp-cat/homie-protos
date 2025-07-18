@@ -574,6 +574,7 @@ message cGetByUUIDRequest {
 message cGetAllWithFilterRequest {
     string title = 1;
     uint64 page = 2;
+    string community_uuid = 3;
 }
 
 message cCreateRequest {
