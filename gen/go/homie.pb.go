@@ -4979,6 +4979,7 @@ type CGetAllWithFilterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 	Page          uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	CommunityUuid string                 `protobuf:"bytes,3,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5025,6 +5026,13 @@ func (x *CGetAllWithFilterRequest) GetPage() uint64 {
 		return x.Page
 	}
 	return 0
+}
+
+func (x *CGetAllWithFilterRequest) GetCommunityUuid() string {
+	if x != nil {
+		return x.CommunityUuid
+	}
+	return ""
 }
 
 type CCreateRequest struct {
@@ -6174,10 +6182,11 @@ const file_homie_proto_rawDesc = "" +
 	"\x11cGetByUUIDRequest\x12\x1f\n" +
 	"\vcourse_uuid\x18\x01 \x01(\tR\n" +
 	"courseUuid\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token\"D\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\"k\n" +
 	"\x18cGetAllWithFilterRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x04R\x04page\"\x85\x01\n" +
+	"\x04page\x18\x02 \x01(\x04R\x04page\x12%\n" +
+	"\x0ecommunity_uuid\x18\x03 \x01(\tR\rcommunityUuid\"\x85\x01\n" +
 	"\x0ecCreateRequest\x12%\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tR\rcommunityUuid\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
