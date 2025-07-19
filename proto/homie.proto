@@ -19,6 +19,7 @@ service Homie {
     rpc UserAddToCommunity(uAddToCommunityRequest) returns (google.protobuf.Empty);
     rpc UserDeleteFromCommunity(uDeleteFromCommunity) returns (google.protobuf.Empty);
     rpc UserLeaveFromCommunity(uLeaveFromCommunityRequest) returns (google.protobuf.Empty);
+    rpc UserChangeRole(uChangeRoleRequest) returns (google.protobuf.Empty);
 
     rpc CommunityGetAll(cmGetAllRequest) returns (cmGetAllResponse);
     rpc CommunityGetByUUID(cmGetByUUIDRequest) returns (cmGetByUUIDResponse);
@@ -369,6 +370,12 @@ message uAddToCommunityRequest {
 message uLeaveFromCommunityRequest {
     string community_uuid = 1;
     string token = 2;
+}
+
+message uChangeRoleRequest {
+    string user_tag = 1;
+    string role = 2;
+    string token = 3;
 }
 
 // Community
