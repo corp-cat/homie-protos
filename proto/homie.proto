@@ -3,6 +3,7 @@ syntax = "proto3";
 package homie;
 
 import "google/protobuf/empty.proto";
+import "validate/validate.proto";
 
 option go_package = "corp-cat.homie.v1;homie";
 
@@ -320,14 +321,20 @@ message rGetAllResponse {
 // REQUESTS
 
 message LoginRequest {
-    string email = 1;
-    string password = 2;
+    string email = 1 [(validate.rules).string.email = true];
+    string password = 2 [(validate.rules).string = {
+        min_len: 6,
+        max_len: 32,
+    }];
 }
 
 message RegisterRequest {
     string username = 1;
-    string email = 2;
-    string password = 3;
+    string email = 2 [(validate.rules).string.email = true];
+    string password = 3 [(validate.rules).string = {
+        min_len: 6,
+        max_len: 32
+    }];
 }
 
 message RefreshTokenRequest {
@@ -341,14 +348,14 @@ message uGetByTokenRequest {
 }
 
 message uGetByTagRequest { 
-    string user_tag = 1;
+    string user_tag = 1 [(validate.rules).string.pattern = "^[a-zA-Z0-9_\\-]+$"];
     string token = 2;
 }
 
 message uUpdateProfileRequest {
-    string new_user_tag = 1;
+    string new_user_tag = 1 [(validate.rules).string.pattern = "^[a-zA-Z0-9_\\-]+$"];
     string username = 2;
-    string about = 3;
+    string about = 3 [(validate.rules).string.max_len = 300];
     string token = 6;
 }
 
@@ -357,23 +364,23 @@ message uDeleteProfileRequest {
 }
 
 message uVoteRequest {
-    string user_tag = 1;
+    string user_tag = 1 [(validate.rules).string.pattern = "^[a-zA-Z0-9_\\-]+$"];
     bool vote = 2;
     string token = 3;
 }
 
 message uAddToCommunityRequest {
-    string community_uuid = 1;
+    string community_uuid = 1 [(validate.rules).string.uuid = true];
     string token = 2;
 }
 
 message uLeaveFromCommunityRequest {
-    string community_uuid = 1;
+    string community_uuid = 1 [(validate.rules).string.uuid = true];
     string token = 2;
 }
 
 message uChangeRoleRequest {
-    string user_tag = 1;
+    string user_tag = 1 [(validate.rules).string.pattern = "^[a-zA-Z0-9_\\-]+$"];
     string role = 2;
     string token = 3;
 }
@@ -385,7 +392,7 @@ message cmGetAllRequest {
 }
 
 message cmGetByUUIDRequest {
-    string community_uuid = 1;
+    string community_uuid = 1 [(validate.rules).string.uuid = true];
 }
 
 message cmGetWithFilterRequest {
@@ -398,46 +405,46 @@ message cmGetWithFilterRequest {
 }
 
 message cmCreateRequest {
-    string title = 1;
-    string description = 2;
+    string title = 1 [(validate.rules).string.max_len = 60];
+    string description = 2 [(validate.rules).string.max_len = 300];
     float price = 3;
     string token = 4;
 }
 
 message cmDeleteRequest {
-    string community_uuid = 1;
+    string community_uuid = 1 [(validate.rules).string.uuid = true];
     string token = 2;
 }
 
 message cmUpdateRequest {
-    string community_uuid = 1;
-    string title = 2;
-    string description = 3;
+    string community_uuid = 1 [(validate.rules).string.uuid = true];
+    string title = 2 [(validate.rules).string.max_len = 60];
+    string description = 3 [(validate.rules).string.max_len = 300];
     float price = 4;
     string token = 5;
 }
 
 message cmVoteRequest {
-    string community_uuid = 1;
+    string community_uuid = 1 [(validate.rules).string.uuid = true];
     bool vote = 2;
     string token = 3;
 }
 
 message cmBanRequest {
-    string community_uuid = 1;
+    string community_uuid = 1 [(validate.rules).string.uuid = true];
     string token = 2;
 }
 
 
 // Posts
 message pGetAllRequest {
-    string community_uuid = 1;
+    string community_uuid = 1 [(validate.rules).string.uuid = true];
     uint64 page = 2;
     string token = 3;
 }
 
 message pGetByUUIDRequest {
-    string post_uuid = 1;
+    string post_uuid = 1 [(validate.rules).string.uuid = true];
     string token = 2;
 }
 
@@ -447,34 +454,34 @@ message PostData {
 }
 
 message pCreateRequest {
-    string community_uuid = 1;
-    string title = 2;
+    string community_uuid = 1 [(validate.rules).string.uuid = true];
+    string title = 2 [(validate.rules).string.max_len = 60];
     bytes body = 3;
     repeated PostData files = 4;
     string token = 5;
 }
 
 message pDeleteRequest {
-    string post_uuid = 1;
+    string post_uuid = 1 [(validate.rules).string.uuid = true];
     string token = 2;
 }
 
 message pUpdateRequest {
-    string post_uuid = 1;
-    string title = 2;
+    string post_uuid = 1 [(validate.rules).string.uuid = true];
+    string title = 2 [(validate.rules).string.max_len = 60];
     repeated PostData files = 3;
     bytes body = 4;
     string token = 5;
 }
 
 message pGetAllCommentsRequest {
-    string post_uuid = 1;
+    string post_uuid = 1 [(validate.rules).string.uuid = true];
     uint64 page = 2;
 }
 
 message pCreateCommentRequest {
-    string post_uuid = 1;
-    string body = 2;
+    string post_uuid = 1 [(validate.rules).string.uuid = true];
+    string body = 2 [(validate.rules).string.max_len = 500];
     string token = 3;
 }
 
@@ -485,7 +492,7 @@ message pDeleteCommentRequest {
 
 message pUpdateCommentRequest {
     string comment_id = 1;
-    string body = 2;
+    string body = 2 [(validate.rules).string.max_len = 500];
     string token = 3;
 }
 
@@ -496,7 +503,7 @@ message pVoteCommentRequest {
 }
 
 message pVoteRequest {
-    string post_uuid = 1;
+    string post_uuid = 1 [(validate.rules).string.uuid = true];
     bool vote = 2;
     string token = 3;
 }
@@ -504,49 +511,49 @@ message pVoteRequest {
 // DISCUSSIONS
 
 message dGetAllRequest {
-    string community_uuid = 1;
+    string community_uuid = 1 [(validate.rules).string.uuid = true];
     uint64 page = 2;
     string token = 3;
 }
 
 message dGetByUUIDRequest {
-    string discussion_uuid = 1;
+    string discussion_uuid = 1 [(validate.rules).string.uuid = true];
     string token = 2;
 }
 
 message dGetAllWithFilterRequest {
-    string title = 1;
+    string title = 1 [(validate.rules).string.max_len = 60];
     uint64 page = 2;
     string token = 3;
 }
 
 message dCreateRequest {
-    string community_uuid = 1;
-    string title = 2;
-    string body = 3;
+    string community_uuid = 1 [(validate.rules).string.uuid = true];
+    string title = 2 [(validate.rules).string.max_len = 60];
+    string body = 3 [(validate.rules).string.max_len = 500];
     string token = 4;
 }
 
 message dDeleteRequest {
-    string discussion_uuid = 1;
+    string discussion_uuid = 1 [(validate.rules).string.uuid = true];
     string token = 2;
 }
 
 message dUpdateRequest {
-    string discussion_uuid = 1;
-    string title = 2;
-    string body = 3;
+    string discussion_uuid = 1 [(validate.rules).string.uuid = true];
+    string title = 2 [(validate.rules).string.max_len = 60];
+    string body = 3 [(validate.rules).string.max_len = 500];
     string token = 4;
 }
 
 message dGetAllCommentsRequest {
-    string discussion_uuid = 1;
+    string discussion_uuid = 1 [(validate.rules).string.uuid = true];
     uint64 page = 2;
 }
 
 message dCreateCommentRequest {
-    string discussion_uuid = 1;
-    string body = 2;
+    string discussion_uuid = 1 [(validate.rules).string.uuid = true];
+    string body = 2 [(validate.rules).string.max_len = 500];
     string token = 3;
 }
 
@@ -557,65 +564,65 @@ message dDeleteCommentRequest {
 
 message dUpdateCommentRequest {
     string comment_id = 1;
-    string body = 2;
+    string body = 2 [(validate.rules).string.max_len = 500];
     string token = 3;
 }
 
 message dVoteCommentRequest {
-    string discussion_uuid = 1;
+    string discussion_uuid = 1 [(validate.rules).string.uuid = true];
     string comment_id = 2;
     string token = 3;
 }
 
 // Courses
 message cGetAllRequest {
-    string community_uuid = 1;
+    string community_uuid = 1 [(validate.rules).string.uuid = true];
     uint64 page = 2;
 }
 
 message cGetByUUIDRequest {
-    string course_uuid = 1;
+    string course_uuid = 1 [(validate.rules).string.uuid = true];
     string token = 2;
 }
 
 message cGetAllWithFilterRequest {
-    string title = 1;
-    uint64 page = 2;
-    string community_uuid = 3;
+    string community_uuid = 1 [(validate.rules).string.uuid = true];
+    string title = 2 [(validate.rules).string.max_len = 60];
+    uint64 page = 3;
 }
 
 message cCreateRequest {
-    string community_uuid = 1;
-    string title = 2;
-    string description = 3;
+    string community_uuid = 1 [(validate.rules).string.uuid = true];
+    string title = 2 [(validate.rules).string.max_len = 60];
+    string description = 3 [(validate.rules).string.max_len = 300];
     string token = 4;
 }
 
 message cDeleteRequest {
-    string course_uuid = 1;
+    string course_uuid = 1 [(validate.rules).string.uuid = true];
     string token = 2;
 }
 
 message cUpdateRequest {
-    string course_uuid = 1;
-    string title = 2;
-    string description = 3;
+    string course_uuid = 1 [(validate.rules).string.uuid = true];
+    string title = 2 [(validate.rules).string.max_len = 60];
+    string description = 3 [(validate.rules).string.max_len = 300];
     string token = 4;
 }
 
 message cGetAllLessonsRequest {
-    string course_uuid = 1;
+    string course_uuid = 1 [(validate.rules).string.uuid = true];
     uint64 page = 2;
     string token = 3;
 }
 
 message cGetByUUIDLessonsRequest {
-    string lesson_uuid = 1;
+    string lesson_uuid = 1 [(validate.rules).string.uuid = true];
     string token = 2;
 }
 
 message cVoteRequest {
-    string course_uuid = 1;
+    string course_uuid = 1 [(validate.rules).string.uuid = true];
     bool vote = 2;
     string token = 3;
 }
@@ -627,21 +634,21 @@ message LessonData {
 }
 
 message cCreateLessonsRequest {
-    string course_uuid = 1;
-    string title = 2;
+    string course_uuid = 1 [(validate.rules).string.uuid = true];
+    string title = 2 [(validate.rules).string.max_len = 60];
     LessonData body = 3;
     repeated LessonData files = 5;
     string token = 6;
 }
 
 message cDeleteLessonsRequest {
-    string lesson_uuid = 1;
+    string lesson_uuid = 1 [(validate.rules).string.uuid = true];
     string token = 2;
 }
 
 message cUpdateLessonsRequest {
-    string lesson_uuid = 1;
-    string title = 2;
+    string lesson_uuid = 1 [(validate.rules).string.uuid = true];
+    string title = 2 [(validate.rules).string.max_len = 60];
     LessonData body = 3;
     repeated LessonData files = 4;
     string token = 5;
@@ -653,8 +660,8 @@ message rGetAllRequest {
 }
 
 message rCreateRequest {
-    string community_uuid = 1;
-    string msg = 2;
+    string community_uuid = 1 [(validate.rules).string.uuid = true];
+    string msg = 2 [(validate.rules).string.max_len = 100];
     string addressed_obj = 3;
     string type_report = 4;
     string token = 5;
