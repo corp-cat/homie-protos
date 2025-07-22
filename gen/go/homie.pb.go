@@ -1030,7 +1030,7 @@ func (x *CmCreateResponse) GetAuthorTag() string {
 
 type PostComment struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Body          string                 `protobuf:"bytes,2,opt,name=body,proto3" json:"body,omitempty"`
 	Votes         *Votes                 `protobuf:"bytes,3,opt,name=votes,proto3" json:"votes,omitempty"`
 	CreatedAt     int64                  `protobuf:"varint,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
@@ -1070,11 +1070,11 @@ func (*PostComment) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{19}
 }
 
-func (x *PostComment) GetUuid() string {
+func (x *PostComment) GetId() int64 {
 	if x != nil {
-		return x.Uuid
+		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *PostComment) GetBody() string {
@@ -1115,7 +1115,7 @@ func (x *PostComment) GetAuthorTag() string {
 type Post struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	CommunityUuid int64                  `protobuf:"varint,2,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
+	CommunityUuid string                 `protobuf:"bytes,2,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
 	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
 	Body          []byte                 `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty"`
 	Votes         *Votes                 `protobuf:"bytes,5,opt,name=votes,proto3" json:"votes,omitempty"`
@@ -1163,11 +1163,11 @@ func (x *Post) GetUuid() string {
 	return ""
 }
 
-func (x *Post) GetCommunityUuid() int64 {
+func (x *Post) GetCommunityUuid() string {
 	if x != nil {
 		return x.CommunityUuid
 	}
-	return 0
+	return ""
 }
 
 func (x *Post) GetTitle() string {
@@ -6005,9 +6005,9 @@ const file_homie_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x02 \x01(\x03R\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"author_tag\x18\x03 \x01(\tR\tauthorTag\"\xb6\x01\n" +
-	"\vPostComment\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x12\n" +
+	"author_tag\x18\x03 \x01(\tR\tauthorTag\"\xb2\x01\n" +
+	"\vPostComment\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04body\x18\x02 \x01(\tR\x04body\x12\"\n" +
 	"\x05votes\x18\x03 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
 	"\n" +
@@ -6018,7 +6018,7 @@ const file_homie_proto_rawDesc = "" +
 	"author_tag\x18\x06 \x01(\tR\tauthorTag\"\xfd\x01\n" +
 	"\x04Post\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12%\n" +
-	"\x0ecommunity_uuid\x18\x02 \x01(\x03R\rcommunityUuid\x12\x14\n" +
+	"\x0ecommunity_uuid\x18\x02 \x01(\tR\rcommunityUuid\x12\x14\n" +
 	"\x05title\x18\x03 \x01(\tR\x05title\x12\x12\n" +
 	"\x04body\x18\x04 \x01(\fR\x04body\x12\"\n" +
 	"\x05votes\x18\x05 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
