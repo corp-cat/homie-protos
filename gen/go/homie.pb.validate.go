@@ -1939,8 +1939,6 @@ func (m *CmGetAllResponse) validate(all bool) error {
 
 	}
 
-	// no validation rules for CountOfPage
-
 	if len(errors) > 0 {
 		return CmGetAllResponseMultiError(errors)
 	}
@@ -2205,8 +2203,6 @@ func (m *CmGetAllWithFilterResponse) validate(all bool) error {
 		}
 
 	}
-
-	// no validation rules for CountOfPage
 
 	if len(errors) > 0 {
 		return CmGetAllWithFilterResponseMultiError(errors)
@@ -2760,8 +2756,6 @@ func (m *PGetAllResponse) validate(all bool) error {
 		}
 
 	}
-
-	// no validation rules for CountOfPage
 
 	if len(errors) > 0 {
 		return PGetAllResponseMultiError(errors)
@@ -3681,8 +3675,6 @@ func (m *DGetAllResponse) validate(all bool) error {
 		}
 	}
 
-	// no validation rules for CountOfPage
-
 	if len(errors) > 0 {
 		return DGetAllResponseMultiError(errors)
 	}
@@ -3942,8 +3934,6 @@ func (m *DGetAllWithFilterResponse) validate(all bool) error {
 			}
 		}
 	}
-
-	// no validation rules for CountOfPage
 
 	if len(errors) > 0 {
 		return DGetAllWithFilterResponseMultiError(errors)
@@ -4602,8 +4592,6 @@ func (m *CGetAllResponse) validate(all bool) error {
 
 	}
 
-	// no validation rules for CountOfPage
-
 	if len(errors) > 0 {
 		return CGetAllResponseMultiError(errors)
 	}
@@ -4868,8 +4856,6 @@ func (m *CGetAllWithFilterResponse) validate(all bool) error {
 		}
 
 	}
-
-	// no validation rules for CountOfPage
 
 	if len(errors) > 0 {
 		return CGetAllWithFilterResponseMultiError(errors)
@@ -5319,6 +5305,110 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = CGetByUUIDLessonsResponseValidationError{}
+
+// Validate checks the field values on CountOfPagesResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *CountOfPagesResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on CountOfPagesResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// CountOfPagesResponseMultiError, or nil if none found.
+func (m *CountOfPagesResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *CountOfPagesResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for CountOfPages
+
+	if len(errors) > 0 {
+		return CountOfPagesResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// CountOfPagesResponseMultiError is an error wrapping multiple validation
+// errors returned by CountOfPagesResponse.ValidateAll() if the designated
+// constraints aren't met.
+type CountOfPagesResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m CountOfPagesResponseMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m CountOfPagesResponseMultiError) AllErrors() []error { return m }
+
+// CountOfPagesResponseValidationError is the validation error returned by
+// CountOfPagesResponse.Validate if the designated constraints aren't met.
+type CountOfPagesResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CountOfPagesResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CountOfPagesResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CountOfPagesResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CountOfPagesResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CountOfPagesResponseValidationError) ErrorName() string {
+	return "CountOfPagesResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CountOfPagesResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCountOfPagesResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CountOfPagesResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CountOfPagesResponseValidationError{}
 
 // Validate checks the field values on ReporterObject with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
@@ -13028,6 +13118,112 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = CUpdateLessonsRequestValidationError{}
+
+// Validate checks the field values on CountOfPagesRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *CountOfPagesRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on CountOfPagesRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// CountOfPagesRequestMultiError, or nil if none found.
+func (m *CountOfPagesRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *CountOfPagesRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Entity
+
+	// no validation rules for SizeOfPage
+
+	if len(errors) > 0 {
+		return CountOfPagesRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// CountOfPagesRequestMultiError is an error wrapping multiple validation
+// errors returned by CountOfPagesRequest.ValidateAll() if the designated
+// constraints aren't met.
+type CountOfPagesRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m CountOfPagesRequestMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m CountOfPagesRequestMultiError) AllErrors() []error { return m }
+
+// CountOfPagesRequestValidationError is the validation error returned by
+// CountOfPagesRequest.Validate if the designated constraints aren't met.
+type CountOfPagesRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CountOfPagesRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CountOfPagesRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CountOfPagesRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CountOfPagesRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CountOfPagesRequestValidationError) ErrorName() string {
+	return "CountOfPagesRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CountOfPagesRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCountOfPagesRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CountOfPagesRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CountOfPagesRequestValidationError{}
 
 // Validate checks the field values on RGetAllRequest with the rules defined in
 // the proto definition for this message. If any rules are violated, the first

@@ -68,6 +68,8 @@ service Homie {
     rpc CoursesUpdateLesson(cUpdateLessonsRequest) returns (google.protobuf.Empty);
     rpc CourseVote(cVoteRequest) returns (cVoteResponse);
 
+    rpc CountOfPages(countOfPagesRequest) returns (countOfPagesResponse);
+
     rpc ReportsGetAll(rGetAllRequest) returns (rGetAllResponse);
     rpc ReportsCreate(rCreateRequest) returns (google.protobuf.Empty);
     rpc ReportsDelete(rDeleteRequest) returns (google.protobuf.Empty);
@@ -155,7 +157,6 @@ message Community {
 
 message cmGetAllResponse {
     repeated Community communities = 1;
-    int64 countOfPage = 2;
 }
 
 message cmGetByUUIDResponse {
@@ -164,7 +165,6 @@ message cmGetByUUIDResponse {
 
 message cmGetAllWithFilterResponse {
     repeated Community communities = 1;
-    int64 countOfPage = 2;
 }
 
 message cmCreateResponse {
@@ -195,7 +195,6 @@ message Post {
 
 message pGetAllResponse {
     repeated Post posts = 1;
-    int64 countOfPage = 2;
 }
 
 message pGetAllCommentsResponse {
@@ -235,7 +234,6 @@ message DiscussionList {
 
 message dGetAllResponse {
     DiscussionList discussions = 1;
-    int64 countOfPage = 2;
 }
 
 message dGetByUUIDResponse {
@@ -244,7 +242,6 @@ message dGetByUUIDResponse {
 
 message dGetAllWithFilterResponse {
     DiscussionList discussions = 1;
-    int64 countOfPage = 2;
 }
 
 message dCreateResponse {
@@ -277,7 +274,6 @@ message Course {
 
 message cGetAllResponse {
     repeated Course courses = 1;
-    int64 countOfPage = 2;
 }
 
 message cGetByUUIDResponse {
@@ -286,7 +282,6 @@ message cGetByUUIDResponse {
 
 message cGetAllWithFilterResponse {
     repeated Course courses = 1;
-    int64 countOfPage = 2; 
 }
 
 message cCreateResponse {
@@ -299,6 +294,10 @@ message cGetAllLessonsResponse {
 
 message cGetByUUIDLessonsResponse {
     Lesson lesson = 1;
+}
+
+message countOfPagesResponse {
+    int64 count_of_pages = 1;
 }
 
 message ReporterObject {
@@ -664,6 +663,11 @@ message cUpdateLessonsRequest {
     LessonData body = 3;
     repeated LessonData files = 4;
     string token = 5;
+}
+
+message countOfPagesRequest {
+    string entity = 1;
+    uint64 size_of_page = 2;
 }
 
 // REPORTS
