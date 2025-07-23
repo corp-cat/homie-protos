@@ -839,6 +839,7 @@ func (x *Community) GetCreatedAt() int64 {
 type CmGetAllResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Communities   []*Community           `protobuf:"bytes,1,rep,name=communities,proto3" json:"communities,omitempty"`
+	CountOfPage   int64                  `protobuf:"varint,2,opt,name=countOfPage,proto3" json:"countOfPage,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -878,6 +879,13 @@ func (x *CmGetAllResponse) GetCommunities() []*Community {
 		return x.Communities
 	}
 	return nil
+}
+
+func (x *CmGetAllResponse) GetCountOfPage() int64 {
+	if x != nil {
+		return x.CountOfPage
+	}
+	return 0
 }
 
 type CmGetByUUIDResponse struct {
@@ -927,6 +935,7 @@ func (x *CmGetByUUIDResponse) GetCommunity() *Community {
 type CmGetWithFilterResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Communities   []*Community           `protobuf:"bytes,1,rep,name=communities,proto3" json:"communities,omitempty"`
+	CountOfPage   int64                  `protobuf:"varint,2,opt,name=countOfPage,proto3" json:"countOfPage,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -966,6 +975,13 @@ func (x *CmGetWithFilterResponse) GetCommunities() []*Community {
 		return x.Communities
 	}
 	return nil
+}
+
+func (x *CmGetWithFilterResponse) GetCountOfPage() int64 {
+	if x != nil {
+		return x.CountOfPage
+	}
+	return 0
 }
 
 type CmCreateResponse struct {
@@ -1215,6 +1231,7 @@ func (x *Post) GetComments() []*PostComment {
 type PGetAllResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Posts         []*Post                `protobuf:"bytes,1,rep,name=posts,proto3" json:"posts,omitempty"`
+	CountOfPage   int64                  `protobuf:"varint,2,opt,name=countOfPage,proto3" json:"countOfPage,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1254,6 +1271,13 @@ func (x *PGetAllResponse) GetPosts() []*Post {
 		return x.Posts
 	}
 	return nil
+}
+
+func (x *PGetAllResponse) GetCountOfPage() int64 {
+	if x != nil {
+		return x.CountOfPage
+	}
+	return 0
 }
 
 type PGetAllCommentsResponse struct {
@@ -1611,6 +1635,7 @@ func (x *DiscussionList) GetDiscussions() []*Discussion {
 type DGetAllResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Discussions   *DiscussionList        `protobuf:"bytes,1,opt,name=discussions,proto3" json:"discussions,omitempty"`
+	CountOfPage   int64                  `protobuf:"varint,2,opt,name=countOfPage,proto3" json:"countOfPage,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1650,6 +1675,13 @@ func (x *DGetAllResponse) GetDiscussions() *DiscussionList {
 		return x.Discussions
 	}
 	return nil
+}
+
+func (x *DGetAllResponse) GetCountOfPage() int64 {
+	if x != nil {
+		return x.CountOfPage
+	}
+	return 0
 }
 
 type DGetByUUIDResponse struct {
@@ -1699,6 +1731,7 @@ func (x *DGetByUUIDResponse) GetDiscussion() *Discussion {
 type DGetAllWithFilterResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Discussions   *DiscussionList        `protobuf:"bytes,1,opt,name=discussions,proto3" json:"discussions,omitempty"`
+	CountOfPage   int64                  `protobuf:"varint,2,opt,name=countOfPage,proto3" json:"countOfPage,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1738,6 +1771,13 @@ func (x *DGetAllWithFilterResponse) GetDiscussions() *DiscussionList {
 		return x.Discussions
 	}
 	return nil
+}
+
+func (x *DGetAllWithFilterResponse) GetCountOfPage() int64 {
+	if x != nil {
+		return x.CountOfPage
+	}
+	return 0
 }
 
 type DCreateResponse struct {
@@ -2015,6 +2055,7 @@ func (x *Course) GetLessons() []*Lesson {
 type CGetAllResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Courses       []*Course              `protobuf:"bytes,1,rep,name=courses,proto3" json:"courses,omitempty"`
+	CountOfPage   int64                  `protobuf:"varint,2,opt,name=countOfPage,proto3" json:"countOfPage,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2054,6 +2095,13 @@ func (x *CGetAllResponse) GetCourses() []*Course {
 		return x.Courses
 	}
 	return nil
+}
+
+func (x *CGetAllResponse) GetCountOfPage() int64 {
+	if x != nil {
+		return x.CountOfPage
+	}
+	return 0
 }
 
 type CGetByUUIDResponse struct {
@@ -2103,6 +2151,7 @@ func (x *CGetByUUIDResponse) GetCourse() *Course {
 type CGetAllWithFilterResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Courses       []*Course              `protobuf:"bytes,1,rep,name=courses,proto3" json:"courses,omitempty"`
+	CountOfPage   int64                  `protobuf:"varint,2,opt,name=countOfPage,proto3" json:"countOfPage,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2142,6 +2191,13 @@ func (x *CGetAllWithFilterResponse) GetCourses() []*Course {
 		return x.Courses
 	}
 	return nil
+}
+
+func (x *CGetAllWithFilterResponse) GetCountOfPage() int64 {
+	if x != nil {
+		return x.CountOfPage
+	}
+	return 0
 }
 
 type CCreateResponse struct {
@@ -5993,13 +6049,15 @@ const file_homie_proto_rawDesc = "" +
 	"author_tag\x18\a \x01(\tR\tauthorTag\x12\x1b\n" +
 	"\tis_banned\x18\b \x01(\bR\bisBanned\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\t \x01(\x03R\tcreatedAt\"F\n" +
+	"created_at\x18\t \x01(\x03R\tcreatedAt\"h\n" +
 	"\x10cmGetAllResponse\x122\n" +
-	"\vcommunities\x18\x01 \x03(\v2\x10.homie.CommunityR\vcommunities\"E\n" +
+	"\vcommunities\x18\x01 \x03(\v2\x10.homie.CommunityR\vcommunities\x12 \n" +
+	"\vcountOfPage\x18\x02 \x01(\x03R\vcountOfPage\"E\n" +
 	"\x13cmGetByUUIDResponse\x12.\n" +
-	"\tcommunity\x18\x01 \x01(\v2\x10.homie.CommunityR\tcommunity\"M\n" +
+	"\tcommunity\x18\x01 \x01(\v2\x10.homie.CommunityR\tcommunity\"o\n" +
 	"\x17cmGetWithFilterResponse\x122\n" +
-	"\vcommunities\x18\x01 \x03(\v2\x10.homie.CommunityR\vcommunities\"d\n" +
+	"\vcommunities\x18\x01 \x03(\v2\x10.homie.CommunityR\vcommunities\x12 \n" +
+	"\vcountOfPage\x18\x02 \x01(\x03R\vcountOfPage\"d\n" +
 	"\x10cmCreateResponse\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1d\n" +
 	"\n" +
@@ -6026,9 +6084,10 @@ const file_homie_proto_rawDesc = "" +
 	"created_at\x18\x06 \x01(\x03R\tcreatedAt\x12\x1d\n" +
 	"\n" +
 	"updated_at\x18\a \x01(\x03R\tupdatedAt\x12.\n" +
-	"\bcomments\x18\b \x03(\v2\x12.homie.PostCommentR\bcomments\"4\n" +
+	"\bcomments\x18\b \x03(\v2\x12.homie.PostCommentR\bcomments\"V\n" +
 	"\x0fpGetAllResponse\x12!\n" +
-	"\x05posts\x18\x01 \x03(\v2\v.homie.PostR\x05posts\"I\n" +
+	"\x05posts\x18\x01 \x03(\v2\v.homie.PostR\x05posts\x12 \n" +
+	"\vcountOfPage\x18\x02 \x01(\x03R\vcountOfPage\"I\n" +
 	"\x17pGetAllCommentsResponse\x12.\n" +
 	"\bcomments\x18\x01 \x03(\v2\x12.homie.PostCommentR\bcomments\"5\n" +
 	"\x12pGetByUUIDResponse\x12\x1f\n" +
@@ -6058,15 +6117,17 @@ const file_homie_proto_rawDesc = "" +
 	"\n" +
 	"author_tag\x18\a \x01(\tR\tauthorTag\"E\n" +
 	"\x0eDiscussionList\x123\n" +
-	"\vdiscussions\x18\x01 \x03(\v2\x11.homie.DiscussionR\vdiscussions\"J\n" +
+	"\vdiscussions\x18\x01 \x03(\v2\x11.homie.DiscussionR\vdiscussions\"l\n" +
 	"\x0fdGetAllResponse\x127\n" +
-	"\vdiscussions\x18\x01 \x01(\v2\x15.homie.DiscussionListR\vdiscussions\"G\n" +
+	"\vdiscussions\x18\x01 \x01(\v2\x15.homie.DiscussionListR\vdiscussions\x12 \n" +
+	"\vcountOfPage\x18\x02 \x01(\x03R\vcountOfPage\"G\n" +
 	"\x12dGetByUUIDResponse\x121\n" +
 	"\n" +
 	"discussion\x18\x01 \x01(\v2\x11.homie.DiscussionR\n" +
-	"discussion\"T\n" +
+	"discussion\"v\n" +
 	"\x19dGetAllWithFilterResponse\x127\n" +
-	"\vdiscussions\x18\x01 \x01(\v2\x15.homie.DiscussionListR\vdiscussions\"%\n" +
+	"\vdiscussions\x18\x01 \x01(\v2\x15.homie.DiscussionListR\vdiscussions\x12 \n" +
+	"\vcountOfPage\x18\x02 \x01(\x03R\vcountOfPage\"%\n" +
 	"\x0fdCreateResponse\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"O\n" +
 	"\x17dGetAllCommentsResponse\x124\n" +
@@ -6091,13 +6152,15 @@ const file_homie_proto_rawDesc = "" +
 	"created_at\x18\x06 \x01(\x03R\tcreatedAt\x12\x1d\n" +
 	"\n" +
 	"updated_at\x18\a \x01(\x03R\tupdatedAt\x12'\n" +
-	"\alessons\x18\b \x03(\v2\r.homie.LessonR\alessons\":\n" +
+	"\alessons\x18\b \x03(\v2\r.homie.LessonR\alessons\"\\\n" +
 	"\x0fcGetAllResponse\x12'\n" +
-	"\acourses\x18\x01 \x03(\v2\r.homie.CourseR\acourses\";\n" +
+	"\acourses\x18\x01 \x03(\v2\r.homie.CourseR\acourses\x12 \n" +
+	"\vcountOfPage\x18\x02 \x01(\x03R\vcountOfPage\";\n" +
 	"\x12cGetByUUIDResponse\x12%\n" +
-	"\x06course\x18\x01 \x01(\v2\r.homie.CourseR\x06course\"D\n" +
+	"\x06course\x18\x01 \x01(\v2\r.homie.CourseR\x06course\"f\n" +
 	"\x19cGetAllWithFilterResponse\x12'\n" +
-	"\acourses\x18\x01 \x03(\v2\r.homie.CourseR\acourses\"%\n" +
+	"\acourses\x18\x01 \x03(\v2\r.homie.CourseR\acourses\x12 \n" +
+	"\vcountOfPage\x18\x02 \x01(\x03R\vcountOfPage\"%\n" +
 	"\x0fcCreateResponse\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"A\n" +
 	"\x16cGetAllLessonsResponse\x12'\n" +

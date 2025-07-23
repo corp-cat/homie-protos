@@ -155,6 +155,7 @@ message Community {
 
 message cmGetAllResponse {
     repeated Community communities = 1;
+    int64 countOfPage = 2;
 }
 
 message cmGetByUUIDResponse {
@@ -163,6 +164,7 @@ message cmGetByUUIDResponse {
 
 message cmGetWithFilterResponse {
     repeated Community communities = 1;
+    int64 countOfPage = 2;
 }
 
 message cmCreateResponse {
@@ -193,6 +195,7 @@ message Post {
 
 message pGetAllResponse {
     repeated Post posts = 1;
+    int64 countOfPage = 2;
 }
 
 message pGetAllCommentsResponse {
@@ -232,6 +235,7 @@ message DiscussionList {
 
 message dGetAllResponse {
     DiscussionList discussions = 1;
+    int64 countOfPage = 2;
 }
 
 message dGetByUUIDResponse {
@@ -240,6 +244,7 @@ message dGetByUUIDResponse {
 
 message dGetAllWithFilterResponse {
     DiscussionList discussions = 1;
+    int64 countOfPage = 2;
 }
 
 message dCreateResponse {
@@ -272,6 +277,7 @@ message Course {
 
 message cGetAllResponse {
     repeated Course courses = 1;
+    int64 countOfPage = 2;
 }
 
 message cGetByUUIDResponse {
@@ -280,6 +286,7 @@ message cGetByUUIDResponse {
 
 message cGetAllWithFilterResponse {
     repeated Course courses = 1;
+    int64 countOfPage = 2; 
 }
 
 message cCreateResponse {

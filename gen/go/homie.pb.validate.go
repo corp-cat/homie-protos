@@ -1939,6 +1939,8 @@ func (m *CmGetAllResponse) validate(all bool) error {
 
 	}
 
+	// no validation rules for CountOfPage
+
 	if len(errors) > 0 {
 		return CmGetAllResponseMultiError(errors)
 	}
@@ -2203,6 +2205,8 @@ func (m *CmGetWithFilterResponse) validate(all bool) error {
 		}
 
 	}
+
+	// no validation rules for CountOfPage
 
 	if len(errors) > 0 {
 		return CmGetWithFilterResponseMultiError(errors)
@@ -2756,6 +2760,8 @@ func (m *PGetAllResponse) validate(all bool) error {
 		}
 
 	}
+
+	// no validation rules for CountOfPage
 
 	if len(errors) > 0 {
 		return PGetAllResponseMultiError(errors)
@@ -3675,6 +3681,8 @@ func (m *DGetAllResponse) validate(all bool) error {
 		}
 	}
 
+	// no validation rules for CountOfPage
+
 	if len(errors) > 0 {
 		return DGetAllResponseMultiError(errors)
 	}
@@ -3934,6 +3942,8 @@ func (m *DGetAllWithFilterResponse) validate(all bool) error {
 			}
 		}
 	}
+
+	// no validation rules for CountOfPage
 
 	if len(errors) > 0 {
 		return DGetAllWithFilterResponseMultiError(errors)
@@ -4592,6 +4602,8 @@ func (m *CGetAllResponse) validate(all bool) error {
 
 	}
 
+	// no validation rules for CountOfPage
+
 	if len(errors) > 0 {
 		return CGetAllResponseMultiError(errors)
 	}
@@ -4856,6 +4868,8 @@ func (m *CGetAllWithFilterResponse) validate(all bool) error {
 		}
 
 	}
+
+	// no validation rules for CountOfPage
 
 	if len(errors) > 0 {
 		return CGetAllWithFilterResponseMultiError(errors)
