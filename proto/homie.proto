@@ -498,18 +498,18 @@ message pCreateCommentRequest {
 }
 
 message pDeleteCommentRequest {
-    string comment_id = 1;
+    int64 comment_id = 1;
     string token = 2;
 }
 
 message pUpdateCommentRequest {
-    string comment_id = 1;
+    int64 comment_id = 1;
     string body = 2 [(validate.rules).string.max_len = 500];
     string token = 3;
 }
 
 message pVoteCommentRequest {
-    string comment_id = 1;
+    int64 comment_id = 1;
     bool vote = 2;
     string token = 3;
 }
@@ -570,19 +570,19 @@ message dCreateCommentRequest {
 }
 
 message dDeleteCommentRequest {
-    string comment_id = 1;
+    int64 comment_id = 1;
     string token = 2;
 }
 
 message dUpdateCommentRequest {
-    string comment_id = 1;
+    int64 comment_id = 1;
     string body = 2 [(validate.rules).string.max_len = 500];
     string token = 3;
 }
 
 message dVoteCommentRequest {
     string discussion_uuid = 1 [(validate.rules).string.uuid = true];
-    string comment_id = 2;
+    int64 comment_id = 2;
     string token = 3;
 }
 

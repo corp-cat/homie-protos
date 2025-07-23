@@ -4165,7 +4165,7 @@ func (x *PCreateCommentRequest) GetToken() string {
 
 type PDeleteCommentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CommentId     string                 `protobuf:"bytes,1,opt,name=comment_id,json=commentId,proto3" json:"comment_id,omitempty"`
+	CommentId     int64                  `protobuf:"varint,1,opt,name=comment_id,json=commentId,proto3" json:"comment_id,omitempty"`
 	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -4201,11 +4201,11 @@ func (*PDeleteCommentRequest) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{72}
 }
 
-func (x *PDeleteCommentRequest) GetCommentId() string {
+func (x *PDeleteCommentRequest) GetCommentId() int64 {
 	if x != nil {
 		return x.CommentId
 	}
-	return ""
+	return 0
 }
 
 func (x *PDeleteCommentRequest) GetToken() string {
@@ -4217,7 +4217,7 @@ func (x *PDeleteCommentRequest) GetToken() string {
 
 type PUpdateCommentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CommentId     string                 `protobuf:"bytes,1,opt,name=comment_id,json=commentId,proto3" json:"comment_id,omitempty"`
+	CommentId     int64                  `protobuf:"varint,1,opt,name=comment_id,json=commentId,proto3" json:"comment_id,omitempty"`
 	Body          string                 `protobuf:"bytes,2,opt,name=body,proto3" json:"body,omitempty"`
 	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -4254,11 +4254,11 @@ func (*PUpdateCommentRequest) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{73}
 }
 
-func (x *PUpdateCommentRequest) GetCommentId() string {
+func (x *PUpdateCommentRequest) GetCommentId() int64 {
 	if x != nil {
 		return x.CommentId
 	}
-	return ""
+	return 0
 }
 
 func (x *PUpdateCommentRequest) GetBody() string {
@@ -4277,7 +4277,7 @@ func (x *PUpdateCommentRequest) GetToken() string {
 
 type PVoteCommentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CommentId     string                 `protobuf:"bytes,1,opt,name=comment_id,json=commentId,proto3" json:"comment_id,omitempty"`
+	CommentId     int64                  `protobuf:"varint,1,opt,name=comment_id,json=commentId,proto3" json:"comment_id,omitempty"`
 	Vote          bool                   `protobuf:"varint,2,opt,name=vote,proto3" json:"vote,omitempty"`
 	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -4314,11 +4314,11 @@ func (*PVoteCommentRequest) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{74}
 }
 
-func (x *PVoteCommentRequest) GetCommentId() string {
+func (x *PVoteCommentRequest) GetCommentId() int64 {
 	if x != nil {
 		return x.CommentId
 	}
-	return ""
+	return 0
 }
 
 func (x *PVoteCommentRequest) GetVote() bool {
@@ -4869,7 +4869,7 @@ func (x *DCreateCommentRequest) GetToken() string {
 
 type DDeleteCommentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CommentId     string                 `protobuf:"bytes,1,opt,name=comment_id,json=commentId,proto3" json:"comment_id,omitempty"`
+	CommentId     int64                  `protobuf:"varint,1,opt,name=comment_id,json=commentId,proto3" json:"comment_id,omitempty"`
 	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -4905,11 +4905,11 @@ func (*DDeleteCommentRequest) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{84}
 }
 
-func (x *DDeleteCommentRequest) GetCommentId() string {
+func (x *DDeleteCommentRequest) GetCommentId() int64 {
 	if x != nil {
 		return x.CommentId
 	}
-	return ""
+	return 0
 }
 
 func (x *DDeleteCommentRequest) GetToken() string {
@@ -4921,7 +4921,7 @@ func (x *DDeleteCommentRequest) GetToken() string {
 
 type DUpdateCommentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CommentId     string                 `protobuf:"bytes,1,opt,name=comment_id,json=commentId,proto3" json:"comment_id,omitempty"`
+	CommentId     int64                  `protobuf:"varint,1,opt,name=comment_id,json=commentId,proto3" json:"comment_id,omitempty"`
 	Body          string                 `protobuf:"bytes,2,opt,name=body,proto3" json:"body,omitempty"`
 	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -4958,11 +4958,11 @@ func (*DUpdateCommentRequest) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{85}
 }
 
-func (x *DUpdateCommentRequest) GetCommentId() string {
+func (x *DUpdateCommentRequest) GetCommentId() int64 {
 	if x != nil {
 		return x.CommentId
 	}
-	return ""
+	return 0
 }
 
 func (x *DUpdateCommentRequest) GetBody() string {
@@ -4982,7 +4982,7 @@ func (x *DUpdateCommentRequest) GetToken() string {
 type DVoteCommentRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	DiscussionUuid string                 `protobuf:"bytes,1,opt,name=discussion_uuid,json=discussionUuid,proto3" json:"discussion_uuid,omitempty"`
-	CommentId      string                 `protobuf:"bytes,2,opt,name=comment_id,json=commentId,proto3" json:"comment_id,omitempty"`
+	CommentId      int64                  `protobuf:"varint,2,opt,name=comment_id,json=commentId,proto3" json:"comment_id,omitempty"`
 	Token          string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
@@ -5025,11 +5025,11 @@ func (x *DVoteCommentRequest) GetDiscussionUuid() string {
 	return ""
 }
 
-func (x *DVoteCommentRequest) GetCommentId() string {
+func (x *DVoteCommentRequest) GetCommentId() int64 {
 	if x != nil {
 		return x.CommentId
 	}
-	return ""
+	return 0
 }
 
 func (x *DVoteCommentRequest) GetToken() string {
@@ -6298,16 +6298,16 @@ const file_homie_proto_rawDesc = "" +
 	"\x05token\x18\x03 \x01(\tR\x05token\"L\n" +
 	"\x15pDeleteCommentRequest\x12\x1d\n" +
 	"\n" +
-	"comment_id\x18\x01 \x01(\tR\tcommentId\x12\x14\n" +
+	"comment_id\x18\x01 \x01(\x03R\tcommentId\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\"j\n" +
 	"\x15pUpdateCommentRequest\x12\x1d\n" +
 	"\n" +
-	"comment_id\x18\x01 \x01(\tR\tcommentId\x12\x1c\n" +
+	"comment_id\x18\x01 \x01(\x03R\tcommentId\x12\x1c\n" +
 	"\x04body\x18\x02 \x01(\tB\b\xfaB\x05r\x03\x18\xf4\x03R\x04body\x12\x14\n" +
 	"\x05token\x18\x03 \x01(\tR\x05token\"^\n" +
 	"\x13pVoteCommentRequest\x12\x1d\n" +
 	"\n" +
-	"comment_id\x18\x01 \x01(\tR\tcommentId\x12\x12\n" +
+	"comment_id\x18\x01 \x01(\x03R\tcommentId\x12\x12\n" +
 	"\x04vote\x18\x02 \x01(\bR\x04vote\x12\x14\n" +
 	"\x05token\x18\x03 \x01(\tR\x05token\"_\n" +
 	"\fpVoteRequest\x12%\n" +
@@ -6347,17 +6347,17 @@ const file_homie_proto_rawDesc = "" +
 	"\x05token\x18\x03 \x01(\tR\x05token\"L\n" +
 	"\x15dDeleteCommentRequest\x12\x1d\n" +
 	"\n" +
-	"comment_id\x18\x01 \x01(\tR\tcommentId\x12\x14\n" +
+	"comment_id\x18\x01 \x01(\x03R\tcommentId\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\"j\n" +
 	"\x15dUpdateCommentRequest\x12\x1d\n" +
 	"\n" +
-	"comment_id\x18\x01 \x01(\tR\tcommentId\x12\x1c\n" +
+	"comment_id\x18\x01 \x01(\x03R\tcommentId\x12\x1c\n" +
 	"\x04body\x18\x02 \x01(\tB\b\xfaB\x05r\x03\x18\xf4\x03R\x04body\x12\x14\n" +
 	"\x05token\x18\x03 \x01(\tR\x05token\"}\n" +
 	"\x13dVoteCommentRequest\x121\n" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x0ediscussionUuid\x12\x1d\n" +
 	"\n" +
-	"comment_id\x18\x02 \x01(\tR\tcommentId\x12\x14\n" +
+	"comment_id\x18\x02 \x01(\x03R\tcommentId\x12\x14\n" +
 	"\x05token\x18\x03 \x01(\tR\x05token\"U\n" +
 	"\x0ecGetAllRequest\x12/\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\rcommunityUuid\x12\x12\n" +
