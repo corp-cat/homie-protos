@@ -9986,8 +9986,28 @@ func (m *DGetAllWithFilterRequest) validate(all bool) error {
 
 	// no validation rules for SizeOfPage
 
+	if err := m._validateUuid(m.GetCommunityUuid()); err != nil {
+		err = DGetAllWithFilterRequestValidationError{
+			field:  "CommunityUuid",
+			reason: "value must be a valid UUID",
+			cause:  err,
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
 	if len(errors) > 0 {
 		return DGetAllWithFilterRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+func (m *DGetAllWithFilterRequest) _validateUuid(uuid string) error {
+	if matched := _homie_uuidPattern.MatchString(uuid); !matched {
+		return errors.New("invalid uuid format")
 	}
 
 	return nil

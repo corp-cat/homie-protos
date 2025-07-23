@@ -508,6 +508,7 @@ message dGetAllWithFilterRequest {
     string title = 1 [(validate.rules).string.max_len = 60];
     uint64 page = 2;
     uint64 sizeOfPage = 3;
+    string community_uuid = 4 [(validate.rules).string.uuid = true];
 }
 
 message dCreateRequest {

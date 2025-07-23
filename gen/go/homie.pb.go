@@ -4252,6 +4252,7 @@ type DGetAllWithFilterRequest struct {
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 	Page          uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
 	SizeOfPage    uint64                 `protobuf:"varint,3,opt,name=sizeOfPage,proto3" json:"sizeOfPage,omitempty"`
+	CommunityUuid string                 `protobuf:"bytes,4,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4305,6 +4306,13 @@ func (x *DGetAllWithFilterRequest) GetSizeOfPage() uint64 {
 		return x.SizeOfPage
 	}
 	return 0
+}
+
+func (x *DGetAllWithFilterRequest) GetCommunityUuid() string {
+	if x != nil {
+		return x.CommunityUuid
+	}
+	return ""
 }
 
 type DCreateRequest struct {
@@ -6031,13 +6039,14 @@ const file_homie_proto_rawDesc = "" +
 	"sizeOfPage\"\\\n" +
 	"\x11dGetByUUIDRequest\x121\n" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x0ediscussionUuid\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token\"m\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\"\x9e\x01\n" +
 	"\x18dGetAllWithFilterRequest\x12\x1d\n" +
 	"\x05title\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x18<R\x05title\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x04R\x04page\x12\x1e\n" +
 	"\n" +
 	"sizeOfPage\x18\x03 \x01(\x04R\n" +
-	"sizeOfPage\"~\n" +
+	"sizeOfPage\x12/\n" +
+	"\x0ecommunity_uuid\x18\x04 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\rcommunityUuid\"~\n" +
 	"\x0edCreateRequest\x12/\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\rcommunityUuid\x12\x1d\n" +
 	"\x05title\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x18<R\x05title\x12\x1c\n" +
