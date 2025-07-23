@@ -11006,6 +11006,8 @@ func (m *DVoteCommentRequest) validate(all bool) error {
 
 	// no validation rules for CommentId
 
+	// no validation rules for Vote
+
 	if len(errors) > 0 {
 		return DVoteCommentRequestMultiError(errors)
 	}

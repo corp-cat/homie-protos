@@ -4699,6 +4699,7 @@ type DVoteCommentRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	DiscussionUuid string                 `protobuf:"bytes,1,opt,name=discussion_uuid,json=discussionUuid,proto3" json:"discussion_uuid,omitempty"`
 	CommentId      int64                  `protobuf:"varint,2,opt,name=comment_id,json=commentId,proto3" json:"comment_id,omitempty"`
+	Vote           bool                   `protobuf:"varint,3,opt,name=vote,proto3" json:"vote,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -4745,6 +4746,13 @@ func (x *DVoteCommentRequest) GetCommentId() int64 {
 		return x.CommentId
 	}
 	return 0
+}
+
+func (x *DVoteCommentRequest) GetVote() bool {
+	if x != nil {
+		return x.Vote
+	}
+	return false
 }
 
 // Courses
@@ -6089,11 +6097,12 @@ const file_homie_proto_rawDesc = "" +
 	"\x15dUpdateCommentRequest\x12\x1d\n" +
 	"\n" +
 	"comment_id\x18\x01 \x01(\x03R\tcommentId\x12\x1c\n" +
-	"\x04body\x18\x02 \x01(\tB\b\xfaB\x05r\x03\x18\xf4\x03R\x04body\"g\n" +
+	"\x04body\x18\x02 \x01(\tB\b\xfaB\x05r\x03\x18\xf4\x03R\x04body\"{\n" +
 	"\x13dVoteCommentRequest\x121\n" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x0ediscussionUuid\x12\x1d\n" +
 	"\n" +
-	"comment_id\x18\x02 \x01(\x03R\tcommentId\"U\n" +
+	"comment_id\x18\x02 \x01(\x03R\tcommentId\x12\x12\n" +
+	"\x04vote\x18\x03 \x01(\bR\x04vote\"U\n" +
 	"\x0ecGetAllRequest\x12/\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\rcommunityUuid\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x04R\x04page\"T\n" +

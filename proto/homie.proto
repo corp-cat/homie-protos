@@ -551,6 +551,7 @@ message dUpdateCommentRequest {
 message dVoteCommentRequest {
     string discussion_uuid = 1 [(validate.rules).string.uuid = true];
     int64 comment_id = 2;
+    bool vote = 3;
 }
 
 // Courses
