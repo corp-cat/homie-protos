@@ -4483,6 +4483,7 @@ type DGetAllCommentsRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	DiscussionUuid string                 `protobuf:"bytes,1,opt,name=discussion_uuid,json=discussionUuid,proto3" json:"discussion_uuid,omitempty"`
 	Page           uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	SizeOfPage     uint64                 `protobuf:"varint,3,opt,name=sizeOfPage,proto3" json:"sizeOfPage,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -4527,6 +4528,13 @@ func (x *DGetAllCommentsRequest) GetDiscussionUuid() string {
 func (x *DGetAllCommentsRequest) GetPage() uint64 {
 	if x != nil {
 		return x.Page
+	}
+	return 0
+}
+
+func (x *DGetAllCommentsRequest) GetSizeOfPage() uint64 {
+	if x != nil {
+		return x.SizeOfPage
 	}
 	return 0
 }
@@ -6056,10 +6064,13 @@ const file_homie_proto_rawDesc = "" +
 	"\x0edUpdateRequest\x121\n" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x0ediscussionUuid\x12\x1d\n" +
 	"\x05title\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x18<R\x05title\x12\x1c\n" +
-	"\x04body\x18\x03 \x01(\tB\b\xfaB\x05r\x03\x18\xf4\x03R\x04body\"_\n" +
+	"\x04body\x18\x03 \x01(\tB\b\xfaB\x05r\x03\x18\xf4\x03R\x04body\"\x7f\n" +
 	"\x16dGetAllCommentsRequest\x121\n" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x0ediscussionUuid\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x04R\x04page\"h\n" +
+	"\x04page\x18\x02 \x01(\x04R\x04page\x12\x1e\n" +
+	"\n" +
+	"sizeOfPage\x18\x03 \x01(\x04R\n" +
+	"sizeOfPage\"h\n" +
 	"\x15dCreateCommentRequest\x121\n" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x0ediscussionUuid\x12\x1c\n" +
 	"\x04body\x18\x02 \x01(\tB\b\xfaB\x05r\x03\x18\xf4\x03R\x04body\"6\n" +

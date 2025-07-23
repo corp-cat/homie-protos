@@ -530,6 +530,7 @@ message dUpdateRequest {
 message dGetAllCommentsRequest {
     string discussion_uuid = 1 [(validate.rules).string.uuid = true];
     uint64 page = 2;
+    uint64 sizeOfPage = 3;
 }
 
 message dCreateCommentRequest {

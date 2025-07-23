@@ -10526,6 +10526,8 @@ func (m *DGetAllCommentsRequest) validate(all bool) error {
 
 	// no validation rules for Page
 
+	// no validation rules for SizeOfPage
+
 	if len(errors) > 0 {
 		return DGetAllCommentsRequestMultiError(errors)
 	}
