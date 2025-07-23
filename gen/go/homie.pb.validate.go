@@ -3226,6 +3226,8 @@ func (m *DiscussionComment) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for Id
+
 	// no validation rules for DiscussionUuid
 
 	// no validation rules for Body

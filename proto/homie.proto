@@ -210,12 +210,13 @@ message pCreateResponse {
 }
 
 message DiscussionComment {
-    string discussion_uuid = 1;
-    string body = 2;
-    Votes votes = 3;
-    int64 created_at = 4;
-    int64 updated_at = 5;
-    string author_tag = 6;
+    int64 id = 1;
+    string discussion_uuid = 2;
+    string body = 3;
+    Votes votes = 4;
+    int64 created_at = 5;
+    int64 updated_at = 6;
+    string author_tag = 7;
 }
 
 message Discussion {

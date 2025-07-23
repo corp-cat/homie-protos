@@ -1390,12 +1390,13 @@ func (x *PCreateResponse) GetUuid() string {
 
 type DiscussionComment struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	DiscussionUuid string                 `protobuf:"bytes,1,opt,name=discussion_uuid,json=discussionUuid,proto3" json:"discussion_uuid,omitempty"`
-	Body           string                 `protobuf:"bytes,2,opt,name=body,proto3" json:"body,omitempty"`
-	Votes          *Votes                 `protobuf:"bytes,3,opt,name=votes,proto3" json:"votes,omitempty"`
-	CreatedAt      int64                  `protobuf:"varint,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt      int64                  `protobuf:"varint,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	AuthorTag      string                 `protobuf:"bytes,6,opt,name=author_tag,json=authorTag,proto3" json:"author_tag,omitempty"`
+	Id             int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	DiscussionUuid string                 `protobuf:"bytes,2,opt,name=discussion_uuid,json=discussionUuid,proto3" json:"discussion_uuid,omitempty"`
+	Body           string                 `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
+	Votes          *Votes                 `protobuf:"bytes,4,opt,name=votes,proto3" json:"votes,omitempty"`
+	CreatedAt      int64                  `protobuf:"varint,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt      int64                  `protobuf:"varint,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	AuthorTag      string                 `protobuf:"bytes,7,opt,name=author_tag,json=authorTag,proto3" json:"author_tag,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -1428,6 +1429,13 @@ func (x *DiscussionComment) ProtoReflect() protoreflect.Message {
 // Deprecated: Use DiscussionComment.ProtoReflect.Descriptor instead.
 func (*DiscussionComment) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *DiscussionComment) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
 }
 
 func (x *DiscussionComment) GetDiscussionUuid() string {
@@ -5842,17 +5850,18 @@ const file_homie_proto_rawDesc = "" +
 	"\x12pGetByUUIDResponse\x12\x1f\n" +
 	"\x04post\x18\x01 \x01(\v2\v.homie.PostR\x04post\"%\n" +
 	"\x0fpCreateResponse\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\xd1\x01\n" +
-	"\x11DiscussionComment\x12'\n" +
-	"\x0fdiscussion_uuid\x18\x01 \x01(\tR\x0ediscussionUuid\x12\x12\n" +
-	"\x04body\x18\x02 \x01(\tR\x04body\x12\"\n" +
-	"\x05votes\x18\x03 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\xe1\x01\n" +
+	"\x11DiscussionComment\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12'\n" +
+	"\x0fdiscussion_uuid\x18\x02 \x01(\tR\x0ediscussionUuid\x12\x12\n" +
+	"\x04body\x18\x03 \x01(\tR\x04body\x12\"\n" +
+	"\x05votes\x18\x04 \x01(\v2\f.homie.VotesR\x05votes\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x04 \x01(\x03R\tcreatedAt\x12\x1d\n" +
+	"created_at\x18\x05 \x01(\x03R\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\x05 \x01(\x03R\tupdatedAt\x12\x1d\n" +
+	"updated_at\x18\x06 \x01(\x03R\tupdatedAt\x12\x1d\n" +
 	"\n" +
-	"author_tag\x18\x06 \x01(\tR\tauthorTag\"\xdd\x01\n" +
+	"author_tag\x18\a \x01(\tR\tauthorTag\"\xdd\x01\n" +
 	"\n" +
 	"Discussion\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x14\n" +
