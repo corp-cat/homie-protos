@@ -2150,22 +2150,22 @@ var _ interface {
 	ErrorName() string
 } = CmGetByUUIDResponseValidationError{}
 
-// Validate checks the field values on CmGetWithFilterResponse with the rules
-// defined in the proto definition for this message. If any rules are
+// Validate checks the field values on CmGetAllWithFilterResponse with the
+// rules defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
-func (m *CmGetWithFilterResponse) Validate() error {
+func (m *CmGetAllWithFilterResponse) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on CmGetWithFilterResponse with the
+// ValidateAll checks the field values on CmGetAllWithFilterResponse with the
 // rules defined in the proto definition for this message. If any rules are
 // violated, the result is a list of violation errors wrapped in
-// CmGetWithFilterResponseMultiError, or nil if none found.
-func (m *CmGetWithFilterResponse) ValidateAll() error {
+// CmGetAllWithFilterResponseMultiError, or nil if none found.
+func (m *CmGetAllWithFilterResponse) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *CmGetWithFilterResponse) validate(all bool) error {
+func (m *CmGetAllWithFilterResponse) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -2179,7 +2179,7 @@ func (m *CmGetWithFilterResponse) validate(all bool) error {
 			switch v := interface{}(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, CmGetWithFilterResponseValidationError{
+					errors = append(errors, CmGetAllWithFilterResponseValidationError{
 						field:  fmt.Sprintf("Communities[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -2187,7 +2187,7 @@ func (m *CmGetWithFilterResponse) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, CmGetWithFilterResponseValidationError{
+					errors = append(errors, CmGetAllWithFilterResponseValidationError{
 						field:  fmt.Sprintf("Communities[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -2196,7 +2196,7 @@ func (m *CmGetWithFilterResponse) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return CmGetWithFilterResponseValidationError{
+				return CmGetAllWithFilterResponseValidationError{
 					field:  fmt.Sprintf("Communities[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -2209,19 +2209,19 @@ func (m *CmGetWithFilterResponse) validate(all bool) error {
 	// no validation rules for CountOfPage
 
 	if len(errors) > 0 {
-		return CmGetWithFilterResponseMultiError(errors)
+		return CmGetAllWithFilterResponseMultiError(errors)
 	}
 
 	return nil
 }
 
-// CmGetWithFilterResponseMultiError is an error wrapping multiple validation
-// errors returned by CmGetWithFilterResponse.ValidateAll() if the designated
-// constraints aren't met.
-type CmGetWithFilterResponseMultiError []error
+// CmGetAllWithFilterResponseMultiError is an error wrapping multiple
+// validation errors returned by CmGetAllWithFilterResponse.ValidateAll() if
+// the designated constraints aren't met.
+type CmGetAllWithFilterResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m CmGetWithFilterResponseMultiError) Error() string {
+func (m CmGetAllWithFilterResponseMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -2230,11 +2230,11 @@ func (m CmGetWithFilterResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m CmGetWithFilterResponseMultiError) AllErrors() []error { return m }
+func (m CmGetAllWithFilterResponseMultiError) AllErrors() []error { return m }
 
-// CmGetWithFilterResponseValidationError is the validation error returned by
-// CmGetWithFilterResponse.Validate if the designated constraints aren't met.
-type CmGetWithFilterResponseValidationError struct {
+// CmGetAllWithFilterResponseValidationError is the validation error returned
+// by CmGetAllWithFilterResponse.Validate if the designated constraints aren't met.
+type CmGetAllWithFilterResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -2242,24 +2242,24 @@ type CmGetWithFilterResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e CmGetWithFilterResponseValidationError) Field() string { return e.field }
+func (e CmGetAllWithFilterResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e CmGetWithFilterResponseValidationError) Reason() string { return e.reason }
+func (e CmGetAllWithFilterResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e CmGetWithFilterResponseValidationError) Cause() error { return e.cause }
+func (e CmGetAllWithFilterResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e CmGetWithFilterResponseValidationError) Key() bool { return e.key }
+func (e CmGetAllWithFilterResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e CmGetWithFilterResponseValidationError) ErrorName() string {
-	return "CmGetWithFilterResponseValidationError"
+func (e CmGetAllWithFilterResponseValidationError) ErrorName() string {
+	return "CmGetAllWithFilterResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e CmGetWithFilterResponseValidationError) Error() string {
+func (e CmGetAllWithFilterResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2271,14 +2271,14 @@ func (e CmGetWithFilterResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sCmGetWithFilterResponse.%s: %s%s",
+		"invalid %sCmGetAllWithFilterResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = CmGetWithFilterResponseValidationError{}
+var _ error = CmGetAllWithFilterResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -2286,7 +2286,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = CmGetWithFilterResponseValidationError{}
+} = CmGetAllWithFilterResponseValidationError{}
 
 // Validate checks the field values on CmCreateResponse with the rules defined
 // in the proto definition for this message. If any rules are violated, the
@@ -7476,7 +7476,7 @@ func (m *Sort) validate(all bool) error {
 
 	// no validation rules for Field
 
-	// no validation rules for IsDiscarding
+	// no validation rules for IsDescending
 
 	if len(errors) > 0 {
 		return SortMultiError(errors)
@@ -7555,22 +7555,22 @@ var _ interface {
 	ErrorName() string
 } = SortValidationError{}
 
-// Validate checks the field values on CmGetWithFilterRequest with the rules
+// Validate checks the field values on CmGetAllWithFilterRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
-func (m *CmGetWithFilterRequest) Validate() error {
+func (m *CmGetAllWithFilterRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on CmGetWithFilterRequest with the rules
-// defined in the proto definition for this message. If any rules are
+// ValidateAll checks the field values on CmGetAllWithFilterRequest with the
+// rules defined in the proto definition for this message. If any rules are
 // violated, the result is a list of violation errors wrapped in
-// CmGetWithFilterRequestMultiError, or nil if none found.
-func (m *CmGetWithFilterRequest) ValidateAll() error {
+// CmGetAllWithFilterRequestMultiError, or nil if none found.
+func (m *CmGetAllWithFilterRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *CmGetWithFilterRequest) validate(all bool) error {
+func (m *CmGetAllWithFilterRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -7591,7 +7591,7 @@ func (m *CmGetWithFilterRequest) validate(all bool) error {
 		switch v := interface{}(m.GetSort()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, CmGetWithFilterRequestValidationError{
+				errors = append(errors, CmGetAllWithFilterRequestValidationError{
 					field:  "Sort",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -7599,7 +7599,7 @@ func (m *CmGetWithFilterRequest) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, CmGetWithFilterRequestValidationError{
+				errors = append(errors, CmGetAllWithFilterRequestValidationError{
 					field:  "Sort",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -7608,7 +7608,7 @@ func (m *CmGetWithFilterRequest) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetSort()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return CmGetWithFilterRequestValidationError{
+			return CmGetAllWithFilterRequestValidationError{
 				field:  "Sort",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -7617,19 +7617,19 @@ func (m *CmGetWithFilterRequest) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return CmGetWithFilterRequestMultiError(errors)
+		return CmGetAllWithFilterRequestMultiError(errors)
 	}
 
 	return nil
 }
 
-// CmGetWithFilterRequestMultiError is an error wrapping multiple validation
-// errors returned by CmGetWithFilterRequest.ValidateAll() if the designated
-// constraints aren't met.
-type CmGetWithFilterRequestMultiError []error
+// CmGetAllWithFilterRequestMultiError is an error wrapping multiple validation
+// errors returned by CmGetAllWithFilterRequest.ValidateAll() if the
+// designated constraints aren't met.
+type CmGetAllWithFilterRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m CmGetWithFilterRequestMultiError) Error() string {
+func (m CmGetAllWithFilterRequestMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -7638,11 +7638,11 @@ func (m CmGetWithFilterRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m CmGetWithFilterRequestMultiError) AllErrors() []error { return m }
+func (m CmGetAllWithFilterRequestMultiError) AllErrors() []error { return m }
 
-// CmGetWithFilterRequestValidationError is the validation error returned by
-// CmGetWithFilterRequest.Validate if the designated constraints aren't met.
-type CmGetWithFilterRequestValidationError struct {
+// CmGetAllWithFilterRequestValidationError is the validation error returned by
+// CmGetAllWithFilterRequest.Validate if the designated constraints aren't met.
+type CmGetAllWithFilterRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -7650,24 +7650,24 @@ type CmGetWithFilterRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e CmGetWithFilterRequestValidationError) Field() string { return e.field }
+func (e CmGetAllWithFilterRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e CmGetWithFilterRequestValidationError) Reason() string { return e.reason }
+func (e CmGetAllWithFilterRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e CmGetWithFilterRequestValidationError) Cause() error { return e.cause }
+func (e CmGetAllWithFilterRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e CmGetWithFilterRequestValidationError) Key() bool { return e.key }
+func (e CmGetAllWithFilterRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e CmGetWithFilterRequestValidationError) ErrorName() string {
-	return "CmGetWithFilterRequestValidationError"
+func (e CmGetAllWithFilterRequestValidationError) ErrorName() string {
+	return "CmGetAllWithFilterRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e CmGetWithFilterRequestValidationError) Error() string {
+func (e CmGetAllWithFilterRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -7679,14 +7679,14 @@ func (e CmGetWithFilterRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sCmGetWithFilterRequest.%s: %s%s",
+		"invalid %sCmGetAllWithFilterRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = CmGetWithFilterRequestValidationError{}
+var _ error = CmGetAllWithFilterRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -7694,7 +7694,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = CmGetWithFilterRequestValidationError{}
+} = CmGetAllWithFilterRequestValidationError{}
 
 // Validate checks the field values on CmCreateRequest with the rules defined
 // in the proto definition for this message. If any rules are violated, the

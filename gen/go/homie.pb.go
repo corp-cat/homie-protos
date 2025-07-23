@@ -932,7 +932,7 @@ func (x *CmGetByUUIDResponse) GetCommunity() *Community {
 	return nil
 }
 
-type CmGetWithFilterResponse struct {
+type CmGetAllWithFilterResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Communities   []*Community           `protobuf:"bytes,1,rep,name=communities,proto3" json:"communities,omitempty"`
 	CountOfPage   int64                  `protobuf:"varint,2,opt,name=countOfPage,proto3" json:"countOfPage,omitempty"`
@@ -940,20 +940,20 @@ type CmGetWithFilterResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CmGetWithFilterResponse) Reset() {
-	*x = CmGetWithFilterResponse{}
+func (x *CmGetAllWithFilterResponse) Reset() {
+	*x = CmGetAllWithFilterResponse{}
 	mi := &file_homie_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CmGetWithFilterResponse) String() string {
+func (x *CmGetAllWithFilterResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CmGetWithFilterResponse) ProtoMessage() {}
+func (*CmGetAllWithFilterResponse) ProtoMessage() {}
 
-func (x *CmGetWithFilterResponse) ProtoReflect() protoreflect.Message {
+func (x *CmGetAllWithFilterResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_homie_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -965,19 +965,19 @@ func (x *CmGetWithFilterResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CmGetWithFilterResponse.ProtoReflect.Descriptor instead.
-func (*CmGetWithFilterResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use CmGetAllWithFilterResponse.ProtoReflect.Descriptor instead.
+func (*CmGetAllWithFilterResponse) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{17}
 }
 
-func (x *CmGetWithFilterResponse) GetCommunities() []*Community {
+func (x *CmGetAllWithFilterResponse) GetCommunities() []*Community {
 	if x != nil {
 		return x.Communities
 	}
 	return nil
 }
 
-func (x *CmGetWithFilterResponse) GetCountOfPage() int64 {
+func (x *CmGetAllWithFilterResponse) GetCountOfPage() int64 {
 	if x != nil {
 		return x.CountOfPage
 	}
@@ -3241,7 +3241,7 @@ func (x *CmGetByUUIDRequest) GetCommunityUuid() string {
 type Sort struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Field         string                 `protobuf:"bytes,1,opt,name=field,proto3" json:"field,omitempty"`
-	IsDiscarding  bool                   `protobuf:"varint,2,opt,name=is_discarding,json=isDiscarding,proto3" json:"is_discarding,omitempty"`
+	IsDescending  bool                   `protobuf:"varint,2,opt,name=is_descending,json=isDescending,proto3" json:"is_descending,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3283,14 +3283,14 @@ func (x *Sort) GetField() string {
 	return ""
 }
 
-func (x *Sort) GetIsDiscarding() bool {
+func (x *Sort) GetIsDescending() bool {
 	if x != nil {
-		return x.IsDiscarding
+		return x.IsDescending
 	}
 	return false
 }
 
-type CmGetWithFilterRequest struct {
+type CmGetAllWithFilterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 	LowPrice      float32                `protobuf:"fixed32,2,opt,name=low_price,json=lowPrice,proto3" json:"low_price,omitempty"`
@@ -3302,20 +3302,20 @@ type CmGetWithFilterRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CmGetWithFilterRequest) Reset() {
-	*x = CmGetWithFilterRequest{}
+func (x *CmGetAllWithFilterRequest) Reset() {
+	*x = CmGetAllWithFilterRequest{}
 	mi := &file_homie_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CmGetWithFilterRequest) String() string {
+func (x *CmGetAllWithFilterRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CmGetWithFilterRequest) ProtoMessage() {}
+func (*CmGetAllWithFilterRequest) ProtoMessage() {}
 
-func (x *CmGetWithFilterRequest) ProtoReflect() protoreflect.Message {
+func (x *CmGetAllWithFilterRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_homie_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3327,47 +3327,47 @@ func (x *CmGetWithFilterRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CmGetWithFilterRequest.ProtoReflect.Descriptor instead.
-func (*CmGetWithFilterRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CmGetAllWithFilterRequest.ProtoReflect.Descriptor instead.
+func (*CmGetAllWithFilterRequest) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{58}
 }
 
-func (x *CmGetWithFilterRequest) GetTitle() string {
+func (x *CmGetAllWithFilterRequest) GetTitle() string {
 	if x != nil {
 		return x.Title
 	}
 	return ""
 }
 
-func (x *CmGetWithFilterRequest) GetLowPrice() float32 {
+func (x *CmGetAllWithFilterRequest) GetLowPrice() float32 {
 	if x != nil {
 		return x.LowPrice
 	}
 	return 0
 }
 
-func (x *CmGetWithFilterRequest) GetHighPrice() float32 {
+func (x *CmGetAllWithFilterRequest) GetHighPrice() float32 {
 	if x != nil {
 		return x.HighPrice
 	}
 	return 0
 }
 
-func (x *CmGetWithFilterRequest) GetPage() uint64 {
+func (x *CmGetAllWithFilterRequest) GetPage() uint64 {
 	if x != nil {
 		return x.Page
 	}
 	return 0
 }
 
-func (x *CmGetWithFilterRequest) GetSizeOfPage() uint64 {
+func (x *CmGetAllWithFilterRequest) GetSizeOfPage() uint64 {
 	if x != nil {
 		return x.SizeOfPage
 	}
 	return 0
 }
 
-func (x *CmGetWithFilterRequest) GetSort() *Sort {
+func (x *CmGetAllWithFilterRequest) GetSort() *Sort {
 	if x != nil {
 		return x.Sort
 	}
@@ -6054,8 +6054,8 @@ const file_homie_proto_rawDesc = "" +
 	"\vcommunities\x18\x01 \x03(\v2\x10.homie.CommunityR\vcommunities\x12 \n" +
 	"\vcountOfPage\x18\x02 \x01(\x03R\vcountOfPage\"E\n" +
 	"\x13cmGetByUUIDResponse\x12.\n" +
-	"\tcommunity\x18\x01 \x01(\v2\x10.homie.CommunityR\tcommunity\"o\n" +
-	"\x17cmGetWithFilterResponse\x122\n" +
+	"\tcommunity\x18\x01 \x01(\v2\x10.homie.CommunityR\tcommunity\"r\n" +
+	"\x1acmGetAllWithFilterResponse\x122\n" +
 	"\vcommunities\x18\x01 \x03(\v2\x10.homie.CommunityR\vcommunities\x12 \n" +
 	"\vcountOfPage\x18\x02 \x01(\x03R\vcountOfPage\"d\n" +
 	"\x10cmCreateResponse\x12\x12\n" +
@@ -6233,8 +6233,8 @@ const file_homie_proto_rawDesc = "" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\rcommunityUuid\"A\n" +
 	"\x04Sort\x12\x14\n" +
 	"\x05field\x18\x01 \x01(\tR\x05field\x12#\n" +
-	"\ris_discarding\x18\x02 \x01(\bR\fisDiscarding\"\xc1\x01\n" +
-	"\x16cmGetWithFilterRequest\x12\x14\n" +
+	"\ris_descending\x18\x02 \x01(\bR\fisDescending\"\xc4\x01\n" +
+	"\x19cmGetAllWithFilterRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x1b\n" +
 	"\tlow_price\x18\x02 \x01(\x02R\blowPrice\x12\x1d\n" +
 	"\n" +
@@ -6432,7 +6432,7 @@ const file_homie_proto_rawDesc = "" +
 	"\x05token\x18\x05 \x01(\tR\x05token\"C\n" +
 	"\x0erDeleteRequest\x12\x1b\n" +
 	"\treport_id\x18\x01 \x01(\tR\breportId\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token2\xa8 \n" +
+	"\x05token\x18\x02 \x01(\tR\x05token2\xb1 \n" +
 	"\x05Homie\x126\n" +
 	"\tAuthLogin\x12\x13.homie.LoginRequest\x1a\x14.homie.LoginResponse\x12?\n" +
 	"\fAuthRegister\x12\x16.homie.RegisterRequest\x1a\x17.homie.RegisterResponse\x12K\n" +
@@ -6447,8 +6447,8 @@ const file_homie_proto_rawDesc = "" +
 	"\x16UserLeaveFromCommunity\x12!.homie.uLeaveFromCommunityRequest\x1a\x16.google.protobuf.Empty\x12C\n" +
 	"\x0eUserChangeRole\x12\x19.homie.uChangeRoleRequest\x1a\x16.google.protobuf.Empty\x12B\n" +
 	"\x0fCommunityGetAll\x12\x16.homie.cmGetAllRequest\x1a\x17.homie.cmGetAllResponse\x12K\n" +
-	"\x12CommunityGetByUUID\x12\x19.homie.cmGetByUUIDRequest\x1a\x1a.homie.cmGetByUUIDResponse\x12W\n" +
-	"\x16CommunityGetWithFilter\x12\x1d.homie.cmGetWithFilterRequest\x1a\x1e.homie.cmGetWithFilterResponse\x12B\n" +
+	"\x12CommunityGetByUUID\x12\x19.homie.cmGetByUUIDRequest\x1a\x1a.homie.cmGetByUUIDResponse\x12`\n" +
+	"\x19CommunityGetAllWithFilter\x12 .homie.cmGetAllWithFilterRequest\x1a!.homie.cmGetAllWithFilterResponse\x12B\n" +
 	"\x0fCommunityCreate\x12\x16.homie.cmCreateRequest\x1a\x17.homie.cmCreateResponse\x12A\n" +
 	"\x0fCommunityDelete\x12\x16.homie.cmDeleteRequest\x1a\x16.google.protobuf.Empty\x12A\n" +
 	"\x0fCommunityUpdate\x12\x16.homie.cmUpdateRequest\x1a\x16.google.protobuf.Empty\x12<\n" +
@@ -6524,7 +6524,7 @@ var file_homie_proto_goTypes = []any{
 	(*Community)(nil),                  // 14: homie.Community
 	(*CmGetAllResponse)(nil),           // 15: homie.cmGetAllResponse
 	(*CmGetByUUIDResponse)(nil),        // 16: homie.cmGetByUUIDResponse
-	(*CmGetWithFilterResponse)(nil),    // 17: homie.cmGetWithFilterResponse
+	(*CmGetAllWithFilterResponse)(nil), // 17: homie.cmGetAllWithFilterResponse
 	(*CmCreateResponse)(nil),           // 18: homie.cmCreateResponse
 	(*PostComment)(nil),                // 19: homie.PostComment
 	(*Post)(nil),                       // 20: homie.Post
@@ -6565,7 +6565,7 @@ var file_homie_proto_goTypes = []any{
 	(*CmGetAllRequest)(nil),            // 55: homie.cmGetAllRequest
 	(*CmGetByUUIDRequest)(nil),         // 56: homie.cmGetByUUIDRequest
 	(*Sort)(nil),                       // 57: homie.Sort
-	(*CmGetWithFilterRequest)(nil),     // 58: homie.cmGetWithFilterRequest
+	(*CmGetAllWithFilterRequest)(nil),  // 58: homie.cmGetAllWithFilterRequest
 	(*CmCreateRequest)(nil),            // 59: homie.cmCreateRequest
 	(*CmDeleteRequest)(nil),            // 60: homie.cmDeleteRequest
 	(*CmUpdateRequest)(nil),            // 61: homie.cmUpdateRequest
@@ -6625,7 +6625,7 @@ var file_homie_proto_depIdxs = []int32{
 	6,   // 9: homie.Community.votes:type_name -> homie.Votes
 	14,  // 10: homie.cmGetAllResponse.communities:type_name -> homie.Community
 	14,  // 11: homie.cmGetByUUIDResponse.community:type_name -> homie.Community
-	14,  // 12: homie.cmGetWithFilterResponse.communities:type_name -> homie.Community
+	14,  // 12: homie.cmGetAllWithFilterResponse.communities:type_name -> homie.Community
 	6,   // 13: homie.PostComment.votes:type_name -> homie.Votes
 	6,   // 14: homie.Post.votes:type_name -> homie.Votes
 	19,  // 15: homie.Post.comments:type_name -> homie.PostComment
@@ -6653,7 +6653,7 @@ var file_homie_proto_depIdxs = []int32{
 	34,  // 37: homie.ReporterObject.course:type_name -> homie.Course
 	41,  // 38: homie.Report.reporter_object:type_name -> homie.ReporterObject
 	42,  // 39: homie.rGetAllResponse.reports:type_name -> homie.Report
-	57,  // 40: homie.cmGetWithFilterRequest.sort:type_name -> homie.Sort
+	57,  // 40: homie.cmGetAllWithFilterRequest.sort:type_name -> homie.Sort
 	66,  // 41: homie.pCreateRequest.files:type_name -> homie.PostData
 	66,  // 42: homie.pUpdateRequest.files:type_name -> homie.PostData
 	96,  // 43: homie.cCreateLessonsRequest.body:type_name -> homie.LessonData
@@ -6674,7 +6674,7 @@ var file_homie_proto_depIdxs = []int32{
 	54,  // 58: homie.Homie.UserChangeRole:input_type -> homie.uChangeRoleRequest
 	55,  // 59: homie.Homie.CommunityGetAll:input_type -> homie.cmGetAllRequest
 	56,  // 60: homie.Homie.CommunityGetByUUID:input_type -> homie.cmGetByUUIDRequest
-	58,  // 61: homie.Homie.CommunityGetWithFilter:input_type -> homie.cmGetWithFilterRequest
+	58,  // 61: homie.Homie.CommunityGetAllWithFilter:input_type -> homie.cmGetAllWithFilterRequest
 	59,  // 62: homie.Homie.CommunityCreate:input_type -> homie.cmCreateRequest
 	60,  // 63: homie.Homie.CommunityDelete:input_type -> homie.cmDeleteRequest
 	61,  // 64: homie.Homie.CommunityUpdate:input_type -> homie.cmUpdateRequest
@@ -6731,7 +6731,7 @@ var file_homie_proto_depIdxs = []int32{
 	103, // 115: homie.Homie.UserChangeRole:output_type -> google.protobuf.Empty
 	15,  // 116: homie.Homie.CommunityGetAll:output_type -> homie.cmGetAllResponse
 	16,  // 117: homie.Homie.CommunityGetByUUID:output_type -> homie.cmGetByUUIDResponse
-	17,  // 118: homie.Homie.CommunityGetWithFilter:output_type -> homie.cmGetWithFilterResponse
+	17,  // 118: homie.Homie.CommunityGetAllWithFilter:output_type -> homie.cmGetAllWithFilterResponse
 	18,  // 119: homie.Homie.CommunityCreate:output_type -> homie.cmCreateResponse
 	103, // 120: homie.Homie.CommunityDelete:output_type -> google.protobuf.Empty
 	103, // 121: homie.Homie.CommunityUpdate:output_type -> google.protobuf.Empty

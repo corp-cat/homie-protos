@@ -24,7 +24,7 @@ service Homie {
 
     rpc CommunityGetAll(cmGetAllRequest) returns (cmGetAllResponse);
     rpc CommunityGetByUUID(cmGetByUUIDRequest) returns (cmGetByUUIDResponse);
-    rpc CommunityGetWithFilter(cmGetWithFilterRequest) returns (cmGetWithFilterResponse);
+    rpc CommunityGetAllWithFilter(cmGetAllWithFilterRequest) returns (cmGetAllWithFilterResponse);
     rpc CommunityCreate(cmCreateRequest) returns (cmCreateResponse);
     rpc CommunityDelete(cmDeleteRequest) returns (google.protobuf.Empty);
     rpc CommunityUpdate(cmUpdateRequest) returns (google.protobuf.Empty);
@@ -162,7 +162,7 @@ message cmGetByUUIDResponse {
     Community community = 1;
 }
 
-message cmGetWithFilterResponse {
+message cmGetAllWithFilterResponse {
     repeated Community communities = 1;
     int64 countOfPage = 2;
 }
@@ -404,10 +404,10 @@ message cmGetByUUIDRequest {
 
 message Sort {
     string field = 1;
-    bool is_discarding = 2;
+    bool is_descending = 2;
 }
 
-message cmGetWithFilterRequest {
+message cmGetAllWithFilterRequest {
     string title = 1;
     float low_price = 2;
     float high_price = 3;
