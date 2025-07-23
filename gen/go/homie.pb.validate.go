@@ -6381,110 +6381,6 @@ var _ interface {
 	ErrorName() string
 } = RefreshTokenRequestValidationError{}
 
-// Validate checks the field values on UGetByTokenRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *UGetByTokenRequest) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on UGetByTokenRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// UGetByTokenRequestMultiError, or nil if none found.
-func (m *UGetByTokenRequest) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *UGetByTokenRequest) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	// no validation rules for Token
-
-	if len(errors) > 0 {
-		return UGetByTokenRequestMultiError(errors)
-	}
-
-	return nil
-}
-
-// UGetByTokenRequestMultiError is an error wrapping multiple validation errors
-// returned by UGetByTokenRequest.ValidateAll() if the designated constraints
-// aren't met.
-type UGetByTokenRequestMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m UGetByTokenRequestMultiError) Error() string {
-	msgs := make([]string, 0, len(m))
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m UGetByTokenRequestMultiError) AllErrors() []error { return m }
-
-// UGetByTokenRequestValidationError is the validation error returned by
-// UGetByTokenRequest.Validate if the designated constraints aren't met.
-type UGetByTokenRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e UGetByTokenRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e UGetByTokenRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e UGetByTokenRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e UGetByTokenRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e UGetByTokenRequestValidationError) ErrorName() string {
-	return "UGetByTokenRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e UGetByTokenRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sUGetByTokenRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = UGetByTokenRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = UGetByTokenRequestValidationError{}
-
 // Validate checks the field values on UGetByTagRequest with the rules defined
 // in the proto definition for this message. If any rules are violated, the
 // first error encountered is returned, or nil if there are no violations.
@@ -6517,8 +6413,6 @@ func (m *UGetByTagRequest) validate(all bool) error {
 		}
 		errors = append(errors, err)
 	}
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return UGetByTagRequestMultiError(errors)
@@ -6646,8 +6540,6 @@ func (m *UUpdateProfileRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	// no validation rules for Token
-
 	if len(errors) > 0 {
 		return UUpdateProfileRequestMultiError(errors)
 	}
@@ -6730,110 +6622,6 @@ var _ interface {
 
 var _UUpdateProfileRequest_NewUserTag_Pattern = regexp.MustCompile("^[a-zA-Z0-9_\\-]+$")
 
-// Validate checks the field values on UDeleteProfileRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *UDeleteProfileRequest) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on UDeleteProfileRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// UDeleteProfileRequestMultiError, or nil if none found.
-func (m *UDeleteProfileRequest) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *UDeleteProfileRequest) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	// no validation rules for Token
-
-	if len(errors) > 0 {
-		return UDeleteProfileRequestMultiError(errors)
-	}
-
-	return nil
-}
-
-// UDeleteProfileRequestMultiError is an error wrapping multiple validation
-// errors returned by UDeleteProfileRequest.ValidateAll() if the designated
-// constraints aren't met.
-type UDeleteProfileRequestMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m UDeleteProfileRequestMultiError) Error() string {
-	msgs := make([]string, 0, len(m))
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m UDeleteProfileRequestMultiError) AllErrors() []error { return m }
-
-// UDeleteProfileRequestValidationError is the validation error returned by
-// UDeleteProfileRequest.Validate if the designated constraints aren't met.
-type UDeleteProfileRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e UDeleteProfileRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e UDeleteProfileRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e UDeleteProfileRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e UDeleteProfileRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e UDeleteProfileRequestValidationError) ErrorName() string {
-	return "UDeleteProfileRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e UDeleteProfileRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sUDeleteProfileRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = UDeleteProfileRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = UDeleteProfileRequestValidationError{}
-
 // Validate checks the field values on UVoteRequest with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
@@ -6868,8 +6656,6 @@ func (m *UVoteRequest) validate(all bool) error {
 	}
 
 	// no validation rules for Vote
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return UVoteRequestMultiError(errors)
@@ -6983,8 +6769,6 @@ func (m *UAddToCommunityRequest) validate(all bool) error {
 		}
 		errors = append(errors, err)
 	}
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return UAddToCommunityRequestMultiError(errors)
@@ -7108,8 +6892,6 @@ func (m *ULeaveFromCommunityRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	// no validation rules for Token
-
 	if len(errors) > 0 {
 		return ULeaveFromCommunityRequestMultiError(errors)
 	}
@@ -7232,8 +7014,6 @@ func (m *UChangeRoleRequest) validate(all bool) error {
 	}
 
 	// no validation rules for Role
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return UChangeRoleRequestMultiError(errors)
@@ -7832,8 +7612,6 @@ func (m *CmCreateRequest) validate(all bool) error {
 
 	// no validation rules for Price
 
-	// no validation rules for Token
-
 	if len(errors) > 0 {
 		return CmCreateRequestMultiError(errors)
 	}
@@ -7945,8 +7723,6 @@ func (m *CmDeleteRequest) validate(all bool) error {
 		}
 		errors = append(errors, err)
 	}
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return CmDeleteRequestMultiError(errors)
@@ -8092,8 +7868,6 @@ func (m *CmUpdateRequest) validate(all bool) error {
 
 	// no validation rules for Price
 
-	// no validation rules for Token
-
 	if len(errors) > 0 {
 		return CmUpdateRequestMultiError(errors)
 	}
@@ -8216,8 +7990,6 @@ func (m *CmVoteRequest) validate(all bool) error {
 
 	// no validation rules for Vote
 
-	// no validation rules for Token
-
 	if len(errors) > 0 {
 		return CmVoteRequestMultiError(errors)
 	}
@@ -8337,8 +8109,6 @@ func (m *CmBanRequest) validate(all bool) error {
 		}
 		errors = append(errors, err)
 	}
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return CmBanRequestMultiError(errors)
@@ -8461,7 +8231,7 @@ func (m *PGetAllRequest) validate(all bool) error {
 
 	// no validation rules for Page
 
-	// no validation rules for Token
+	// no validation rules for SizeOfPage
 
 	if len(errors) > 0 {
 		return PGetAllRequestMultiError(errors)
@@ -8582,8 +8352,6 @@ func (m *PGetByUUIDRequest) validate(all bool) error {
 		}
 		errors = append(errors, err)
 	}
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return PGetByUUIDRequestMultiError(errors)
@@ -8857,8 +8625,6 @@ func (m *PCreateRequest) validate(all bool) error {
 
 	}
 
-	// no validation rules for Token
-
 	if len(errors) > 0 {
 		return PCreateRequestMultiError(errors)
 	}
@@ -8978,8 +8744,6 @@ func (m *PDeleteRequest) validate(all bool) error {
 		}
 		errors = append(errors, err)
 	}
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return PDeleteRequestMultiError(errors)
@@ -9147,8 +8911,6 @@ func (m *PUpdateRequest) validate(all bool) error {
 	}
 
 	// no validation rules for Body
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return PUpdateRequestMultiError(errors)
@@ -9405,8 +9167,6 @@ func (m *PCreateCommentRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	// no validation rules for Token
-
 	if len(errors) > 0 {
 		return PCreateCommentRequestMultiError(errors)
 	}
@@ -9518,8 +9278,6 @@ func (m *PDeleteCommentRequest) validate(all bool) error {
 	var errors []error
 
 	// no validation rules for CommentId
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return PDeleteCommentRequestMultiError(errors)
@@ -9636,8 +9394,6 @@ func (m *PUpdateCommentRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	// no validation rules for Token
-
 	if len(errors) > 0 {
 		return PUpdateCommentRequestMultiError(errors)
 	}
@@ -9743,8 +9499,6 @@ func (m *PVoteCommentRequest) validate(all bool) error {
 	// no validation rules for CommentId
 
 	// no validation rules for Vote
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return PVoteCommentRequestMultiError(errors)
@@ -9861,8 +9615,6 @@ func (m *PVoteRequest) validate(all bool) error {
 	}
 
 	// no validation rules for Vote
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return PVoteRequestMultiError(errors)
@@ -9985,7 +9737,7 @@ func (m *DGetAllRequest) validate(all bool) error {
 
 	// no validation rules for Page
 
-	// no validation rules for Token
+	// no validation rules for SizeOfPage
 
 	if len(errors) > 0 {
 		return DGetAllRequestMultiError(errors)
@@ -10232,7 +9984,7 @@ func (m *DGetAllWithFilterRequest) validate(all bool) error {
 
 	// no validation rules for Page
 
-	// no validation rules for Token
+	// no validation rules for SizeOfPage
 
 	if len(errors) > 0 {
 		return DGetAllWithFilterRequestMultiError(errors)
@@ -10370,8 +10122,6 @@ func (m *DCreateRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	// no validation rules for Token
-
 	if len(errors) > 0 {
 		return DCreateRequestMultiError(errors)
 	}
@@ -10491,8 +10241,6 @@ func (m *DDeleteRequest) validate(all bool) error {
 		}
 		errors = append(errors, err)
 	}
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return DDeleteRequestMultiError(errors)
@@ -10635,8 +10383,6 @@ func (m *DUpdateRequest) validate(all bool) error {
 		}
 		errors = append(errors, err)
 	}
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return DUpdateRequestMultiError(errors)
@@ -10893,8 +10639,6 @@ func (m *DCreateCommentRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	// no validation rules for Token
-
 	if len(errors) > 0 {
 		return DCreateCommentRequestMultiError(errors)
 	}
@@ -11006,8 +10750,6 @@ func (m *DDeleteCommentRequest) validate(all bool) error {
 	var errors []error
 
 	// no validation rules for CommentId
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return DDeleteCommentRequestMultiError(errors)
@@ -11124,8 +10866,6 @@ func (m *DUpdateCommentRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	// no validation rules for Token
-
 	if len(errors) > 0 {
 		return DUpdateCommentRequestMultiError(errors)
 	}
@@ -11241,8 +10981,6 @@ func (m *DVoteCommentRequest) validate(all bool) error {
 	}
 
 	// no validation rules for CommentId
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return DVoteCommentRequestMultiError(errors)

@@ -10,13 +10,13 @@ option go_package = "corp-cat.homie.v1;homie";
 service Homie {
     rpc AuthLogin(LoginRequest) returns (LoginResponse);
     rpc AuthRegister(RegisterRequest) returns (RegisterResponse);
-    rpc AuthRefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse);
+    rpc AuthRefreshToken(google.protobuf.Empty) returns (RefreshTokenResponse);
 
     rpc UserGetByTag(uGetByTagRequest) returns (uGetByTagResponse);
     rpc UserUpdateProfile(uUpdateProfileRequest) returns (google.protobuf.Empty);
-    rpc UserDeleteProfile(uDeleteProfileRequest) returns (google.protobuf.Empty); 
+    rpc UserDeleteProfile(google.protobuf.Empty) returns (google.protobuf.Empty); 
     rpc UserVote(uVoteRequest) returns (uVoteResponse); 
-    rpc UserGetByToken(uGetByTokenRequest) returns (uGetByTokenResponse);
+    rpc UserGetByToken(google.protobuf.Empty) returns (uGetByTokenResponse);
     rpc UserAddToCommunity(uAddToCommunityRequest) returns (google.protobuf.Empty);
     rpc UserDeleteFromCommunity(uDeleteFromCommunity) returns (google.protobuf.Empty);
     rpc UserLeaveFromCommunity(uLeaveFromCommunityRequest) returns (google.protobuf.Empty);
@@ -349,46 +349,32 @@ message RefreshTokenRequest {
 
 
 // user
-message uGetByTokenRequest {
-    string token = 1;
-}
-
 message uGetByTagRequest { 
     string user_tag = 1 [(validate.rules).string.pattern = "^[a-zA-Z0-9_\\-]+$"];
-    string token = 2;
 }
 
 message uUpdateProfileRequest {
     string new_user_tag = 1 [(validate.rules).string.pattern = "^[a-zA-Z0-9_\\-]+$"];
     string username = 2;
     string about = 3 [(validate.rules).string.max_len = 300];
-    string token = 6;
-}
-
-message uDeleteProfileRequest {
-    string token = 1;
 }
 
 message uVoteRequest {
     string user_tag = 1 [(validate.rules).string.pattern = "^[a-zA-Z0-9_\\-]+$"];
     bool vote = 2;
-    string token = 3;
 }
 
 message uAddToCommunityRequest {
     string community_uuid = 1 [(validate.rules).string.uuid = true];
-    string token = 2;
 }
 
 message uLeaveFromCommunityRequest {
     string community_uuid = 1 [(validate.rules).string.uuid = true];
-    string token = 2;
 }
 
 message uChangeRoleRequest {
     string user_tag = 1 [(validate.rules).string.pattern = "^[a-zA-Z0-9_\\-]+$"];
     string role = 2;
-    string token = 3;
 }
 
 // Community
@@ -419,12 +405,10 @@ message cmCreateRequest {
     string title = 1 [(validate.rules).string.max_len = 60];
     string description = 2 [(validate.rules).string.max_len = 300];
     float price = 3;
-    string token = 4;
 }
 
 message cmDeleteRequest {
     string community_uuid = 1 [(validate.rules).string.uuid = true];
-    string token = 2;
 }
 
 message cmUpdateRequest {
@@ -432,18 +416,15 @@ message cmUpdateRequest {
     string title = 2 [(validate.rules).string.max_len = 60];
     string description = 3 [(validate.rules).string.max_len = 300];
     float price = 4;
-    string token = 5;
 }
 
 message cmVoteRequest {
     string community_uuid = 1 [(validate.rules).string.uuid = true];
     bool vote = 2;
-    string token = 3;
 }
 
 message cmBanRequest {
     string community_uuid = 1 [(validate.rules).string.uuid = true];
-    string token = 2;
 }
 
 
@@ -451,12 +432,11 @@ message cmBanRequest {
 message pGetAllRequest {
     string community_uuid = 1 [(validate.rules).string.uuid = true];
     uint64 page = 2;
-    string token = 3;
+    uint64 sizeOfPage = 3;
 }
 
 message pGetByUUIDRequest {
     string post_uuid = 1 [(validate.rules).string.uuid = true];
-    string token = 2;
 }
 
 message PostData {
@@ -469,12 +449,10 @@ message pCreateRequest {
     string title = 2 [(validate.rules).string.max_len = 60];
     bytes body = 3;
     repeated PostData files = 4;
-    string token = 5;
 }
 
 message pDeleteRequest {
     string post_uuid = 1 [(validate.rules).string.uuid = true];
-    string token = 2;
 }
 
 message pUpdateRequest {
@@ -482,7 +460,6 @@ message pUpdateRequest {
     string title = 2 [(validate.rules).string.max_len = 60];
     repeated PostData files = 3;
     bytes body = 4;
-    string token = 5;
 }
 
 message pGetAllCommentsRequest {
@@ -493,30 +470,25 @@ message pGetAllCommentsRequest {
 message pCreateCommentRequest {
     string post_uuid = 1 [(validate.rules).string.uuid = true];
     string body = 2 [(validate.rules).string.max_len = 500];
-    string token = 3;
 }
 
 message pDeleteCommentRequest {
     int64 comment_id = 1;
-    string token = 2;
 }
 
 message pUpdateCommentRequest {
     int64 comment_id = 1;
     string body = 2 [(validate.rules).string.max_len = 500];
-    string token = 3;
 }
 
 message pVoteCommentRequest {
     int64 comment_id = 1;
     bool vote = 2;
-    string token = 3;
 }
 
 message pVoteRequest {
     string post_uuid = 1 [(validate.rules).string.uuid = true];
     bool vote = 2;
-    string token = 3;
 }
 
 // DISCUSSIONS
@@ -524,7 +496,7 @@ message pVoteRequest {
 message dGetAllRequest {
     string community_uuid = 1 [(validate.rules).string.uuid = true];
     uint64 page = 2;
-    string token = 3;
+    uint64 sizeOfPage = 3;
 }
 
 message dGetByUUIDRequest {
@@ -535,26 +507,23 @@ message dGetByUUIDRequest {
 message dGetAllWithFilterRequest {
     string title = 1 [(validate.rules).string.max_len = 60];
     uint64 page = 2;
-    string token = 3;
+    uint64 sizeOfPage = 3;
 }
 
 message dCreateRequest {
     string community_uuid = 1 [(validate.rules).string.uuid = true];
     string title = 2 [(validate.rules).string.max_len = 60];
     string body = 3 [(validate.rules).string.max_len = 500];
-    string token = 4;
 }
 
 message dDeleteRequest {
     string discussion_uuid = 1 [(validate.rules).string.uuid = true];
-    string token = 2;
 }
 
 message dUpdateRequest {
     string discussion_uuid = 1 [(validate.rules).string.uuid = true];
     string title = 2 [(validate.rules).string.max_len = 60];
     string body = 3 [(validate.rules).string.max_len = 500];
-    string token = 4;
 }
 
 message dGetAllCommentsRequest {
@@ -565,24 +534,20 @@ message dGetAllCommentsRequest {
 message dCreateCommentRequest {
     string discussion_uuid = 1 [(validate.rules).string.uuid = true];
     string body = 2 [(validate.rules).string.max_len = 500];
-    string token = 3;
 }
 
 message dDeleteCommentRequest {
     int64 comment_id = 1;
-    string token = 2;
 }
 
 message dUpdateCommentRequest {
     int64 comment_id = 1;
     string body = 2 [(validate.rules).string.max_len = 500];
-    string token = 3;
 }
 
 message dVoteCommentRequest {
     string discussion_uuid = 1 [(validate.rules).string.uuid = true];
     int64 comment_id = 2;
-    string token = 3;
 }
 
 // Courses

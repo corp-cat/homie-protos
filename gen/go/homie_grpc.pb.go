@@ -86,12 +86,12 @@ const (
 type HomieClient interface {
 	AuthLogin(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	AuthRegister(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
-	AuthRefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
+	AuthRefreshToken(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
 	UserGetByTag(ctx context.Context, in *UGetByTagRequest, opts ...grpc.CallOption) (*UGetByTagResponse, error)
 	UserUpdateProfile(ctx context.Context, in *UUpdateProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	UserDeleteProfile(ctx context.Context, in *UDeleteProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UserDeleteProfile(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	UserVote(ctx context.Context, in *UVoteRequest, opts ...grpc.CallOption) (*UVoteResponse, error)
-	UserGetByToken(ctx context.Context, in *UGetByTokenRequest, opts ...grpc.CallOption) (*UGetByTokenResponse, error)
+	UserGetByToken(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*UGetByTokenResponse, error)
 	UserAddToCommunity(ctx context.Context, in *UAddToCommunityRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	UserDeleteFromCommunity(ctx context.Context, in *UDeleteFromCommunity, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	UserLeaveFromCommunity(ctx context.Context, in *ULeaveFromCommunityRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -172,7 +172,7 @@ func (c *homieClient) AuthRegister(ctx context.Context, in *RegisterRequest, opt
 	return out, nil
 }
 
-func (c *homieClient) AuthRefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error) {
+func (c *homieClient) AuthRefreshToken(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RefreshTokenResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RefreshTokenResponse)
 	err := c.cc.Invoke(ctx, Homie_AuthRefreshToken_FullMethodName, in, out, cOpts...)
@@ -202,7 +202,7 @@ func (c *homieClient) UserUpdateProfile(ctx context.Context, in *UUpdateProfileR
 	return out, nil
 }
 
-func (c *homieClient) UserDeleteProfile(ctx context.Context, in *UDeleteProfileRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *homieClient) UserDeleteProfile(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Homie_UserDeleteProfile_FullMethodName, in, out, cOpts...)
@@ -222,7 +222,7 @@ func (c *homieClient) UserVote(ctx context.Context, in *UVoteRequest, opts ...gr
 	return out, nil
 }
 
-func (c *homieClient) UserGetByToken(ctx context.Context, in *UGetByTokenRequest, opts ...grpc.CallOption) (*UGetByTokenResponse, error) {
+func (c *homieClient) UserGetByToken(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*UGetByTokenResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UGetByTokenResponse)
 	err := c.cc.Invoke(ctx, Homie_UserGetByToken_FullMethodName, in, out, cOpts...)
@@ -738,12 +738,12 @@ func (c *homieClient) ReportsDelete(ctx context.Context, in *RDeleteRequest, opt
 type HomieServer interface {
 	AuthLogin(context.Context, *LoginRequest) (*LoginResponse, error)
 	AuthRegister(context.Context, *RegisterRequest) (*RegisterResponse, error)
-	AuthRefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
+	AuthRefreshToken(context.Context, *emptypb.Empty) (*RefreshTokenResponse, error)
 	UserGetByTag(context.Context, *UGetByTagRequest) (*UGetByTagResponse, error)
 	UserUpdateProfile(context.Context, *UUpdateProfileRequest) (*emptypb.Empty, error)
-	UserDeleteProfile(context.Context, *UDeleteProfileRequest) (*emptypb.Empty, error)
+	UserDeleteProfile(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	UserVote(context.Context, *UVoteRequest) (*UVoteResponse, error)
-	UserGetByToken(context.Context, *UGetByTokenRequest) (*UGetByTokenResponse, error)
+	UserGetByToken(context.Context, *emptypb.Empty) (*UGetByTokenResponse, error)
 	UserAddToCommunity(context.Context, *UAddToCommunityRequest) (*emptypb.Empty, error)
 	UserDeleteFromCommunity(context.Context, *UDeleteFromCommunity) (*emptypb.Empty, error)
 	UserLeaveFromCommunity(context.Context, *ULeaveFromCommunityRequest) (*emptypb.Empty, error)
@@ -810,7 +810,7 @@ func (UnimplementedHomieServer) AuthLogin(context.Context, *LoginRequest) (*Logi
 func (UnimplementedHomieServer) AuthRegister(context.Context, *RegisterRequest) (*RegisterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AuthRegister not implemented")
 }
-func (UnimplementedHomieServer) AuthRefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error) {
+func (UnimplementedHomieServer) AuthRefreshToken(context.Context, *emptypb.Empty) (*RefreshTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AuthRefreshToken not implemented")
 }
 func (UnimplementedHomieServer) UserGetByTag(context.Context, *UGetByTagRequest) (*UGetByTagResponse, error) {
@@ -819,13 +819,13 @@ func (UnimplementedHomieServer) UserGetByTag(context.Context, *UGetByTagRequest)
 func (UnimplementedHomieServer) UserUpdateProfile(context.Context, *UUpdateProfileRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserUpdateProfile not implemented")
 }
-func (UnimplementedHomieServer) UserDeleteProfile(context.Context, *UDeleteProfileRequest) (*emptypb.Empty, error) {
+func (UnimplementedHomieServer) UserDeleteProfile(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserDeleteProfile not implemented")
 }
 func (UnimplementedHomieServer) UserVote(context.Context, *UVoteRequest) (*UVoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserVote not implemented")
 }
-func (UnimplementedHomieServer) UserGetByToken(context.Context, *UGetByTokenRequest) (*UGetByTokenResponse, error) {
+func (UnimplementedHomieServer) UserGetByToken(context.Context, *emptypb.Empty) (*UGetByTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserGetByToken not implemented")
 }
 func (UnimplementedHomieServer) UserAddToCommunity(context.Context, *UAddToCommunityRequest) (*emptypb.Empty, error) {
@@ -1036,7 +1036,7 @@ func _Homie_AuthRegister_Handler(srv interface{}, ctx context.Context, dec func(
 }
 
 func _Homie_AuthRefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RefreshTokenRequest)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1048,7 +1048,7 @@ func _Homie_AuthRefreshToken_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: Homie_AuthRefreshToken_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HomieServer).AuthRefreshToken(ctx, req.(*RefreshTokenRequest))
+		return srv.(HomieServer).AuthRefreshToken(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1090,7 +1090,7 @@ func _Homie_UserUpdateProfile_Handler(srv interface{}, ctx context.Context, dec 
 }
 
 func _Homie_UserDeleteProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UDeleteProfileRequest)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1102,7 +1102,7 @@ func _Homie_UserDeleteProfile_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: Homie_UserDeleteProfile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HomieServer).UserDeleteProfile(ctx, req.(*UDeleteProfileRequest))
+		return srv.(HomieServer).UserDeleteProfile(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1126,7 +1126,7 @@ func _Homie_UserVote_Handler(srv interface{}, ctx context.Context, dec func(inte
 }
 
 func _Homie_UserGetByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UGetByTokenRequest)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1138,7 +1138,7 @@ func _Homie_UserGetByToken_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: Homie_UserGetByToken_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HomieServer).UserGetByToken(ctx, req.(*UGetByTokenRequest))
+		return srv.(HomieServer).UserGetByToken(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
