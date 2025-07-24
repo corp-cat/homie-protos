@@ -257,7 +257,7 @@ message Lesson {
     string uuid = 1;
     string course_uuid = 2;
     string title = 3;
-    bytes body = 4;
+    LessonData body = 4;
     int64 created_at = 5;
     int64 updated_at = 6;
 }

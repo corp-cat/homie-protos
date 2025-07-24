@@ -1841,7 +1841,7 @@ type Lesson struct {
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	CourseUuid    string                 `protobuf:"bytes,2,opt,name=course_uuid,json=courseUuid,proto3" json:"course_uuid,omitempty"`
 	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
-	Body          []byte                 `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty"`
+	Body          *LessonData            `protobuf:"bytes,4,opt,name=body,proto3" json:"body,omitempty"`
 	CreatedAt     int64                  `protobuf:"varint,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     int64                  `protobuf:"varint,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1899,7 +1899,7 @@ func (x *Lesson) GetTitle() string {
 	return ""
 }
 
-func (x *Lesson) GetBody() []byte {
+func (x *Lesson) GetBody() *LessonData {
 	if x != nil {
 		return x.Body
 	}
@@ -5839,13 +5839,13 @@ const file_homie_proto_rawDesc = "" +
 	"\x0fdCreateResponse\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"O\n" +
 	"\x17dGetAllCommentsResponse\x124\n" +
-	"\bcomments\x18\x01 \x03(\v2\x18.homie.DiscussionCommentR\bcomments\"\xa5\x01\n" +
+	"\bcomments\x18\x01 \x03(\v2\x18.homie.DiscussionCommentR\bcomments\"\xb8\x01\n" +
 	"\x06Lesson\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1f\n" +
 	"\vcourse_uuid\x18\x02 \x01(\tR\n" +
 	"courseUuid\x12\x14\n" +
-	"\x05title\x18\x03 \x01(\tR\x05title\x12\x12\n" +
-	"\x04body\x18\x04 \x01(\fR\x04body\x12\x1d\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12%\n" +
+	"\x04body\x18\x04 \x01(\v2\x11.homie.LessonDataR\x04body\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\x05 \x01(\x03R\tcreatedAt\x12\x1d\n" +
 	"\n" +
@@ -6331,148 +6331,149 @@ var file_homie_proto_depIdxs = []int32{
 	26,  // 23: homie.dGetByUUIDResponse.discussion:type_name -> homie.Discussion
 	27,  // 24: homie.dGetAllWithFilterResponse.discussions:type_name -> homie.DiscussionList
 	25,  // 25: homie.dGetAllCommentsResponse.comments:type_name -> homie.DiscussionComment
-	6,   // 26: homie.Course.votes:type_name -> homie.Votes
-	33,  // 27: homie.Course.lessons:type_name -> homie.Lesson
-	34,  // 28: homie.cGetAllResponse.courses:type_name -> homie.Course
-	34,  // 29: homie.cGetByUUIDResponse.course:type_name -> homie.Course
-	34,  // 30: homie.cGetAllWithFilterResponse.courses:type_name -> homie.Course
-	33,  // 31: homie.cGetAllLessonsResponse.lessons:type_name -> homie.Lesson
-	33,  // 32: homie.cGetByUUIDLessonsResponse.lesson:type_name -> homie.Lesson
-	10,  // 33: homie.ReporterObject.user:type_name -> homie.User
-	14,  // 34: homie.ReporterObject.community:type_name -> homie.Community
-	20,  // 35: homie.ReporterObject.post:type_name -> homie.Post
-	26,  // 36: homie.ReporterObject.discussion:type_name -> homie.Discussion
-	34,  // 37: homie.ReporterObject.course:type_name -> homie.Course
-	42,  // 38: homie.Report.reporter_object:type_name -> homie.ReporterObject
-	43,  // 39: homie.rGetAllResponse.reports:type_name -> homie.Report
-	56,  // 40: homie.cmGetAllWithFilterRequest.sort:type_name -> homie.Sort
-	65,  // 41: homie.pCreateRequest.files:type_name -> homie.PostData
-	65,  // 42: homie.pUpdateRequest.files:type_name -> homie.PostData
-	95,  // 43: homie.cCreateLessonsRequest.body:type_name -> homie.LessonData
-	95,  // 44: homie.cCreateLessonsRequest.files:type_name -> homie.LessonData
-	95,  // 45: homie.cUpdateLessonsRequest.body:type_name -> homie.LessonData
-	95,  // 46: homie.cUpdateLessonsRequest.files:type_name -> homie.LessonData
-	45,  // 47: homie.Homie.AuthLogin:input_type -> homie.LoginRequest
-	46,  // 48: homie.Homie.AuthRegister:input_type -> homie.RegisterRequest
-	103, // 49: homie.Homie.AuthRefreshToken:input_type -> google.protobuf.Empty
-	48,  // 50: homie.Homie.UserGetByTag:input_type -> homie.uGetByTagRequest
-	49,  // 51: homie.Homie.UserUpdateProfile:input_type -> homie.uUpdateProfileRequest
-	103, // 52: homie.Homie.UserDeleteProfile:input_type -> google.protobuf.Empty
-	50,  // 53: homie.Homie.UserVote:input_type -> homie.uVoteRequest
-	103, // 54: homie.Homie.UserGetByToken:input_type -> google.protobuf.Empty
-	51,  // 55: homie.Homie.UserAddToCommunity:input_type -> homie.uAddToCommunityRequest
-	13,  // 56: homie.Homie.UserDeleteFromCommunity:input_type -> homie.uDeleteFromCommunity
-	52,  // 57: homie.Homie.UserLeaveFromCommunity:input_type -> homie.uLeaveFromCommunityRequest
-	53,  // 58: homie.Homie.UserChangeRole:input_type -> homie.uChangeRoleRequest
-	54,  // 59: homie.Homie.CommunityGetAll:input_type -> homie.cmGetAllRequest
-	55,  // 60: homie.Homie.CommunityGetByUUID:input_type -> homie.cmGetByUUIDRequest
-	57,  // 61: homie.Homie.CommunityGetAllWithFilter:input_type -> homie.cmGetAllWithFilterRequest
-	58,  // 62: homie.Homie.CommunityCreate:input_type -> homie.cmCreateRequest
-	59,  // 63: homie.Homie.CommunityDelete:input_type -> homie.cmDeleteRequest
-	60,  // 64: homie.Homie.CommunityUpdate:input_type -> homie.cmUpdateRequest
-	61,  // 65: homie.Homie.CommunityVote:input_type -> homie.cmVoteRequest
-	62,  // 66: homie.Homie.CommunityBan:input_type -> homie.cmBanRequest
-	63,  // 67: homie.Homie.PostsGetAll:input_type -> homie.pGetAllRequest
-	64,  // 68: homie.Homie.PostsGetByUUID:input_type -> homie.pGetByUUIDRequest
-	66,  // 69: homie.Homie.PostsCreate:input_type -> homie.pCreateRequest
-	67,  // 70: homie.Homie.PostsDelete:input_type -> homie.pDeleteRequest
-	68,  // 71: homie.Homie.PostsUpdate:input_type -> homie.pUpdateRequest
-	69,  // 72: homie.Homie.PostsGetAllComments:input_type -> homie.pGetAllCommentsRequest
-	70,  // 73: homie.Homie.PostsCreateComment:input_type -> homie.pCreateCommentRequest
-	71,  // 74: homie.Homie.PostsDeleteComment:input_type -> homie.pDeleteCommentRequest
-	72,  // 75: homie.Homie.PostsUpdateComment:input_type -> homie.pUpdateCommentRequest
-	73,  // 76: homie.Homie.PostsVoteComment:input_type -> homie.pVoteCommentRequest
-	74,  // 77: homie.Homie.PostsVote:input_type -> homie.pVoteRequest
-	75,  // 78: homie.Homie.DiscussionsGetAll:input_type -> homie.dGetAllRequest
-	76,  // 79: homie.Homie.DiscussionsGetByUUID:input_type -> homie.dGetByUUIDRequest
-	77,  // 80: homie.Homie.DiscussionsGetAllWithFilter:input_type -> homie.dGetAllWithFilterRequest
-	78,  // 81: homie.Homie.DiscussionsCreate:input_type -> homie.dCreateRequest
-	79,  // 82: homie.Homie.DiscussionsDelete:input_type -> homie.dDeleteRequest
-	80,  // 83: homie.Homie.DiscussionsUpdate:input_type -> homie.dUpdateRequest
-	81,  // 84: homie.Homie.DiscussionsGetAllComments:input_type -> homie.dGetAllCommentsRequest
-	82,  // 85: homie.Homie.DiscussionsCreateComment:input_type -> homie.dCreateCommentRequest
-	83,  // 86: homie.Homie.DiscussionsDeleteComment:input_type -> homie.dDeleteCommentRequest
-	84,  // 87: homie.Homie.DiscussionsUpdateComment:input_type -> homie.dUpdateCommentRequest
-	85,  // 88: homie.Homie.DiscussionsVoteComment:input_type -> homie.dVoteCommentRequest
-	86,  // 89: homie.Homie.CoursesGetAll:input_type -> homie.cGetAllRequest
-	87,  // 90: homie.Homie.CoursesGetByUUID:input_type -> homie.cGetByUUIDRequest
-	88,  // 91: homie.Homie.CoursesGetAllWithFilter:input_type -> homie.cGetAllWithFilterRequest
-	89,  // 92: homie.Homie.CoursesCreate:input_type -> homie.cCreateRequest
-	90,  // 93: homie.Homie.CoursesDelete:input_type -> homie.cDeleteRequest
-	91,  // 94: homie.Homie.CoursesUpdate:input_type -> homie.cUpdateRequest
-	92,  // 95: homie.Homie.CoursesGetAllLessons:input_type -> homie.cGetAllLessonsRequest
-	93,  // 96: homie.Homie.CoursesGetByUUIDLesson:input_type -> homie.cGetByUUIDLessonsRequest
-	96,  // 97: homie.Homie.CoursesCreateLessons:input_type -> homie.cCreateLessonsRequest
-	97,  // 98: homie.Homie.CoursesDeleteLesson:input_type -> homie.cDeleteLessonsRequest
-	98,  // 99: homie.Homie.CoursesUpdateLesson:input_type -> homie.cUpdateLessonsRequest
-	94,  // 100: homie.Homie.CourseVote:input_type -> homie.cVoteRequest
-	99,  // 101: homie.Homie.CountOfPages:input_type -> homie.countOfPagesRequest
-	100, // 102: homie.Homie.ReportsGetAll:input_type -> homie.rGetAllRequest
-	101, // 103: homie.Homie.ReportsCreate:input_type -> homie.rCreateRequest
-	102, // 104: homie.Homie.ReportsDelete:input_type -> homie.rDeleteRequest
-	7,   // 105: homie.Homie.AuthLogin:output_type -> homie.LoginResponse
-	8,   // 106: homie.Homie.AuthRegister:output_type -> homie.RegisterResponse
-	9,   // 107: homie.Homie.AuthRefreshToken:output_type -> homie.RefreshTokenResponse
-	12,  // 108: homie.Homie.UserGetByTag:output_type -> homie.uGetByTagResponse
-	103, // 109: homie.Homie.UserUpdateProfile:output_type -> google.protobuf.Empty
-	103, // 110: homie.Homie.UserDeleteProfile:output_type -> google.protobuf.Empty
-	0,   // 111: homie.Homie.UserVote:output_type -> homie.uVoteResponse
-	11,  // 112: homie.Homie.UserGetByToken:output_type -> homie.uGetByTokenResponse
-	103, // 113: homie.Homie.UserAddToCommunity:output_type -> google.protobuf.Empty
-	103, // 114: homie.Homie.UserDeleteFromCommunity:output_type -> google.protobuf.Empty
-	103, // 115: homie.Homie.UserLeaveFromCommunity:output_type -> google.protobuf.Empty
-	103, // 116: homie.Homie.UserChangeRole:output_type -> google.protobuf.Empty
-	15,  // 117: homie.Homie.CommunityGetAll:output_type -> homie.cmGetAllResponse
-	16,  // 118: homie.Homie.CommunityGetByUUID:output_type -> homie.cmGetByUUIDResponse
-	17,  // 119: homie.Homie.CommunityGetAllWithFilter:output_type -> homie.cmGetAllWithFilterResponse
-	18,  // 120: homie.Homie.CommunityCreate:output_type -> homie.cmCreateResponse
-	103, // 121: homie.Homie.CommunityDelete:output_type -> google.protobuf.Empty
-	103, // 122: homie.Homie.CommunityUpdate:output_type -> google.protobuf.Empty
-	1,   // 123: homie.Homie.CommunityVote:output_type -> homie.cmVoteResponse
-	103, // 124: homie.Homie.CommunityBan:output_type -> google.protobuf.Empty
-	21,  // 125: homie.Homie.PostsGetAll:output_type -> homie.pGetAllResponse
-	23,  // 126: homie.Homie.PostsGetByUUID:output_type -> homie.pGetByUUIDResponse
-	24,  // 127: homie.Homie.PostsCreate:output_type -> homie.pCreateResponse
-	103, // 128: homie.Homie.PostsDelete:output_type -> google.protobuf.Empty
-	103, // 129: homie.Homie.PostsUpdate:output_type -> google.protobuf.Empty
-	22,  // 130: homie.Homie.PostsGetAllComments:output_type -> homie.pGetAllCommentsResponse
-	103, // 131: homie.Homie.PostsCreateComment:output_type -> google.protobuf.Empty
-	103, // 132: homie.Homie.PostsDeleteComment:output_type -> google.protobuf.Empty
-	103, // 133: homie.Homie.PostsUpdateComment:output_type -> google.protobuf.Empty
-	2,   // 134: homie.Homie.PostsVoteComment:output_type -> homie.pVoteCommentResponse
-	3,   // 135: homie.Homie.PostsVote:output_type -> homie.pVoteResponse
-	28,  // 136: homie.Homie.DiscussionsGetAll:output_type -> homie.dGetAllResponse
-	29,  // 137: homie.Homie.DiscussionsGetByUUID:output_type -> homie.dGetByUUIDResponse
-	30,  // 138: homie.Homie.DiscussionsGetAllWithFilter:output_type -> homie.dGetAllWithFilterResponse
-	31,  // 139: homie.Homie.DiscussionsCreate:output_type -> homie.dCreateResponse
-	103, // 140: homie.Homie.DiscussionsDelete:output_type -> google.protobuf.Empty
-	103, // 141: homie.Homie.DiscussionsUpdate:output_type -> google.protobuf.Empty
-	32,  // 142: homie.Homie.DiscussionsGetAllComments:output_type -> homie.dGetAllCommentsResponse
-	103, // 143: homie.Homie.DiscussionsCreateComment:output_type -> google.protobuf.Empty
-	103, // 144: homie.Homie.DiscussionsDeleteComment:output_type -> google.protobuf.Empty
-	103, // 145: homie.Homie.DiscussionsUpdateComment:output_type -> google.protobuf.Empty
-	4,   // 146: homie.Homie.DiscussionsVoteComment:output_type -> homie.dVoteCommentResponse
-	35,  // 147: homie.Homie.CoursesGetAll:output_type -> homie.cGetAllResponse
-	36,  // 148: homie.Homie.CoursesGetByUUID:output_type -> homie.cGetByUUIDResponse
-	37,  // 149: homie.Homie.CoursesGetAllWithFilter:output_type -> homie.cGetAllWithFilterResponse
-	38,  // 150: homie.Homie.CoursesCreate:output_type -> homie.cCreateResponse
-	103, // 151: homie.Homie.CoursesDelete:output_type -> google.protobuf.Empty
-	103, // 152: homie.Homie.CoursesUpdate:output_type -> google.protobuf.Empty
-	39,  // 153: homie.Homie.CoursesGetAllLessons:output_type -> homie.cGetAllLessonsResponse
-	40,  // 154: homie.Homie.CoursesGetByUUIDLesson:output_type -> homie.cGetByUUIDLessonsResponse
-	103, // 155: homie.Homie.CoursesCreateLessons:output_type -> google.protobuf.Empty
-	103, // 156: homie.Homie.CoursesDeleteLesson:output_type -> google.protobuf.Empty
-	103, // 157: homie.Homie.CoursesUpdateLesson:output_type -> google.protobuf.Empty
-	5,   // 158: homie.Homie.CourseVote:output_type -> homie.cVoteResponse
-	41,  // 159: homie.Homie.CountOfPages:output_type -> homie.countOfPagesResponse
-	44,  // 160: homie.Homie.ReportsGetAll:output_type -> homie.rGetAllResponse
-	103, // 161: homie.Homie.ReportsCreate:output_type -> google.protobuf.Empty
-	103, // 162: homie.Homie.ReportsDelete:output_type -> google.protobuf.Empty
-	105, // [105:163] is the sub-list for method output_type
-	47,  // [47:105] is the sub-list for method input_type
-	47,  // [47:47] is the sub-list for extension type_name
-	47,  // [47:47] is the sub-list for extension extendee
-	0,   // [0:47] is the sub-list for field type_name
+	95,  // 26: homie.Lesson.body:type_name -> homie.LessonData
+	6,   // 27: homie.Course.votes:type_name -> homie.Votes
+	33,  // 28: homie.Course.lessons:type_name -> homie.Lesson
+	34,  // 29: homie.cGetAllResponse.courses:type_name -> homie.Course
+	34,  // 30: homie.cGetByUUIDResponse.course:type_name -> homie.Course
+	34,  // 31: homie.cGetAllWithFilterResponse.courses:type_name -> homie.Course
+	33,  // 32: homie.cGetAllLessonsResponse.lessons:type_name -> homie.Lesson
+	33,  // 33: homie.cGetByUUIDLessonsResponse.lesson:type_name -> homie.Lesson
+	10,  // 34: homie.ReporterObject.user:type_name -> homie.User
+	14,  // 35: homie.ReporterObject.community:type_name -> homie.Community
+	20,  // 36: homie.ReporterObject.post:type_name -> homie.Post
+	26,  // 37: homie.ReporterObject.discussion:type_name -> homie.Discussion
+	34,  // 38: homie.ReporterObject.course:type_name -> homie.Course
+	42,  // 39: homie.Report.reporter_object:type_name -> homie.ReporterObject
+	43,  // 40: homie.rGetAllResponse.reports:type_name -> homie.Report
+	56,  // 41: homie.cmGetAllWithFilterRequest.sort:type_name -> homie.Sort
+	65,  // 42: homie.pCreateRequest.files:type_name -> homie.PostData
+	65,  // 43: homie.pUpdateRequest.files:type_name -> homie.PostData
+	95,  // 44: homie.cCreateLessonsRequest.body:type_name -> homie.LessonData
+	95,  // 45: homie.cCreateLessonsRequest.files:type_name -> homie.LessonData
+	95,  // 46: homie.cUpdateLessonsRequest.body:type_name -> homie.LessonData
+	95,  // 47: homie.cUpdateLessonsRequest.files:type_name -> homie.LessonData
+	45,  // 48: homie.Homie.AuthLogin:input_type -> homie.LoginRequest
+	46,  // 49: homie.Homie.AuthRegister:input_type -> homie.RegisterRequest
+	103, // 50: homie.Homie.AuthRefreshToken:input_type -> google.protobuf.Empty
+	48,  // 51: homie.Homie.UserGetByTag:input_type -> homie.uGetByTagRequest
+	49,  // 52: homie.Homie.UserUpdateProfile:input_type -> homie.uUpdateProfileRequest
+	103, // 53: homie.Homie.UserDeleteProfile:input_type -> google.protobuf.Empty
+	50,  // 54: homie.Homie.UserVote:input_type -> homie.uVoteRequest
+	103, // 55: homie.Homie.UserGetByToken:input_type -> google.protobuf.Empty
+	51,  // 56: homie.Homie.UserAddToCommunity:input_type -> homie.uAddToCommunityRequest
+	13,  // 57: homie.Homie.UserDeleteFromCommunity:input_type -> homie.uDeleteFromCommunity
+	52,  // 58: homie.Homie.UserLeaveFromCommunity:input_type -> homie.uLeaveFromCommunityRequest
+	53,  // 59: homie.Homie.UserChangeRole:input_type -> homie.uChangeRoleRequest
+	54,  // 60: homie.Homie.CommunityGetAll:input_type -> homie.cmGetAllRequest
+	55,  // 61: homie.Homie.CommunityGetByUUID:input_type -> homie.cmGetByUUIDRequest
+	57,  // 62: homie.Homie.CommunityGetAllWithFilter:input_type -> homie.cmGetAllWithFilterRequest
+	58,  // 63: homie.Homie.CommunityCreate:input_type -> homie.cmCreateRequest
+	59,  // 64: homie.Homie.CommunityDelete:input_type -> homie.cmDeleteRequest
+	60,  // 65: homie.Homie.CommunityUpdate:input_type -> homie.cmUpdateRequest
+	61,  // 66: homie.Homie.CommunityVote:input_type -> homie.cmVoteRequest
+	62,  // 67: homie.Homie.CommunityBan:input_type -> homie.cmBanRequest
+	63,  // 68: homie.Homie.PostsGetAll:input_type -> homie.pGetAllRequest
+	64,  // 69: homie.Homie.PostsGetByUUID:input_type -> homie.pGetByUUIDRequest
+	66,  // 70: homie.Homie.PostsCreate:input_type -> homie.pCreateRequest
+	67,  // 71: homie.Homie.PostsDelete:input_type -> homie.pDeleteRequest
+	68,  // 72: homie.Homie.PostsUpdate:input_type -> homie.pUpdateRequest
+	69,  // 73: homie.Homie.PostsGetAllComments:input_type -> homie.pGetAllCommentsRequest
+	70,  // 74: homie.Homie.PostsCreateComment:input_type -> homie.pCreateCommentRequest
+	71,  // 75: homie.Homie.PostsDeleteComment:input_type -> homie.pDeleteCommentRequest
+	72,  // 76: homie.Homie.PostsUpdateComment:input_type -> homie.pUpdateCommentRequest
+	73,  // 77: homie.Homie.PostsVoteComment:input_type -> homie.pVoteCommentRequest
+	74,  // 78: homie.Homie.PostsVote:input_type -> homie.pVoteRequest
+	75,  // 79: homie.Homie.DiscussionsGetAll:input_type -> homie.dGetAllRequest
+	76,  // 80: homie.Homie.DiscussionsGetByUUID:input_type -> homie.dGetByUUIDRequest
+	77,  // 81: homie.Homie.DiscussionsGetAllWithFilter:input_type -> homie.dGetAllWithFilterRequest
+	78,  // 82: homie.Homie.DiscussionsCreate:input_type -> homie.dCreateRequest
+	79,  // 83: homie.Homie.DiscussionsDelete:input_type -> homie.dDeleteRequest
+	80,  // 84: homie.Homie.DiscussionsUpdate:input_type -> homie.dUpdateRequest
+	81,  // 85: homie.Homie.DiscussionsGetAllComments:input_type -> homie.dGetAllCommentsRequest
+	82,  // 86: homie.Homie.DiscussionsCreateComment:input_type -> homie.dCreateCommentRequest
+	83,  // 87: homie.Homie.DiscussionsDeleteComment:input_type -> homie.dDeleteCommentRequest
+	84,  // 88: homie.Homie.DiscussionsUpdateComment:input_type -> homie.dUpdateCommentRequest
+	85,  // 89: homie.Homie.DiscussionsVoteComment:input_type -> homie.dVoteCommentRequest
+	86,  // 90: homie.Homie.CoursesGetAll:input_type -> homie.cGetAllRequest
+	87,  // 91: homie.Homie.CoursesGetByUUID:input_type -> homie.cGetByUUIDRequest
+	88,  // 92: homie.Homie.CoursesGetAllWithFilter:input_type -> homie.cGetAllWithFilterRequest
+	89,  // 93: homie.Homie.CoursesCreate:input_type -> homie.cCreateRequest
+	90,  // 94: homie.Homie.CoursesDelete:input_type -> homie.cDeleteRequest
+	91,  // 95: homie.Homie.CoursesUpdate:input_type -> homie.cUpdateRequest
+	92,  // 96: homie.Homie.CoursesGetAllLessons:input_type -> homie.cGetAllLessonsRequest
+	93,  // 97: homie.Homie.CoursesGetByUUIDLesson:input_type -> homie.cGetByUUIDLessonsRequest
+	96,  // 98: homie.Homie.CoursesCreateLessons:input_type -> homie.cCreateLessonsRequest
+	97,  // 99: homie.Homie.CoursesDeleteLesson:input_type -> homie.cDeleteLessonsRequest
+	98,  // 100: homie.Homie.CoursesUpdateLesson:input_type -> homie.cUpdateLessonsRequest
+	94,  // 101: homie.Homie.CourseVote:input_type -> homie.cVoteRequest
+	99,  // 102: homie.Homie.CountOfPages:input_type -> homie.countOfPagesRequest
+	100, // 103: homie.Homie.ReportsGetAll:input_type -> homie.rGetAllRequest
+	101, // 104: homie.Homie.ReportsCreate:input_type -> homie.rCreateRequest
+	102, // 105: homie.Homie.ReportsDelete:input_type -> homie.rDeleteRequest
+	7,   // 106: homie.Homie.AuthLogin:output_type -> homie.LoginResponse
+	8,   // 107: homie.Homie.AuthRegister:output_type -> homie.RegisterResponse
+	9,   // 108: homie.Homie.AuthRefreshToken:output_type -> homie.RefreshTokenResponse
+	12,  // 109: homie.Homie.UserGetByTag:output_type -> homie.uGetByTagResponse
+	103, // 110: homie.Homie.UserUpdateProfile:output_type -> google.protobuf.Empty
+	103, // 111: homie.Homie.UserDeleteProfile:output_type -> google.protobuf.Empty
+	0,   // 112: homie.Homie.UserVote:output_type -> homie.uVoteResponse
+	11,  // 113: homie.Homie.UserGetByToken:output_type -> homie.uGetByTokenResponse
+	103, // 114: homie.Homie.UserAddToCommunity:output_type -> google.protobuf.Empty
+	103, // 115: homie.Homie.UserDeleteFromCommunity:output_type -> google.protobuf.Empty
+	103, // 116: homie.Homie.UserLeaveFromCommunity:output_type -> google.protobuf.Empty
+	103, // 117: homie.Homie.UserChangeRole:output_type -> google.protobuf.Empty
+	15,  // 118: homie.Homie.CommunityGetAll:output_type -> homie.cmGetAllResponse
+	16,  // 119: homie.Homie.CommunityGetByUUID:output_type -> homie.cmGetByUUIDResponse
+	17,  // 120: homie.Homie.CommunityGetAllWithFilter:output_type -> homie.cmGetAllWithFilterResponse
+	18,  // 121: homie.Homie.CommunityCreate:output_type -> homie.cmCreateResponse
+	103, // 122: homie.Homie.CommunityDelete:output_type -> google.protobuf.Empty
+	103, // 123: homie.Homie.CommunityUpdate:output_type -> google.protobuf.Empty
+	1,   // 124: homie.Homie.CommunityVote:output_type -> homie.cmVoteResponse
+	103, // 125: homie.Homie.CommunityBan:output_type -> google.protobuf.Empty
+	21,  // 126: homie.Homie.PostsGetAll:output_type -> homie.pGetAllResponse
+	23,  // 127: homie.Homie.PostsGetByUUID:output_type -> homie.pGetByUUIDResponse
+	24,  // 128: homie.Homie.PostsCreate:output_type -> homie.pCreateResponse
+	103, // 129: homie.Homie.PostsDelete:output_type -> google.protobuf.Empty
+	103, // 130: homie.Homie.PostsUpdate:output_type -> google.protobuf.Empty
+	22,  // 131: homie.Homie.PostsGetAllComments:output_type -> homie.pGetAllCommentsResponse
+	103, // 132: homie.Homie.PostsCreateComment:output_type -> google.protobuf.Empty
+	103, // 133: homie.Homie.PostsDeleteComment:output_type -> google.protobuf.Empty
+	103, // 134: homie.Homie.PostsUpdateComment:output_type -> google.protobuf.Empty
+	2,   // 135: homie.Homie.PostsVoteComment:output_type -> homie.pVoteCommentResponse
+	3,   // 136: homie.Homie.PostsVote:output_type -> homie.pVoteResponse
+	28,  // 137: homie.Homie.DiscussionsGetAll:output_type -> homie.dGetAllResponse
+	29,  // 138: homie.Homie.DiscussionsGetByUUID:output_type -> homie.dGetByUUIDResponse
+	30,  // 139: homie.Homie.DiscussionsGetAllWithFilter:output_type -> homie.dGetAllWithFilterResponse
+	31,  // 140: homie.Homie.DiscussionsCreate:output_type -> homie.dCreateResponse
+	103, // 141: homie.Homie.DiscussionsDelete:output_type -> google.protobuf.Empty
+	103, // 142: homie.Homie.DiscussionsUpdate:output_type -> google.protobuf.Empty
+	32,  // 143: homie.Homie.DiscussionsGetAllComments:output_type -> homie.dGetAllCommentsResponse
+	103, // 144: homie.Homie.DiscussionsCreateComment:output_type -> google.protobuf.Empty
+	103, // 145: homie.Homie.DiscussionsDeleteComment:output_type -> google.protobuf.Empty
+	103, // 146: homie.Homie.DiscussionsUpdateComment:output_type -> google.protobuf.Empty
+	4,   // 147: homie.Homie.DiscussionsVoteComment:output_type -> homie.dVoteCommentResponse
+	35,  // 148: homie.Homie.CoursesGetAll:output_type -> homie.cGetAllResponse
+	36,  // 149: homie.Homie.CoursesGetByUUID:output_type -> homie.cGetByUUIDResponse
+	37,  // 150: homie.Homie.CoursesGetAllWithFilter:output_type -> homie.cGetAllWithFilterResponse
+	38,  // 151: homie.Homie.CoursesCreate:output_type -> homie.cCreateResponse
+	103, // 152: homie.Homie.CoursesDelete:output_type -> google.protobuf.Empty
+	103, // 153: homie.Homie.CoursesUpdate:output_type -> google.protobuf.Empty
+	39,  // 154: homie.Homie.CoursesGetAllLessons:output_type -> homie.cGetAllLessonsResponse
+	40,  // 155: homie.Homie.CoursesGetByUUIDLesson:output_type -> homie.cGetByUUIDLessonsResponse
+	103, // 156: homie.Homie.CoursesCreateLessons:output_type -> google.protobuf.Empty
+	103, // 157: homie.Homie.CoursesDeleteLesson:output_type -> google.protobuf.Empty
+	103, // 158: homie.Homie.CoursesUpdateLesson:output_type -> google.protobuf.Empty
+	5,   // 159: homie.Homie.CourseVote:output_type -> homie.cVoteResponse
+	41,  // 160: homie.Homie.CountOfPages:output_type -> homie.countOfPagesResponse
+	44,  // 161: homie.Homie.ReportsGetAll:output_type -> homie.rGetAllResponse
+	103, // 162: homie.Homie.ReportsCreate:output_type -> google.protobuf.Empty
+	103, // 163: homie.Homie.ReportsDelete:output_type -> google.protobuf.Empty
+	106, // [106:164] is the sub-list for method output_type
+	48,  // [48:106] is the sub-list for method input_type
+	48,  // [48:48] is the sub-list for extension type_name
+	48,  // [48:48] is the sub-list for extension extendee
+	0,   // [0:48] is the sub-list for field type_name
 }
 
 func init() { file_homie_proto_init() }
