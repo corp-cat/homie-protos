@@ -558,53 +558,49 @@ message dVoteCommentRequest {
 message cGetAllRequest {
     string community_uuid = 1 [(validate.rules).string.uuid = true];
     uint64 page = 2;
+    uint64 sizeOfPage = 3;
 }
 
 message cGetByUUIDRequest {
     string course_uuid = 1 [(validate.rules).string.uuid = true];
-    string token = 2;
 }
 
 message cGetAllWithFilterRequest {
     string community_uuid = 1 [(validate.rules).string.uuid = true];
     string title = 2 [(validate.rules).string.max_len = 60];
     uint64 page = 3;
+    uint64 sizeOfPage = 4;
 }
 
 message cCreateRequest {
     string community_uuid = 1 [(validate.rules).string.uuid = true];
     string title = 2 [(validate.rules).string.max_len = 60];
     string description = 3 [(validate.rules).string.max_len = 300];
-    string token = 4;
 }
 
 message cDeleteRequest {
     string course_uuid = 1 [(validate.rules).string.uuid = true];
-    string token = 2;
 }
 
 message cUpdateRequest {
     string course_uuid = 1 [(validate.rules).string.uuid = true];
     string title = 2 [(validate.rules).string.max_len = 60];
     string description = 3 [(validate.rules).string.max_len = 300];
-    string token = 4;
 }
 
 message cGetAllLessonsRequest {
     string course_uuid = 1 [(validate.rules).string.uuid = true];
     uint64 page = 2;
-    string token = 3;
+    uint64 sizeOfPage = 3;
 }
 
 message cGetByUUIDLessonsRequest {
     string lesson_uuid = 1 [(validate.rules).string.uuid = true];
-    string token = 2;
 }
 
 message cVoteRequest {
     string course_uuid = 1 [(validate.rules).string.uuid = true];
     bool vote = 2;
-    string token = 3;
 }
 
 
@@ -618,12 +614,10 @@ message cCreateLessonsRequest {
     string title = 2 [(validate.rules).string.max_len = 60];
     LessonData body = 3;
     repeated LessonData files = 5;
-    string token = 6;
 }
 
 message cDeleteLessonsRequest {
     string lesson_uuid = 1 [(validate.rules).string.uuid = true];
-    string token = 2;
 }
 
 message cUpdateLessonsRequest {
@@ -631,7 +625,6 @@ message cUpdateLessonsRequest {
     string title = 2 [(validate.rules).string.max_len = 60];
     LessonData body = 3;
     repeated LessonData files = 4;
-    string token = 5;
 }
 
 message countOfPagesRequest {

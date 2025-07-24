@@ -11132,6 +11132,8 @@ func (m *CGetAllRequest) validate(all bool) error {
 
 	// no validation rules for Page
 
+	// no validation rules for SizeOfPage
+
 	if len(errors) > 0 {
 		return CGetAllRequestMultiError(errors)
 	}
@@ -11251,8 +11253,6 @@ func (m *CGetByUUIDRequest) validate(all bool) error {
 		}
 		errors = append(errors, err)
 	}
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return CGetByUUIDRequestMultiError(errors)
@@ -11388,6 +11388,8 @@ func (m *CGetAllWithFilterRequest) validate(all bool) error {
 	}
 
 	// no validation rules for Page
+
+	// no validation rules for SizeOfPage
 
 	if len(errors) > 0 {
 		return CGetAllWithFilterRequestMultiError(errors)
@@ -11533,8 +11535,6 @@ func (m *CCreateRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	// no validation rules for Token
-
 	if len(errors) > 0 {
 		return CCreateRequestMultiError(errors)
 	}
@@ -11654,8 +11654,6 @@ func (m *CDeleteRequest) validate(all bool) error {
 		}
 		errors = append(errors, err)
 	}
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return CDeleteRequestMultiError(errors)
@@ -11799,8 +11797,6 @@ func (m *CUpdateRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	// no validation rules for Token
-
 	if len(errors) > 0 {
 		return CUpdateRequestMultiError(errors)
 	}
@@ -11923,7 +11919,7 @@ func (m *CGetAllLessonsRequest) validate(all bool) error {
 
 	// no validation rules for Page
 
-	// no validation rules for Token
+	// no validation rules for SizeOfPage
 
 	if len(errors) > 0 {
 		return CGetAllLessonsRequestMultiError(errors)
@@ -12046,8 +12042,6 @@ func (m *CGetByUUIDLessonsRequest) validate(all bool) error {
 		}
 		errors = append(errors, err)
 	}
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return CGetByUUIDLessonsRequestMultiError(errors)
@@ -12172,8 +12166,6 @@ func (m *CVoteRequest) validate(all bool) error {
 	}
 
 	// no validation rules for Vote
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return CVoteRequestMultiError(errors)
@@ -12471,8 +12463,6 @@ func (m *CCreateLessonsRequest) validate(all bool) error {
 
 	}
 
-	// no validation rules for Token
-
 	if len(errors) > 0 {
 		return CCreateLessonsRequestMultiError(errors)
 	}
@@ -12594,8 +12584,6 @@ func (m *CDeleteLessonsRequest) validate(all bool) error {
 		}
 		errors = append(errors, err)
 	}
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return CDeleteLessonsRequestMultiError(errors)
@@ -12792,8 +12780,6 @@ func (m *CUpdateLessonsRequest) validate(all bool) error {
 		}
 
 	}
-
-	// no validation rules for Token
 
 	if len(errors) > 0 {
 		return CUpdateLessonsRequestMultiError(errors)

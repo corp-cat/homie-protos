@@ -4760,6 +4760,7 @@ type CGetAllRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CommunityUuid string                 `protobuf:"bytes,1,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
 	Page          uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	SizeOfPage    uint64                 `protobuf:"varint,3,opt,name=sizeOfPage,proto3" json:"sizeOfPage,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4808,10 +4809,16 @@ func (x *CGetAllRequest) GetPage() uint64 {
 	return 0
 }
 
+func (x *CGetAllRequest) GetSizeOfPage() uint64 {
+	if x != nil {
+		return x.SizeOfPage
+	}
+	return 0
+}
+
 type CGetByUUIDRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CourseUuid    string                 `protobuf:"bytes,1,opt,name=course_uuid,json=courseUuid,proto3" json:"course_uuid,omitempty"`
-	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4853,18 +4860,12 @@ func (x *CGetByUUIDRequest) GetCourseUuid() string {
 	return ""
 }
 
-func (x *CGetByUUIDRequest) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
 type CGetAllWithFilterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CommunityUuid string                 `protobuf:"bytes,1,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Page          uint64                 `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
+	SizeOfPage    uint64                 `protobuf:"varint,4,opt,name=sizeOfPage,proto3" json:"sizeOfPage,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4920,12 +4921,18 @@ func (x *CGetAllWithFilterRequest) GetPage() uint64 {
 	return 0
 }
 
+func (x *CGetAllWithFilterRequest) GetSizeOfPage() uint64 {
+	if x != nil {
+		return x.SizeOfPage
+	}
+	return 0
+}
+
 type CCreateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CommunityUuid string                 `protobuf:"bytes,1,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	Token         string                 `protobuf:"bytes,4,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4981,17 +4988,9 @@ func (x *CCreateRequest) GetDescription() string {
 	return ""
 }
 
-func (x *CCreateRequest) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
 type CDeleteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CourseUuid    string                 `protobuf:"bytes,1,opt,name=course_uuid,json=courseUuid,proto3" json:"course_uuid,omitempty"`
-	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5033,19 +5032,11 @@ func (x *CDeleteRequest) GetCourseUuid() string {
 	return ""
 }
 
-func (x *CDeleteRequest) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
 type CUpdateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CourseUuid    string                 `protobuf:"bytes,1,opt,name=course_uuid,json=courseUuid,proto3" json:"course_uuid,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	Token         string                 `protobuf:"bytes,4,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5101,18 +5092,11 @@ func (x *CUpdateRequest) GetDescription() string {
 	return ""
 }
 
-func (x *CUpdateRequest) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
 type CGetAllLessonsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CourseUuid    string                 `protobuf:"bytes,1,opt,name=course_uuid,json=courseUuid,proto3" json:"course_uuid,omitempty"`
 	Page          uint64                 `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
-	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
+	SizeOfPage    uint64                 `protobuf:"varint,3,opt,name=sizeOfPage,proto3" json:"sizeOfPage,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5161,17 +5145,16 @@ func (x *CGetAllLessonsRequest) GetPage() uint64 {
 	return 0
 }
 
-func (x *CGetAllLessonsRequest) GetToken() string {
+func (x *CGetAllLessonsRequest) GetSizeOfPage() uint64 {
 	if x != nil {
-		return x.Token
+		return x.SizeOfPage
 	}
-	return ""
+	return 0
 }
 
 type CGetByUUIDLessonsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	LessonUuid    string                 `protobuf:"bytes,1,opt,name=lesson_uuid,json=lessonUuid,proto3" json:"lesson_uuid,omitempty"`
-	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5213,18 +5196,10 @@ func (x *CGetByUUIDLessonsRequest) GetLessonUuid() string {
 	return ""
 }
 
-func (x *CGetByUUIDLessonsRequest) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
 type CVoteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CourseUuid    string                 `protobuf:"bytes,1,opt,name=course_uuid,json=courseUuid,proto3" json:"course_uuid,omitempty"`
 	Vote          bool                   `protobuf:"varint,2,opt,name=vote,proto3" json:"vote,omitempty"`
-	Token         string                 `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5271,13 +5246,6 @@ func (x *CVoteRequest) GetVote() bool {
 		return x.Vote
 	}
 	return false
-}
-
-func (x *CVoteRequest) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
 }
 
 type LessonData struct {
@@ -5338,7 +5306,6 @@ type CCreateLessonsRequest struct {
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Body          *LessonData            `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
 	Files         []*LessonData          `protobuf:"bytes,5,rep,name=files,proto3" json:"files,omitempty"`
-	Token         string                 `protobuf:"bytes,6,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5401,17 +5368,9 @@ func (x *CCreateLessonsRequest) GetFiles() []*LessonData {
 	return nil
 }
 
-func (x *CCreateLessonsRequest) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
 type CDeleteLessonsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	LessonUuid    string                 `protobuf:"bytes,1,opt,name=lesson_uuid,json=lessonUuid,proto3" json:"lesson_uuid,omitempty"`
-	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5453,20 +5412,12 @@ func (x *CDeleteLessonsRequest) GetLessonUuid() string {
 	return ""
 }
 
-func (x *CDeleteLessonsRequest) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
 type CUpdateLessonsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	LessonUuid    string                 `protobuf:"bytes,1,opt,name=lesson_uuid,json=lessonUuid,proto3" json:"lesson_uuid,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Body          *LessonData            `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
 	Files         []*LessonData          `protobuf:"bytes,4,rep,name=files,proto3" json:"files,omitempty"`
-	Token         string                 `protobuf:"bytes,5,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5527,13 +5478,6 @@ func (x *CUpdateLessonsRequest) GetFiles() []*LessonData {
 		return x.Files
 	}
 	return nil
-}
-
-func (x *CUpdateLessonsRequest) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
 }
 
 type CountOfPagesRequest struct {
@@ -6102,69 +6046,68 @@ const file_homie_proto_rawDesc = "" +
 	"\x0fdiscussion_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\x0ediscussionUuid\x12\x1d\n" +
 	"\n" +
 	"comment_id\x18\x02 \x01(\x03R\tcommentId\x12\x12\n" +
-	"\x04vote\x18\x03 \x01(\bR\x04vote\"U\n" +
+	"\x04vote\x18\x03 \x01(\bR\x04vote\"u\n" +
 	"\x0ecGetAllRequest\x12/\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\rcommunityUuid\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x04R\x04page\"T\n" +
+	"\x04page\x18\x02 \x01(\x04R\x04page\x12\x1e\n" +
+	"\n" +
+	"sizeOfPage\x18\x03 \x01(\x04R\n" +
+	"sizeOfPage\">\n" +
 	"\x11cGetByUUIDRequest\x12)\n" +
 	"\vcourse_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\n" +
-	"courseUuid\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token\"~\n" +
+	"courseUuid\"\x9e\x01\n" +
 	"\x18cGetAllWithFilterRequest\x12/\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\rcommunityUuid\x12\x1d\n" +
 	"\x05title\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x18<R\x05title\x12\x12\n" +
-	"\x04page\x18\x03 \x01(\x04R\x04page\"\xa2\x01\n" +
+	"\x04page\x18\x03 \x01(\x04R\x04page\x12\x1e\n" +
+	"\n" +
+	"sizeOfPage\x18\x04 \x01(\x04R\n" +
+	"sizeOfPage\"\x8c\x01\n" +
 	"\x0ecCreateRequest\x12/\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\rcommunityUuid\x12\x1d\n" +
 	"\x05title\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x18<R\x05title\x12*\n" +
-	"\vdescription\x18\x03 \x01(\tB\b\xfaB\x05r\x03\x18\xac\x02R\vdescription\x12\x14\n" +
-	"\x05token\x18\x04 \x01(\tR\x05token\"Q\n" +
+	"\vdescription\x18\x03 \x01(\tB\b\xfaB\x05r\x03\x18\xac\x02R\vdescription\";\n" +
 	"\x0ecDeleteRequest\x12)\n" +
 	"\vcourse_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\n" +
-	"courseUuid\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token\"\x9c\x01\n" +
+	"courseUuid\"\x86\x01\n" +
 	"\x0ecUpdateRequest\x12)\n" +
 	"\vcourse_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\n" +
 	"courseUuid\x12\x1d\n" +
 	"\x05title\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x18<R\x05title\x12*\n" +
-	"\vdescription\x18\x03 \x01(\tB\b\xfaB\x05r\x03\x18\xac\x02R\vdescription\x12\x14\n" +
-	"\x05token\x18\x04 \x01(\tR\x05token\"l\n" +
+	"\vdescription\x18\x03 \x01(\tB\b\xfaB\x05r\x03\x18\xac\x02R\vdescription\"v\n" +
 	"\x15cGetAllLessonsRequest\x12)\n" +
 	"\vcourse_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\n" +
 	"courseUuid\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x04R\x04page\x12\x14\n" +
-	"\x05token\x18\x03 \x01(\tR\x05token\"[\n" +
+	"\x04page\x18\x02 \x01(\x04R\x04page\x12\x1e\n" +
+	"\n" +
+	"sizeOfPage\x18\x03 \x01(\x04R\n" +
+	"sizeOfPage\"E\n" +
 	"\x18cGetByUUIDLessonsRequest\x12)\n" +
 	"\vlesson_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\n" +
-	"lessonUuid\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token\"c\n" +
+	"lessonUuid\"M\n" +
 	"\fcVoteRequest\x12)\n" +
 	"\vcourse_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\n" +
 	"courseUuid\x12\x12\n" +
-	"\x04vote\x18\x02 \x01(\bR\x04vote\x12\x14\n" +
-	"\x05token\x18\x03 \x01(\tR\x05token\"=\n" +
+	"\x04vote\x18\x02 \x01(\bR\x04vote\"=\n" +
 	"\n" +
 	"LessonData\x12\x12\n" +
 	"\x04file\x18\x01 \x01(\fR\x04file\x12\x1b\n" +
-	"\tmime_type\x18\x02 \x01(\tR\bmimeType\"\xc7\x01\n" +
+	"\tmime_type\x18\x02 \x01(\tR\bmimeType\"\xb1\x01\n" +
 	"\x15cCreateLessonsRequest\x12)\n" +
 	"\vcourse_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\n" +
 	"courseUuid\x12\x1d\n" +
 	"\x05title\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x18<R\x05title\x12%\n" +
 	"\x04body\x18\x03 \x01(\v2\x11.homie.LessonDataR\x04body\x12'\n" +
-	"\x05files\x18\x05 \x03(\v2\x11.homie.LessonDataR\x05files\x12\x14\n" +
-	"\x05token\x18\x06 \x01(\tR\x05token\"X\n" +
+	"\x05files\x18\x05 \x03(\v2\x11.homie.LessonDataR\x05files\"B\n" +
 	"\x15cDeleteLessonsRequest\x12)\n" +
 	"\vlesson_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\n" +
-	"lessonUuid\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token\"\xc7\x01\n" +
+	"lessonUuid\"\xb1\x01\n" +
 	"\x15cUpdateLessonsRequest\x12)\n" +
 	"\vlesson_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\n" +
 	"lessonUuid\x12\x1d\n" +
 	"\x05title\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x18<R\x05title\x12%\n" +
 	"\x04body\x18\x03 \x01(\v2\x11.homie.LessonDataR\x04body\x12'\n" +
-	"\x05files\x18\x04 \x03(\v2\x11.homie.LessonDataR\x05files\x12\x14\n" +
-	"\x05token\x18\x05 \x01(\tR\x05token\"O\n" +
+	"\x05files\x18\x04 \x03(\v2\x11.homie.LessonDataR\x05files\"O\n" +
 	"\x13countOfPagesRequest\x12\x16\n" +
 	"\x06entity\x18\x01 \x01(\tR\x06entity\x12 \n" +
 	"\fsize_of_page\x18\x02 \x01(\x04R\n" +
