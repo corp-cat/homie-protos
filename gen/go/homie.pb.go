@@ -5532,65 +5532,19 @@ func (x *CountOfPagesRequest) GetSizeOfPage() uint64 {
 	return 0
 }
 
-// REPORTS
-type RGetAllRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RGetAllRequest) Reset() {
-	*x = RGetAllRequest{}
-	mi := &file_homie_proto_msgTypes[100]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RGetAllRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RGetAllRequest) ProtoMessage() {}
-
-func (x *RGetAllRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[100]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RGetAllRequest.ProtoReflect.Descriptor instead.
-func (*RGetAllRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{100}
-}
-
-func (x *RGetAllRequest) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
 type RCreateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CommunityUuid string                 `protobuf:"bytes,1,opt,name=community_uuid,json=communityUuid,proto3" json:"community_uuid,omitempty"`
 	Msg           string                 `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
 	AddressedObj  string                 `protobuf:"bytes,3,opt,name=addressed_obj,json=addressedObj,proto3" json:"addressed_obj,omitempty"`
 	TypeReport    string                 `protobuf:"bytes,4,opt,name=type_report,json=typeReport,proto3" json:"type_report,omitempty"`
-	Token         string                 `protobuf:"bytes,5,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *RCreateRequest) Reset() {
 	*x = RCreateRequest{}
-	mi := &file_homie_proto_msgTypes[101]
+	mi := &file_homie_proto_msgTypes[100]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5602,7 +5556,7 @@ func (x *RCreateRequest) String() string {
 func (*RCreateRequest) ProtoMessage() {}
 
 func (x *RCreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[101]
+	mi := &file_homie_proto_msgTypes[100]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5615,7 +5569,7 @@ func (x *RCreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RCreateRequest.ProtoReflect.Descriptor instead.
 func (*RCreateRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{101}
+	return file_homie_proto_rawDescGZIP(), []int{100}
 }
 
 func (x *RCreateRequest) GetCommunityUuid() string {
@@ -5646,24 +5600,16 @@ func (x *RCreateRequest) GetTypeReport() string {
 	return ""
 }
 
-func (x *RCreateRequest) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
 type RDeleteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ReportId      string                 `protobuf:"bytes,1,opt,name=report_id,json=reportId,proto3" json:"report_id,omitempty"`
-	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *RDeleteRequest) Reset() {
 	*x = RDeleteRequest{}
-	mi := &file_homie_proto_msgTypes[102]
+	mi := &file_homie_proto_msgTypes[101]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5675,7 +5621,7 @@ func (x *RDeleteRequest) String() string {
 func (*RDeleteRequest) ProtoMessage() {}
 
 func (x *RDeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_homie_proto_msgTypes[102]
+	mi := &file_homie_proto_msgTypes[101]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5688,19 +5634,12 @@ func (x *RDeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RDeleteRequest.ProtoReflect.Descriptor instead.
 func (*RDeleteRequest) Descriptor() ([]byte, []int) {
-	return file_homie_proto_rawDescGZIP(), []int{102}
+	return file_homie_proto_rawDescGZIP(), []int{101}
 }
 
 func (x *RDeleteRequest) GetReportId() string {
 	if x != nil {
 		return x.ReportId
-	}
-	return ""
-}
-
-func (x *RDeleteRequest) GetToken() string {
-	if x != nil {
-		return x.Token
 	}
 	return ""
 }
@@ -6111,19 +6050,15 @@ const file_homie_proto_rawDesc = "" +
 	"\x13countOfPagesRequest\x12\x16\n" +
 	"\x06entity\x18\x01 \x01(\tR\x06entity\x12 \n" +
 	"\fsize_of_page\x18\x02 \x01(\x04R\n" +
-	"sizeOfPage\"&\n" +
-	"\x0erGetAllRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"\xb8\x01\n" +
+	"sizeOfPage\"\xa2\x01\n" +
 	"\x0erCreateRequest\x12/\n" +
 	"\x0ecommunity_uuid\x18\x01 \x01(\tB\b\xfaB\x05r\x03\xb0\x01\x01R\rcommunityUuid\x12\x19\n" +
 	"\x03msg\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x18dR\x03msg\x12#\n" +
 	"\raddressed_obj\x18\x03 \x01(\tR\faddressedObj\x12\x1f\n" +
 	"\vtype_report\x18\x04 \x01(\tR\n" +
-	"typeReport\x12\x14\n" +
-	"\x05token\x18\x05 \x01(\tR\x05token\"C\n" +
+	"typeReport\"-\n" +
 	"\x0erDeleteRequest\x12\x1b\n" +
-	"\treport_id\x18\x01 \x01(\tR\breportId\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token2\xed \n" +
+	"\treport_id\x18\x01 \x01(\tR\breportId2\xee \n" +
 	"\x05Homie\x126\n" +
 	"\tAuthLogin\x12\x13.homie.LoginRequest\x1a\x14.homie.LoginResponse\x12?\n" +
 	"\fAuthRegister\x12\x16.homie.RegisterRequest\x1a\x17.homie.RegisterResponse\x12G\n" +
@@ -6180,8 +6115,8 @@ const file_homie_proto_rawDesc = "" +
 	"\x13CoursesUpdateLesson\x12\x1c.homie.cUpdateLessonsRequest\x1a\x16.google.protobuf.Empty\x127\n" +
 	"\n" +
 	"CourseVote\x12\x13.homie.cVoteRequest\x1a\x14.homie.cVoteResponse\x12G\n" +
-	"\fCountOfPages\x12\x1a.homie.countOfPagesRequest\x1a\x1b.homie.countOfPagesResponse\x12>\n" +
-	"\rReportsGetAll\x12\x15.homie.rGetAllRequest\x1a\x16.homie.rGetAllResponse\x12>\n" +
+	"\fCountOfPages\x12\x1a.homie.countOfPagesRequest\x1a\x1b.homie.countOfPagesResponse\x12?\n" +
+	"\rReportsGetAll\x12\x16.google.protobuf.Empty\x1a\x16.homie.rGetAllResponse\x12>\n" +
 	"\rReportsCreate\x12\x15.homie.rCreateRequest\x1a\x16.google.protobuf.Empty\x12>\n" +
 	"\rReportsDelete\x12\x15.homie.rDeleteRequest\x1a\x16.google.protobuf.EmptyB\x19Z\x17corp-cat.homie.v1;homieb\x06proto3"
 
@@ -6197,7 +6132,7 @@ func file_homie_proto_rawDescGZIP() []byte {
 	return file_homie_proto_rawDescData
 }
 
-var file_homie_proto_msgTypes = make([]protoimpl.MessageInfo, 103)
+var file_homie_proto_msgTypes = make([]protoimpl.MessageInfo, 102)
 var file_homie_proto_goTypes = []any{
 	(*UVoteResponse)(nil),              // 0: homie.uVoteResponse
 	(*CmVoteResponse)(nil),             // 1: homie.cmVoteResponse
@@ -6299,10 +6234,9 @@ var file_homie_proto_goTypes = []any{
 	(*CDeleteLessonsRequest)(nil),      // 97: homie.cDeleteLessonsRequest
 	(*CUpdateLessonsRequest)(nil),      // 98: homie.cUpdateLessonsRequest
 	(*CountOfPagesRequest)(nil),        // 99: homie.countOfPagesRequest
-	(*RGetAllRequest)(nil),             // 100: homie.rGetAllRequest
-	(*RCreateRequest)(nil),             // 101: homie.rCreateRequest
-	(*RDeleteRequest)(nil),             // 102: homie.rDeleteRequest
-	(*emptypb.Empty)(nil),              // 103: google.protobuf.Empty
+	(*RCreateRequest)(nil),             // 100: homie.rCreateRequest
+	(*RDeleteRequest)(nil),             // 101: homie.rDeleteRequest
+	(*emptypb.Empty)(nil),              // 102: google.protobuf.Empty
 }
 var file_homie_proto_depIdxs = []int32{
 	6,   // 0: homie.uVoteResponse.votes:type_name -> homie.Votes
@@ -6355,12 +6289,12 @@ var file_homie_proto_depIdxs = []int32{
 	95,  // 47: homie.cUpdateLessonsRequest.files:type_name -> homie.LessonData
 	45,  // 48: homie.Homie.AuthLogin:input_type -> homie.LoginRequest
 	46,  // 49: homie.Homie.AuthRegister:input_type -> homie.RegisterRequest
-	103, // 50: homie.Homie.AuthRefreshToken:input_type -> google.protobuf.Empty
+	102, // 50: homie.Homie.AuthRefreshToken:input_type -> google.protobuf.Empty
 	48,  // 51: homie.Homie.UserGetByTag:input_type -> homie.uGetByTagRequest
 	49,  // 52: homie.Homie.UserUpdateProfile:input_type -> homie.uUpdateProfileRequest
-	103, // 53: homie.Homie.UserDeleteProfile:input_type -> google.protobuf.Empty
+	102, // 53: homie.Homie.UserDeleteProfile:input_type -> google.protobuf.Empty
 	50,  // 54: homie.Homie.UserVote:input_type -> homie.uVoteRequest
-	103, // 55: homie.Homie.UserGetByToken:input_type -> google.protobuf.Empty
+	102, // 55: homie.Homie.UserGetByToken:input_type -> google.protobuf.Empty
 	51,  // 56: homie.Homie.UserAddToCommunity:input_type -> homie.uAddToCommunityRequest
 	13,  // 57: homie.Homie.UserDeleteFromCommunity:input_type -> homie.uDeleteFromCommunity
 	52,  // 58: homie.Homie.UserLeaveFromCommunity:input_type -> homie.uLeaveFromCommunityRequest
@@ -6408,67 +6342,67 @@ var file_homie_proto_depIdxs = []int32{
 	98,  // 100: homie.Homie.CoursesUpdateLesson:input_type -> homie.cUpdateLessonsRequest
 	94,  // 101: homie.Homie.CourseVote:input_type -> homie.cVoteRequest
 	99,  // 102: homie.Homie.CountOfPages:input_type -> homie.countOfPagesRequest
-	100, // 103: homie.Homie.ReportsGetAll:input_type -> homie.rGetAllRequest
-	101, // 104: homie.Homie.ReportsCreate:input_type -> homie.rCreateRequest
-	102, // 105: homie.Homie.ReportsDelete:input_type -> homie.rDeleteRequest
+	102, // 103: homie.Homie.ReportsGetAll:input_type -> google.protobuf.Empty
+	100, // 104: homie.Homie.ReportsCreate:input_type -> homie.rCreateRequest
+	101, // 105: homie.Homie.ReportsDelete:input_type -> homie.rDeleteRequest
 	7,   // 106: homie.Homie.AuthLogin:output_type -> homie.LoginResponse
 	8,   // 107: homie.Homie.AuthRegister:output_type -> homie.RegisterResponse
 	9,   // 108: homie.Homie.AuthRefreshToken:output_type -> homie.RefreshTokenResponse
 	12,  // 109: homie.Homie.UserGetByTag:output_type -> homie.uGetByTagResponse
-	103, // 110: homie.Homie.UserUpdateProfile:output_type -> google.protobuf.Empty
-	103, // 111: homie.Homie.UserDeleteProfile:output_type -> google.protobuf.Empty
+	102, // 110: homie.Homie.UserUpdateProfile:output_type -> google.protobuf.Empty
+	102, // 111: homie.Homie.UserDeleteProfile:output_type -> google.protobuf.Empty
 	0,   // 112: homie.Homie.UserVote:output_type -> homie.uVoteResponse
 	11,  // 113: homie.Homie.UserGetByToken:output_type -> homie.uGetByTokenResponse
-	103, // 114: homie.Homie.UserAddToCommunity:output_type -> google.protobuf.Empty
-	103, // 115: homie.Homie.UserDeleteFromCommunity:output_type -> google.protobuf.Empty
-	103, // 116: homie.Homie.UserLeaveFromCommunity:output_type -> google.protobuf.Empty
-	103, // 117: homie.Homie.UserChangeRole:output_type -> google.protobuf.Empty
+	102, // 114: homie.Homie.UserAddToCommunity:output_type -> google.protobuf.Empty
+	102, // 115: homie.Homie.UserDeleteFromCommunity:output_type -> google.protobuf.Empty
+	102, // 116: homie.Homie.UserLeaveFromCommunity:output_type -> google.protobuf.Empty
+	102, // 117: homie.Homie.UserChangeRole:output_type -> google.protobuf.Empty
 	15,  // 118: homie.Homie.CommunityGetAll:output_type -> homie.cmGetAllResponse
 	16,  // 119: homie.Homie.CommunityGetByUUID:output_type -> homie.cmGetByUUIDResponse
 	17,  // 120: homie.Homie.CommunityGetAllWithFilter:output_type -> homie.cmGetAllWithFilterResponse
 	18,  // 121: homie.Homie.CommunityCreate:output_type -> homie.cmCreateResponse
-	103, // 122: homie.Homie.CommunityDelete:output_type -> google.protobuf.Empty
-	103, // 123: homie.Homie.CommunityUpdate:output_type -> google.protobuf.Empty
+	102, // 122: homie.Homie.CommunityDelete:output_type -> google.protobuf.Empty
+	102, // 123: homie.Homie.CommunityUpdate:output_type -> google.protobuf.Empty
 	1,   // 124: homie.Homie.CommunityVote:output_type -> homie.cmVoteResponse
-	103, // 125: homie.Homie.CommunityBan:output_type -> google.protobuf.Empty
+	102, // 125: homie.Homie.CommunityBan:output_type -> google.protobuf.Empty
 	21,  // 126: homie.Homie.PostsGetAll:output_type -> homie.pGetAllResponse
 	23,  // 127: homie.Homie.PostsGetByUUID:output_type -> homie.pGetByUUIDResponse
 	24,  // 128: homie.Homie.PostsCreate:output_type -> homie.pCreateResponse
-	103, // 129: homie.Homie.PostsDelete:output_type -> google.protobuf.Empty
-	103, // 130: homie.Homie.PostsUpdate:output_type -> google.protobuf.Empty
+	102, // 129: homie.Homie.PostsDelete:output_type -> google.protobuf.Empty
+	102, // 130: homie.Homie.PostsUpdate:output_type -> google.protobuf.Empty
 	22,  // 131: homie.Homie.PostsGetAllComments:output_type -> homie.pGetAllCommentsResponse
-	103, // 132: homie.Homie.PostsCreateComment:output_type -> google.protobuf.Empty
-	103, // 133: homie.Homie.PostsDeleteComment:output_type -> google.protobuf.Empty
-	103, // 134: homie.Homie.PostsUpdateComment:output_type -> google.protobuf.Empty
+	102, // 132: homie.Homie.PostsCreateComment:output_type -> google.protobuf.Empty
+	102, // 133: homie.Homie.PostsDeleteComment:output_type -> google.protobuf.Empty
+	102, // 134: homie.Homie.PostsUpdateComment:output_type -> google.protobuf.Empty
 	2,   // 135: homie.Homie.PostsVoteComment:output_type -> homie.pVoteCommentResponse
 	3,   // 136: homie.Homie.PostsVote:output_type -> homie.pVoteResponse
 	28,  // 137: homie.Homie.DiscussionsGetAll:output_type -> homie.dGetAllResponse
 	29,  // 138: homie.Homie.DiscussionsGetByUUID:output_type -> homie.dGetByUUIDResponse
 	30,  // 139: homie.Homie.DiscussionsGetAllWithFilter:output_type -> homie.dGetAllWithFilterResponse
 	31,  // 140: homie.Homie.DiscussionsCreate:output_type -> homie.dCreateResponse
-	103, // 141: homie.Homie.DiscussionsDelete:output_type -> google.protobuf.Empty
-	103, // 142: homie.Homie.DiscussionsUpdate:output_type -> google.protobuf.Empty
+	102, // 141: homie.Homie.DiscussionsDelete:output_type -> google.protobuf.Empty
+	102, // 142: homie.Homie.DiscussionsUpdate:output_type -> google.protobuf.Empty
 	32,  // 143: homie.Homie.DiscussionsGetAllComments:output_type -> homie.dGetAllCommentsResponse
-	103, // 144: homie.Homie.DiscussionsCreateComment:output_type -> google.protobuf.Empty
-	103, // 145: homie.Homie.DiscussionsDeleteComment:output_type -> google.protobuf.Empty
-	103, // 146: homie.Homie.DiscussionsUpdateComment:output_type -> google.protobuf.Empty
+	102, // 144: homie.Homie.DiscussionsCreateComment:output_type -> google.protobuf.Empty
+	102, // 145: homie.Homie.DiscussionsDeleteComment:output_type -> google.protobuf.Empty
+	102, // 146: homie.Homie.DiscussionsUpdateComment:output_type -> google.protobuf.Empty
 	4,   // 147: homie.Homie.DiscussionsVoteComment:output_type -> homie.dVoteCommentResponse
 	35,  // 148: homie.Homie.CoursesGetAll:output_type -> homie.cGetAllResponse
 	36,  // 149: homie.Homie.CoursesGetByUUID:output_type -> homie.cGetByUUIDResponse
 	37,  // 150: homie.Homie.CoursesGetAllWithFilter:output_type -> homie.cGetAllWithFilterResponse
 	38,  // 151: homie.Homie.CoursesCreate:output_type -> homie.cCreateResponse
-	103, // 152: homie.Homie.CoursesDelete:output_type -> google.protobuf.Empty
-	103, // 153: homie.Homie.CoursesUpdate:output_type -> google.protobuf.Empty
+	102, // 152: homie.Homie.CoursesDelete:output_type -> google.protobuf.Empty
+	102, // 153: homie.Homie.CoursesUpdate:output_type -> google.protobuf.Empty
 	39,  // 154: homie.Homie.CoursesGetAllLessons:output_type -> homie.cGetAllLessonsResponse
 	40,  // 155: homie.Homie.CoursesGetByUUIDLesson:output_type -> homie.cGetByUUIDLessonsResponse
-	103, // 156: homie.Homie.CoursesCreateLessons:output_type -> google.protobuf.Empty
-	103, // 157: homie.Homie.CoursesDeleteLesson:output_type -> google.protobuf.Empty
-	103, // 158: homie.Homie.CoursesUpdateLesson:output_type -> google.protobuf.Empty
+	102, // 156: homie.Homie.CoursesCreateLessons:output_type -> google.protobuf.Empty
+	102, // 157: homie.Homie.CoursesDeleteLesson:output_type -> google.protobuf.Empty
+	102, // 158: homie.Homie.CoursesUpdateLesson:output_type -> google.protobuf.Empty
 	5,   // 159: homie.Homie.CourseVote:output_type -> homie.cVoteResponse
 	41,  // 160: homie.Homie.CountOfPages:output_type -> homie.countOfPagesResponse
 	44,  // 161: homie.Homie.ReportsGetAll:output_type -> homie.rGetAllResponse
-	103, // 162: homie.Homie.ReportsCreate:output_type -> google.protobuf.Empty
-	103, // 163: homie.Homie.ReportsDelete:output_type -> google.protobuf.Empty
+	102, // 162: homie.Homie.ReportsCreate:output_type -> google.protobuf.Empty
+	102, // 163: homie.Homie.ReportsDelete:output_type -> google.protobuf.Empty
 	106, // [106:164] is the sub-list for method output_type
 	48,  // [48:106] is the sub-list for method input_type
 	48,  // [48:48] is the sub-list for extension type_name
@@ -6487,7 +6421,7 @@ func file_homie_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_homie_proto_rawDesc), len(file_homie_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   103,
+			NumMessages:   102,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

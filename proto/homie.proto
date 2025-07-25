@@ -70,7 +70,7 @@ service Homie {
 
     rpc CountOfPages(countOfPagesRequest) returns (countOfPagesResponse);
 
-    rpc ReportsGetAll(rGetAllRequest) returns (rGetAllResponse);
+    rpc ReportsGetAll(google.protobuf.Empty) returns (rGetAllResponse);
     rpc ReportsCreate(rCreateRequest) returns (google.protobuf.Empty);
     rpc ReportsDelete(rDeleteRequest) returns (google.protobuf.Empty);
 }
@@ -633,19 +633,14 @@ message countOfPagesRequest {
 }
 
 // REPORTS
-message rGetAllRequest {
-    string token = 1;
-}
 
 message rCreateRequest {
     string community_uuid = 1 [(validate.rules).string.uuid = true];
     string msg = 2 [(validate.rules).string.max_len = 100];
     string addressed_obj = 3;
     string type_report = 4;
-    string token = 5;
 }
 
 message rDeleteRequest {
     string report_id = 1;
-    string token = 2;
 }

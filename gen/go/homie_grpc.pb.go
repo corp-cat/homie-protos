@@ -139,7 +139,7 @@ type HomieClient interface {
 	CoursesUpdateLesson(ctx context.Context, in *CUpdateLessonsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	CourseVote(ctx context.Context, in *CVoteRequest, opts ...grpc.CallOption) (*CVoteResponse, error)
 	CountOfPages(ctx context.Context, in *CountOfPagesRequest, opts ...grpc.CallOption) (*CountOfPagesResponse, error)
-	ReportsGetAll(ctx context.Context, in *RGetAllRequest, opts ...grpc.CallOption) (*RGetAllResponse, error)
+	ReportsGetAll(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RGetAllResponse, error)
 	ReportsCreate(ctx context.Context, in *RCreateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ReportsDelete(ctx context.Context, in *RDeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
@@ -702,7 +702,7 @@ func (c *homieClient) CountOfPages(ctx context.Context, in *CountOfPagesRequest,
 	return out, nil
 }
 
-func (c *homieClient) ReportsGetAll(ctx context.Context, in *RGetAllRequest, opts ...grpc.CallOption) (*RGetAllResponse, error) {
+func (c *homieClient) ReportsGetAll(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RGetAllResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RGetAllResponse)
 	err := c.cc.Invoke(ctx, Homie_ReportsGetAll_FullMethodName, in, out, cOpts...)
@@ -791,7 +791,7 @@ type HomieServer interface {
 	CoursesUpdateLesson(context.Context, *CUpdateLessonsRequest) (*emptypb.Empty, error)
 	CourseVote(context.Context, *CVoteRequest) (*CVoteResponse, error)
 	CountOfPages(context.Context, *CountOfPagesRequest) (*CountOfPagesResponse, error)
-	ReportsGetAll(context.Context, *RGetAllRequest) (*RGetAllResponse, error)
+	ReportsGetAll(context.Context, *emptypb.Empty) (*RGetAllResponse, error)
 	ReportsCreate(context.Context, *RCreateRequest) (*emptypb.Empty, error)
 	ReportsDelete(context.Context, *RDeleteRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedHomieServer()
@@ -969,7 +969,7 @@ func (UnimplementedHomieServer) CourseVote(context.Context, *CVoteRequest) (*CVo
 func (UnimplementedHomieServer) CountOfPages(context.Context, *CountOfPagesRequest) (*CountOfPagesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CountOfPages not implemented")
 }
-func (UnimplementedHomieServer) ReportsGetAll(context.Context, *RGetAllRequest) (*RGetAllResponse, error) {
+func (UnimplementedHomieServer) ReportsGetAll(context.Context, *emptypb.Empty) (*RGetAllResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReportsGetAll not implemented")
 }
 func (UnimplementedHomieServer) ReportsCreate(context.Context, *RCreateRequest) (*emptypb.Empty, error) {
@@ -1990,7 +1990,7 @@ func _Homie_CountOfPages_Handler(srv interface{}, ctx context.Context, dec func(
 }
 
 func _Homie_ReportsGetAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RGetAllRequest)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2002,7 +2002,7 @@ func _Homie_ReportsGetAll_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: Homie_ReportsGetAll_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HomieServer).ReportsGetAll(ctx, req.(*RGetAllRequest))
+		return srv.(HomieServer).ReportsGetAll(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
