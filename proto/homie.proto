@@ -642,5 +642,5 @@ message rCreateRequest {
 }
 
 message rDeleteRequest {
-    string report_id = 1;
+    int64 report_id = 1;
 }

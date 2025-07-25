@@ -5602,7 +5602,7 @@ func (x *RCreateRequest) GetTypeReport() string {
 
 type RDeleteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ReportId      string                 `protobuf:"bytes,1,opt,name=report_id,json=reportId,proto3" json:"report_id,omitempty"`
+	ReportId      int64                  `protobuf:"varint,1,opt,name=report_id,json=reportId,proto3" json:"report_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5637,11 +5637,11 @@ func (*RDeleteRequest) Descriptor() ([]byte, []int) {
 	return file_homie_proto_rawDescGZIP(), []int{101}
 }
 
-func (x *RDeleteRequest) GetReportId() string {
+func (x *RDeleteRequest) GetReportId() int64 {
 	if x != nil {
 		return x.ReportId
 	}
-	return ""
+	return 0
 }
 
 var File_homie_proto protoreflect.FileDescriptor
@@ -6058,7 +6058,7 @@ const file_homie_proto_rawDesc = "" +
 	"\vtype_report\x18\x04 \x01(\tR\n" +
 	"typeReport\"-\n" +
 	"\x0erDeleteRequest\x12\x1b\n" +
-	"\treport_id\x18\x01 \x01(\tR\breportId2\xee \n" +
+	"\treport_id\x18\x01 \x01(\x03R\breportId2\xee \n" +
 	"\x05Homie\x126\n" +
 	"\tAuthLogin\x12\x13.homie.LoginRequest\x1a\x14.homie.LoginResponse\x12?\n" +
 	"\fAuthRegister\x12\x16.homie.RegisterRequest\x1a\x17.homie.RegisterResponse\x12G\n" +
